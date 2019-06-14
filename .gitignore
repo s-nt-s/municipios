@@ -1,3 +1,10 @@
+fuentes/*
+!fuentes/indice.yml
+!fuentes/fuentes.json
+!fuentes/ine/censo_agrario_2009.html
+*.db
+*.db-journal
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

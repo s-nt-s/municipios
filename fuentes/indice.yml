@@ -1,0 +1,42 @@
+ine:
+  provincias: http://www.ine.es/daco/daco42/codmun/cod_provincia_estandar.htm
+  municipios: http://www.ine.es/daco/daco42/codmun/codmunmapa.htm
+  poblacion:
+    sexo: http://www.ine.es/dynt3/inebase/index.htm?padre=525
+    edad: http://www.ine.es/dyngs/INEbase/es/operacion.htm?c=Estadistica_C&cid=1254736177012&menu=resultados&idp=1254734710990
+    edad_year: http://www.ine.es/dynt3/inebase/es/index.htm?type=pcaxis&file=pcaxis&path=%2Ft20%2Fe245%2Fp05%2Fa
+  empresas:
+    html: http://www.ine.es/jaxiT3/Tabla.htm?t=4721
+    json: http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/4721?tip=AM
+    csv: http://www.ine.es/jaxiT3/files/t/es/csv_c/4721.csv?nocab=1
+  agrario:
+    root: http://www.ine.es/dyngs/INEbase/es/operacion.htm?c=Estadistica_C&cid=1254736176851&menu=resultados&secc=1254736194955&idp=1254735727106
+    year:
+      2009:
+        online: http://www.ine.es/CA/InicioAccesibilidad.do
+        local: fuentes/ine/censo_agrario_2009.html
+      1999: http://www.ine.es/dyngs/INEbase/es/operacion.htm?c=Estadistica_C&cid=1254736176851&menu=resultados&secc=1254736195186&idp=1254735727106
+fomento:
+  root: http://centrodedescargas.cnig.es/CentroDescargas/equipamiento.do?method=mostrarEquipamiento
+  nomenclator:
+    basico: http://centrodedescargas.cnig.es/CentroDescargas/descargaDir?codSerie=NGBES&secDescDirCata=9000001
+    municipios: http://centrodedescargas.cnig.es/CentroDescargas/descargaDir?codSerie=NGMEN&secDescDirCata=9000004
+  mapa: http://centrodedescargas.cnig.es/CentroDescargas/descargaDir?codSerie=NGMEN&secDescDirCata=9000029
+sepe:
+  html: https://datos.gob.es/es/catalogo/e00142804-paro-registrado-por-municipios
+  json: https://datos.gob.es/apidata/catalog/dataset/e00142804-paro-registrado-por-municipios.json
+renta:
+  aeat:
+    root: https://www.agenciatributaria.es/AEAT.internet/Inicio/La_Agencia_Tributaria/Memorias_y_estadisticas_tributarias/Estadisticas/Estadisticas_por_impuesto/IRPF_y_Patrimonio/Estadistica_de_los_declarantes_del_IRPF_por_municipios/Publicaciones/Publicaciones.shtml
+    doc: https://www.agenciatributaria.es/AEAT/Contenidos_Comunes/La_Agencia_Tributaria/Estadisticas/Publicaciones/sites/irpfmunicipios/2015/docf352123d7e2e50ca8466f34549845dc5b1b75518c.html#8
+  euskadi:
+    root: http://opendata.euskadi.eus/catalogo/-/indicadores-municipales-de-sostenibilidad-renta-personal-total-x20ac/
+    doc: http://www.ogasun.ejgv.euskadi.eus/r51-t64cont/es/t64amVisorWar/t64aservlet/t64aReportServlet?reporttype=0&pdf=2&municode=&code=60&language=0
+    csv: http://opendata.euskadi.eus/contenidos/estadistica/udalmap_indicador_60/es_def/adjuntos/indicator.csv
+  navarra: https://administracionelectronica.navarra.es/GN.InstitutoEstadistica.Web/InformacionEstadistica.aspx?R=1&E=4051
+miteco:
+  root: https://www.miteco.gob.es/es/biodiversidad/servicios/banco-datos-naturaleza/informacion-disponible/mfe50_descargas_ccaa.aspx
+  diccionario: https://www.miteco.gob.es/es/biodiversidad/servicios/banco-datos-naturaleza/MFE50_DD_tcm30-154309.xls
+aemet:
+  root: https://opendata.aemet.es/centrodedescargas/productosAEMET
+  estaciones: https://opendata.aemet.es/opendata/api/valores/climatologicos/inventarioestaciones/todasestaciones/?api_key=
