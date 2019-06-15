@@ -1,5 +1,6 @@
 fuentes/*
 !fuentes/indice.yml
+!fuentes/cambios_municipios.yml
 !fuentes/fuentes.json
 !fuentes/ine/censo_agrario_2009.html
 *.db
