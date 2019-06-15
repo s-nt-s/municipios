@@ -802,8 +802,7 @@ class Dataset():
 
         data = {}
         for y in self.years_poblacion:
-            url = "http://www.ine.es/dynt3/inebase/es/index.htm?type=pcaxis&file=pcaxis&path=%2Ft20%2Fe245%2Fp05%2F%2Fa" + \
-                str(y)
+            url = self.fuentes.ine.poblacion.edad_year + str(y)
             soup = get_bs(url)
             for s in soup.select(".ocultar"):
                 s.extract()
