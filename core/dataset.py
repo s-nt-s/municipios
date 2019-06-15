@@ -556,7 +556,7 @@ class Dataset():
             select substr(COD_INE, 1,5), SUPERFICIE/100 from MUNICIPIOS
         ''')
 
-    def create_poblacion(self, reload=True):
+    def create_poblacion(self, reload=False):
         file="dataset/poblacion/sexo.json"
         if not reload and os.path.isfile(file):
             return False
