@@ -67,7 +67,7 @@ class DBLite:
         vals = []
         for k, v in kargv.items():
             if k.upper() in ok_keys and v is not None and not(isinstance(v, str) and len(v) == 0):
-                keys.append(k)
+                keys.append('"'+k+'"')
                 vals.append(v)
         sql = "insert into %s (%s) values (%s)" % (
             table, ", ".join(keys), ("?," * len(vals))[:-1])
@@ -120,13 +120,13 @@ class DBLite:
     def create(self, template, *cols, **kargv):
         sql = ""
         for c in cols:
-            sql = sql + "%s INTEGER,\n" % c
+            sql = sql + '"%s" INTEGER,\n' % c
         for c, t in kargv.items():
             sql = '"%s" %s,\n' % (c, t)
         sql = sql.strip()
         sql = template % sql
         sql = sql.strip()
-        self.cursor.executescript(sql)
+        self.cursor.execute(sql)
         self.con.commit()
         self.load_tables()
 
@@ -142,7 +142,7 @@ class DBshp(DBLite):
         vals = []
         for k, v in kargv.items():
             if k.upper() in ok_keys and v is not None and not(isinstance(v, str) and len(v) == 0):
-                keys.append(k)
+                keys.append('"'+k+'"')
                 vals.append(v)
         prm = ['?']*len(vals)
         for i, v in enumerate(vals):

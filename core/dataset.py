@@ -371,6 +371,74 @@ class Dataset():
                                 yData[mes][k] = yData[mes].get(k, 0) + mData[k]
         return paro
 
+
+    def create_edad(self, reload=False):
+        flag = False
+        years={}
+        for cod, data in sorted(self.core.items()):
+            poblacion = data.get("poblacion5")
+            if poblacion is None:
+                continue
+            for year, url in sorted(poblacion.items()):
+                year = int(year)
+                file = "dataset/poblacion/edad_%s.json" % year
+                if not reload and os.path.isfile(file):
+                    continue
+                data=years.get(year, {})
+                for i in get_js(url):
+                    sex, mun, edad = i["MetaData"]
+                    mun = get_cod_municipio(cod, mun)
+                    if mun is None:
+                        continue
+
+                    c_sex = sex["Codigo"].strip()
+                    c_edad = edad["Codigo"].strip()
+
+                    if c_sex == "varones":
+                        c_sex = "hombres"
+
+                    if c_edad == "59":
+                        c_edad = "0509"
+                    elif c_edad == "85ym s":
+                        c_edad = "85ymas"
+                    if c_edad == "04":
+                        c_edad = "04ymenos"
+                    elif len(c_edad) == 4:
+                        c_edad = c_edad[0:2]+"a"+c_edad[2:4]
+
+                    valor = i["Data"][0]["Valor"]
+
+                    dt = data.get(mun, {})
+
+                    key = c_sex+" "+c_edad
+                    dt[key] = int(valor) if valor is not None else None
+
+                    data[mun] = dt
+                years[year]=data
+        for year, data in years.items():
+            file = "dataset/poblacion/edad_%s.json" % year
+            self.save(file, data)
+            flag = True
+        return flag
+
+
+    @property
+    @lru_cache(maxsize=None)
+    def edad(self):
+        self.create_edad()
+        edad = read_js_glob("dataset/poblacion/edad_*.json")
+        for nuevo, viejos in self.mun_remplaza.items():
+            for year, dt in edad.items():
+                dNuevo = dt.get(nuevo, {})
+                dt[nuevo] = dNuevo
+                for viejo in viejos:
+                    if viejo in dt:
+                        dViejo = dt[viejo]
+                        del dt[viejo]
+                        for k, v in dViejo.items():
+                            dNuevo[k] = dNuevo.get(k, 0) + v
+        return edad
+
     @property
     @lru_cache(maxsize=None)
     def mayores(self):
@@ -619,89 +687,61 @@ class Dataset():
                 yr = mDt.get(year, {})
                 for k, v in dt.items():
                     yr[k+" total"] = v
+                    cols.add(k+" total")
                 mDt[year] = yr
                 municipio[mun] = mDt
 
-        for cod, data in sorted(self.core.items()):
-            poblacion = data.get("poblacion5")
-            if poblacion is None:
-                continue
-            for year, url in sorted(poblacion.items()):
-                year = int(year)
-                for i in get_js(url):
-                    sex, mun, edad = i["MetaData"]
-                    mun = get_cod_municipio(
-                        cod, mun, cambiar=cambios_municipios)
-                    if mun is None:
-                        continue
+        for year, dtY in self.edad.items():
+            for mun, dt in dtY.items():
+                mDt = municipio.get(mun, {})
+                yr = mDt.get(year, {})
+                for k, v in dt.items():
+                    yr[k] = v
+                    cols.add(k)
+                mDt[year] = yr
+                municipio[mun] = mDt
 
-                    c_sex = sex["Codigo"].strip()
-                    c_edad = edad["Codigo"].strip()
-
-                    if c_sex == "varones":
-                        c_sex = "hombres"
-
-                    if c_edad == "59":
-                        c_edad = "0509"
-                    elif c_edad == "85ym s":
-                        c_edad = "85ymas"
-                    if c_edad == "04":
-                        c_edad = "04ymenos"
-                    elif len(c_edad) == 4:
-                        c_edad = c_edad[0:2]+"a"+c_edad[2:4]
-
+        year = 1999
+        censo = data.get("censo_%s" % year, None)
+        if censo is not None:
+            for i in get_js(censo["superficie"]):
+                mun, tenencia = i["MetaData"]
+                mun = get_cod_municipio(
+                    cod, mun, cambiar=cambios_municipios)
+                if mun is not None and tenencia["Codigo"] == "todoslosregimenes":
                     valor = i["Data"][0]["Valor"]
-                    dt = municipio.get(mun, {})
-                    yr = dt.get(year, {})
+                    if valor is not None:
+                        dt = municipio.get(mun, {})
+                        yr = dt.get(year, {})
 
-                    key = c_sex+" "+c_edad
-                    yr[key] = int(valor) if valor is not None else None
+                        yr["SAU"] = int(valor)
 
-                    dt[year] = yr
-                    municipio[mun] = dt
+                        dt[year] = yr
+                        municipio[mun] = dt
+            for i in get_js(censo["unidades"]):
+                mun, tipo = i["MetaData"]
+                mun = get_cod_municipio(
+                    cod, mun, cambiar=cambios_municipios)
+                if mun is None:
+                    continue
+                c_tipo = tipo["Codigo"]
+                key = None
+                if c_tipo == "numerodeexplotacionestotal":
+                    key = "explotaciones"
+                elif c_tipo == "unidadesganaderasug":
+                    key = "unidadesganaderas"
+                elif c_tipo == "unidadesdetrabajoanouta":
+                    key = "UTA"
+                if key:
+                    valor = i["Data"][0]["Valor"]
+                    if valor is not None:
+                        dt = municipio.get(mun, {})
+                        yr = dt.get(year, {})
 
-                    cols.add(key)
-            year = 1999
-            censo = data.get("censo_%s" % year, None)
-            if censo is not None:
-                for i in get_js(censo["superficie"]):
-                    mun, tenencia = i["MetaData"]
-                    mun = get_cod_municipio(
-                        cod, mun, cambiar=cambios_municipios)
-                    if mun is not None and tenencia["Codigo"] == "todoslosregimenes":
-                        valor = i["Data"][0]["Valor"]
-                        if valor is not None:
-                            dt = municipio.get(mun, {})
-                            yr = dt.get(year, {})
+                        yr[key] = int(valor)
 
-                            yr["SAU"] = int(valor)
-
-                            dt[year] = yr
-                            municipio[mun] = dt
-                for i in get_js(censo["unidades"]):
-                    mun, tipo = i["MetaData"]
-                    mun = get_cod_municipio(
-                        cod, mun, cambiar=cambios_municipios)
-                    if mun is None:
-                        continue
-                    c_tipo = tipo["Codigo"]
-                    key = None
-                    if c_tipo == "numerodeexplotacionestotal":
-                        key = "explotaciones"
-                    elif c_tipo == "unidadesganaderasug":
-                        key = "unidadesganaderas"
-                    elif c_tipo == "unidadesdetrabajoanouta":
-                        key = "UTA"
-                    if key:
-                        valor = i["Data"][0]["Valor"]
-                        if valor is not None:
-                            dt = municipio.get(mun, {})
-                            yr = dt.get(year, {})
-
-                            yr[key] = int(valor)
-
-                            dt[year] = yr
-                            municipio[mun] = dt
+                        dt[year] = yr
+                        municipio[mun] = dt
         year = 2009
         with open(self.core.todas["censo_%s" % year], "r") as f:
             soup = BeautifulSoup(f, "lxml")
@@ -779,7 +819,7 @@ class Dataset():
                     val = dt.get(col)
                     if val is None:
                         continue
-                    row[unidecode(col)] = val
+                    row[unidecode(col)] = int(val)
                 db.insert("sepemes", **row)
 
     def collect(self):
