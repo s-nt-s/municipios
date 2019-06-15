@@ -90,6 +90,7 @@ def sqlite_to_dict(db, sql):
 def get_xls(url):
     file = url_to_file(url, ".xls")
     if not os.path.isfile(file):
+        print(url, "-->", file)
         r = requests.get(url, verify=False)
         save(file, r.content)
     book = xlrd.open_workbook(file)
@@ -119,6 +120,7 @@ def unzip(target, *urls):
         return
     os.makedirs(target, exist_ok=True)
     for url in urls:
+        print(url, "-->", target)
         response = requests.get(url, verify=False)
         filehandle = BytesIO(response.content)
         with zipfile.ZipFile(filehandle, 'r') as zip:
@@ -189,6 +191,7 @@ def get_csv(url, enconde=None, delimiter=","):
     j = read_csv(file, enconde=enconde, delimiter=delimiter)
     if j:
         return j
+    print(url, "-->", file)
     r = requests.get(url, verify=False)
     content = r.content
     if file.endswith("ine/csv_c/4721.csv"):
@@ -281,6 +284,7 @@ def get_js(url):
     if j:
         return j
     r = _js(url)
+    print(url, "-->", file)
     save(file, r.content)
     return r.json()
 

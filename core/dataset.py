@@ -504,11 +504,11 @@ class Dataset():
                     key = None
                     sex = sex["Nombre"]
                     if sex == "Total":
-                        key = "ambossexos total"
+                        key = "ambossexos"
                     elif sex == "Mujeres":
-                        key = "mujeres total"
+                        key = "mujeres"
                     elif sex == "Hombres":
-                        key = "hombres total"
+                        key = "hombres"
                     if not key:
                         continue
                     for d in i["Data"]:
@@ -518,7 +518,7 @@ class Dataset():
                         yDt = years.get(year, {})
                         mDt = yDt.get(mun, {})
 
-                        if yr.get(key, None) is None:
+                        if mDt.get(key) is None:
                             mDt[key] = int(valor) if valor is not None else None
                             yDt[mun]=mDt
                             years[year]=yDt
@@ -618,7 +618,7 @@ class Dataset():
                 mDt = municipio.get(mun, {})
                 yr = mDt.get(year, {})
                 for k, v in dt.items():
-                    yr[k] = v
+                    yr[k+" total"] = v
                 mDt[year] = yr
                 municipio[mun] = mDt
 
