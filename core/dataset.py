@@ -772,10 +772,11 @@ class Dataset():
 
         db.create('''
             create table socioeconomico (
-              MUN TEXT REFERENCES municipios(ID),
+              MUN TEXT,
               YEAR INTEGER,
               %s
-              PRIMARY KEY (MUN, YEAR)
+              PRIMARY KEY (MUN, YEAR),
+              FOREIGN KEY(MUN) REFERENCES municipios(ID)
             )
         ''', *[unidecode(c) for c in cols])
 
@@ -800,11 +801,12 @@ class Dataset():
 
         db.create('''
             create table sepemes (
-              MUN TEXT REFERENCES municipios(ID),
+              MUN TEXT,
               YEAR INTEGER,
               MES INTEGER,
               %s
-              PRIMARY KEY (MUN, YEAR, MES)
+              PRIMARY KEY (MUN, YEAR, MES),
+              FOREIGN KEY(MUN) REFERENCES municipios(ID)
             )
         ''', *[unidecode(c) for c in cols_sepe])
 
