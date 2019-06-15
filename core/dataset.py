@@ -488,12 +488,65 @@ class Dataset():
             select substr(COD_INE, 1,5), SUPERFICIE/100 from MUNICIPIOS
         ''')
 
+    def create_poblacion(self, reload=True):
+        file="dataset/poblacion/sexo.json"
+        if not reload and os.path.isfile(file):
+            return False
+        years={}
+        for cod, data in sorted(self.core.items()):
+            pob = data.get("poblacion")
+            if pob is None:
+                continue
+            for i in get_js(pob):
+                mun, sex, _, _ = i["MetaData"]
+                mun = get_cod_municipio(None, mun)
+                if mun is not None:
+                    key = None
+                    sex = sex["Nombre"]
+                    if sex == "Total":
+                        key = "ambossexos total"
+                    elif sex == "Mujeres":
+                        key = "mujeres total"
+                    elif sex == "Hombres":
+                        key = "hombres total"
+                    if not key:
+                        continue
+                    for d in i["Data"]:
+                        year = d["Anyo"]
+                        valor = d["Valor"]
+
+                        yDt = years.get(year, {})
+                        mDt = yDt.get(mun, {})
+
+                        if yr.get(key, None) is None:
+                            mDt[key] = int(valor) if valor is not None else None
+                            yDt[mun]=mDt
+                            years[year]=yDt
+        self.save(file, years)
+        return True
+
+    @property
+    @lru_cache(maxsize=None)
+    def poblacion(self):
+        self.create_poblacion()
+        poblacion = read_js("dataset/poblacion/sexo.json",
+                          intKey=True, maxKey=cYear)
+        for nuevo, viejos in self.mun_remplaza.items():
+            for year, dt in poblacion.items():
+                dNuevo = dt.get(nuevo, {})
+                dt[nuevo] = dNuevo
+                for viejo in viejos:
+                    if viejo in dt:
+                        dViejo = dt[viejo]
+                        del dt[viejo]
+                        for k, v in dViejo.items():
+                            dNuevo[k] = dNuevo.get(k, 0) + v
+        return poblacion
+
     def populate_datamun(self, db, reload=False):
-        cambios_municipios = {c.cod: c.nuevo.split(
-        )[0] for c in self.cambios if c.remplaza}
+        cambios_municipios = {c.cod: c.nuevo.split()[0] for c in self.cambios if c.remplaza}
         cols = set()
         municipio = {}
-
         col_empresas = [
             r if r != "Total" else "Total empresas" for r in self.empresas[4] if r]
         for record in self.empresas:
@@ -560,10 +613,19 @@ class Dataset():
                 dt[year] = yr
                 municipio[mun] = dt
 
+        for year, dtY in self.poblacion.items():
+            for mun, dt in dtY.items():
+                mDt = municipio.get(mun, {})
+                yr = mDt.get(year, {})
+                for k, v in dt.items():
+                    yr[k] = v
+                mDt[year] = yr
+                municipio[mun] = mDt
+
         for cod, data in sorted(self.core.items()):
-            if not cod.isdigit():
+            poblacion = data.get("poblacion5")
+            if poblacion is None:
                 continue
-            poblacion = data["poblacion5"]
             for year, url in sorted(poblacion.items()):
                 year = int(year)
                 for i in get_js(url):
@@ -599,33 +661,6 @@ class Dataset():
                     municipio[mun] = dt
 
                     cols.add(key)
-
-            for i in get_js(data["poblacion"]):
-                mun, sex, _, _ = i["MetaData"]
-                mun = get_cod_municipio(None, mun, cambiar=cambios_municipios)
-                if mun is not None:
-                    key = None
-                    sex = sex["Nombre"]
-                    if sex == "Total":
-                        key = "ambossexos total"
-                    elif sex == "Mujeres":
-                        key = "mujeres total"
-                    elif sex == "Hombres":
-                        key = "hombres total"
-                    if not key:
-                        continue
-                    for d in i["Data"]:
-                        year = d["Anyo"]
-                        valor = d["Valor"]
-
-                        dt = municipio.get(mun, {})
-                        yr = dt.get(year, {})
-
-                        if yr.get(key, None) is None:
-                            yr[key] = int(valor) if valor is not None else None
-                            dt[year] = yr
-                            municipio[mun] = dt
-
             year = 1999
             censo = data.get("censo_%s" % year, None)
             if censo is not None:
