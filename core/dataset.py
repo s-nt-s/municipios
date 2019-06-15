@@ -152,11 +152,11 @@ class Dataset():
     def unzip(self):
         unzip("fuentes/fomento/shp", self.core.todas["limites"])
         unzip("fuentes/fomento/mdb",
-              self.core.todas["nomenclator"], self.core.todas["nomenclator_basico"])
+              self.core.todas["nomenclator"])#, self.core.todas["nomenclator_basico"])
         for pro, dt in self.core.items():
             if "miteco" in dt:
                 unzip("fuentes/miteco/mapaforestal/%s %s" %
-                      (pro, dt["nombre"]), dt["miteco"])
+                      (pro, dt["nombre"].split("/")[0]), dt["miteco"])
 
     def save(self, file=None, data=None):
         if data is None:
@@ -811,9 +811,9 @@ class Dataset():
         for cod, mun in sorted(sepe_municipio.items()):
             for ym, dt in sorted(mun.items()):
                 row = {
-                    "MUN": cod[0],
-                    "YEAR": cod[1],
-                    "MES": ym,
+                    "MUN": cod,
+                    "YEAR": ym[0],
+                    "MES": ym[1],
                 }
                 for col in cols_sepe:
                     val = dt.get(col)

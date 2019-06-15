@@ -184,7 +184,7 @@ class DBMun(DBshp):
         self.execute("sql/municipios.sql")
         muns = {}
         for _shp in iglob("fuentes/fomento/shp/**/recintos*municipales*.shp"):
-            # print(_shp)
+            print(_shp)
             with shapefile.Reader(_shp) as shp:
                 for sr in shp.shapeRecords():
                     if sr.shape.points and sr.record and len(sr.record) > 4:
