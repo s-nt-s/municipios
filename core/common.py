@@ -16,6 +16,7 @@ import yaml
 from bs4 import BeautifulSoup
 from bunch import Bunch
 from unidecode import unidecode
+import time
 
 try:
     from .mdb_to_sqlite import mdb_to_sqlite
@@ -29,6 +30,11 @@ cYear = datetime.now().year
 re_entero = re.compile(r"^\d+(\.0+)?$")
 re_float = re.compile(r"^\d+\.\d+$")
 
+def save(file, content):
+    dir = os.path.dirname(file)
+    os.makedirs(dir, exist_ok=True)
+    with open(file, "wb") as f:
+        f.write(content)
 
 def mkBunchParse(obj):
     if isinstance(obj, list):
@@ -184,7 +190,13 @@ def get_csv(url, enconde=None, delimiter=","):
     if j:
         return j
     r = requests.get(url, verify=False)
-    save(file, r.content)
+    content = r.content
+    if file.endswith("ine/csv_c/4721.csv"):
+        content = content.decode("UTF-8")
+        content = content.replace("Comercio, transporte y hostelería", "Comercio transporte y hostelería")
+        content = content.replace("Educación, sanidad y servicios sociales", "Educación sanidad y servicios sociales")
+        content = str.encode(content)
+    save(file, content)
     return read_csv(file, enconde=enconde, delimiter=delimiter)
 
 
