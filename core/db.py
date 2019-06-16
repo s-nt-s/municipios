@@ -48,12 +48,15 @@ class DBLite:
         self.load_tables()
 
     def execute(self, sql_file):
-        with open(sql_file, 'r') as schema:
-            qry = schema.read()
-            self.cursor.executescript(qry)
+        if os.path.isfile(sql_file):
+            with open(sql_file, 'r') as schema:
+                qry = schema.read()
+                self.cursor.executescript(qry)
+                self.con.commit()
+        else:
+            self.cursor.execute(sql_file.strip())
             self.con.commit()
-            if "CREATE TABLE" in qry.upper():
-                self.load_tables()
+        self.load_tables()
 
     def load_tables(self):
         self.tables = {}

@@ -810,17 +810,17 @@ class Dataset():
         db.create('''
             create table socioeconomico (
               MUN TEXT,
-              YEAR INTEGER,
+              YR INTEGER,
               %s
               tipo_renta INTEGER DEFAULT 1,
-              PRIMARY KEY (MUN, YEAR),
+              PRIMARY KEY (MUN, YR),
               FOREIGN KEY(MUN) REFERENCES municipios(ID)
             )
         ''', *get_cols(municipio, "renta", "declaraciones"))
         for cod, mun in sorted(municipio.items()):
             for year, dt in sorted(mun.items()):
                 dt["MUN"] = cod
-                dt["YEAR"] = year
+                dt["YR"] = year
                 if dt.get("renta") is None:
                     #val = self.renta_menos1000.get(year, {}).get(cod, {}).get("renta_m18", "")
                     v = rt1000.get((year, cod[:2]))
@@ -838,10 +838,10 @@ class Dataset():
         db.create('''
             create table sepe (
               MUN TEXT,
-              YEAR INTEGER,
+              YR INTEGER,
               MES INTEGER,
               %s
-              PRIMARY KEY (MUN, YEAR, MES),
+              PRIMARY KEY (MUN, YR, MES),
               FOREIGN KEY(MUN) REFERENCES municipios(ID)
             )
         ''', *get_cols(self.paro, nivel=2))
@@ -850,9 +850,34 @@ class Dataset():
             for mun, dMes in dMun.items():
                 for mes, sepe in dMes.items():
                     sepe["MUN"] = mun
-                    sepe["YEAR"] = year
+                    sepe["YR"] = year
                     sepe["MES"] = mes
                     db.insert("sepe", **sepe)
+
+        fields = list(db.tables["sepe"])
+        fields.remove("YR")
+        fields.remove("MUN")
+        fields.remove("MES")
+        view='''
+        CREATE VIEW sepe_year AS
+            select
+            	s1.MUN, s1.YR'''
+        for f in fields:
+            view=view+', "{0}"/C "{0}"'.format(f)
+        view=view+'''
+            from
+            (
+            select MUN, YR'''
+        for f in fields:
+            view=view+', sum("{0}")*1.0 "{0}"'.format(f)
+        view=view+'''
+            from sepe group by MUN, YR
+            ) s1
+            join
+            (select MUN, YR, count(*) C from sepe group by MUN, YR) s2
+            on s2.MUN = s1.MUN and s1.YR = s2.YR
+        '''
+        db.execute(view)
 
     def collect(self):
         re_trim = re.compile(
