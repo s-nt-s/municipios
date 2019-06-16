@@ -152,7 +152,7 @@ class Dataset():
     def unzip(self):
         unzip("fuentes/fomento/shp", self.core.todas["limites"])
         unzip("fuentes/fomento/mdb",
-              self.core.todas["nomenclator"])#, self.core.todas["nomenclator_basico"])
+              self.core.todas["nomenclator"])  # , self.core.todas["nomenclator_basico"])
         for pro, dt in self.core.items():
             if "miteco" in dt:
                 unzip("fuentes/miteco/mapaforestal/%s %s" %
@@ -267,7 +267,7 @@ class Dataset():
         file = "dataset/economia/agrario.json"
         if not reload and os.path.isfile(file):
             return False
-        years={}
+        years = {}
         year = 1999
         for cod, data in self.core.items():
             censo = data.get("censo_%s" % year, None)
@@ -339,7 +339,7 @@ class Dataset():
                         dViejo = dt[viejo]
                         del dt[viejo]
                         for k, v in dViejo.items():
-                          dNuevo[k] = dNuevo.get(k, 0) + v
+                            dNuevo[k] = dNuevo.get(k, 0) + v
         return agrario
 
     @property
@@ -381,7 +381,7 @@ class Dataset():
                         dViejo = dt[viejo]
                         del dt[viejo]
                         for k, v in dViejo.items():
-                          dNuevo[k] = dNuevo.get(k, 0) + v
+                            dNuevo[k] = dNuevo.get(k, 0) + v
         return empresas
 
     @property
@@ -462,10 +462,9 @@ class Dataset():
                                 yData[mes][k] = yData[mes].get(k, 0) + mData[k]
         return paro
 
-
     def create_edad(self, reload=False):
         flag = False
-        years={}
+        years = {}
         for cod, data in sorted(self.core.items()):
             poblacion = data.get("poblacion5")
             if poblacion is None:
@@ -475,7 +474,7 @@ class Dataset():
                 file = "dataset/poblacion/edad_%s.json" % year
                 if not reload and os.path.isfile(file):
                     continue
-                data=years.get(year, {})
+                data = years.get(year, {})
                 for i in get_js(url):
                     sex, mun, edad = i["MetaData"]
                     mun = get_cod_municipio(cod, mun)
@@ -505,13 +504,12 @@ class Dataset():
                     dt[key] = int(valor) if valor is not None else None
 
                     data[mun] = dt
-                years[year]=data
+                years[year] = data
         for year, data in years.items():
             file = "dataset/poblacion/edad_%s.json" % year
             self.save(file, data)
             flag = True
         return flag
-
 
     @property
     @lru_cache(maxsize=None)
@@ -648,10 +646,10 @@ class Dataset():
         ''')
 
     def create_poblacion(self, reload=False):
-        file="dataset/poblacion/sexo.json"
+        file = "dataset/poblacion/sexo.json"
         if not reload and os.path.isfile(file):
             return False
-        years={}
+        years = {}
         for cod, data in sorted(self.core.items()):
             pob = data.get("poblacion")
             if pob is None:
@@ -678,9 +676,10 @@ class Dataset():
                         mDt = yDt.get(mun, {})
 
                         if mDt.get(key) is None:
-                            mDt[key] = int(valor) if valor is not None else None
-                            yDt[mun]=mDt
-                            years[year]=yDt
+                            mDt[key] = int(
+                                valor) if valor is not None else None
+                            yDt[mun] = mDt
+                            years[year] = yDt
         self.save(file, years)
         return True
 
@@ -689,7 +688,7 @@ class Dataset():
     def poblacion(self):
         self.create_poblacion()
         poblacion = read_js("dataset/poblacion/sexo.json",
-                          intKey=True, maxKey=cYear)
+                            intKey=True, maxKey=cYear)
         for nuevo, viejos in self.mun_remplaza.items():
             for year, dt in poblacion.items():
                 dNuevo = dt.get(nuevo, {})
@@ -703,11 +702,12 @@ class Dataset():
         return poblacion
 
     def create_empresas(self, reload=True):
-        file="dataset/economia/empresas.json"
+        file = "dataset/economia/empresas.json"
         if not reload and os.path.isfile(file):
             return False
         empresas = get_csv(self.core.todas["empresas"])
-        col_empresas = [r if r != "Total" else "Total empresas" for r in empresas[4] if r]
+        col_empresas = [
+            r if r != "Total" else "Total empresas" for r in empresas[4] if r]
         years = {}
         for record in empresas:
             if len(record) < 2 or record[0] is None:
@@ -751,11 +751,11 @@ class Dataset():
                 mDt[year] = yr
                 municipio[mun] = mDt
 
-        rt1000={}
+        rt1000 = {}
         for year, data in self.renta_aeat.items():
             for mun, rent in data.items():
-                if len(mun)==3 and mun[0]=="p":
-                    rt1000[(year, mun[1:])]=rent
+                if len(mun) == 3 and mun[0] == "p":
+                    rt1000[(year, mun[1:])] = rent
                     continue
                 if len(mun) != 5:
                     continue
@@ -787,7 +787,7 @@ class Dataset():
             for mun, dt in dtY.items():
                 mDt = municipio.get(mun, {})
                 yr = mDt.get(year, {})
-                yr["mayores"]=dt["mayores"]
+                yr["mayores"] = dt["mayores"]
                 mDt[year] = yr
                 municipio[mun] = mDt
 
@@ -812,20 +812,20 @@ class Dataset():
         ''', *get_cols(municipio, "renta", "declaraciones"))
         for cod, mun in sorted(municipio.items()):
             for year, dt in sorted(mun.items()):
-                dt["MUN"]=cod
-                dt["YEAR"]=year
+                dt["MUN"] = cod
+                dt["YEAR"] = year
                 if dt.get("renta") is None:
                     #val = self.renta_menos1000.get(year, {}).get(cod, {}).get("renta_m18", "")
                     v = rt1000.get((year, cod[:2]))
                     if v:
-                        dt["renta"]=v["media"]
-                        dt["declaraciones"]=v["declaraciones"]
-                    dt["tipo_renta"]=2
-                prov=int(cod[:2])
+                        dt["renta"] = v["media"]
+                        dt["declaraciones"] = v["declaraciones"]
+                    dt["tipo_renta"] = 2
+                prov = int(cod[:2])
                 if prov == 31:
-                    dt["tipo_renta"]=3
+                    dt["tipo_renta"] = 3
                 if prov in (1, 48, 20):
-                    dt["tipo_renta"]=4
+                    dt["tipo_renta"] = 4
                 db.insert("socioeconomico", **dt)
 
         db.create('''
@@ -839,13 +839,12 @@ class Dataset():
             )
         ''', *get_cols(self.paro, nivel=2))
 
-
         for mun, dYear in self.paro.items():
             for year, dMes in dYear.items():
                 for mes, sepe in dMes.items():
-                    sepe["MUN"]=mun
-                    sepe["YEAR"]=year
-                    sepe["MES"]=mes
+                    sepe["MUN"] = mun
+                    sepe["YEAR"] = year
+                    sepe["MES"] = mes
                     db.insert("sepe", **sepe)
 
     def collect(self):

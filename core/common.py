@@ -3,6 +3,7 @@ import json
 import os
 import re
 import sqlite3
+import time
 import zipfile
 from datetime import datetime
 from glob import glob, iglob
@@ -16,7 +17,6 @@ import yaml
 from bs4 import BeautifulSoup
 from bunch import Bunch
 from unidecode import unidecode
-import time
 
 try:
     from .mdb_to_sqlite import mdb_to_sqlite
@@ -30,11 +30,13 @@ cYear = datetime.now().year
 re_entero = re.compile(r"^\d+(\.0+)?$")
 re_float = re.compile(r"^\d+\.\d+$")
 
+
 def save(file, content):
     dir = os.path.dirname(file)
     os.makedirs(dir, exist_ok=True)
     with open(file, "wb") as f:
         f.write(content)
+
 
 def mkBunchParse(obj):
     if isinstance(obj, list):
@@ -196,8 +198,10 @@ def get_csv(url, enconde=None, delimiter=","):
     content = r.content
     if file.endswith("ine/csv_c/4721.csv"):
         content = content.decode("UTF-8")
-        content = content.replace("Comercio, transporte y hostelería", "Comercio transporte y hostelería")
-        content = content.replace("Educación, sanidad y servicios sociales", "Educación sanidad y servicios sociales")
+        content = content.replace(
+            "Comercio, transporte y hostelería", "Comercio transporte y hostelería")
+        content = content.replace(
+            "Educación, sanidad y servicios sociales", "Educación sanidad y servicios sociales")
         content = str.encode(content)
     save(file, content)
     return read_csv(file, enconde=enconde, delimiter=delimiter)
@@ -347,11 +351,12 @@ def wstempus(url):
         qs["path"][0], qs["file"][0])
     return url
 
+
 def get_cols(data, *args, nivel=1):
-    cols=set()
+    cols = set()
     for i in data.values():
         for j in i.values():
-            if nivel==1:
+            if nivel == 1:
                 for k in j.keys():
                     cols.add(k)
             else:
