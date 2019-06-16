@@ -106,6 +106,50 @@ class Dataset():
         self.save(file, data)
         return True
 
+    def create_sepe(self, reload=False):
+        flag = False
+        firt_data = 8
+        for year, url in self.core.todas["paro_sepe"].items():
+            year = int(year)
+            file = "dataset/empleo/paro_sepe_%s.json" % year
+            if not reload and os.path.isfile(file):
+                continue
+            paro = {}
+            rows = get_csv(url, enconde="windows-1252", delimiter=";")
+            head = rows[1][firt_data:]
+            for i, v in enumerate(head):
+                if v.lower()=="total paro registrado":
+                    head[i]="total"
+                    continue
+                if v.lower().startswith("paro "):
+                    v=v[5:].strip()
+                v = v.replace("25 -45", "25a45")
+                v = v.replace("< 25", "<25")
+                v = v.replace("edad ", "")
+                head[i]=v
+            for row in rows[2:]:
+                if len(row) < firt_data:
+                    continue
+                mun = row[6]
+                if mun is None or not isinstance(mun, int):
+                    continue
+                mun = str(mun)
+                while len(mun) < 5:
+                    mun = '0' + mun
+                mes = get_mes(row[1])
+
+                dMun = paro.get(mun, {})
+                dt = dMun.get(mes, {})
+
+                for i, v in enumerate(row[firt_data:]):
+                    dt[head[i]] = v
+
+                dMun[mes] = dt
+                paro[mun] = dMun
+            self.save(file, paro)
+            flag=True
+        return flag
+
     def create_aeat(self, reload=False):
         flag = False
         for year, url in self.core.todas["renta"]["aeat"].items():
@@ -387,79 +431,44 @@ class Dataset():
     @property
     @lru_cache(maxsize=None)
     def paro(self):
-        firt_data = 8
-        paro = {}
-        for year, url in self.core.todas["paro_sepe"].items():
-            year = int(year)
-            if year < cYear:
-                rows = get_csv(url, enconde="windows-1252", delimiter=";")
-                head = rows[1][firt_data:]
-                for row in rows[2:]:
-                    if len(row) < firt_data:
-                        continue
-                    mun = row[6]
-                    if mun is None or not isinstance(mun, int):
-                        continue
-                    mun = str(mun)
-                    while len(mun) < 5:
-                        mun = '0' + mun
-                    mes = get_mes(row[1])
-
-                    dMun = paro.get(mun, {})
-                    dYear = dMun.get(year, {})
-                    dMes = dYear.get(mes, {})
-
-                    for i, v in enumerate(row[firt_data:]):
-                        dMes[head[i]] = v
-
-                    dYear[mes] = dMes
-                    dMun[year] = dYear
-                    paro[mun] = dMun
-        for nuevo, viejos in self.mun_remplaza.items():
-            dNuevo = paro.get(nuevo, {})
-            paro[nuevo] = dNuevo
-            for viejo in viejos:
-                if viejo in paro:
-                    dViejo = paro[viejo]
-                    del paro[viejo]
-                    for year in sorted(dViejo.keys()):
-                        if year not in dNuevo:
-                            dNuevo[year] = dViejo[year]
-                        else:
-                            yViejo = dViejo[year]
-                            yNuevo = dNuevo[year]
-                            for mes in sorted(yViejo.keys()):
-                                if mes not in yNuevo:
-                                    yNuevo[mes] = yViejo[mes]
-                                else:
-                                    mViejo = yViejo[mes]
-                                    mNuevo = yNuevo[mes]
-                                    for k, v in mViejo.items():
-                                        mNuevo[k] = mNuevo.get(
-                                            k, 0) + mViejo[k]
-
-        for viejo, nuevos in self.mun_desgaja.items():
-            if viejo not in paro:
+        self.create_sepe()
+        paro = read_js_glob("dataset/empleo/paro_sepe_*.json")
+        for year, dt in paro.items():
+            for nuevo, viejos in self.mun_remplaza.items():
+                dNuevo = dt.get(nuevo, {})
+                dt[nuevo] = dNuevo
+                for viejo in viejos:
+                    if viejo in dt:
+                        dViejo = dt[viejo]
+                        del dt[viejo]
+                        for mes, mDt in dViejo.items():
+                            if mes not in dNuevo:
+                                dNuevo[mes]=mDt
+                                continue
+                            for k, v in mDt.items():
+                                dNuevo[mes][k] = dNuevo[mes].get(k, 0) + v
+            if year not in self.mayores:
                 continue
-            for year, yData in sorted(paro[viejo].items()):
-                if year not in self.mayores:
-                    continue
-                my = self.mayores[year]
+            my = self.mayores[year]
+            for viejo, nuevos in self.mun_desgaja.items():
                 cNuevos = set()
                 for nuevo in nuevos:
-                    if nuevo not in my and nuevo in paro and year in paro[nuevo]:
+                    if nuevo not in my and nuevo in dt:
                         cNuevos.add(nuevo)
                 if len(cNuevos) == 0:
                     continue
                 print("paro", year, viejo, cNuevos)
+                dViejo = dt.get(viejo, {})
+                dt[viejo]=dViejo
                 for nuevo in cNuevos:
-                    dNuevo = paro[nuevo][year]
+                    dNuevo = dt[nuevo]
+                    del dt[nuevo]
                     for mes, mData in dNuevo.items():
-                        if mes not in yData:
-                            yData[mes] = mData
+                        if mes not in dViejo:
+                            dViejo[mes] = mData
                         else:
                             for k, v in mData.items():
-                                yData[mes][k] = yData[mes].get(k, 0) + mData[k]
+                                dViejo[mes][k] = dViejo[mes].get(k, 0) + mData[k]
         return paro
 
     def create_edad(self, reload=False):
@@ -532,8 +541,7 @@ class Dataset():
     @lru_cache(maxsize=None)
     def mayores(self):
         self.create_mayores()
-        mayores = read_js("dataset/poblacion/mayores.json",
-                          intKey=True, maxKey=cYear)
+        mayores = read_js("dataset/poblacion/mayores.json", intKey=True)
         for nuevo, viejos in self.mun_remplaza.items():
             for year, dt in mayores.items():
                 dNuevo = dt.get(nuevo, {})
@@ -574,7 +582,7 @@ class Dataset():
     @lru_cache(maxsize=None)
     def renta_menos1000(self):
         self.create_renta_menos1000()
-        return read_js("dataset/renta/aeat_menos_mil.json", intKey=True, maxKey=cYear)
+        return read_js("dataset/renta/aeat_menos_mil.json", intKey=True)
 
     def create_renta_menos1000(self, reload=False):
         file = "dataset/renta/aeat_menos_mil.json"
@@ -687,8 +695,7 @@ class Dataset():
     @lru_cache(maxsize=None)
     def poblacion(self):
         self.create_poblacion()
-        poblacion = read_js("dataset/poblacion/sexo.json",
-                            intKey=True, maxKey=cYear)
+        poblacion = read_js("dataset/poblacion/sexo.json", intKey=True)
         for nuevo, viejos in self.mun_remplaza.items():
             for year, dt in poblacion.items():
                 dNuevo = dt.get(nuevo, {})
@@ -839,8 +846,8 @@ class Dataset():
             )
         ''', *get_cols(self.paro, nivel=2))
 
-        for mun, dYear in self.paro.items():
-            for year, dMes in dYear.items():
+        for year, dMun in self.paro.items():
+            for mun, dMes in dMun.items():
                 for mes, sepe in dMes.items():
                     sepe["MUN"] = mun
                     sepe["YEAR"] = year
@@ -999,6 +1006,4 @@ class Dataset():
 
 if __name__ == "__main__":
     d = Dataset()
-    # d.create_aeat(reload=True)
-    d.create_datamun(reload=True)
-    #d.create_datamunarea(20, reload=True)
+    d.create_sepe(reload=True)
