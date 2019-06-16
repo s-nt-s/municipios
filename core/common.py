@@ -346,3 +346,18 @@ def wstempus(url):
     url = "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA%s%s?tip=AM" % (
         qs["path"][0], qs["file"][0])
     return url
+
+def get_cols(data, *args, nivel=1):
+    cols=set()
+    for i in data.values():
+        for j in i.values():
+            if nivel==1:
+                for k in j.keys():
+                    cols.add(k)
+            else:
+                for x in j.values():
+                    for k in x.keys():
+                        cols.add(k)
+    for a in args:
+        cols.add(a)
+    return sorted(cols)

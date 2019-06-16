@@ -263,6 +263,85 @@ class Dataset():
             flag = True
         return flag
 
+    def create_agrario(self, reload=False):
+        file = "dataset/economia/agrario.json"
+        if not reload and os.path.isfile(file):
+            return False
+        years={}
+        year = 1999
+        for cod, data in self.core.items():
+            censo = data.get("censo_%s" % year, None)
+            if censo is not None:
+                for i in get_js(censo["superficie"]):
+                    mun, tenencia = i["MetaData"]
+                    mun = get_cod_municipio(cod, mun)
+                    if mun is not None and tenencia["Codigo"] == "todoslosregimenes":
+                        valor = i["Data"][0]["Valor"]
+                        if valor is not None:
+                            dt = years.get(year, {})
+                            yr = dt.get(mun, {})
+                            yr["SAU"] = int(valor)
+                            dt[mun] = yr
+                            years[year] = dt
+                for i in get_js(censo["unidades"]):
+                    mun, tipo = i["MetaData"]
+                    mun = get_cod_municipio(cod, mun)
+                    if mun is None:
+                        continue
+                    c_tipo = tipo["Codigo"]
+                    key = None
+                    if c_tipo == "numerodeexplotacionestotal":
+                        key = "explotaciones"
+                    elif c_tipo == "unidadesganaderasug":
+                        key = "unidadesganaderas"
+                    elif c_tipo == "unidadesdetrabajoanouta":
+                        key = "UTA"
+                    if key:
+                        valor = i["Data"][0]["Valor"]
+                        if valor is not None:
+                            dt = years.get(year, {})
+                            yr = dt.get(mun, {})
+                            yr[key] = int(valor)
+                            dt[mun] = yr
+                            years[year] = dt
+        year = 2009
+        with open(self.core.todas["censo_%s" % year], "r") as f:
+            soup = BeautifulSoup(f, "lxml")
+
+        for tr in soup.findAll("tr"):
+            tds = tr.findAll(["th", "td"])
+            if len(tds) == 20:
+                cod = tds[0].get_text().strip().split()[0]
+                if cod.isdigit() and len(cod) == 5:
+                    datos = [parse_td(td) for td in tds[1:]]
+                    dt = years.get(year, {})
+                    yr = dt.get(cod, {})
+                    yr["explotaciones"] = datos[0]
+                    yr["SAU"] = datos[1]
+                    yr["unidadesganaderas"] = datos[10]
+                    yr["UTA"] = datos[11]
+                    dt[cod] = yr
+                    years[year] = dt
+        self.save(file, years)
+        return True
+
+    @property
+    @lru_cache(maxsize=None)
+    def agrario(self):
+        self.create_agrario()
+        agrario = read_js("dataset/economia/agrario.json", intKey=True)
+        for nuevo, viejos in self.mun_remplaza.items():
+            for year, dt in agrario.items():
+                dNuevo = dt.get(nuevo, {})
+                dt[nuevo] = dNuevo
+                for viejo in viejos:
+                    if viejo in dt:
+                        dViejo = dt[viejo]
+                        del dt[viejo]
+                        for k, v in dViejo.items():
+                          dNuevo[k] = dNuevo.get(k, 0) + v
+        return agrario
+
     @property
     @lru_cache(maxsize=None)
     def renta_euskadi(self):
@@ -291,7 +370,19 @@ class Dataset():
     @property
     @lru_cache(maxsize=None)
     def empresas(self):
-        return get_csv(self.core.todas["empresas"])
+        self.create_empresas()
+        empresas = read_js("dataset/economia/empresas.json", intKey=True)
+        for nuevo, viejos in self.mun_remplaza.items():
+            for year, dt in empresas.items():
+                dNuevo = dt.get(nuevo, {})
+                dt[nuevo] = dNuevo
+                for viejo in viejos:
+                    if viejo in dt:
+                        dViejo = dt[viejo]
+                        del dt[viejo]
+                        for k, v in dViejo.items():
+                          dNuevo[k] = dNuevo.get(k, 0) + v
+        return empresas
 
     @property
     @lru_cache(maxsize=None)
@@ -611,63 +702,67 @@ class Dataset():
                             dNuevo[k] = dNuevo.get(k, 0) + v
         return poblacion
 
-    def populate_datamun(self, db, reload=False):
-        cambios_municipios = {c.cod: c.nuevo.split()[0] for c in self.cambios if c.remplaza}
-        cols = set()
-        municipio = {}
-        col_empresas = [
-            r if r != "Total" else "Total empresas" for r in self.empresas[4] if r]
-        for record in self.empresas:
+    def create_empresas(self, reload=True):
+        file="dataset/economia/empresas.json"
+        if not reload and os.path.isfile(file):
+            return False
+        empresas = get_csv(self.core.todas["empresas"])
+        col_empresas = [r if r != "Total" else "Total empresas" for r in empresas[4] if r]
+        years = {}
+        for record in empresas:
             if len(record) < 2 or record[0] is None:
                 continue
             mun = record[0].split()[0]
             if not mun.isdigit() or len(mun) != 5:
                 continue
-            if mun in cambios_municipios:
-                mun = cambios_municipios[mun]
             for j, col in enumerate(col_empresas):
                 for i, year in enumerate(range(2018, 2011, -1)):
                     index = (j*7)+i+1
                     e = record[index]
                     if e is not None:
-                        dt = municipio.get(mun, {})
-                        yr = dt.get(year, {})
+                        dtY = years.get(year, {})
+                        dt = dtY.get(mun, {})
 
-                        yr[col] = e
+                        dt[col] = e
 
-                        dt[year] = yr
-                        municipio[mun] = dt
+                        dtY[mun] = dt
+                        years[year] = dtY
+        self.save(file, years)
+        return True
 
-        sepe_municipio = {}
-        cols_sepe = []
-        for mun, dYear in self.paro.items():
-            sepe_dt = sepe_municipio.get(mun, {})
-            dt = municipio.get(mun, {})
-            for year, dMes in dYear.items():
-                yr = dt.get(year, {})
-                divisor = {}
-                for mes, sepe in dMes.items():
-                    sepe_dt[(year, mes)] = sepe
-                    for k, v in sepe.items():
-                        divisor[k] = divisor.get(k, 0) + 1
-                        yr[k] = yr.get(k, 0) + v
-                        if k not in cols_sepe:
-                            cols_sepe.append(k)
-                for k, v in divisor.items():
-                    yr[k] = yr[k] / v
-                dt[year] = yr
-            sepe_municipio[mun] = sepe_dt
-            municipio[mun] = dt
+    def populate_datamun(self, db, reload=False):
+        municipio = {}
 
+        for year, dtY in self.agrario.items():
+            for mun, dt in dtY.items():
+                mDt = municipio.get(mun, {})
+                yr = mDt.get(year, {})
+                for k, v in dt.items():
+                    yr[k] = v
+                mDt[year] = yr
+                municipio[mun] = mDt
+
+        for year, dtY in self.empresas.items():
+            for mun, dt in dtY.items():
+                mDt = municipio.get(mun, {})
+                yr = mDt.get(year, {})
+                for k, v in dt.items():
+                    yr[k] = v
+                mDt[year] = yr
+                municipio[mun] = mDt
+
+        rt1000={}
         for year, data in self.renta_aeat.items():
             for mun, rent in data.items():
+                if len(mun)==3 and mun[0]=="p":
+                    rt1000[(year, mun[1:])]=rent
+                    continue
                 if len(mun) != 5:
                     continue
                 dt = municipio.get(mun, {})
                 yr = dt.get(year, {})
-                yr["renta"] = (rent["media"] *
-                               rent["declaraciones"]) / rent["mayores"]
-
+                yr["renta"] = rent["media"]
+                yr["declaraciones"] = rent["declaraciones"]
                 dt[year] = yr
                 municipio[mun] = dt
 
@@ -675,9 +770,7 @@ class Dataset():
             for mun, rent in dt.items():
                 dt = municipio.get(mun, {})
                 yr = dt.get(year, {})
-
                 yr["renta"] = rent
-
                 dt[year] = yr
                 municipio[mun] = dt
 
@@ -687,7 +780,14 @@ class Dataset():
                 yr = mDt.get(year, {})
                 for k, v in dt.items():
                     yr[k+" total"] = v
-                    cols.add(k+" total")
+                mDt[year] = yr
+                municipio[mun] = mDt
+
+        for year, dtY in self.mayores.items():
+            for mun, dt in dtY.items():
+                mDt = municipio.get(mun, {})
+                yr = mDt.get(year, {})
+                yr["mayores"]=dt["mayores"]
                 mDt[year] = yr
                 municipio[mun] = mDt
 
@@ -697,110 +797,39 @@ class Dataset():
                 yr = mDt.get(year, {})
                 for k, v in dt.items():
                     yr[k] = v
-                    cols.add(k)
                 mDt[year] = yr
                 municipio[mun] = mDt
-
-        year = 1999
-        censo = data.get("censo_%s" % year, None)
-        if censo is not None:
-            for i in get_js(censo["superficie"]):
-                mun, tenencia = i["MetaData"]
-                mun = get_cod_municipio(
-                    cod, mun, cambiar=cambios_municipios)
-                if mun is not None and tenencia["Codigo"] == "todoslosregimenes":
-                    valor = i["Data"][0]["Valor"]
-                    if valor is not None:
-                        dt = municipio.get(mun, {})
-                        yr = dt.get(year, {})
-
-                        yr["SAU"] = int(valor)
-
-                        dt[year] = yr
-                        municipio[mun] = dt
-            for i in get_js(censo["unidades"]):
-                mun, tipo = i["MetaData"]
-                mun = get_cod_municipio(
-                    cod, mun, cambiar=cambios_municipios)
-                if mun is None:
-                    continue
-                c_tipo = tipo["Codigo"]
-                key = None
-                if c_tipo == "numerodeexplotacionestotal":
-                    key = "explotaciones"
-                elif c_tipo == "unidadesganaderasug":
-                    key = "unidadesganaderas"
-                elif c_tipo == "unidadesdetrabajoanouta":
-                    key = "UTA"
-                if key:
-                    valor = i["Data"][0]["Valor"]
-                    if valor is not None:
-                        dt = municipio.get(mun, {})
-                        yr = dt.get(year, {})
-
-                        yr[key] = int(valor)
-
-                        dt[year] = yr
-                        municipio[mun] = dt
-        year = 2009
-        with open(self.core.todas["censo_%s" % year], "r") as f:
-            soup = BeautifulSoup(f, "lxml")
-
-        for tr in soup.findAll("tr"):
-            tds = tr.findAll(["th", "td"])
-            if len(tds) == 20:
-                cod = tds[0].get_text().strip().split()[0]
-                if cod.isdigit() and len(cod) == 5:
-
-                    if cod in cambios_municipios:
-                        cod = cambios_municipios[cod]
-
-                    datos = [parse_td(td) for td in tds[1:]]
-                    dt = municipio.get(cod, {})
-                    yr = dt.get(year, {})
-
-                    yr["explotaciones"] = datos[0]
-                    yr["SAU"] = datos[1]
-                    yr["unidadesganaderas"] = datos[10]
-                    yr["UTA"] = datos[11]
-
-                    dt[year] = yr
-                    municipio[cod] = dt
-
-        cols = list(sorted(cols, key=sort_col)) + col_empresas + cols_sepe + \
-            ["SAU", "explotaciones", "unidadesganaderas", "UTA", "renta"]
 
         db.create('''
             create table socioeconomico (
               MUN TEXT,
               YEAR INTEGER,
               %s
+              tipo_renta INTEGER DEFAULT 1,
               PRIMARY KEY (MUN, YEAR),
               FOREIGN KEY(MUN) REFERENCES municipios(ID)
             )
-        ''', *[unidecode(c) for c in cols])
-
+        ''', *get_cols(municipio, "renta", "declaraciones"))
         for cod, mun in sorted(municipio.items()):
             for year, dt in sorted(mun.items()):
-                row = {
-                    "MUN": cod,
-                    "YEAR": year
-                }
-                for col in cols:
-                    val = dt.get(col, None)
-                    if val is None:
-                        continue
-                    if col in cols_sepe and isinstance(val, float):
-                        val = int(val)
-                    if col == "renta" and val == "":
-                        val = self.renta_menos1000.get(year, {}).get(
-                            cod, {}).get("renta_m18", "")
-                        row["tipo_renta"] = 1
-                    row[unidecode(col)] = val
-                db.insert("socioeconomico", **row)
+                dt["MUN"]=cod
+                dt["YEAR"]=year
+                if dt.get("renta") is None:
+                    #val = self.renta_menos1000.get(year, {}).get(cod, {}).get("renta_m18", "")
+                    v = rt1000.get((year, cod[:2]))
+                    if v:
+                        dt["renta"]=v["media"]
+                        dt["declaraciones"]=v["declaraciones"]
+                    dt["tipo_renta"]=2
+                prov=int(cod[:2])
+                if prov == 31:
+                    dt["tipo_renta"]=3
+                if prov in (1, 48, 20):
+                    dt["tipo_renta"]=4
+                db.insert("socioeconomico", **dt)
 
         db.create('''
-            create table sepemes (
+            create table sepe (
               MUN TEXT,
               YEAR INTEGER,
               MES INTEGER,
@@ -808,21 +837,16 @@ class Dataset():
               PRIMARY KEY (MUN, YEAR, MES),
               FOREIGN KEY(MUN) REFERENCES municipios(ID)
             )
-        ''', *[unidecode(c) for c in cols_sepe])
+        ''', *get_cols(self.paro, nivel=2))
 
-        for cod, mun in sorted(sepe_municipio.items()):
-            for ym, dt in sorted(mun.items()):
-                row = {
-                    "MUN": cod,
-                    "YEAR": ym[0],
-                    "MES": ym[1],
-                }
-                for col in cols_sepe:
-                    val = dt.get(col)
-                    if val is None:
-                        continue
-                    row[unidecode(col)] = int(val)
-                db.insert("sepemes", **row)
+
+        for mun, dYear in self.paro.items():
+            for year, dMes in dYear.items():
+                for mes, sepe in dMes.items():
+                    sepe["MUN"]=mun
+                    sepe["YEAR"]=year
+                    sepe["MES"]=mes
+                    db.insert("sepe", **sepe)
 
     def collect(self):
         re_trim = re.compile(
