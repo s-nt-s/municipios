@@ -1,5 +1,5 @@
 select InitSpatialMetadata(1);
-create table municipios (
+create table MUNICIPIOS (
   ID TEXT,
   nombre TEXT,
   lat REAL,

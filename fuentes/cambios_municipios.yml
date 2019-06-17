@@ -22,6 +22,12 @@ wiki: "https://es.wikipedia.org/wiki/Oza_de_los_R%C3%ADos"
 fecha: 2013-06-06
 remplaza: True
 ---
+viejo: "04039 - Darrícal"
+nuevo: "04007 - Alcolea"
+wiki: "https://es.wikipedia.org/wiki/Darr%C3%ADcal"
+fecha: 1997-01-01
+remplaza: True
+---
 viejo: "39801 - Mancomunidad de Campoo-Cabuérniga"
 wiki: "https://es.wikipedia.org/wiki/Mancomunidad_de_Campoo-Cabu%C3%A9rniga"
 municipio: False

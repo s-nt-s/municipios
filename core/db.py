@@ -12,6 +12,11 @@ from shapely.ops import cascaded_union
 
 re_select = re.compile(r"^\s*select\b")
 
+class CaseInsensitiveDict(dict):
+    def __setitem__(self, key, value):
+        dict.__setitem__(self, key.lower(), value)
+    def __getitem__(self, key):
+        return dict.__getitem__(self, key.lower())
 
 def build_result(c, to_tuples=False, to_bunch=False):
     results = c.fetchall()
@@ -44,7 +49,8 @@ class DBLite:
             for e in extensions:
                 self.con.load_extension(e)
         self.cursor = self.con.cursor()
-        self.tables = {}
+        self.cursor.execute('pragma foreign_keys = on')
+        self.tables = None
         self.load_tables()
 
     def execute(self, sql_file):
@@ -59,7 +65,7 @@ class DBLite:
         self.load_tables()
 
     def load_tables(self):
-        self.tables = {}
+        self.tables = CaseInsensitiveDict()
         for t in self.select("SELECT name FROM sqlite_master WHERE type='table'"):
             self.cursor.execute("select * from "+t+" limit 0")
             self.tables[t] = tuple(col[0] for col in self.cursor.description)

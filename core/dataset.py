@@ -598,11 +598,11 @@ class Dataset():
                 municipio[mun] = mDt
 
         db.create('''
-            create table socioeconomico (
+            create table SOCIOECONOMICO (
               MUN TEXT,
               YR INTEGER,
               %s
-              RT_tipo INTEGER DEFAULT 1,
+              RT_tipo INTEGER,
               PRIMARY KEY (MUN, YR),
               FOREIGN KEY(MUN) REFERENCES municipios(ID)
             )
@@ -626,7 +626,7 @@ class Dataset():
                 db.insert("socioeconomico", **dt)
 
         db.create('''
-            create table sepe (
+            create table SEPE (
               MUN TEXT,
               YR INTEGER,
               MES INTEGER,
@@ -644,12 +644,12 @@ class Dataset():
                     sepe["MES"] = mes
                     db.insert("sepe", **sepe)
 
-        fields = list(db.tables["sepe"])
+        fields = list(db.tables["SEPE"])
         fields.remove("YR")
         fields.remove("MUN")
         fields.remove("MES")
         view='''
-        CREATE VIEW sepe_year AS
+        CREATE VIEW SEPE_YEAR AS
             select
             	s1.MUN, s1.YR'''
         for f in fields:
