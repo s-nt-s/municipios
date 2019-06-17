@@ -2,9 +2,12 @@ fuentes/*
 !fuentes/indice.yml
 !fuentes/cambios_municipios.yml
 !fuentes/fuentes.json
+!fuentes/ine
+fuentes/ine/*
 !fuentes/ine/censo_agrario_2009.html
 *.db
 *.db-journal
+*.7z
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
