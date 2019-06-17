@@ -1,0 +1,119 @@
+viejo: "36012 Cotobade"
+nuevo: "36902 Cerdedo-Cotobade"
+wiki: "https://es.wikipedia.org/wiki/Cotobad"
+fecha: 2016-09-22
+remplaza: True
+---
+viejo: "36011 Cerdedo"
+nuevo: "36902 Cerdedo-Cotobade"
+wiki: "https://es.wikipedia.org/wiki/Cerdedo"
+fecha: 2016-09-22
+remplaza: True
+---
+viejo: "15026 Cesuras"
+nuevo: "15902 Oza-Cesuras"
+wiki: "https://es.wikipedia.org/wiki/Cesuras"
+fecha: 2013-06-06
+remplaza: True
+---
+viejo: "15063 Cerdedo"
+nuevo: "15902 Oza-Cesuras"
+wiki: "https://es.wikipedia.org/wiki/Oza_de_los_R%C3%ADos"
+fecha: 2013-06-06
+remplaza: True
+---
+viejo: "39801 - Mancomunidad de Campoo-Cabuérniga"
+wiki: "https://es.wikipedia.org/wiki/Mancomunidad_de_Campoo-Cabu%C3%A9rniga"
+municipio: False
+---
+viejo: "20802 - Parzonería General de Guipúzcoa y Álava"
+wiki: "https://es.wikipedia.org/wiki/Parzoner%C3%ADa_General_de_Guip%C3%BAzcoa_y_%C3%81lava"
+municipio: False
+---
+viejo: "20701 - Mancomunidad de Enirio-Aralar"
+wiki: "https://es.wikipedia.org/wiki/Mancomunidad_de_Enirio-Aralar"
+municipio: False
+---
+viejo: "31800 - Bardenas reales"
+wiki: "https://es.wikipedia.org/wiki/Bardenas_Reales"
+municipio: False
+---
+viejo: "31817 - Bardenas reales"
+wiki: "https://es.wikipedia.org/wiki/Bardenas_Reales"
+municipio: False
+---
+viejo: "31704 - ¿Sierra de Aralar / Realengo de Aralar?"
+wiki: "https://es.wikipedia.org/wiki/Realengo_de_Aralar"
+municipio: False
+---
+viejo: "31707 - ¿Sierra de Urbasa / Mancomunidad del Monte de Las Limitaciones?"
+wiki: "https://es.wikipedia.org/wiki/Sierra_de_Urbasa"
+municipio: False
+---
+viejo: "31785 - Facería 85"
+wiki: "https://es.wikipedia.org/wiki/Facer%C3%ADa"
+municipio: False
+---
+viejo: "09808 - Comunidad de Arauzo de Miel y Huerta del Rey"
+wiki: "#"
+municipio: False
+---
+viejo: "04029 - Berja"
+nuevo: "04904 - Balanegra"
+wiki: "https://es.wikipedia.org/wiki/Balanegra"
+fecha: 2015-06-01
+notas: "Balanegra pertenecía a Berja"
+---
+viejo: "10180 - Talayuela"
+nuevo: "10904 - Tiétar"
+wiki: "https://es.wikipedia.org/wiki/Ti%C3%A9tar_(C%C3%A1ceres)"
+fecha: 2013-06-12
+notas: "Tiétar pertenecía a Talayuela"
+---
+viejo: "10180 - Talayuela"
+nuevo: "10905 - Pueblonuevo de Miramontes"
+wiki: "https://es.wikipedia.org/wiki/Pueblonuevo_de_Miramontes"
+fecha: 2014-12-03
+notas: "Pueblonuevo de Miramontes pertenecía a Talayuela"
+---
+viejo: "18105 - Iznalloz"
+nuevo: "18065 - Dehesas Viejas"
+wiki: "https://es.wikipedia.org/wiki/Dehesas_Viejas"
+fecha: 2014-10-23
+notas: "Dehesas Viejas pertenecía a Iznalloz"
+---
+viejo: "18158 - Pinos Puente"
+nuevo: "18914	- Valderrubio"
+wiki: "https://es.wikipedia.org/wiki/Valderrubio"
+fecha: 2013-12-18
+notas: "Valderrubio pertenecía a Pinos Puente"
+---
+viejo: "18020 - Arenas del Rey"
+nuevo: "18106 - Játar"
+wiki: "https://es.wikipedia.org/wiki/J%C3%A1tar"
+fecha: 2015-02-19
+notas: "Játar pertenecía a Arenas del Rey"
+---
+viejo: "18105 - Iznalloz"
+nuevo: "18915 - Domingo Pérez de Granada"
+wiki: "https://es.wikipedia.org/wiki/Domingo_P%C3%A9rez_de_Granada"
+fecha: 2015-03-17
+notas: "Domingo Pérez de Granada pertenecía a Iznalloz"
+---
+viejo: "29084 - Ronda"
+nuevo: "29903 - Montecorto"
+wiki: "https://es.wikipedia.org/wiki/Montecorto"
+fecha: 2014-10-17
+notas: "Montecorto pertenecía a Ronda"
+---
+viejo: "29084 - Ronda"
+nuevo: "29904 - Serrato"
+wiki: "https://es.wikipedia.org/wiki/Serrato"
+fecha: 2014-12-19
+notas: "Serrato pertenecía a Ronda"
+---
+viejo: "21017	- Calañas"
+nuevo: "21902	- La Zarza-Perrunal"
+wiki: "https://es.wikipedia.org/wiki/La_Zarza-Perrunal"
+fecha: 2018-10-02
+notas: "La Zarza-Perrunal pertenecía a Calañas"
