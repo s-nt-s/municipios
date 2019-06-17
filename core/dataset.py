@@ -544,7 +544,10 @@ class Dataset():
                 key = (mun, year)
                 row = rows.get(key, {})
                 for k, v in dt.items():
-                    #if k!= "ambossexos total":
+                    if k=="total":
+                        continue
+                    if k== "ambossexos total":
+                        k="total"
                     row[k] = v
                 rows[key]=row
 
