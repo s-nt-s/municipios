@@ -354,17 +354,24 @@ def wstempus(url):
     return url
 
 
-def get_cols(data, *args, nivel=1):
-    cols = set()
-    for i in data.values():
-        for j in i.values():
-            if nivel == 1:
-                for k in j.keys():
-                    cols.add(k)
-            else:
-                for x in j.values():
-                    for k in x.keys():
-                        cols.add(k)
+def _get_cols(data):
+    cols=set()
+    vals = list(data.values())
+    if len(vals)==0:
+        return cols
+    if isinstance(vals[0], dict):
+        for v in vals:
+            cols = cols.union(_get_cols(v))
+    else:
+        for k in data.keys():
+            cols.add(k)
+    return cols
+
+def get_cols(*args):
+    cols=set()
     for a in args:
-        cols.add(a)
+        if isinstance(a, dict):
+            cols=_get_cols(a)
+        else:
+            cols.add(a)
     return sorted(cols)

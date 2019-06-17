@@ -30,6 +30,23 @@ except:
 me = os.path.realpath(__file__)
 dr = os.path.dirname(me)
 
+
+def insert(db, table, rows):
+    table = table.upper()
+    create='''
+        create table {} (
+          MUN TEXT,
+          YR INTEGER,
+          %s
+          PRIMARY KEY (MUN, YR),
+          FOREIGN KEY(MUN) REFERENCES municipios(ID)
+        )
+    '''.format(table)
+    db.create(create, *get_cols(rows))
+    for key, row in rows.items():
+        row["MUN"], row["YR"] = key
+        db.insert(table, **row)
+
 class Dataset():
     def __init__(self, *args, core=None, reload=False, **kargs):
         self.reload = reload
@@ -313,7 +330,7 @@ class Dataset():
                 if mun is not None:
                     key = None
                     sex = sex["Nombre"]
-                    if sex == "Total":
+                    if sex in ("Total", "ambossexos total"):
                         key = "total"
                     elif sex == "Mujeres":
                         key = "mujeres"
@@ -520,26 +537,56 @@ class Dataset():
         return data
 
     def populate_datamun(self, db, reload=False):
-        municipio = {}
 
+        rows={}
+        for year, dtY in self.poblacion.items():
+            for mun, dt in dtY.items():
+                key = (mun, year)
+                row = rows.get(key, {})
+                for k, v in dt.items():
+                    #if k!= "ambossexos total":
+                    row[k] = v
+                rows[key]=row
+
+        for year, dtY in self.mayores.items():
+            for mun, dt in dtY.items():
+                key = (mun, year)
+                row = rows.get(key, {})
+                row["mayores"] = dt["mayores"]
+                rows[key]=row
+
+        for year, dtY in self.edad.items():
+            for mun, dt in dtY.items():
+                key = (mun, year)
+                row = rows.get(key, {})
+                for k, v in dt.items():
+                    row[k] = v
+                rows[key]=row
+
+        insert(db, "poblacion", rows)
+        keys_pob=list(rows.keys())
+
+        rows = {}
         for year, dtY in self.agrario.items():
             for mun, dt in dtY.items():
-                mDt = municipio.get(mun, {})
-                yr = mDt.get(year, {})
+                key = (mun, year)
+                row = rows.get(key, {})
                 for k, v in dt.items():
-                    yr["AG_"+k] = v
-                mDt[year] = yr
-                municipio[mun] = mDt
+                    row[k] = v
+                rows[key]=row
+        insert(db, "agrario", rows)
 
+        rows = {}
         for year, dtY in self.empresas.items():
             for mun, dt in dtY.items():
-                mDt = municipio.get(mun, {})
-                yr = mDt.get(year, {})
+                key = (mun, year)
+                row = rows.get(key, {})
                 for k, v in dt.items():
-                    yr["EM_"+k] = v
-                mDt[year] = yr
-                municipio[mun] = mDt
+                    row[k] = v
+                rows[key]=row
+        insert(db, "empresas", rows)
 
+        rows = {}
         rt1000 = {}
         for year, data in self.renta_aeat.items():
             for mun, rent in data.items():
@@ -548,82 +595,40 @@ class Dataset():
                     continue
                 if len(mun) != 5:
                     continue
-                dt = municipio.get(mun, {})
-                yr = dt.get(year, {})
-                yr["RT_renta"] = rent["media"]
-                yr["RT_declaraciones"] = rent["declaraciones"]
-                dt[year] = yr
-                municipio[mun] = dt
+                key = (mun, year)
+                row = rows.get(key, {})
+                row["renta"] = rent["media"]
+                row["declaraciones"] = rent["declaraciones"]
+                row["tipo"]=1
+                rows[key]=row
+        for key, data in rt1000.items():
+            year, prov = key
+            muns = set(k[0] for k in keys_pob if k[1]==year and k[0].startswith(prov))
+            for mun in muns:
+                key = (mun, year)
+                row = rows.get(key, {})
+                row["renta"] = rent["media"]
+                row["declaraciones"] = rent["declaraciones"]
+                row["tipo"]=1 if len(muns)==1 else 2
+                rows[key]=row
 
         for year, dt in self.renta_euskadi.items():
             for mun, rent in dt.items():
-                dt = municipio.get(mun, {})
-                yr = dt.get(year, {})
-                yr["RT_renta"] = rent
-                dt[year] = yr
-                municipio[mun] = dt
+                key = (mun, year)
+                row = rows.get(key, {})
+                row["renta"] = rent
+                row["tipo"]=3
+                rows[key]=row
 
         for year, dt in self.renta_navarra.items():
             for mun, rent in dt.items():
-                dt = municipio.get(mun, {})
-                yr = dt.get(year, {})
-                yr["RT_renta"] = rent
-                dt[year] = yr
-                municipio[mun] = dt
+                key = (mun, year)
+                row = rows.get(key, {})
+                row["renta"] = rent
+                row["tipo"]=4
+                rows[key]=row
 
-        for year, dtY in self.poblacion.items():
-            for mun, dt in dtY.items():
-                mDt = municipio.get(mun, {})
-                yr = mDt.get(year, {})
-                for k, v in dt.items():
-                    yr["PB_"+k] = v
-                mDt[year] = yr
-                municipio[mun] = mDt
-
-        for year, dtY in self.mayores.items():
-            for mun, dt in dtY.items():
-                mDt = municipio.get(mun, {})
-                yr = mDt.get(year, {})
-                yr["PB_mayores"] = dt["mayores"]
-                mDt[year] = yr
-                municipio[mun] = mDt
-
-        for year, dtY in self.edad.items():
-            for mun, dt in dtY.items():
-                mDt = municipio.get(mun, {})
-                yr = mDt.get(year, {})
-                for k, v in dt.items():
-                    yr["PB_"+k] = v
-                mDt[year] = yr
-                municipio[mun] = mDt
-
-        db.create('''
-            create table SOCIOECONOMICO (
-              MUN TEXT,
-              YR INTEGER,
-              %s
-              RT_tipo INTEGER,
-              PRIMARY KEY (MUN, YR),
-              FOREIGN KEY(MUN) REFERENCES municipios(ID)
-            )
-        ''', *get_cols(municipio))
-        for cod, mun in municipio.items():
-            for year, dt in mun.items():
-                dt["MUN"] = cod
-                dt["YR"] = year
-                if dt.get("RT_renta") is None:
-                    #val = self.renta_menos1000.get(year, {}).get(cod, {}).get("renta_m18", "")
-                    v = rt1000.get((year, cod[:2]))
-                    if v:
-                        dt["RT_renta"] = v["media"]
-                        dt["RT_declaraciones"] = v["declaraciones"]
-                    dt["RT_tipo"] = 2
-                prov = int(cod[:2])
-                if prov == 31:
-                    dt["RT_tipo"] = 3
-                if prov in (1, 48, 20):
-                    dt["RT_tipo"] = 4
-                db.insert("socioeconomico", **dt)
+        insert(db, "renta", rows)
 
         db.create('''
             create table SEPE (
@@ -634,7 +639,7 @@ class Dataset():
               PRIMARY KEY (MUN, YR, MES),
               FOREIGN KEY(MUN) REFERENCES municipios(ID)
             )
-        ''', *get_cols(self.paro, nivel=2))
+        ''', *get_cols(self.paro))
 
         for year, dMun in self.paro.items():
             for mun, dMes in dMun.items():
@@ -828,6 +833,8 @@ for name in dir(Dataset):
         if not hasattr(Dataset, id):
             f = eval("lambda slf: slf.get_dataset('%s')" % name)
             setattr(Dataset, id, property(f))
+
+
 
 if __name__ == "__main__":
     d = Dataset()
