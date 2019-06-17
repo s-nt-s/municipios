@@ -25,8 +25,6 @@ except:
 
 urllib3.disable_warnings()
 
-cYear = datetime.now().year
-
 re_entero = re.compile(r"^\d+(\.0+)?$")
 re_float = re.compile(r"^\d+\.\d+$")
 
@@ -50,7 +48,7 @@ def mkBunchParse(obj):
         for k in obj.keys():
             if not isinstance(k, str):
                 return {k: mkBunchParse(v) for k, v in obj.items()}
-            if not(k.isdigit() and len(k) == 4 and k[0] != "0"):
+            if not(k.isdigit() and len(k) == 4 and int(k[0]) in (1, 2)):
                 flag = False
         if flag:
             return {int(k): mkBunchParse(v) for k, v in obj.items()}
@@ -97,17 +95,6 @@ def get_xls(url):
         save(file, r.content)
     book = xlrd.open_workbook(file)
     return book
-
-
-def read_js_glob(path):
-    data = {}
-    for p in sorted(glob(path)):
-        year = p[-9:-5]
-        if year.isdigit():
-            year = int(year)
-            if year < cYear:
-                data[year] = read_js(p)
-    return data
 
 
 def get_mes(mes):
@@ -248,16 +235,22 @@ def get_bs(url, parser='lxml'):
     return soup
 
 
-def read_js(file, intKey=False, maxKey=None):
+def read_js(file, intKey=False):
+    if "*" in file:
+        data = {}
+        for p in sorted(glob(file)):
+            year = p[-9:-5]
+            if year.isdigit():
+                year = int(year)
+                data[year] = read_js(p)
+        return data
     if file and os.path.isfile(file):
         with open(file, 'r') as f:
             js = json.load(f)
             if intKey:
-                js = {int(k): v for k, v in js.items() if (
-                    maxKey is None or int(k) < maxKey)}
+                js = {int(k): v for k, v in js.items()}
             return js
     return None
-
 
 def _js(url):
     r = requests.get(url, verify=False)
@@ -267,6 +260,15 @@ def _js(url):
         return _js(url)
     return r
 
+
+def save_js(file, data, indent=4):
+    if "*" in file:
+        for year, dt in data.items():
+            f = file.replace("*", str(year))
+            save_js(f, dt)
+    else:
+        with open(file, "w") as f:
+            json.dump(data, f, indent=indent)
 
 def get_root_file(dom):
     if dom == "administracionelectronica.navarra.es":

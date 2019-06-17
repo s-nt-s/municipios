@@ -9,11 +9,18 @@ import xlrd
 import yaml
 from bs4 import BeautifulSoup
 from bunch import Bunch
+import inspect
 
 try:
     from .common import *
 except:
     from common import *
+
+
+try:
+    from .decorators import JsonCache
+except:
+    from decorators import JsonCache
 
 try:
     from .provincias import *
@@ -23,9 +30,9 @@ except:
 me = os.path.realpath(__file__)
 dr = os.path.dirname(me)
 
-
 class Dataset():
-    def __init__(self, *args, core=None, **kargs):
+    def __init__(self, *args, core=None, reload=False, **kargs):
+        self.reload = reload
         self.file = "fuentes/fuentes.json"
         self.fuentes = mkBunch("fuentes/indice.yml")
         self.cambios = list(sorted(get_yml("fuentes/cambios_municipios.yml",
@@ -36,10 +43,13 @@ class Dataset():
         if not self.core:
             self.collect()
 
-    def create_mayores(self, reload=False):
-        file = "dataset/poblacion/mayores.json"
-        if not reload and os.path.isfile(file):
-            return False
+    def getCore(self, field):
+        for cod, data in sorted(self.core.items()):
+            if field in data:
+                yield cod, data[field]
+
+    @JsonCache(file="dataset/poblacion/mayores.json")
+    def create_mayores(self):
         mayores = {}
         for prov, dt in self.core.items():
             pob = dt.get("poblacion1", None)
@@ -73,13 +83,10 @@ class Dataset():
                             "total": total
                         }
                     mayores[year] = ydata
-        self.save(file, mayores)
-        return True
+        return mayores
 
-    def create_euskadi(self, reload=False):
-        file = "dataset/renta/euskadi.json"
-        if not reload and os.path.isfile(file):
-            return False
+    @JsonCache(file="dataset/renta/euskadi.json")
+    def create_euskadi(self):
         url = self.core.todas["renta"]["euskadi"]
         rows = get_csv(url, enconde="windows-1252", delimiter=";")
         years = None
@@ -103,17 +110,13 @@ class Dataset():
                 yr = data.get(y, {})
                 yr[mun] = v
                 data[y] = yr
-        self.save(file, data)
-        return True
+        return data
 
-    def create_sepe(self, reload=False):
-        flag = False
+    @JsonCache(file="dataset/empleo/paro_sepe_*.json")
+    def create_sepe(self):
         firt_data = 8
+        yrParo={}
         for year, url in self.core.todas["paro_sepe"].items():
-            year = int(year)
-            file = "dataset/empleo/paro_sepe_%s.json" % year
-            if not reload and os.path.isfile(file):
-                continue
             paro = {}
             rows = get_csv(url, enconde="windows-1252", delimiter=";")
             head = rows[1][firt_data:]
@@ -146,17 +149,13 @@ class Dataset():
 
                 dMun[mes] = dt
                 paro[mun] = dMun
-            self.save(file, paro)
-            flag=True
-        return flag
+            yrParo[year]=paro
+        return yrParo
 
-    def create_aeat(self, reload=False):
-        flag = False
+    @JsonCache(file="dataset/renta/aeat_*.json")
+    def create_aeat(self):
+        yrRenta={}
         for year, url in self.core.todas["renta"]["aeat"].items():
-            year = int(year)
-            file = "dataset/renta/aeat_%s.json" % year
-            if not reload and os.path.isfile(file):
-                continue
             soup = get_bs(url)
             data = {}
             for tr in soup.select("table tr"):
@@ -184,113 +183,13 @@ class Dataset():
                             "media": int(rent),
                             "declaraciones": int(decla)
                         }
-            self.save(file, data)
-            flag = True
-        return flag
+            yrRenta[year]=data
+        return yrRenta
 
-    def create(self, reload=False):
-        self.create_mayores(reload=reload)
-        self.create_aeat(reload=reload)
-        self.create_euskadi(reload=reload)
-
-    def unzip(self):
-        unzip("fuentes/fomento/shp", self.core.todas["limites"])
-        unzip("fuentes/fomento/mdb",
-              self.core.todas["nomenclator"])  # , self.core.todas["nomenclator_basico"])
-        for pro, dt in self.core.items():
-            if "miteco" in dt:
-                unzip("fuentes/miteco/mapaforestal/%s %s" %
-                      (pro, dt["nombre"].split("/")[0]), dt["miteco"])
-
-    def save(self, file=None, data=None):
-        if data is None:
-            data = self.core
-        if file is None:
-            file = self.file
-        if file and data:
-            with open(file, "w") as f:
-                json.dump(data, f, indent=4)
-
-    def get_paro(self, year, cod, avoid=None):
-        if cod not in self.paro or year not in self.paro[cod]:
-            return None
-        paro = 0
-        vals = self.paro[cod][year].values()
-        for m in vals:
-            paro = paro + m["total Paro Registrado"]
-        return paro/len(vals)
-
-    @property
-    @lru_cache(maxsize=None)
-    def renta_aeat(self):
-        self.create_aeat()
-        renta = read_js_glob("dataset/renta/aeat_*.json")
-        for nuevo, viejos in self.mun_remplaza.items():
-            for year, data in renta.items():
-                dNuevo = data.get(nuevo, None)
-                for viejo in viejos:
-                    if viejo in data:
-                        dViejo = data[viejo]
-                        del data[viejo]
-                        if dNuevo is None:
-                            dNuevo = dViejo
-                            continue
-                        total = dNuevo["media"]*dNuevo["declaraciones"] + \
-                            dViejo["media"]*dViejo["declaraciones"]
-                        dNuevo["declaraciones"] = dNuevo["declaraciones"] + \
-                            dViejo["declaraciones"]
-                        dNuevo["media"] = total/dNuevo["declaraciones"]
-                data[nuevo] = dNuevo
-        for viejo, nuevos in self.mun_desgaja.items():
-            for year, data in renta.items():
-                if year not in self.mayores:
-                    continue
-                my = self.mayores[year]
-                cNuevos = set(n for n in nuevos if n not in my and n in data)
-                if len(cNuevos) == 0:
-                    continue
-                print("renta", year, viejo, cNuevos)
-                dViejo = data[viejo]
-                for n in cNuevos:
-                    dNuevo = data[n]
-                    del data[n]
-                    total = dNuevo["media"]*dNuevo["declaraciones"] + \
-                        dViejo["media"]*dViejo["declaraciones"]
-                    dViejo["declaraciones"] = dNuevo["declaraciones"] + \
-                        dViejo["declaraciones"]
-                    dViejo["media"] = total/dViejo["declaraciones"]
-        for year, dt in renta.items():
-            if year not in self.mayores:
-                continue
-            my = self.mayores[year]
-            for mun, p in my.items():
-                if p["total"] == 0 and mun not in dt:
-                    dt[mun] = {"media": 0, "declaraciones": 0}
-            visto = [k for k in dt.keys() if len(k) == 5]
-            provs = set(k[1:]
-                        for k in dt.keys() if len(k) == 3 and k[0] == "p")
-            for prov in provs:
-                mun = set(m for m in my.keys() if m.startswith(
-                    prov) and m not in visto)
-                if len(mun) == 1:
-                    mun = mun.pop()
-                    dt[mun] = dt["p"+prov]
-                    del dt["p"+prov]
-        for year, dt in renta.items():
-            for mun, rt in dt.items():
-                for y in (year, year-1, year+1):
-                    if y in self.mayores and mun in self.mayores[y]:
-                        rt["mayores"] = self.mayores[y][mun]["mayores"]
-                        break
-        return renta
-
-    def create_navarra(self, reload=False):
-        flag = False
+    @JsonCache(file="dataset/renta/navarra.json")
+    def create_navarra(self):
+        yrNavarra={}
         for year, url in self.core.todas["renta"]["navarra"].items():
-            year = int(year)
-            file = "dataset/renta/navarra_%s.json" % year
-            if not reload and os.path.isfile(file):
-                continue
             book = get_xls(url)
             sheet = book.sheet_by_index(0)
             data = {}
@@ -303,14 +202,11 @@ class Dataset():
                 if c1 and isinstance(c1, int) and "(*)" in c2:
                     c1 = "31" + ("%03d" % c1)
                     data[c1] = row[3]
-            self.save(file, data)
-            flag = True
-        return flag
+            yrNavarra[year]=data
+        return yrNavarra
 
-    def create_agrario(self, reload=False):
-        file = "dataset/economia/agrario.json"
-        if not reload and os.path.isfile(file):
-            return False
+    @JsonCache(file="dataset/economia/agrario.json")
+    def create_agrario(self):
         years = {}
         year = 1999
         for cod, data in self.core.items():
@@ -366,73 +262,144 @@ class Dataset():
                     yr["UTA"] = datos[11]
                     dt[cod] = yr
                     years[year] = dt
-        self.save(file, years)
-        return True
+        return years
 
-    @property
-    @lru_cache(maxsize=None)
-    def agrario(self):
-        self.create_agrario()
-        agrario = read_js("dataset/economia/agrario.json", intKey=True)
+    @JsonCache(file="dataset/poblacion/edad_*.json")
+    def create_edad(self):
+        flag = False
+        years = {}
+        for cod, poblacion in self.getCore("poblacion5"):
+            for year, url in sorted(poblacion.items()):
+                data = years.get(year, {})
+                for i in get_js(url):
+                    sex, mun, edad = i["MetaData"]
+                    mun = get_cod_municipio(cod, mun)
+                    if mun is None:
+                        continue
+
+                    c_sex = sex["Codigo"].strip()
+                    c_edad = edad["Codigo"].strip()
+
+                    if c_sex == "varones":
+                        c_sex = "hombres"
+
+                    if c_edad == "59":
+                        c_edad = "0509"
+                    elif c_edad == "85ym s":
+                        c_edad = "85ymas"
+                    if c_edad == "04":
+                        c_edad = "04ymenos"
+                    elif len(c_edad) == 4:
+                        c_edad = c_edad[0:2]+"a"+c_edad[2:4]
+
+                    valor = i["Data"][0]["Valor"]
+
+                    dt = data.get(mun, {})
+
+                    key = c_sex+" "+c_edad
+                    dt[key] = int(valor) if valor is not None else None
+
+                    data[mun] = dt
+                years[year] = data
+        return years
+
+    @JsonCache(file="dataset/poblacion/sexo.json")
+    def create_poblacion(self):
+        years = {}
+        for cod, pob in self.getCore("poblacion"):
+            for i in get_js(pob):
+                mun, sex, _, _ = i["MetaData"]
+                mun = get_cod_municipio(None, mun)
+                if mun is not None:
+                    key = None
+                    sex = sex["Nombre"]
+                    if sex == "Total":
+                        key = "total"
+                    elif sex == "Mujeres":
+                        key = "mujeres"
+                    elif sex == "Hombres":
+                        key = "hombres"
+                    if not key:
+                        continue
+                    for d in i["Data"]:
+                        year = d["Anyo"]
+                        valor = d["Valor"]
+
+                        yDt = years.get(year, {})
+                        mDt = yDt.get(mun, {})
+
+                        if mDt.get(key) is None:
+                            mDt[key] = int(
+                                valor) if valor is not None else None
+                            yDt[mun] = mDt
+                            years[year] = yDt
+        return years
+
+    @JsonCache(file="dataset/economia/empresas.json")
+    def create_empresas(self):
+        empresas = get_csv(self.core.todas["empresas"])
+        col_empresas = [
+            r if r != "Total" else "Total empresas" for r in empresas[4] if r]
+        years = {}
+        for record in empresas:
+            if len(record) < 2 or record[0] is None:
+                continue
+            mun = record[0].split()[0]
+            if not mun.isdigit() or len(mun) != 5:
+                continue
+            for j, col in enumerate(col_empresas):
+                for i, year in enumerate(range(2018, 2011, -1)):
+                    index = (j*7)+i+1
+                    e = record[index]
+                    if e is not None:
+                        dtY = years.get(year, {})
+                        dt = dtY.get(mun, {})
+                        dt[col] = e
+                        dtY[mun] = dt
+                        years[year] = dtY
+        return years
+
+    def unzip(self):
+        unzip("fuentes/fomento/shp", self.core.todas["limites"])
+        unzip("fuentes/fomento/mdb",
+              self.core.todas["nomenclator"])  # , self.core.todas["nomenclator_basico"])
+        for pro, dt in self.core.items():
+            if "miteco" in dt:
+                unzip("fuentes/miteco/mapaforestal/%s %s" %
+                      (pro, dt["nombre"].split("/")[0]), dt["miteco"])
+
+    def parseData(self, data):
         for nuevo, viejos in self.mun_remplaza.items():
-            for year, dt in agrario.items():
+            for year, dt in data.items():
                 dNuevo = dt.get(nuevo, {})
-                dt[nuevo] = dNuevo
                 for viejo in viejos:
                     if viejo in dt:
                         dViejo = dt[viejo]
                         del dt[viejo]
                         for k, v in dViejo.items():
                             dNuevo[k] = dNuevo.get(k, 0) + v
-        return agrario
+                if dNuevo:
+                    dt[nuevo] = dNuevo
+        return data
 
-    @property
     @lru_cache(maxsize=None)
-    def renta_euskadi(self):
-        self.create_euskadi()
-        return read_js("dataset/renta/euskadi.json", intKey=True)
-
-    @property
-    @lru_cache(maxsize=None)
-    def renta_navarra(self):
-        self.create_navarra()
-        return read_js_glob("dataset/renta/navarra_*.json")
+    def get_dataset(self, create):
+        crt = getattr(self, create)
+        data = crt()
+        data = self.parseData(data)
+        return data
 
     @property
     @lru_cache(maxsize=None)
     def years_poblacion(self):
-        years = set()
-        for dt in self.core.values():
-            if "poblacion" not in dt:
-                continue
-            js = get_js(dt["poblacion"])
-            for d in js:
-                for y in d["Data"]:
-                    years.add(int(y["Anyo"]))
-        return sorted(years)
-
-    @property
-    @lru_cache(maxsize=None)
-    def empresas(self):
-        self.create_empresas()
-        empresas = read_js("dataset/economia/empresas.json", intKey=True)
-        for nuevo, viejos in self.mun_remplaza.items():
-            for year, dt in empresas.items():
-                dNuevo = dt.get(nuevo, {})
-                dt[nuevo] = dNuevo
-                for viejo in viejos:
-                    if viejo in dt:
-                        dViejo = dt[viejo]
-                        del dt[viejo]
-                        for k, v in dViejo.items():
-                            dNuevo[k] = dNuevo.get(k, 0) + v
-        return empresas
+        pob = self.create_poblacion()
+        return sorted(pob.keys())
 
     @property
     @lru_cache(maxsize=None)
     def paro(self):
         self.create_sepe()
-        paro = read_js_glob("dataset/empleo/paro_sepe_*.json")
+        paro = read_js("dataset/empleo/paro_sepe_*.json")
         for year, dt in paro.items():
             for nuevo, viejos in self.mun_remplaza.items():
                 dNuevo = dt.get(nuevo, {})
@@ -471,88 +438,62 @@ class Dataset():
                                 dViejo[mes][k] = dViejo[mes].get(k, 0) + mData[k]
         return paro
 
-    def create_edad(self, reload=False):
-        flag = False
-        years = {}
-        for cod, data in sorted(self.core.items()):
-            poblacion = data.get("poblacion5")
-            if poblacion is None:
-                continue
-            for year, url in sorted(poblacion.items()):
-                year = int(year)
-                file = "dataset/poblacion/edad_%s.json" % year
-                if not reload and os.path.isfile(file):
+    @property
+    @lru_cache(maxsize=None)
+    def renta_aeat(self):
+        renta = self.create_aeat()
+        for nuevo, viejos in self.mun_remplaza.items():
+            for year, data in renta.items():
+                dNuevo = data.get(nuevo, None)
+                for viejo in viejos:
+                    if viejo in data:
+                        dViejo = data[viejo]
+                        del data[viejo]
+                        if dNuevo is None:
+                            dNuevo = dViejo
+                            continue
+                        total = dNuevo["media"]*dNuevo["declaraciones"] + \
+                            dViejo["media"]*dViejo["declaraciones"]
+                        dNuevo["declaraciones"] = dNuevo["declaraciones"] + \
+                            dViejo["declaraciones"]
+                        dNuevo["media"] = total/dNuevo["declaraciones"]
+                if dNuevo:
+                    data[nuevo] = dNuevo
+        for viejo, nuevos in self.mun_desgaja.items():
+            for year, data in renta.items():
+                if year not in self.years_poblacion:
                     continue
-                data = years.get(year, {})
-                for i in get_js(url):
-                    sex, mun, edad = i["MetaData"]
-                    mun = get_cod_municipio(cod, mun)
-                    if mun is None:
-                        continue
+                pob = self.poblacion[year]
+                cNuevos = set(n for n in nuevos if n not in pob and n in data)
+                if len(cNuevos) == 0:
+                    continue
+                print("renta", year, viejo, cNuevos)
+                dViejo = data[viejo]
+                for n in cNuevos:
+                    dNuevo = data[n]
+                    del data[n]
+                    total = dNuevo["media"]*dNuevo["declaraciones"] + \
+                        dViejo["media"]*dViejo["declaraciones"]
+                    dViejo["declaraciones"] = dNuevo["declaraciones"] + \
+                        dViejo["declaraciones"]
+                    dViejo["media"] = total/dViejo["declaraciones"]
+        for year, dt in renta.items():
+            if year not in self.years_poblacion:
+                continue
+            pob = self.poblacion[year]
+            for mun, p in pob.items():
+                if p["total"] == 0 and mun not in dt:
+                    dt[mun] = {"media": 0, "declaraciones": 0}
+            visto = [k for k in dt.keys() if len(k) == 5]
+            provs = set(k[1:] for k in dt.keys() if len(k) == 3 and k[0] == "p")
+            for prov in provs:
+                mun = set(m for m in pob.keys() if m.startswith(prov) and m not in visto)
+                if len(mun) == 1:
+                    mun = mun.pop()
+                    dt[mun] = dt["p"+prov]
+                    del dt["p"+prov]
+        return renta
 
-                    c_sex = sex["Codigo"].strip()
-                    c_edad = edad["Codigo"].strip()
-
-                    if c_sex == "varones":
-                        c_sex = "hombres"
-
-                    if c_edad == "59":
-                        c_edad = "0509"
-                    elif c_edad == "85ym s":
-                        c_edad = "85ymas"
-                    if c_edad == "04":
-                        c_edad = "04ymenos"
-                    elif len(c_edad) == 4:
-                        c_edad = c_edad[0:2]+"a"+c_edad[2:4]
-
-                    valor = i["Data"][0]["Valor"]
-
-                    dt = data.get(mun, {})
-
-                    key = c_sex+" "+c_edad
-                    dt[key] = int(valor) if valor is not None else None
-
-                    data[mun] = dt
-                years[year] = data
-        for year, data in years.items():
-            file = "dataset/poblacion/edad_%s.json" % year
-            self.save(file, data)
-            flag = True
-        return flag
-
-    @property
-    @lru_cache(maxsize=None)
-    def edad(self):
-        self.create_edad()
-        edad = read_js_glob("dataset/poblacion/edad_*.json")
-        for nuevo, viejos in self.mun_remplaza.items():
-            for year, dt in edad.items():
-                dNuevo = dt.get(nuevo, {})
-                dt[nuevo] = dNuevo
-                for viejo in viejos:
-                    if viejo in dt:
-                        dViejo = dt[viejo]
-                        del dt[viejo]
-                        for k, v in dViejo.items():
-                            dNuevo[k] = dNuevo.get(k, 0) + v
-        return edad
-
-    @property
-    @lru_cache(maxsize=None)
-    def mayores(self):
-        self.create_mayores()
-        mayores = read_js("dataset/poblacion/mayores.json", intKey=True)
-        for nuevo, viejos in self.mun_remplaza.items():
-            for year, dt in mayores.items():
-                dNuevo = dt.get(nuevo, {})
-                dt[nuevo] = dNuevo
-                for viejo in viejos:
-                    if viejo in dt:
-                        dViejo = dt[viejo]
-                        del dt[viejo]
-                        for k, v in dViejo.items():
-                            dNuevo[k] = dNuevo.get(k, 0) + v
-        return mayores
 
     @property
     @lru_cache(maxsize=None)
@@ -578,165 +519,6 @@ class Dataset():
                 data[c.cod] = st
         return data
 
-    @property
-    @lru_cache(maxsize=None)
-    def renta_menos1000(self):
-        self.create_renta_menos1000()
-        return read_js("dataset/renta/aeat_menos_mil.json", intKey=True)
-
-    def create_renta_menos1000(self, reload=False):
-        file = "dataset/renta/aeat_menos_mil.json"
-        if not reload and os.path.isfile(file):
-            return False
-        rData = {}
-        for year, data in sorted(self.renta_aeat.items()):
-            if year not in self.mayores:
-                continue
-            yData = {}
-            rData[year] = yData
-            my = self.mayores[year]
-            visto = set(k for k in data.keys() if len(k) == 5)
-            provs = set(k[1:]
-                        for k in data.keys() if len(k) == 3 and k[0] == "p")
-            for prov in sorted(provs):
-                falta = set()
-                tengo = set()
-                paro = {}
-                for k in my.keys():
-                    if k.startswith(prov):
-                        if k in visto:
-                            tengo.add(k)
-                        p = self.get_paro(year, k)
-                        if p is not None:
-                            paro[k] = p
-                            if k not in visto:
-                                falta.add(k)
-                if len(falta) in (0, 1):
-                    print(len(falta), "commorl?")
-                    continue
-                yData[prov] = data[prov]
-                yData[prov]["mayores"] = sum(v["mayores"]
-                                             for k, v in my.items() if k in tengo)
-                yData[prov]["renta"] = yData[prov]["media"] * \
-                    yData[prov]["declaraciones"]
-                yData[prov]["paro"] = int(sum(paro.values()))
-                yData[prov]["ocupados"] = yData[prov]["mayores"] - \
-                    yData[prov]["paro"]
-                yData[prov]["renta_m18"] = yData[prov]["renta"] / \
-                    yData[prov]["mayores"]
-                p = data["p"+prov]
-                p["mayores"] = sum(v["mayores"]
-                                   for k, v in my.items() if k in falta)
-                p["paro"] = int(sum(v for k, v in paro.items() if k in falta))
-                p["renta"] = p["media"]*p["declaraciones"]
-                p["ocupados"] = p["mayores"] - p["paro"]
-                p["renta_m18"] = p["renta"]/p["mayores"]
-                yData["p"+prov] = p
-                for f in sorted(falta):
-                    yData[f] = {
-                        "paro": paro[f],
-                        "mayores": my[f]["mayores"],
-                    }
-                    yData[f]["ocupados"] = yData[f]["mayores"] - \
-                        yData[f]["paro"]
-                    yData[f]["renta"] = yData["p"+prov]["renta"] * \
-                        yData[f]["ocupados"] / yData["p"+prov]["ocupados"]
-                    yData[f]["renta_m18"] = yData[f]["renta"] / \
-                        yData[f]["mayores"]
-        self.save(file, rData)
-        return True
-
-    @property
-    @lru_cache(maxsize=None)
-    def mun_super(self):
-        return sqlite_to_dict("fuentes/fomento/mdb/Nomenclator_Municipios_EntidadesDePoblacion.sqlite", '''
-            select substr(COD_INE, 1,5), SUPERFICIE/100 from MUNICIPIOS
-        ''')
-
-    def create_poblacion(self, reload=False):
-        file = "dataset/poblacion/sexo.json"
-        if not reload and os.path.isfile(file):
-            return False
-        years = {}
-        for cod, data in sorted(self.core.items()):
-            pob = data.get("poblacion")
-            if pob is None:
-                continue
-            for i in get_js(pob):
-                mun, sex, _, _ = i["MetaData"]
-                mun = get_cod_municipio(None, mun)
-                if mun is not None:
-                    key = None
-                    sex = sex["Nombre"]
-                    if sex == "Total":
-                        key = "ambossexos"
-                    elif sex == "Mujeres":
-                        key = "mujeres"
-                    elif sex == "Hombres":
-                        key = "hombres"
-                    if not key:
-                        continue
-                    for d in i["Data"]:
-                        year = d["Anyo"]
-                        valor = d["Valor"]
-
-                        yDt = years.get(year, {})
-                        mDt = yDt.get(mun, {})
-
-                        if mDt.get(key) is None:
-                            mDt[key] = int(
-                                valor) if valor is not None else None
-                            yDt[mun] = mDt
-                            years[year] = yDt
-        self.save(file, years)
-        return True
-
-    @property
-    @lru_cache(maxsize=None)
-    def poblacion(self):
-        self.create_poblacion()
-        poblacion = read_js("dataset/poblacion/sexo.json", intKey=True)
-        for nuevo, viejos in self.mun_remplaza.items():
-            for year, dt in poblacion.items():
-                dNuevo = dt.get(nuevo, {})
-                dt[nuevo] = dNuevo
-                for viejo in viejos:
-                    if viejo in dt:
-                        dViejo = dt[viejo]
-                        del dt[viejo]
-                        for k, v in dViejo.items():
-                            dNuevo[k] = dNuevo.get(k, 0) + v
-        return poblacion
-
-    def create_empresas(self, reload=True):
-        file = "dataset/economia/empresas.json"
-        if not reload and os.path.isfile(file):
-            return False
-        empresas = get_csv(self.core.todas["empresas"])
-        col_empresas = [
-            r if r != "Total" else "Total empresas" for r in empresas[4] if r]
-        years = {}
-        for record in empresas:
-            if len(record) < 2 or record[0] is None:
-                continue
-            mun = record[0].split()[0]
-            if not mun.isdigit() or len(mun) != 5:
-                continue
-            for j, col in enumerate(col_empresas):
-                for i, year in enumerate(range(2018, 2011, -1)):
-                    index = (j*7)+i+1
-                    e = record[index]
-                    if e is not None:
-                        dtY = years.get(year, {})
-                        dt = dtY.get(mun, {})
-
-                        dt[col] = e
-
-                        dtY[mun] = dt
-                        years[year] = dtY
-        self.save(file, years)
-        return True
-
     def populate_datamun(self, db, reload=False):
         municipio = {}
 
@@ -745,7 +527,7 @@ class Dataset():
                 mDt = municipio.get(mun, {})
                 yr = mDt.get(year, {})
                 for k, v in dt.items():
-                    yr[k] = v
+                    yr["AG_"+k] = v
                 mDt[year] = yr
                 municipio[mun] = mDt
 
@@ -754,7 +536,7 @@ class Dataset():
                 mDt = municipio.get(mun, {})
                 yr = mDt.get(year, {})
                 for k, v in dt.items():
-                    yr[k] = v
+                    yr["EM_"+k] = v
                 mDt[year] = yr
                 municipio[mun] = mDt
 
@@ -768,16 +550,24 @@ class Dataset():
                     continue
                 dt = municipio.get(mun, {})
                 yr = dt.get(year, {})
-                yr["renta"] = rent["media"]
-                yr["declaraciones"] = rent["declaraciones"]
+                yr["RT_renta"] = rent["media"]
+                yr["RT_declaraciones"] = rent["declaraciones"]
                 dt[year] = yr
                 municipio[mun] = dt
 
-        for year, dt in sorted(self.renta_euskadi.items()):
+        for year, dt in self.renta_euskadi.items():
             for mun, rent in dt.items():
                 dt = municipio.get(mun, {})
                 yr = dt.get(year, {})
-                yr["renta"] = rent
+                yr["RT_renta"] = rent
+                dt[year] = yr
+                municipio[mun] = dt
+
+        for year, dt in self.renta_navarra.items():
+            for mun, rent in dt.items():
+                dt = municipio.get(mun, {})
+                yr = dt.get(year, {})
+                yr["RT_renta"] = rent
                 dt[year] = yr
                 municipio[mun] = dt
 
@@ -786,7 +576,7 @@ class Dataset():
                 mDt = municipio.get(mun, {})
                 yr = mDt.get(year, {})
                 for k, v in dt.items():
-                    yr[k+" total"] = v
+                    yr["PB_"+k] = v
                 mDt[year] = yr
                 municipio[mun] = mDt
 
@@ -794,7 +584,7 @@ class Dataset():
             for mun, dt in dtY.items():
                 mDt = municipio.get(mun, {})
                 yr = mDt.get(year, {})
-                yr["mayores"] = dt["mayores"]
+                yr["PB_mayores"] = dt["mayores"]
                 mDt[year] = yr
                 municipio[mun] = mDt
 
@@ -803,7 +593,7 @@ class Dataset():
                 mDt = municipio.get(mun, {})
                 yr = mDt.get(year, {})
                 for k, v in dt.items():
-                    yr[k] = v
+                    yr["PB_"+k] = v
                 mDt[year] = yr
                 municipio[mun] = mDt
 
@@ -812,27 +602,27 @@ class Dataset():
               MUN TEXT,
               YR INTEGER,
               %s
-              tipo_renta INTEGER DEFAULT 1,
+              RT_tipo INTEGER DEFAULT 1,
               PRIMARY KEY (MUN, YR),
               FOREIGN KEY(MUN) REFERENCES municipios(ID)
             )
-        ''', *get_cols(municipio, "renta", "declaraciones"))
-        for cod, mun in sorted(municipio.items()):
-            for year, dt in sorted(mun.items()):
+        ''', *get_cols(municipio))
+        for cod, mun in municipio.items():
+            for year, dt in mun.items():
                 dt["MUN"] = cod
                 dt["YR"] = year
-                if dt.get("renta") is None:
+                if dt.get("RT_renta") is None:
                     #val = self.renta_menos1000.get(year, {}).get(cod, {}).get("renta_m18", "")
                     v = rt1000.get((year, cod[:2]))
                     if v:
-                        dt["renta"] = v["media"]
-                        dt["declaraciones"] = v["declaraciones"]
-                    dt["tipo_renta"] = 2
+                        dt["RT_renta"] = v["media"]
+                        dt["RT_declaraciones"] = v["declaraciones"]
+                    dt["RT_tipo"] = 2
                 prov = int(cod[:2])
                 if prov == 31:
-                    dt["tipo_renta"] = 3
+                    dt["RT_tipo"] = 3
                 if prov in (1, 48, 20):
-                    dt["tipo_renta"] = 4
+                    dt["RT_tipo"] = 4
                 db.insert("socioeconomico", **dt)
 
         db.create('''
@@ -1026,9 +816,19 @@ class Dataset():
             nombre = self.core[cod].nombre
             self.core[cod].miteco = z
 
-        self.save()
+        save_js(self.file, self.core)
 
+
+for name in dir(Dataset):
+    func = getattr(Dataset, name)
+    if callable(func) and name.startswith("create_"):
+        id = name.split("_")[-1]
+        if id in ("euskadi", "navarra"):
+            id = "renta_"+id
+        if not hasattr(Dataset, id):
+            f = eval("lambda slf: slf.get_dataset('%s')" % name)
+            setattr(Dataset, id, property(f))
 
 if __name__ == "__main__":
     d = Dataset()
-    d.create_sepe(reload=True)
+    d.agrario
