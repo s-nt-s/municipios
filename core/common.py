@@ -65,7 +65,7 @@ def mkBunch(file):
         if ext == "json":
             data = json.load(f)
         elif ext == "yml":
-            data = list(yaml.load_all(f))
+            data = list(yaml.load_all(f, Loader=yaml.FullLoader))
             if len(data) == 1:
                 data = data[0]
     data = mkBunchParse(data)
@@ -124,7 +124,7 @@ def unzip(target, *urls):
 
 def get_yml(yml_file, **kargv):
     with open(yml_file, 'r') as f:
-        for i in yaml.load_all(f):
+        for i in yaml.load_all(f, Loader=yaml.FullLoader):
             for k, v in kargv.items():
                 if k not in i:
                     i[k] = v
