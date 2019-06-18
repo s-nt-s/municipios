@@ -29,9 +29,9 @@ except:
 
 me = os.path.realpath(__file__)
 dr = os.path.dirname(me)
+re_nb = re.compile(r"(\d+)")
 
-
-def insert(db, table, rows):
+def insert(db, table, rows, kSort=None):
     table = table.upper()
     create='''
         create table {} (
@@ -42,10 +42,27 @@ def insert(db, table, rows):
           FOREIGN KEY(MUN) REFERENCES municipios(ID)
         )
     '''.format(table)
-    db.create(create, *get_cols(rows))
+    db.create(create, *get_cols(rows, kSort=kSort))
     for key, row in rows.items():
         row["MUN"], row["YR"] = key
         db.insert(table, **row)
+
+def sortColPob(s):
+    if s == "total":
+        sexo = "ambos"
+        edad = s
+    else:
+        spl = s.split(" ", 1)
+        if len(spl)==1:
+            sexo = "ambos"
+            edad = spl[0]
+        else:
+            sexo, edad = spl
+    if edad == "total":
+        edad = "9999"
+    nums = [int(i) for i in re_nb.findall(edad)]
+    return (sexo, tuple(nums))
+
 
 class Dataset():
     def __init__(self, *args, core=None, reload=False, **kargs):
@@ -537,25 +554,12 @@ class Dataset():
         return data
 
     def populate_datamun(self, db, reload=False):
-
         rows={}
-        for year, dtY in self.poblacion.items():
-            for mun, dt in dtY.items():
-                key = (mun, year)
-                row = rows.get(key, {})
-                for k, v in dt.items():
-                    if k=="total":
-                        continue
-                    if k== "ambossexos total":
-                        k="total"
-                    row[k] = v
-                rows[key]=row
-
         for year, dtY in self.mayores.items():
             for mun, dt in dtY.items():
                 key = (mun, year)
                 row = rows.get(key, {})
-                row["mayores"] = dt["mayores"]
+                row["18ymas"] = dt["mayores"]
                 rows[key]=row
 
         for year, dtY in self.edad.items():
@@ -563,10 +567,25 @@ class Dataset():
                 key = (mun, year)
                 row = rows.get(key, {})
                 for k, v in dt.items():
+                    if k.startswith("ambossexos "):
+                        k=k[11:]
                     row[k] = v
                 rows[key]=row
 
-        insert(db, "poblacion", rows)
+        for year, dtY in self.poblacion.items():
+            for mun, dt in dtY.items():
+                key = (mun, year)
+                row = rows.get(key, {})
+                for k, v in dt.items():
+                    if k.startswith("ambossexos "):
+                        k=k[11:]
+                    if k in ("mujeres", "hombres"):
+                        k = k+" total"
+                    if k not in row:
+                        row[k] = v
+                rows[key]=row
+
+        insert(db, "poblacion", rows, kSort=sortColPob)
         keys_pob=list(rows.keys())
 
         rows = {}

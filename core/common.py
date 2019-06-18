@@ -367,11 +367,13 @@ def _get_cols(data):
             cols.add(k)
     return cols
 
-def get_cols(*args):
+def get_cols(*args, kSort=None):
     cols=set()
     for a in args:
         if isinstance(a, dict):
             cols=_get_cols(a)
         else:
             cols.add(a)
+    if kSort:
+        return sorted(cols, key=kSort)
     return sorted(cols)

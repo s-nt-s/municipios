@@ -3,6 +3,7 @@ import re
 import sqlite3
 from glob import iglob
 from subprocess import DEVNULL, STDOUT, check_call
+import unidecode
 
 import shapefile
 import yaml
@@ -11,6 +12,15 @@ from shapely.geometry import MultiPolygon, Point, Polygon, shape
 from shapely.ops import cascaded_union
 
 re_select = re.compile(r"^\s*select\b")
+re_sp = re.compile(r"\s+")
+
+def plain_parse_col(c):
+    c = re_sp.sub(" ", c).strip()
+    c = c.lower()
+    c = unidecode.unidecode(c)
+    c = c.replace(" ", "_")
+    return c
+
 
 class CaseInsensitiveDict(dict):
     def __setitem__(self, key, value):
@@ -39,7 +49,7 @@ def build_result(c, to_tuples=False, to_bunch=False):
 
 
 class DBLite:
-    def __init__(self, file, extensions=None, reload=True):
+    def __init__(self, file, extensions=None, reload=True, parse_col=None):
         self.file = file
         if reload and os.path.isfile(self.file):
             os.remove(self.file)
@@ -51,6 +61,7 @@ class DBLite:
         self.cursor = self.con.cursor()
         self.cursor.execute('pragma foreign_keys = on')
         self.tables = None
+        self.parse_col=parse_col if parse_col is not None else lambda x: x
         self.load_tables()
 
     def execute(self, sql_file):
@@ -75,11 +86,17 @@ class DBLite:
         keys = []
         vals = []
         for k, v in kargv.items():
+            k = self.parse_col(k)
             if k.upper() in ok_keys and v is not None and not(isinstance(v, str) and len(v) == 0):
                 keys.append('"'+k+'"')
                 vals.append(v)
+        prm = ['?']*len(vals)
+        for i, v in enumerate(vals):
+            if isinstance(v, MultiPolygon):
+                vals[i] = vals[i].wkt
+                prm[i] = 'GeomFromText(?, 4326)'
         sql = "insert into %s (%s) values (%s)" % (
-            table, ", ".join(keys), ("?," * len(vals))[:-1])
+            table, ', '.join(keys), ', '.join(prm))
         self.cursor.execute(sql, vals)
 
     def commit(self):
@@ -129,8 +146,10 @@ class DBLite:
     def create(self, template, *cols, **kargv):
         sql = ""
         for c in cols:
+            c = self.parse_col(c)
             sql = sql + '"%s" INTEGER,\n' % c
         for c, t in kargv.items():
+            c = self.parse_col(c)
             sql = '"%s" %s,\n' % (c, t)
         sql = sql.strip()
         sql = template % sql
@@ -144,23 +163,6 @@ class DBshp(DBLite):
     def __init__(self, *args, **kargv):
         DBLite.__init__(
             self, *args, extensions=['/usr/lib/x86_64-linux-gnu/mod_spatialite.so'], **kargv)
-
-    def insert(self, table, **kargv):
-        ok_keys = [k.upper() for k in self.tables[table]]
-        keys = []
-        vals = []
-        for k, v in kargv.items():
-            if k.upper() in ok_keys and v is not None and not(isinstance(v, str) and len(v) == 0):
-                keys.append('"'+k+'"')
-                vals.append(v)
-        prm = ['?']*len(vals)
-        for i, v in enumerate(vals):
-            if isinstance(v, MultiPolygon):
-                vals[i] = vals[i].wkt
-                prm[i] = 'GeomFromText(?, 4326)'
-        sql = "insert into %s (%s) values (%s)" % (
-            table, ', '.join(keys), ', '.join(prm))
-        self.cursor.execute(sql, vals)
 
     def within(self, table, lat, lon, to_bunch=False, to_tuples=False):
         table, field = table.rsplit(".", 1)
