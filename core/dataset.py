@@ -450,11 +450,11 @@ class Dataset():
                                 dNuevo[mes][k] = dNuevo[mes].get(k, 0) + v
             if year not in self.mayores:
                 continue
-            my = self.mayores[year]
+            pob = self.poblacion[year]
             for viejo, nuevos in self.mun_desgaja.items():
                 cNuevos = set()
                 for nuevo in nuevos:
-                    if nuevo not in my and nuevo in dt:
+                    if nuevo not in pob and nuevo in dt:
                         cNuevos.add(nuevo)
                 if len(cNuevos) == 0:
                     continue
@@ -471,6 +471,46 @@ class Dataset():
                             for k, v in mData.items():
                                 dViejo[mes][k] = dViejo[mes].get(k, 0) + mData[k]
         return paro
+
+    @property
+    @lru_cache(maxsize=None)
+    def renta_euskadi(self):
+        mayores = read_js("dataset/poblacion/mayores.json", intKey=True)
+        renta = self.create_euskadi()
+        for nuevo, viejos in self.mun_remplaza.items():
+            for year, data in renta.items():
+                my = mayores.get(year, None)
+                if not my:
+                    continue
+                dNuevo = data.get(nuevo, None)
+                for viejo in viejos:
+                    if viejo in data:
+                        dViejo = data[viejo]
+                        del data[viejo]
+                        if dNuevo is None:
+                            dNuevo=dViejo
+                            continue
+                        total = dNuevo*my[nuevo] + dViejo*my[viejo]
+                        dNuevo = total/(my[nuevo]+my[viejo])
+                if dNuevo:
+                    data[nuevo] = dNuevo
+        for viejo, nuevos in self.mun_desgaja.items():
+            for year, data in renta.items():
+                my = mayores.get(year, None)
+                if not my:
+                    continue
+                cNuevos = set(n for n in nuevos if n not in my and n in data)
+                if len(cNuevos) == 0:
+                    continue
+                print("euskadi", year, viejo, cNuevos)
+                dViejo = data[viejo]
+                for n in cNuevos:
+                    dNuevo = data[n]
+                    del data[n]
+                    total = dNuevo*my[nuevo] + dViejo*my[viejo]
+                    dViejo = total/(my[nuevo]+my[viejo])
+                    data[viejo]=dViejo
+        return renta
 
     @property
     @lru_cache(maxsize=None)
@@ -586,7 +626,6 @@ class Dataset():
                 pop_rows[key]=row
 
         insert(db, "poblacion", pop_rows, kSort=sortColPob)
-        keys_pob=list(pop_rows.keys())
 
         rows = {}
         for year, dtY in self.agrario.items():
@@ -610,6 +649,7 @@ class Dataset():
 
         rows = {}
         rt1000 = {}
+        visto = set()
         for year, data in self.renta_aeat.items():
             for mun, rent in data.items():
                 if len(mun) == 3 and mun[0] == "p":
@@ -617,12 +657,15 @@ class Dataset():
                     continue
                 if len(mun) != 5:
                     continue
+                visto.add(mun)
                 key = (mun, year)
                 row = rows.get(key, {})
                 row["renta"] = rent["media"]
                 row["declaraciones"] = rent["declaraciones"]
                 row["tipo"]=1
                 rows[key]=row
+
+        keys_pob=[k for k in pop_rows.keys() if k[0] not in visto]
         for key, data in rt1000.items():
             year, prov = key
             muns = set(k[0] for k in keys_pob if k[1]==year and k[0].startswith(prov))

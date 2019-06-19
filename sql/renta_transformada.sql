@@ -1,3 +1,4 @@
+DROP VIEW IF EXISTS RENTA_TRANSFORMADA;
 CREATE VIEW RENTA_TRANSFORMADA AS
 select
   MUN,
@@ -6,7 +7,9 @@ select
     when tipo=1 then (rt*declaraciones/my)
     when tipo=2 then (((rt*declaraciones)*ocupados)/pq_ocupados)/my
     else null
-  end renta
+  end renta,
+  tipo,
+  cast(rt as int) renta_base
 from
 (
 select
@@ -39,7 +42,10 @@ union
 select
   MUN,
   YR,
-  renta
+  renta,
+  tipo,
+  renta renta_base
 from
   renta
 where tipo=3
+;
