@@ -82,6 +82,42 @@ class Dataset():
             if field in data:
                 yield cod, data[field]
 
+    @JsonCache(file="dataset/poblacion/edad.json")
+    def create_edad1(self):
+        data = {}
+        for prov, dt in self.core.items():
+            pob = dt.get("poblacion1", None)
+            if pob is None:
+                continue
+            for year, url in pob.items():
+                year = int(year)
+                js = get_js(url)
+                if not js:
+                    continue
+                yData = data.get(year, {})
+                for d in js:
+                    if d["MetaData"][0]["Codigo"] != "ambossexos":
+                        continue
+                    mun = get_cod_municipio(prov, d["MetaData"][1])
+                    if mun is None:
+                        continue
+                    mData = yData.get(mun, {})
+                    edad = d["MetaData"][2]["Codigo"]
+                    if edad == "total":
+                        mData[-1]= int(d["Data"][0]["Valor"])
+                    elif edad.isdigit():
+                        mData[int(edad)] = int(d["Data"][0]["Valor"])
+                    yData[mun]=mData
+                data[year]=yData
+        for year, yData in data.items():
+            for mun, mData in list(yData.items()):
+                arr=[]
+                for i in range(0, max(mData.keys())+1):
+                    x = mData.get(i, 0)
+                    arr.append(str(x) if x>0 else "")
+                yData[mun]=(",".join(arr)).rstrip(",")
+        return data
+
     @JsonCache(file="dataset/poblacion/mayores.json")
     def create_mayores(self):
         mayores = {}
@@ -428,6 +464,16 @@ class Dataset():
     def years_poblacion(self):
         pob = self.create_poblacion()
         return sorted(pob.keys())
+
+    @property
+    @lru_cache(maxsize=None)
+    def edad1(self):
+        edad = self.create_edad1()
+        for year, yData in edad.items():
+            for mun, mData in list(yData.items()):
+                mData = {i:int(s) for i, s in enumerate(mData.split(",")) if s}
+                yData[mun]=mData
+        return parseData(edad)
 
     @property
     @lru_cache(maxsize=None)
@@ -903,5 +949,5 @@ for name in dir(Dataset):
 
 
 if __name__ == "__main__":
-    d = Dataset()
-    d.agrario
+    d = Dataset(reload=["dataset/poblacion/edad.json"])
+    d.create_edad1()
