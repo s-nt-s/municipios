@@ -158,6 +158,38 @@ class DBLite:
         self.con.commit()
         self.load_tables()
 
+    def select_to_table(self, table, sql, to_file=None):
+        table=table.upper()
+        self.cursor.execute(sql)
+        cols = [col[0] for col in self.cursor.description]
+        columns={}
+        for r in self.cursor.fetchall():
+            for i, name in enumerate(cols):
+                if name not in columns:
+                    v =r[i]
+                    if v is not None:
+                        if isinstance(v, int):
+                            columns[name]='INTEGER'
+                        elif isinstance(v, float):
+                            columns[name]='REAL'
+                        elif isinstance(v, str):
+                            columns[name]='TEXT'
+                        elif isinstance(v, bytes):
+                            columns[name]='BLOB'
+            if len(columns)==len(cols):
+                break
+        for name in cols:
+            if name not in columns:
+                columns[name]='TEXT'
+        sql="CREATE TABLE {} (".format(table)
+        for name in cols:
+            sql=sql+'\n  "'+name+'" '+columns[name]+","
+        sql=sql[:-1]+"\n);\n"
+        sql=sql+"INSERT INTO {} ({})\n{};".format(table, ", ".join(cols), sql)
+        save(to_file, sql)
+
+
+
 
 class DBshp(DBLite):
     def __init__(self, *args, **kargv):
