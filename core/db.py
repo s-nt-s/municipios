@@ -10,6 +10,7 @@ import yaml
 from bunch import Bunch
 from shapely.geometry import MultiPolygon, Point, Polygon, shape
 from shapely.ops import cascaded_union
+import textwrap
 
 re_select = re.compile(r"^\s*select\b")
 re_sp = re.compile(r"\s+")
@@ -21,6 +22,11 @@ def plain_parse_col(c):
     c = c.replace(" ", "_")
     return c
 
+def save(file, content):
+    if file and content:
+        content = textwrap.dedent(content).strip()
+        with open(file, "w") as f:
+            f.write(content)
 
 class CaseInsensitiveDict(dict):
     def __setitem__(self, key, value):
@@ -64,15 +70,15 @@ class DBLite:
         self.parse_col=parse_col if parse_col is not None else lambda x: x
         self.load_tables()
 
-    def execute(self, sql_file):
+    def execute(self, sql_file, to_file=None):
         if os.path.isfile(sql_file):
             with open(sql_file, 'r') as schema:
                 qry = schema.read()
                 self.cursor.executescript(qry)
-                self.con.commit()
         else:
-            self.cursor.execute(sql_file.strip())
-            self.con.commit()
+            save(to_file, sql_file)
+            self.cursor.execute(sql_file)
+        self.con.commit()
         self.load_tables()
 
     def load_tables(self):
@@ -143,7 +149,7 @@ class DBLite:
         check_call(cmd.split(), stdout=DEVNULL, stderr=STDOUT)
         return self.size(zip)
 
-    def create(self, template, *cols, **kargv):
+    def create(self, template, *cols, to_file=None, **kargv):
         sql = ""
         for c in cols:
             c = self.parse_col(c)
@@ -152,8 +158,9 @@ class DBLite:
             c = self.parse_col(c)
             sql = '"%s" %s,\n' % (c, t)
         sql = sql.strip()
-        sql = template % sql
+        sql = textwrap.dedent(template) % sql
         sql = sql.strip()
+        save(to_file, sql)
         self.cursor.execute(sql)
         self.con.commit()
         self.load_tables()
