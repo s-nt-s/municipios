@@ -26,7 +26,7 @@ class JsonCache:
         save_js(self.file, data)
         return data
 
-    def isReload(sefl, slf):
+    def isReload(self, slf):
         reload = getattr(slf, "reload", None)
         if reload is None or reload == True:
             return True
