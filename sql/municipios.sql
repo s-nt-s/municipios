@@ -12,14 +12,3 @@ create table MUNICIPIOS (
 
 SELECT AddGeometryColumn('municipios', 'geom', 4326, 'MULTIPOLYGON', 2);
 SELECT CreateSpatialIndex('municipios', 'geom');
-
-
---DROP VIEW IF EXISTS DISTANCIAS;
-CREATE VIEW DISTANCIAS AS
-select
-  A.ID A,
-  B.ID B,
-  ST_Distance(A.geom, B.geom, 1)/1000 km
-from
-  municipios A JOIN municipios B ON A.ID>B.ID
-;

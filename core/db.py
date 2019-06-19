@@ -70,14 +70,17 @@ class DBLite:
         self.parse_col=parse_col if parse_col is not None else lambda x: x
         self.load_tables()
 
-    def execute(self, sql_file, to_file=None):
+    def execute(self, sql_file, to_file=None, multiple=False):
         if os.path.isfile(sql_file):
             with open(sql_file, 'r') as schema:
                 qry = schema.read()
                 self.cursor.executescript(qry)
         else:
             save(to_file, sql_file)
-            self.cursor.execute(sql_file)
+            if multiple:
+                self.cursor.executescript(sql_file)
+            else:
+                self.cursor.execute(sql_file)
         self.con.commit()
         self.load_tables()
 
@@ -165,9 +168,10 @@ class DBLite:
         self.con.commit()
         self.load_tables()
 
-    def select_to_table(self, table, sql, to_file=None):
+    def select_to_table(self, table, select_sql, to_file=None):
+        select_sql = textwrap.dedent(select_sql).strip()
         table=table.upper()
-        self.cursor.execute(sql)
+        self.cursor.execute(select_sql)
         cols = [col[0] for col in self.cursor.description]
         columns={}
         for r in self.cursor.fetchall():
@@ -188,14 +192,14 @@ class DBLite:
         for name in cols:
             if name not in columns:
                 columns[name]='TEXT'
-        sql="CREATE TABLE {} (".format(table)
+        sql="DROP TABLE IF EXISTS {0};\n\nCREATE TABLE {0} (".format(table)
         for name in cols:
             sql=sql+'\n  "'+name+'" '+columns[name]+","
         sql=sql[:-1]+"\n);\n"
-        sql=sql+"INSERT INTO {} ({})\n{};".format(table, ", ".join(cols), sql)
-        save(to_file, sql)
-
-
+        sql=sql+'INSERT INTO {} ("{}")\n{}'.format(table, '", "'.join(cols), select_sql)
+        if not sql.endswith(";"):
+            sql = sql+";"
+        self.execute(sql, to_file=to_file, multiple=True)
 
 
 class DBshp(DBLite):
