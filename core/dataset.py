@@ -82,8 +82,8 @@ class Dataset():
             if field in data:
                 yield cod, data[field]
 
-    @JsonCache(file="dataset/poblacion/edad.json")
-    def create_edad1(self):
+    @JsonCache(file="dataset/poblacion/edades.json")
+    def create_edades(self):
         data = {}
         for prov, dt in self.core.items():
             pob = dt.get("poblacion1", None)
@@ -352,6 +352,8 @@ class Dataset():
 
                     if c_sex == "varones":
                         c_sex = "hombres"
+                    elif c_sex == "ambossexos":
+                        c_sex = ""
 
                     if c_edad == "59":
                         c_edad = "0509"
@@ -366,7 +368,7 @@ class Dataset():
 
                     dt = data.get(mun, {})
 
-                    key = c_sex+" "+c_edad
+                    key = (c_sex+" "+c_edad).strip()
                     dt[key] = int(valor) if valor is not None else None
 
                     data[mun] = dt
@@ -467,12 +469,18 @@ class Dataset():
 
     @property
     @lru_cache(maxsize=None)
-    def edad1(self):
-        edad = self.create_edad1()
+    def edades_not_parsed(self):
+        edad = self.create_edades()
         for year, yData in edad.items():
             for mun, mData in list(yData.items()):
                 mData = {i:int(s) for i, s in enumerate(mData.split(",")) if s}
                 yData[mun]=mData
+        return edad
+
+    @property
+    @lru_cache(maxsize=None)
+    def edades(self):
+        edad = self.edades_not_parsed
         return parseData(edad)
 
     @property
@@ -653,8 +661,6 @@ class Dataset():
                 key = (mun, year)
                 row = pop_rows.get(key, {})
                 for k, v in dt.items():
-                    if k.startswith("ambossexos "):
-                        k=k[11:]
                     row[k] = v
                 pop_rows[key]=row
 
@@ -663,8 +669,6 @@ class Dataset():
                 key = (mun, year)
                 row = pop_rows.get(key, {})
                 for k, v in dt.items():
-                    if k.startswith("ambossexos "):
-                        k=k[11:]
                     if k in ("mujeres", "hombres"):
                         k = k+" total"
                     if k not in row:
@@ -949,5 +953,5 @@ for name in dir(Dataset):
 
 
 if __name__ == "__main__":
-    d = Dataset(reload=["dataset/poblacion/edad.json"])
-    d.create_edad1()
+    d = Dataset(reload=["dataset/poblacion/edad.json", "dataset/poblacion/sexo.json", "dataset/poblacion/edad_*.json"])
+    d.create_edades()

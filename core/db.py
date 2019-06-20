@@ -228,9 +228,8 @@ class DBshp(DBLite):
 
 
 class DBMun(DBshp):
-    def __init__(self, *args, reload=False, **kargv):
-        DBshp.__init__(self, "dataset/municipios.db",
-                       *args, reload=reload, **kargv)
+    def __init__(self, *args, file="dataset/municipios.db", reload=False, **kargv):
+        DBshp.__init__(self, file, *args, reload=reload, **kargv)
         if reload:
             self.create_database()
 

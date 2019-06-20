@@ -213,7 +213,7 @@ def get_cod_municipio(prov, num, *args, cambiar=None, **kargs):
 
 def _get_cod_municipio(prov, mun):
     n_cod = mun["Variable"]["Codigo"]
-    if n_cod == "municipios":
+    if n_cod in ("municipios",):# "municipio"):
         n = mun["Nombre"].split()[0]
         return n
     if n_cod == "MUN":
