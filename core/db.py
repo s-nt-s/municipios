@@ -65,7 +65,7 @@ class DBLite:
             for e in extensions:
                 self.con.load_extension(e)
         self.cursor = self.con.cursor()
-        self.cursor.execute('pragma foreign_keys = on')
+        #self.cursor.execute('pragma foreign_keys = on')
         self.tables = None
         self.parse_col=parse_col if parse_col is not None else lambda x: x
         self.load_tables()
@@ -148,7 +148,7 @@ class DBLite:
         zip = os.path.splitext(self.file)[0]+".7z"
         if os.path.isfile(zip):
             os.remove(zip)
-        cmd = "7z a %s %s" % (zip, self.file)
+        cmd = "7z a %s ./%s" % (zip, self.file)
         check_call(cmd.split(), stdout=DEVNULL, stderr=STDOUT)
         return self.size(zip)
 
