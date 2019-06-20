@@ -953,5 +953,5 @@ for name in dir(Dataset):
 
 
 if __name__ == "__main__":
-    d = Dataset(reload=["dataset/poblacion/edad.json", "dataset/poblacion/sexo.json", "dataset/poblacion/edad_*.json"])
+    d = Dataset(reload=["dataset/poblacion/edades.json"])
     d.create_edades()
