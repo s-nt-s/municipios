@@ -346,6 +346,10 @@ class Dataset():
                     mun = get_cod_municipio(cod, mun)
                     if mun is None:
                         continue
+                    valor = i["Data"][0]["Valor"]
+                    if valor is None or int(valor)==0:
+                        continue
+                    valor = int(valor)
 
                     c_sex = sex["Codigo"].strip()
                     c_edad = edad["Codigo"].strip()
@@ -364,12 +368,11 @@ class Dataset():
                     elif len(c_edad) == 4:
                         c_edad = c_edad[0:2]+"a"+c_edad[2:4]
 
-                    valor = i["Data"][0]["Valor"]
 
                     dt = data.get(mun, {})
 
                     key = (c_sex+" "+c_edad).strip()
-                    dt[key] = int(valor) if valor is not None else None
+                    dt[key] = valor
 
                     data[mun] = dt
                 years[year] = data
