@@ -4,39 +4,37 @@ select
   MUN,
   YR,
   case
-    when tipo=1 then (rt*declaraciones/my)
-    when tipo=2 then (((rt*declaraciones)*ocupados)/pq_ocupados)/my
+    when tipo=1 then (rt*1.0*declaraciones/my)
+    when tipo=2 then (((rt*1.0*declaraciones)*ocupados)/pq_ocupados)/my
     else null
   end renta,
   tipo,
-  cast(rt as int) renta_base
+  rt renta_base
 from
 (
 select
   r.MUN,
   r.YR,
-  r.renta*1.0 rt,
+  r.renta rt,
   r.tipo,
   r.declaraciones,
   p."18ymas" my,
-  s.total paro,
-  (p."18ymas" - s.total) ocupados,
-  pq.paro pq_total,
-  pq.my pq_my,
-  (pq.my - pq.paro) pq_ocupados
+  (p."16a65" - s.total) ocupados,
+  (pq."16a65" - pq.total) pq_ocupados
 from
-  (select * from renta where tipo in (1, 2)) r left join poblacion p on r.MUN=p.MUN and r.YR=p.YR
+  (select * from renta where tipo in (1, 2)) r
+  left join poblacion p on r.MUN=p.MUN and r.YR=p.YR
   left join sepe_year s on r.MUN=s.MUN and r.YR=s.YR
   left join (
     select
-      s1.MUN,
+      substr(s1.MUN, 1,2) PROV,
       s1.YR,
-      sum(p1."18ymas") my,
-      sum(s1.total) paro
+      sum(p1."16a65") "16a65",
+      sum(s1.total) total
     from sepe_year s1 join poblacion p1 on s1.MUN=p1.MUN and s1.YR=p1.YR
-    where exists (select MUN, YR from renta where tipo=2 and MUN=s1.MUN and YR=s1.YR)
-    group by s1.MUN, s1.YR
-  ) pq  on r.MUN=pq.MUN and r.YR=pq.YR
+    where exists (select * from renta rnt where rnt.tipo=2 and rnt.MUN=s1.MUN and rnt.YR=s1.YR)
+    group by substr(s1.MUN, 1,2), s1.YR
+  ) pq on substr(r.MUN, 1,2)=pq.PROV and r.YR=pq.YR
 ) aux
 union
 select
