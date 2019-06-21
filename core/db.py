@@ -14,6 +14,7 @@ import textwrap
 
 re_select = re.compile(r"^\s*select\b")
 re_sp = re.compile(r"\s+")
+re_largefloat=re.compile("(\d+\.\d+e-\d+)")
 
 def plain_parse_col(c):
     c = re_sp.sub(" ", c).strip()
@@ -70,17 +71,12 @@ class DBLite:
         self.parse_col=parse_col if parse_col is not None else lambda x: x
         self.load_tables()
 
-    def execute(self, sql_file, to_file=None, multiple=False):
-        if os.path.isfile(sql_file):
-            with open(sql_file, 'r') as schema:
-                qry = schema.read()
-                self.cursor.executescript(qry)
-        else:
-            save(to_file, sql_file)
-            if multiple:
-                self.cursor.executescript(sql_file)
-            else:
-                self.cursor.execute(sql_file)
+    def execute(self, sql, to_file=None):
+        if os.path.isfile(sql):
+            with open(sql, 'r') as schema:
+                sql = schema.read()
+        save(to_file, sql)
+        self.cursor.executescript(sql)
         self.con.commit()
         self.load_tables()
 
@@ -101,8 +97,8 @@ class DBLite:
                 vals.append(v)
         prm = ['?']*len(vals)
         for i, v in enumerate(vals):
-            if isinstance(v, MultiPolygon):
-                vals[i] = vals[i].wkt
+            if isinstance(v, MultiPolygon) or isinstance(v, Polygon):
+                vals[i] = parse_wkt(vals[i].wkt)
                 prm[i] = 'GeomFromText(?, 4326)'
         sql = "insert into %s (%s) values (%s)" % (
             table, ', '.join(keys), ', '.join(prm))
@@ -234,41 +230,61 @@ class DBMun(DBshp):
             self.create_database()
 
     def create_database(self, reload=False):
-        self.execute("sql/municipios.sql")
-        muns = {}
-        for _shp in iglob("fuentes/fomento/shp/**/recintos*municipales*.shp"):
-            print(_shp)
-            with shapefile.Reader(_shp) as shp:
-                for sr in shp.shapeRecords():
-                    if sr.shape.points and sr.record and len(sr.record) > 4:
-                        natcode = sr.record[4]
-                        cod_provincia = natcode[4:6]
-                        cod_municipio = natcode[6:11]
-                        if cod_municipio.isdigit():
-                            vals = muns.get(cod_municipio, [])
-                            poli = shape(sr.shape)
-                            if isinstance(poli, Polygon):
-                                poli = MultiPolygon([poli])
-                            vals.append((poli, sr.record[5]))
-                            muns[cod_municipio] = vals
-        for cod_municipio, vals in muns.items():
-            nombre = set()
-            poli = []
-            for p, n in vals:
-                poli.append(p)
-                nombre.add(n)
-            nombre = nombre.pop()
-            if len(poli) == 1:
-                poli = poli[0]
-            else:
-                poli = cascaded_union(poli)
-            centroid = poli.centroid
-            if not centroid.within(poli):
-                centroid = poli.representative_point()
-            self.insert("municipios", id=cod_municipio, nombre=nombre,
-                        lat=centroid.y, lon=centroid.x, geom=poli)
-        self.commit()
+        self.execute("sql/base.sql")
+        insert_shapes(self, "provincias", "fuentes/fomento/shp/**/recintos*provinciales*.shp", i_key=(4,6))
+        insert_shapes(self, "municipios", "fuentes/fomento/shp/**/recintos*municipales*.shp", i_key=(6,11))
 
+def insert_shapes(db, table, path_glob, r_key=4, i_key=(6,11), r_data=5):
+    ini, end = i_key
+    dShapes = {}
+    for _shp in iglob(path_glob):
+        print(_shp)
+        with shapefile.Reader(_shp) as shp:
+            for sr in shp.shapeRecords():
+                if sr.shape.points and sr.record and len(sr.record) > 4:
+                    natcode = sr.record[r_key]
+                    key = natcode[ini:end]
+                    if key.isdigit():
+                        vals = dShapes.get(key, [])
+                        poli = shape(sr.shape)
+                        if isinstance(poli, Polygon):
+                            poli = MultiPolygon([poli])
+                        vals.append((poli, sr.record[r_data]))
+                        dShapes[key] = vals
+    for key, vals in dShapes.items():
+        nombre = set()
+        poli = []
+        for p, n in vals:
+            poli.append(p)
+            nombre.add(n)
+        if len(nombre)>1:
+            print(key, nombre)
+        nombre = nombre.pop()
+        main = None
+        for ps in poli:
+            for p in ps:
+                if main is None or main.area < p.area:
+                    main = p
+        if len(poli) == 1:
+            poli = poli[0]
+        else:
+            poli = cascaded_union(poli)
+        centroid = poli.centroid
+        if not centroid.within(poli):
+            centroid = poli.representative_point()
+        db.insert(table, id=key, nombre=nombre,
+                    lat=centroid.y, lon=centroid.x, geom=poli, main_geom=main)
+    db.commit()
+
+
+def parse_wkt(wkt):
+    ori = wkt
+    for n in re_largefloat.findall(wkt):
+        f = float(n)
+        s = ("%.025f" % f).rstrip("0")
+        n=re.escape(n)
+        wkt = re.sub(r"\b"+n+r"\b", s, wkt)
+    return wkt
 
 if __name__ == "__main__":
     db = DBMun(reload=True)

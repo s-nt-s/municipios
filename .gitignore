@@ -5,6 +5,7 @@ fuentes/*
 !fuentes/ine
 fuentes/ine/*
 !fuentes/ine/censo_agrario_2009.html
+debug/*
 *.db
 *.db-journal
 *.7z
