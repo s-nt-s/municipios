@@ -132,6 +132,15 @@ def get_yml(yml_file, **kargv):
                 i["cod"] = i["viejo"].split()[0]
             yield Bunch(i)
 
+def readlines(file, fields=None):
+    if os.path.isfile(file):
+        with open(file, "r") as f:
+            for l in f.readlines():
+                l = l.strip()
+                if l and not l.startswith("#"):
+                    if fields:
+                        l=l.split(None, fields)
+                    yield l
 
 def parse_cell(c):
     if isinstance(c, str):

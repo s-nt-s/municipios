@@ -10,6 +10,9 @@ import yaml
 from bs4 import BeautifulSoup
 from bunch import Bunch
 import inspect
+from shapely.geometry import MultiPolygon, Point, Polygon, shape
+from shapely.ops import cascaded_union
+import shapefile
 
 try:
     from .common import *
@@ -18,9 +21,9 @@ except:
 
 
 try:
-    from .decorators import JsonCache
+    from .decorators import JsonCache, KmCache
 except:
-    from decorators import JsonCache
+    from decorators import JsonCache, KmCache
 
 try:
     from .provincias import *
@@ -64,6 +67,43 @@ def sortColPob(s):
     return (sexo, tuple(nums))
 
 
+def getShp(path_glob, ini, end, r_key=4, r_data=5):
+    dShapes = {}
+    for _shp in iglob(path_glob):
+        print(_shp)
+        with shapefile.Reader(_shp) as shp:
+            for sr in shp.shapeRecords():
+                if sr.shape.points and sr.record and len(sr.record) > 4:
+                    natcode = sr.record[r_key]
+                    key = natcode[ini:end]
+                    if key.isdigit():
+                        vals = dShapes.get(key, [])
+                        poli = shape(sr.shape)
+                        if isinstance(poli, Polygon):
+                            poli = MultiPolygon([poli])
+                        vals.append((poli, sr.record[r_data]))
+                        dShapes[key] = vals
+    for key, vals in list(dShapes.items()):
+        nombre = set()
+        poli = []
+        for p, n in vals:
+            poli.append(p)
+            nombre.add(n)
+        if len(nombre)>1:
+            print(key, nombre)
+        nombre = nombre.pop()
+        main = None
+        for ps in poli:
+            for p in ps:
+                if main is None or main.area < p.area:
+                    main = p
+        if len(poli) == 1:
+            poli = poli[0]
+        else:
+            poli = cascaded_union(poli)
+        dShapes[key]=(poli, nombre)
+    return dShapes
+
 class Dataset():
     def __init__(self, *args, core=None, reload=False, **kargs):
         self.reload = reload
@@ -81,6 +121,29 @@ class Dataset():
         for cod, data in sorted(self.core.items()):
             if field in data:
                 yield cod, data[field]
+
+    def unzip(self):
+        unzip("fuentes/fomento/shp", self.core.todas["limites"])
+        unzip("fuentes/fomento/mdb",
+              self.core.todas["nomenclator"])  # , self.core.todas["nomenclator_basico"])
+        for pro, dt in self.core.items():
+            if "miteco" in dt:
+                unzip("fuentes/miteco/mapaforestal/%s %s" %
+                      (pro, dt["nombre"].split("/")[0]), dt["miteco"])
+
+    def parseData(self, data):
+        for nuevo, viejos in self.mun_remplaza.items():
+            for year, dt in data.items():
+                dNuevo = dt.get(nuevo, {})
+                for viejo in viejos:
+                    if viejo in dt:
+                        dViejo = dt[viejo]
+                        del dt[viejo]
+                        for k, v in dViejo.items():
+                            dNuevo[k] = dNuevo.get(k, 0) + v
+                if dNuevo:
+                    dt[nuevo] = dNuevo
+        return data
 
     @JsonCache(file="dataset/poblacion/edades.json")
     def create_edades(self):
@@ -395,28 +458,38 @@ class Dataset():
                         years[year] = dtY
         return years
 
-    def unzip(self):
-        unzip("fuentes/fomento/shp", self.core.todas["limites"])
-        unzip("fuentes/fomento/mdb",
-              self.core.todas["nomenclator"])  # , self.core.todas["nomenclator_basico"])
-        for pro, dt in self.core.items():
-            if "miteco" in dt:
-                unzip("fuentes/miteco/mapaforestal/%s %s" %
-                      (pro, dt["nombre"].split("/")[0]), dt["miteco"])
+    @KmCache(file="dataset/geografia/distancias.txt")
+    def create_distancias(self):
+        dist={}
+        for dShapes in (self.provincias, self.municipios):
+            items = list(sorted([(k, v[0]) for k,v in dShapes.items()]))
+            while items:
+                a, aShp = items.pop(0)
+                for b, bShp in items:
+                    km = aShp.distance(bShp)
+                    dist[(a, b)]=km
+        return dist
 
-    def parseData(self, data):
-        for nuevo, viejos in self.mun_remplaza.items():
-            for year, dt in data.items():
-                dNuevo = dt.get(nuevo, {})
-                for viejo in viejos:
-                    if viejo in dt:
-                        dViejo = dt[viejo]
-                        del dt[viejo]
-                        for k, v in dViejo.items():
-                            dNuevo[k] = dNuevo.get(k, 0) + v
-                if dNuevo:
-                    dt[nuevo] = dNuevo
-        return data
+    @property
+    @lru_cache(maxsize=None)
+    def distancias(self):
+        distancias = self.create_distancias()
+        for key, km in list(distancias.items()):
+            b, a = key
+            distancias[(a, b)] = km
+            distancias[(a, a)] = 0
+            distancias[(b, b)] = 0
+        return distancias
+
+    @property
+    @lru_cache(maxsize=None)
+    def provincias(self):
+        return getShp("fuentes/fomento/shp/**/recintos*provinciales*.shp", 4, 6)
+
+    @property
+    @lru_cache(maxsize=None)
+    def municipios(self):
+        return getShp("fuentes/fomento/shp/**/recintos*municipales*.shp", 6, 11)
 
     @lru_cache(maxsize=None)
     def get_dataset(self, create):
