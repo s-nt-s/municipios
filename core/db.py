@@ -251,7 +251,7 @@ def insert_shapes(db, table, path_glob, r_key=4, i_key=(6,11), r_data=5):
                             poli = MultiPolygon([poli])
                         vals.append((poli, sr.record[r_data]))
                         dShapes[key] = vals
-    for key, vals in dShapes.items():
+    for key, vals in list(dShapes.items()):
         nombre = set()
         poli = []
         for p, n in vals:
@@ -269,11 +269,27 @@ def insert_shapes(db, table, path_glob, r_key=4, i_key=(6,11), r_data=5):
             poli = poli[0]
         else:
             poli = cascaded_union(poli)
+        dShapes[key]=poli
         centroid = poli.centroid
         if not centroid.within(poli):
             centroid = poli.representative_point()
         db.insert(table, id=key, nombre=nombre,
                     lat=centroid.y, lon=centroid.x, geom=poli, main_geom=main)
+    db.commit()
+    db.execute('''
+        insert into DST_{0} (A, B, km)
+        select ID A, ID B, 0 from {0};
+    '''.format(table))
+    visto=set()
+    for a, aShp in dShapes.items():
+        for b, bShp in dShapes.items():
+            if a != b and (a, b) not in visto:
+                visto.add((a, b))
+                visto.add((b, a))
+                if aShp.distance(bShp) == 0:
+                    print(a, b)
+                    db.insert("DST_"+table, a=a, b=b, km=0)
+                    db.insert("DST_"+table, a=b, b=a, km=0)
     db.commit()
 
 
