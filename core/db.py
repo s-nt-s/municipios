@@ -281,15 +281,35 @@ def insert_shapes(db, table, path_glob, r_key=4, i_key=(6,11), r_data=5):
         select ID A, ID B, 0 from {0};
     '''.format(table))
     visto=set()
+    ok=set()
     for a, aShp in dShapes.items():
         for b, bShp in dShapes.items():
             if a != b and (a, b) not in visto:
                 visto.add((a, b))
                 visto.add((b, a))
                 if aShp.distance(bShp) == 0:
+                    ok.add((a, b))
+                    ok.add((b, a))
                     print(a, b)
                     db.insert("DST_"+table, a=a, b=b, km=0)
                     db.insert("DST_"+table, a=b, b=a, km=0)
+    db.commit()
+    sql='''
+        select
+          A.ID A,
+          B.ID B,
+          ST_Distance(A.geom, B.geom, 0)/1000 km
+        from
+          provincias A JOIN %s B ON A.ID>B.ID
+        where
+          not((A.ID=B.ID)
+    '''.rstrip() % table
+    for a, b in ok:
+        sql=sql+" or (A.ID='%s' and B.ID='%s')" % (a, b)
+    sql = sql+")"
+    for r in db.select(sql, to_bunch=True):
+        db.insert("DST_"+table, a=r.a, b=r.b, km=r.km)
+        db.insert("DST_"+table, a=r.b, b=r.a, km=r.km)
     db.commit()
 
 
