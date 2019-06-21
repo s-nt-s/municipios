@@ -1,20 +1,20 @@
 import os
 import re
 import sqlite3
-from glob import iglob
+import textwrap
 from subprocess import DEVNULL, STDOUT, check_call
-import unidecode
 
 import shapefile
+import unidecode
 import yaml
 from bunch import Bunch
 from shapely.geometry import MultiPolygon, Point, Polygon, shape
 from shapely.ops import cascaded_union
-import textwrap
 
 re_select = re.compile(r"^\s*select\b")
 re_sp = re.compile(r"\s+")
-re_largefloat=re.compile("(\d+\.\d+e-\d+)")
+re_largefloat = re.compile("(\d+\.\d+e-\d+)")
+
 
 def plain_parse_col(c):
     c = re_sp.sub(" ", c).strip()
@@ -23,17 +23,21 @@ def plain_parse_col(c):
     c = c.replace(" ", "_")
     return c
 
+
 def save(file, content):
     if file and content:
         content = textwrap.dedent(content).strip()
         with open(file, "w") as f:
             f.write(content)
 
+
 class CaseInsensitiveDict(dict):
     def __setitem__(self, key, value):
         dict.__setitem__(self, key.lower(), value)
+
     def __getitem__(self, key):
         return dict.__getitem__(self, key.lower())
+
 
 def build_result(c, to_tuples=False, to_bunch=False):
     results = c.fetchall()
@@ -68,7 +72,7 @@ class DBLite:
         self.cursor = self.con.cursor()
         #self.cursor.execute('pragma foreign_keys = on')
         self.tables = None
-        self.parse_col=parse_col if parse_col is not None else lambda x: x
+        self.parse_col = parse_col if parse_col is not None else lambda x: x
         self.load_tables()
 
     def execute(self, sql, to_file=None):
@@ -166,33 +170,34 @@ class DBLite:
 
     def select_to_table(self, table, select_sql, to_file=None):
         select_sql = textwrap.dedent(select_sql).strip()
-        table=table.upper()
+        table = table.upper()
         self.cursor.execute(select_sql)
         cols = [col[0] for col in self.cursor.description]
-        columns={}
+        columns = {}
         for r in self.cursor.fetchall():
             for i, name in enumerate(cols):
                 if name not in columns:
-                    v =r[i]
+                    v = r[i]
                     if v is not None:
                         if isinstance(v, int):
-                            columns[name]='INTEGER'
+                            columns[name] = 'INTEGER'
                         elif isinstance(v, float):
-                            columns[name]='REAL'
+                            columns[name] = 'REAL'
                         elif isinstance(v, str):
-                            columns[name]='TEXT'
+                            columns[name] = 'TEXT'
                         elif isinstance(v, bytes):
-                            columns[name]='BLOB'
-            if len(columns)==len(cols):
+                            columns[name] = 'BLOB'
+            if len(columns) == len(cols):
                 break
         for name in cols:
             if name not in columns:
-                columns[name]='TEXT'
-        sql="DROP TABLE IF EXISTS {0};\n\nCREATE TABLE {0} (".format(table)
+                columns[name] = 'TEXT'
+        sql = "DROP TABLE IF EXISTS {0};\n\nCREATE TABLE {0} (".format(table)
         for name in cols:
-            sql=sql+'\n  "'+name+'" '+columns[name]+","
-        sql=sql[:-1]+"\n);\n"
-        sql=sql+'INSERT INTO {} ("{}")\n{}'.format(table, '", "'.join(cols), select_sql)
+            sql = sql+'\n  "'+name+'" '+columns[name]+","
+        sql = sql[:-1]+"\n);\n"
+        sql = sql+'INSERT INTO {} ("{}")\n{}'.format(table,
+                                                     '", "'.join(cols), select_sql)
         if not sql.endswith(";"):
             sql = sql+";"
         self.execute(sql, to_file=to_file, multiple=True)
@@ -222,14 +227,16 @@ class DBshp(DBLite):
         '''.format(table, field, lat, lon)
         return self.select(sql, to_bunch=to_bunch, to_tuples=to_tuples)
 
+
 def parse_wkt(wkt):
     ori = wkt
     for n in re_largefloat.findall(wkt):
         f = float(n)
         s = ("%.025f" % f).rstrip("0")
-        n=re.escape(n)
+        n = re.escape(n)
         wkt = re.sub(r"\b"+n+r"\b", s, wkt)
     return wkt
+
 
 if __name__ == "__main__":
     db = DBMun(reload=True)

@@ -2,7 +2,7 @@
 
 from core.dataset import Dataset
 from core.db import DBshp, plain_parse_col
-import sys
+
 
 def insert(db, table, shps):
     for key, data in shps.items():
@@ -11,8 +11,9 @@ def insert(db, table, shps):
         if not centroid.within(poli):
             centroid = poli.representative_point()
         db.insert(table, id=key, nombre=nombre,
-                lat=centroid.y, lon=centroid.x, geom=poli)
+                  lat=centroid.y, lon=centroid.x, geom=poli)
     db.commit()
+
 
 dataset = Dataset()
 dataset.unzip()

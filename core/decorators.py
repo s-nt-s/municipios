@@ -1,15 +1,10 @@
 import functools
-import json
-import math
-import os
-import re
-import sqlite3
-import textwrap
 
 try:
     from .common import *
 except:
     from common import *
+
 
 class Cache:
     def __init__(self, file):
@@ -45,6 +40,7 @@ class Cache:
         self.func = func
         return lambda *args, **kargs: self.callCache(*args, **kargs)
 
+
 class JsonCache(Cache):
     def __init__(self, *args, **kargv):
         Cache.__init__(self, *args, **kargv)
@@ -61,15 +57,15 @@ class KmCache(Cache):
         Cache.__init__(self, *args, **kargv)
 
     def read(self):
-        data={}
+        data = {}
         for a, b, km in readlines(self.file, fields=3):
-            data[(a, b)]=float(km)
+            data[(a, b)] = float(km)
         return data
 
     def save(self, data):
         with open(self.file, "w") as f:
             for key, val in sorted(data.items()):
-                if int(km)==km:
-                    km=int(km)
+                if int(km) == km:
+                    km = int(km)
                 a, b = key
                 f.write("%s %s %s\n" % (a, b, km))

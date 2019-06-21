@@ -1,18 +1,16 @@
-import json
 import os
 import re
 from functools import lru_cache
 
 import requests
+import shapefile
 import urllib3
 import xlrd
 import yaml
 from bs4 import BeautifulSoup
 from bunch import Bunch
-import inspect
 from shapely.geometry import MultiPolygon, Point, Polygon, shape
 from shapely.ops import cascaded_union
-import shapefile
 
 try:
     from .common import *
@@ -34,9 +32,10 @@ me = os.path.realpath(__file__)
 dr = os.path.dirname(me)
 re_nb = re.compile(r"(\d+)")
 
+
 def insert(db, table, rows, kSort=None):
     table = table.upper()
-    create='''
+    create = '''
         create table {} (
           MUN TEXT,
           YR INTEGER,
@@ -45,10 +44,12 @@ def insert(db, table, rows, kSort=None):
           FOREIGN KEY(MUN) REFERENCES municipios(ID)
         )
     '''.format(table)
-    db.create(create, *get_cols(rows, kSort=kSort), to_file="sql/%s.sql" % table)
+    db.create(create, *get_cols(rows, kSort=kSort),
+              to_file="sql/%s.sql" % table)
     for key, row in rows.items():
         row["MUN"], row["YR"] = key
         db.insert(table, **row)
+
 
 def sortColPob(s):
     if s == "total":
@@ -56,7 +57,7 @@ def sortColPob(s):
         edad = s
     else:
         spl = s.split(" ", 1)
-        if len(spl)==1:
+        if len(spl) == 1:
             sexo = "ambos"
             edad = spl[0]
         else:
@@ -89,7 +90,7 @@ def getShp(path_glob, ini, end, r_key=4, r_data=5):
         for p, n in vals:
             poli.append(p)
             nombre.add(n)
-        if len(nombre)>1:
+        if len(nombre) > 1:
             print(key, nombre)
         nombre = nombre.pop()
         main = None
@@ -101,8 +102,9 @@ def getShp(path_glob, ini, end, r_key=4, r_data=5):
             poli = poli[0]
         else:
             poli = cascaded_union(poli)
-        dShapes[key]=(poli, nombre)
+        dShapes[key] = (poli, nombre)
     return dShapes
+
 
 class Dataset():
     def __init__(self, *args, core=None, reload=False, **kargs):
@@ -167,18 +169,18 @@ class Dataset():
                     mData = yData.get(mun, {})
                     edad = d["MetaData"][2]["Codigo"]
                     if edad == "total":
-                        mData[-1]= int(d["Data"][0]["Valor"])
+                        mData[-1] = int(d["Data"][0]["Valor"])
                     elif edad.isdigit():
                         mData[int(edad)] = int(d["Data"][0]["Valor"])
-                    yData[mun]=mData
-                data[year]=yData
+                    yData[mun] = mData
+                data[year] = yData
         for year, yData in data.items():
             for mun, mData in list(yData.items()):
-                arr=[]
+                arr = []
                 for i in range(0, max(mData.keys())+1):
                     x = mData.get(i, 0)
-                    arr.append(str(x) if x>0 else "")
-                yData[mun]=(",".join(arr)).rstrip(",")
+                    arr.append(str(x) if x > 0 else "")
+                yData[mun] = (",".join(arr)).rstrip(",")
         return data
 
     @JsonCache(file="dataset/renta/euskadi.json")
@@ -211,21 +213,21 @@ class Dataset():
     @JsonCache(file="dataset/empleo/paro_sepe_*.json")
     def create_sepe(self):
         firt_data = 8
-        yrParo={}
+        yrParo = {}
         for year, url in self.core.todas["paro_sepe"].items():
             paro = {}
             rows = get_csv(url, enconde="windows-1252", delimiter=";")
             head = rows[1][firt_data:]
             for i, v in enumerate(head):
-                if v.lower()=="total paro registrado":
-                    head[i]="total"
+                if v.lower() == "total paro registrado":
+                    head[i] = "total"
                     continue
                 if v.lower().startswith("paro "):
-                    v=v[5:].strip()
+                    v = v[5:].strip()
                 v = v.replace("25 -45", "25a45")
                 v = v.replace("< 25", "<25")
                 v = v.replace("edad ", "")
-                head[i]=v
+                head[i] = v
             for row in rows[2:]:
                 if len(row) < firt_data:
                     continue
@@ -245,12 +247,12 @@ class Dataset():
 
                 dMun[mes] = dt
                 paro[mun] = dMun
-            yrParo[year]=paro
+            yrParo[year] = paro
         return yrParo
 
     @JsonCache(file="dataset/renta/aeat_*.json")
     def create_aeat(self):
-        yrRenta={}
+        yrRenta = {}
         for year, url in self.core.todas["renta"]["aeat"].items():
             soup = get_bs(url)
             data = {}
@@ -279,12 +281,12 @@ class Dataset():
                             "media": int(rent),
                             "declaraciones": int(decla)
                         }
-            yrRenta[year]=data
+            yrRenta[year] = data
         return yrRenta
 
     @JsonCache(file="dataset/renta/navarra.json")
     def create_navarra(self):
-        yrNavarra={}
+        yrNavarra = {}
         for year, url in self.core.todas["renta"]["navarra"].items():
             book = get_xls(url)
             sheet = book.sheet_by_index(0)
@@ -298,7 +300,7 @@ class Dataset():
                 if c1 and isinstance(c1, int) and "(*)" in c2:
                     c1 = "31" + ("%03d" % c1)
                     data[c1] = row[3]
-            yrNavarra[year]=data
+            yrNavarra[year] = data
         return yrNavarra
 
     @JsonCache(file="dataset/economia/agrario.json")
@@ -391,7 +393,6 @@ class Dataset():
                     elif len(c_edad) == 4:
                         c_edad = c_edad[0:2]+"a"+c_edad[2:4]
 
-
                     dt = data.get(mun, {})
 
                     key = (c_sex+" "+c_edad).strip()
@@ -460,14 +461,14 @@ class Dataset():
 
     @KmCache(file="dataset/geografia/distancias.txt")
     def create_distancias(self):
-        dist={}
+        dist = {}
         for dShapes in (self.provincias, self.municipios):
-            items = list(sorted([(k, v[0]) for k,v in dShapes.items()]))
+            items = list(sorted([(k, v[0]) for k, v in dShapes.items()]))
             while items:
                 a, aShp = items.pop(0)
                 for b, bShp in items:
                     km = aShp.distance(bShp)
-                    dist[(a, b)]=km
+                    dist[(a, b)] = km
         return dist
 
     @property
@@ -510,8 +511,9 @@ class Dataset():
         edad = self.create_edades()
         for year, yData in edad.items():
             for mun, mData in list(yData.items()):
-                mData = {i:int(s) for i, s in enumerate(mData.split(",")) if s}
-                yData[mun]=mData
+                mData = {i: int(s)
+                         for i, s in enumerate(mData.split(",")) if s}
+                yData[mun] = mData
         return edad
 
     @property
@@ -519,21 +521,21 @@ class Dataset():
     def meta_edades(self):
         meta = {}
         for year, yData in self.edades.items():
-            meta[year]={}
+            meta[year] = {}
             for mun, mData in yData.items():
                 e18ymas = 0
                 e16ymas = 0
                 e16a65 = 0
                 for i in range(16, max(mData.keys())):
                     e = mData.get(i, 0)
-                    if e is None or e==0:
+                    if e is None or e == 0:
                         continue
                     e16ymas = e16ymas + e
-                    if i>=18:
+                    if i >= 18:
                         e18ymas = e18ymas + e
-                    if i<=56:
+                    if i <= 56:
                         e16a65 = e16a65 + e
-                meta[year][mun]={
+                meta[year][mun] = {
                     "18ymas": e18ymas,
                     "16ymas": e16ymas,
                     "16a65": e16a65
@@ -544,27 +546,27 @@ class Dataset():
                 if year in meta and mun in meta[year]:
                     continue
                 if year not in meta:
-                    meta[year]={}
+                    meta[year] = {}
                 e18ymas = 0
                 e16ymas = 0
                 e16a65 = 0
                 for k, e in mData.items():
-                    if e is None or e==0:
+                    if e is None or e == 0:
                         continue
-                    i=None
+                    i = None
                     if k[:3].isdigit():
-                        i=int(k[:3])
+                        i = int(k[:3])
                     elif k[:2].isdigit():
-                        i=int(k[:2])
+                        i = int(k[:2])
                     if i is None:
                         continue
-                    if i>=15:
+                    if i >= 15:
                         e16ymas = e16ymas + 5
-                        if i<56:
+                        if i < 56:
                             e16a65 = e16a65 + e
-                    if i>=18:
+                    if i >= 18:
                         e18ymas = e18ymas + e
-                meta[year][mun]={
+                meta[year][mun] = {
                     "18ymas": e18ymas,
                     "16ymas": e16ymas,
                     "16a65": e16a65
@@ -586,7 +588,7 @@ class Dataset():
                         del dt[viejo]
                         for mes, mDt in dViejo.items():
                             if mes not in dNuevo:
-                                dNuevo[mes]=mDt
+                                dNuevo[mes] = mDt
                                 continue
                             for k, v in mDt.items():
                                 dNuevo[mes][k] = dNuevo[mes].get(k, 0) + v
@@ -602,7 +604,7 @@ class Dataset():
                     continue
                 print("paro", year, viejo, cNuevos)
                 dViejo = dt.get(viejo, {})
-                dt[viejo]=dViejo
+                dt[viejo] = dViejo
                 for nuevo in cNuevos:
                     dNuevo = dt[nuevo]
                     del dt[nuevo]
@@ -611,15 +613,16 @@ class Dataset():
                             dViejo[mes] = mData
                         else:
                             for k, v in mData.items():
-                                dViejo[mes][k] = dViejo[mes].get(k, 0) + mData[k]
+                                dViejo[mes][k] = dViejo[mes].get(
+                                    k, 0) + mData[k]
         for year, dt in paro.items():
             if year not in self.years_poblacion:
                 for mun, dMun in list(dt.items()):
                     todoCeros = True
                     for mes, dMes in dMun.items():
                         for v in dMes.values():
-                            if v!=0:
-                                todoCeros=False
+                            if v != 0:
+                                todoCeros = False
                     if todoCeros:
                         del dt[mun]
         return paro
@@ -639,10 +642,11 @@ class Dataset():
                         dViejo = data[viejo]
                         del data[viejo]
                         if dNuevo is None:
-                            dNuevo=dViejo
+                            dNuevo = dViejo
                             continue
                         total = dNuevo*my[nuevo] + dViejo*my[viejo]["18ymas"]
-                        dNuevo = total/(my[nuevo]["18ymas"]+my[viejo]["18ymas"])
+                        dNuevo = total / \
+                            (my[nuevo]["18ymas"]+my[viejo]["18ymas"])
                 if dNuevo:
                     data[nuevo] = dNuevo
         for viejo, nuevos in self.mun_desgaja.items():
@@ -658,11 +662,12 @@ class Dataset():
                 for n in cNuevos:
                     dNuevo = data[n]
                     del data[n]
-                    if dNuevo==dViejo:
+                    if dNuevo == dViejo:
                         continue
-                    total = dNuevo*my[nuevo]["18ymas"] + dViejo*my[viejo]["18ymas"]
+                    total = dNuevo*my[nuevo]["18ymas"] + \
+                        dViejo*my[viejo]["18ymas"]
                     dViejo = total/(my[nuevo]["18ymas"]+my[viejo]["18ymas"])
-                    data[viejo]=dViejo
+                    data[viejo] = dViejo
         return renta
 
     @property
@@ -712,15 +717,16 @@ class Dataset():
                 if p.get("total", 0) == 0 and mun not in dt:
                     dt[mun] = {"media": 0, "declaraciones": 0}
             visto = [k for k in dt.keys() if len(k) == 5]
-            provs = set(k[1:] for k in dt.keys() if len(k) == 3 and k[0] == "p")
+            provs = set(k[1:]
+                        for k in dt.keys() if len(k) == 3 and k[0] == "p")
             for prov in provs:
-                mun = set(m for m in pob.keys() if m.startswith(prov) and m not in visto)
+                mun = set(m for m in pob.keys() if m.startswith(
+                    prov) and m not in visto)
                 if len(mun) == 1:
                     mun = mun.pop()
                     dt[mun] = dt["p"+prov]
                     del dt["p"+prov]
         return renta
-
 
     @property
     @lru_cache(maxsize=None)
@@ -747,14 +753,14 @@ class Dataset():
         return data
 
     def populate_datamun(self, db, reload=False):
-        pop_rows={}
+        pop_rows = {}
         for year, dtY in self.parseData(self.meta_edades).items():
             for mun, dt in dtY.items():
                 key = (mun, year)
                 row = pop_rows.get(key, {})
                 for k, v in dt.items():
                     row[k] = v
-                pop_rows[key]=row
+                pop_rows[key] = row
 
         for year, dtY in self.edad.items():
             for mun, dt in dtY.items():
@@ -762,7 +768,7 @@ class Dataset():
                 row = pop_rows.get(key, {})
                 for k, v in dt.items():
                     row[k] = v
-                pop_rows[key]=row
+                pop_rows[key] = row
 
         for year, dtY in self.poblacion.items():
             for mun, dt in dtY.items():
@@ -773,7 +779,7 @@ class Dataset():
                         k = k+" total"
                     if k not in row:
                         row[k] = v
-                pop_rows[key]=row
+                pop_rows[key] = row
 
         insert(db, "poblacion", pop_rows, kSort=sortColPob)
 
@@ -784,7 +790,7 @@ class Dataset():
                 row = rows.get(key, {})
                 for k, v in dt.items():
                     row[k] = v
-                rows[key]=row
+                rows[key] = row
         insert(db, "agrario", rows)
 
         rows = {}
@@ -794,7 +800,7 @@ class Dataset():
                 row = rows.get(key, {})
                 for k, v in dt.items():
                     row[k] = v
-                rows[key]=row
+                rows[key] = row
         insert(db, "empresas", rows)
 
         rows = {}
@@ -812,36 +818,37 @@ class Dataset():
                 row = rows.get(key, {})
                 row["renta"] = rent["media"]
                 row["declaraciones"] = rent["declaraciones"]
-                row["tipo"]=1
-                rows[key]=row
+                row["tipo"] = 1
+                rows[key] = row
 
-        keys_pob=[k for k in pop_rows.keys() if k[0] not in visto]
+        keys_pob = [k for k in pop_rows.keys() if k[0] not in visto]
         for key, rent in rt1000.items():
             year, prov = key
-            muns = set(k[0] for k in keys_pob if k[1]==year and k[0].startswith(prov))
+            muns = set(k[0] for k in keys_pob if k[1] ==
+                       year and k[0].startswith(prov))
             for mun in muns:
                 key = (mun, year)
                 row = rows.get(key, {})
                 row["renta"] = rent["media"]
                 row["declaraciones"] = rent["declaraciones"]
-                row["tipo"]=1 if len(muns)==1 else 2
-                rows[key]=row
+                row["tipo"] = 1 if len(muns) == 1 else 2
+                rows[key] = row
 
         for year, dt in self.renta_euskadi.items():
             for mun, rent in dt.items():
                 key = (mun, year)
                 row = rows.get(key, {})
                 row["renta"] = rent
-                row["tipo"]=3
-                rows[key]=row
+                row["tipo"] = 3
+                rows[key] = row
 
         for year, dt in self.renta_navarra.items():
             for mun, rent in dt.items():
                 key = (mun, year)
                 row = rows.get(key, {})
                 row["renta"] = rent
-                row["tipo"]=4
-                rows[key]=row
+                row["tipo"] = 4
+                rows[key] = row
 
         insert(db, "renta", rows)
 
@@ -868,19 +875,19 @@ class Dataset():
         fields.remove("YR")
         fields.remove("MUN")
         fields.remove("MES")
-        view='''
+        view = '''
             CREATE VIEW SEPE_YEAR AS
             select
             	s1.MUN, s1.YR'''
         for f in fields:
-            view=view+', "{0}"/C "{0}"'.format(f)
-        view=view+'''
+            view = view+', "{0}"/C "{0}"'.format(f)
+        view = view+'''
             from
             (
             select MUN, YR'''
         for f in fields:
-            view=view+', sum("{0}")*1.0 "{0}"'.format(f)
-        view=view+'''
+            view = view+', sum("{0}")*1.0 "{0}"'.format(f)
+        view = view+'''
             from sepe group by MUN, YR
             ) s1
             join
@@ -1049,7 +1056,6 @@ for name in dir(Dataset):
         if not hasattr(Dataset, id):
             f = eval("lambda slf: slf.get_dataset('%s')" % name)
             setattr(Dataset, id, property(f))
-
 
 
 if __name__ == "__main__":

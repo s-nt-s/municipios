@@ -5,7 +5,6 @@ import re
 import sqlite3
 import time
 import zipfile
-from datetime import datetime
 from glob import glob, iglob
 from io import BytesIO
 from urllib.parse import parse_qs, urljoin, urlparse
@@ -132,6 +131,7 @@ def get_yml(yml_file, **kargv):
                 i["cod"] = i["viejo"].split()[0]
             yield Bunch(i)
 
+
 def readlines(file, fields=None):
     if os.path.isfile(file):
         with open(file, "r") as f:
@@ -139,8 +139,9 @@ def readlines(file, fields=None):
                 l = l.strip()
                 if l and not l.startswith("#"):
                     if fields:
-                        l=l.split(None, fields)
+                        l = l.split(None, fields)
                     yield l
+
 
 def parse_cell(c):
     if isinstance(c, str):
@@ -261,6 +262,7 @@ def read_js(file, intKey=False):
             return js
     return None
 
+
 def _js(url):
     r = requests.get(url, verify=False)
     j = r.json()
@@ -278,6 +280,7 @@ def save_js(file, data, indent=4):
     else:
         with open(file, "w") as f:
             json.dump(data, f, indent=indent)
+
 
 def get_root_file(dom):
     if dom == "administracionelectronica.navarra.es":
@@ -364,9 +367,9 @@ def wstempus(url):
 
 
 def _get_cols(data):
-    cols=set()
+    cols = set()
     vals = list(data.values())
-    if len(vals)==0:
+    if len(vals) == 0:
         return cols
     if isinstance(vals[0], dict):
         for v in vals:
@@ -376,11 +379,12 @@ def _get_cols(data):
             cols.add(k)
     return cols
 
+
 def get_cols(*args, kSort=None):
-    cols=set()
+    cols = set()
     for a in args:
         if isinstance(a, dict):
-            cols=_get_cols(a)
+            cols = _get_cols(a)
         else:
             cols.add(a)
     if kSort:
