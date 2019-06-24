@@ -28,11 +28,17 @@ insert(db, "provincias", dataset.provincias)
 insert(db, "municipios", dataset.municipios)
 distancias="dataset/geografia/dst.7z"
 if os.path.isfile(distancias):
+    dstM=[]
+    dstP=[]
     for a, b, km in readlines(distancias, fields=3):
         km=float(km)
-        table="DST_PROVINCIAS" if len(a)==2 else "DST_MUNICIPIOS"
-        db.insert(table, a=a, b=b, km=km)
-        db.insert(table, a=b, b=a, km=km)
+        r = (a, b, km)
+        if len(a)==2:
+            dstP.append(r)
+        else:
+            dstM.append(r)
+    db.cursor.executemany("insert into DST_PROVINCIAS (A, B, km) values (?, ?, ?)", dstP)
+    db.cursor.executemany("insert into DST_MUNICIPIOS (A, B, km) values (?, ?, ?)", dstM)
 else:
     db.execute("sql/distancias.sql")
     db.select_to_file('''
