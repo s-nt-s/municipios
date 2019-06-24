@@ -471,12 +471,14 @@ class Dataset():
                     dist[(a, b)] = km
         return dist
 
-    @property
     @lru_cache(maxsize=None)
-    def distancias(self):
+    def distancias(self, lcod):
         distancias = self.create_distancias()
         for key, km in list(distancias.items()):
             b, a = key
+            if len(a)!=lcod:
+                del distancias[key]
+                continue
             distancias[(a, b)] = km
             distancias[(a, a)] = 0
             distancias[(b, b)] = 0

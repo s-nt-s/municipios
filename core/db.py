@@ -30,6 +30,22 @@ def save(file, content):
         with open(file, "w") as f:
             f.write(content)
 
+def zipfile(file):
+    zip = os.path.splitext(file)[0]+".7z"
+    if os.path.isfile(zip):
+        os.remove(zip)
+    cmd = "7z a %s ./%s" % (zip, file)
+    check_call(cmd.split(), stdout=DEVNULL, stderr=STDOUT)
+    return size(zip)
+
+def size(file, suffix='B'):
+    num = os.path.getsize(file)
+    for unit in ('', 'K', 'M', 'G', 'T', 'P', 'E', 'Z'):
+        if abs(num) < 1024.0:
+            return ("%3.1f%s%s" % (num, unit, suffix))
+        num /= 1024.0
+    return ("%.1f%s%s" % (num, 'Yi', suffix))
+
 
 class CaseInsensitiveDict(dict):
     def __setitem__(self, key, value):
@@ -60,7 +76,7 @@ def build_result(c, to_tuples=False, to_bunch=False):
 
 
 class DBLite:
-    def __init__(self, file, extensions=None, reload=True, parse_col=None):
+    def __init__(self, file, extensions=None, reload=False, parse_col=None):
         self.file = file
         if reload and os.path.isfile(self.file):
             os.remove(self.file)
@@ -101,7 +117,7 @@ class DBLite:
                 vals.append(v)
         prm = ['?']*len(vals)
         for i, v in enumerate(vals):
-            if isinstance(v, MultiPolygon) or isinstance(v, Polygon):
+            if isinstance(v, MultiPolygon) or isinstance(v, Polygon) or isinstance(v, Point):
                 vals[i] = parse_wkt(vals[i].wkt)
                 prm[i] = 'GeomFromText(?, 4326)'
         sql = "insert into %s (%s) values (%s)" % (
@@ -136,21 +152,10 @@ class DBLite:
         return sql
 
     def size(self, file=None, suffix='B'):
-        file = file or self.file
-        num = os.path.getsize(file)
-        for unit in ('', 'K', 'M', 'G', 'T', 'P', 'E', 'Z'):
-            if abs(num) < 1024.0:
-                return ("%3.1f%s%s" % (num, unit, suffix))
-            num /= 1024.0
-        return ("%.1f%s%s" % (num, 'Yi', suffix))
+        return size(file or self.file)
 
     def zip(self):
-        zip = os.path.splitext(self.file)[0]+".7z"
-        if os.path.isfile(zip):
-            os.remove(zip)
-        cmd = "7z a %s ./%s" % (zip, self.file)
-        check_call(cmd.split(), stdout=DEVNULL, stderr=STDOUT)
-        return self.size(zip)
+        return zipfile(self.file)
 
     def create(self, template, *cols, to_file=None, **kargv):
         sql = ""
@@ -167,6 +172,22 @@ class DBLite:
         self.cursor.execute(sql)
         self.con.commit()
         self.load_tables()
+
+    def select_to_file(self, sql, file, format=None):
+        name, ext = os.path.splitext(file)
+        if ext == ".7z":
+            file = name+".txt"
+        with open(file, "w") as f:
+            for r in self.select(sql, to_tuples=True):
+                r=[int(i) if isinstance(i, float) and int(i)==i else i for i in r]
+                if format is None:
+                    line = " ".join(['' if i is None else str(i) for i in r]) + "\n"
+                else:
+                    line = format.format(*r)
+                f.write(line)
+        if ext == ".7z":
+            zipfile(file)
+            os.remove(file)
 
     def select_to_table(self, table, select_sql, to_file=None):
         select_sql = textwrap.dedent(select_sql).strip()
@@ -239,12 +260,4 @@ def parse_wkt(wkt):
 
 
 if __name__ == "__main__":
-    db = DBMun(reload=True)
-    for m in db.select("municipios", to_bunch=True):
-        for x in db.within("municipios.geom", lat=m.lat, lon=m.lon, to_bunch=True):
-            if m.ID != x.ID:
-                print("")
-                print(m.ID, m.nombre)
-                print(x.ID, x.nombre)
-                for j in db.select("select ST_Distance(a.geom, b.geom) distance from municipios a join municipios b on a.ID='%s' and b.ID='%s'" % (m.ID, x.ID), to_bunch=True):
-                    print(j)
+    pass

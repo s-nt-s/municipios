@@ -8,6 +8,8 @@ import zipfile
 from glob import glob, iglob
 from io import BytesIO
 from urllib.parse import parse_qs, urljoin, urlparse
+import py7zlib
+import io
 
 import requests
 import urllib3
@@ -132,16 +134,28 @@ def get_yml(yml_file, **kargv):
             yield Bunch(i)
 
 
-def readlines(file, fields=None):
+def readlines(file, fields=None, name=None):
     if os.path.isfile(file):
-        with open(file, "r") as f:
-            for l in f.readlines():
-                l = l.strip()
-                if l and not l.startswith("#"):
-                    if fields:
-                        l = l.split(None, fields)
-                    yield l
-
+        if file.endswith(".7z"):
+            with open(file, "rb") as f:
+                f7z = py7zlib.Archive7z(f)
+                if name is None:
+                    name = f7z.getnames()[0]
+                txt = f7z.getmember(name)
+                for l in io.StringIO(txt.read().decode()):
+                    l = l.strip()
+                    if l and not l.startswith("#"):
+                        if fields:
+                            l = l.split(None, fields)
+                        yield l
+        else:
+            with open(file, "r") as f:
+                for l in f.readlines():
+                    l = l.strip()
+                    if l and not l.startswith("#"):
+                        if fields:
+                            l = l.split(None, fields)
+                        yield l
 
 def parse_cell(c):
     if isinstance(c, str):
