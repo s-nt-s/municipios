@@ -209,10 +209,7 @@ def get_csv(url, enconde=None, delimiter=","):
     content = r.content
     if file.endswith("ine/csv_c/4721.csv"):
         content = content.decode("UTF-8")
-        content = content.replace(
-            "Comercio, transporte y hostelería", "Comercio transporte y hostelería")
-        content = content.replace(
-            "Educación, sanidad y servicios sociales", "Educación sanidad y servicios sociales")
+        content = content.replace(", ", " ")
         content = str.encode(content)
     save(file, content)
     return read_csv(file, enconde=enconde, delimiter=delimiter)

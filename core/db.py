@@ -127,10 +127,11 @@ class DBLite:
     def commit(self):
         self.con.commit()
 
-    def close(self):
+    def close(self, vacuum=True):
         self.con.commit()
         self.cursor.close()
-        self.con.execute("VACUUM")
+        if vacuum:
+            self.con.execute("VACUUM")
         self.con.commit()
         self.con.close()
 
@@ -221,7 +222,7 @@ class DBLite:
                                                      '", "'.join(cols), select_sql)
         if not sql.endswith(";"):
             sql = sql+";"
-        self.execute(sql, to_file=to_file, multiple=True)
+        self.execute(sql, to_file=to_file)
 
 
 class DBshp(DBLite):
