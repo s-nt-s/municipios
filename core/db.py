@@ -309,6 +309,19 @@ class DBshp(DBLite):
         '''.format(table, field, lat, lon, where)
         return self.select(sql, to_bunch=to_bunch, to_tuples=to_tuples)
 
+    def distance(self, table, lat, lon, where=None, to_bunch=False, to_tuples=False):
+        if not where:
+            where=''
+        else:
+            where = "where " + where
+        table, field = table.rsplit(".", 1)
+        sql = '''
+            select
+                ST_Distance(GeomFromText('POINT({3} {2})', 4326), {1}, 1)
+            from
+                {0} {4}
+        '''.format(table, field, lat, lon, where)
+        return self.select(sql, to_bunch=to_bunch, to_tuples=to_tuples)
 
 def parse_wkt(wkt):
     ori = wkt
