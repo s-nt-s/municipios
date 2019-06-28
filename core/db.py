@@ -286,14 +286,18 @@ class DBshp(DBLite):
         DBLite.__init__(
             self, *args, extensions=['/usr/lib/x86_64-linux-gnu/mod_spatialite.so'], **kargv)
 
-    def within(self, table, lat, lon, to_bunch=False, to_tuples=False):
+    def within(self, table, lat, lon, where=None, to_bunch=False, to_tuples=False):
+        if not where:
+            where=''
+        else:
+            where = where + " and "
         table, field = table.rsplit(".", 1)
         sql = '''
             select
                 *
             from
                 {0}
-            where
+            where {4}
                 within(GeomFromText('POINT({3} {2})'), {1})
                 and rowid in (
                     SELECT pkid FROM idx_{0}_geom
@@ -302,7 +306,7 @@ class DBshp(DBLite):
                     and ymin < {2}
                     and ymax > {2}
                 )
-        '''.format(table, field, lat, lon)
+        '''.format(table, field, lat, lon, where)
         return self.select(sql, to_bunch=to_bunch, to_tuples=to_tuples)
 
 
