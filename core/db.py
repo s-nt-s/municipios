@@ -124,6 +124,15 @@ class DBLite:
             table, ', '.join(keys), ', '.join(prm))
         self.cursor.execute(sql, vals)
 
+    def _build_select(self, sql):
+        sql = sql.strip()
+        if not sql.lower().startswith("select"):
+            field = "*"
+            if "." in sql:
+                sql, field = sql.rsplit(".", 1)
+            sql = "select "+field+" from "+sql
+        return sql
+
     def commit(self):
         self.con.commit()
 
@@ -136,12 +145,7 @@ class DBLite:
         self.con.close()
 
     def select(self, sql, to_bunch=False, to_tuples=False):
-        sql = sql.strip()
-        if not sql.lower().startswith("select"):
-            field = "*"
-            if "." in sql:
-                sql, field = sql.rsplit(".", 1)
-            sql = "select "+field+" from "+sql
+        sql = self._build_select(sql)
         self.cursor.execute(sql)
         r = build_result(self.cursor, to_bunch=to_bunch, to_tuples=to_tuples)
         return r
@@ -190,39 +194,91 @@ class DBLite:
             zipfile(file)
             os.remove(file)
 
-    def select_to_table(self, table, select_sql, to_file=None):
+    def select_to_table(self, table, select_sql, create=True, to_file=None):
         select_sql = textwrap.dedent(select_sql).strip()
         table = table.upper()
-        self.cursor.execute(select_sql)
-        cols = [col[0] for col in self.cursor.description]
-        columns = {}
-        for r in self.cursor.fetchall():
-            for i, name in enumerate(cols):
+        sql=''
+        if create:
+            self.cursor.execute(select_sql)
+            cols = [col[0] for col in self.cursor.description]
+            columns = {}
+            for r in self.cursor.fetchall():
+                for i, name in enumerate(cols):
+                    if name not in columns:
+                        v = r[i]
+                        if v is not None:
+                            if isinstance(v, int) or isinstance(v, bool):
+                                columns[name] = 'INTEGER'
+                            elif isinstance(v, float):
+                                columns[name] = 'REAL'
+                            elif isinstance(v, str):
+                                columns[name] = 'TEXT'
+                            elif isinstance(v, bytes):
+                                columns[name] = 'BLOB'
+                if len(columns) == len(cols):
+                    break
+            for name in cols:
                 if name not in columns:
-                    v = r[i]
-                    if v is not None:
-                        if isinstance(v, int):
-                            columns[name] = 'INTEGER'
-                        elif isinstance(v, float):
-                            columns[name] = 'REAL'
-                        elif isinstance(v, str):
-                            columns[name] = 'TEXT'
-                        elif isinstance(v, bytes):
-                            columns[name] = 'BLOB'
-            if len(columns) == len(cols):
-                break
-        for name in cols:
-            if name not in columns:
-                columns[name] = 'TEXT'
-        sql = "DROP TABLE IF EXISTS {0};\n\nCREATE TABLE {0} (".format(table)
-        for name in cols:
-            sql = sql+'\n  "'+name+'" '+columns[name]+","
-        sql = sql[:-1]+"\n);\n"
+                    columns[name] = 'TEXT'
+            sql = "DROP TABLE IF EXISTS {0};\n\nCREATE TABLE {0} (".format(table)
+            for name in cols:
+                sql = sql+'\n  "'+name+'" '+columns[name]+","
+            sql = sql[:-1]+"\n);\n"
+        else:
+            cols=self.tables[table]
         sql = sql+'INSERT INTO {} ("{}")\n{}'.format(table,
                                                      '", "'.join(cols), select_sql)
         if not sql.endswith(";"):
             sql = sql+";"
         self.execute(sql, to_file=to_file)
+
+    def select_to_csv(self, file, sql):
+        sql = self._build_select(sql)
+        self.cursor.execute(sql+" limit 0")
+        cols = tuple(col[0] for col in self.cursor.description)
+        self.cursor.execute(sql)
+        with open(file, "w") as f:
+            f.write(",".join(cols))
+            for row in self.cursor.fetchall():
+                f.write("\n")
+                row = ['' if r is None else str(r) for r in row]
+                f.write(",".join(row))
+
+    def dict_to_table(self, table, rows, to_file=None):
+        keys={}
+        for r in rows:
+            for k, v in r.items():
+                if v is not None:
+                    k=self.parse_col(k)
+                    vals = keys.get(k, set())
+                    vals.add(type(v))
+                    keys[k]=vals
+        sql = "DROP TABLE IF EXISTS {0};\n\nCREATE TABLE {0} (".format(table)
+        for name, vals in keys.items():
+            tp = "TEXT"
+            if bool in vals:
+                tp = "INTEGER"
+                vals.remove(bool)
+            if int in vals:
+                tp = "INTEGER"
+                vals.remove(int)
+            if float in vals:
+                tp = "REAL"
+                vals.remove(float)
+            if str in vals:
+                tp = "TEXT"
+                vals.remove(str)
+            if bytes in vals:
+                tp = "BLOB"
+                vals.remove(bytes)
+            elif vals:
+                tp = "TEXT"
+            sql = sql+'\n  "'+name+'" '+tp+","
+        sql = sql[:-1]+"\n);\n"
+        self.execute(sql, to_file=to_file)
+        for r in rows:
+            self.insert(table, **r)
+        self.commit()
 
 
 class DBshp(DBLite):
