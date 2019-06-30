@@ -10,6 +10,7 @@ import yaml
 from bunch import Bunch
 from shapely.geometry import MultiPolygon, Point, Polygon, shape
 from shapely.ops import cascaded_union
+import csv
 
 re_select = re.compile(r"^\s*select\b")
 re_sp = re.compile(r"\s+")
@@ -74,17 +75,21 @@ def build_result(c, to_tuples=False, to_bunch=False):
         n_results.append(d)
     return n_results
 
+def get_db(file, *extensions):
+    con = sqlite3.connect(file)
+    if extensions:
+        con.enable_load_extension(True)
+        for e in extensions:
+            con.load_extension(e)
+    return con
 
 class DBLite:
     def __init__(self, file, extensions=None, reload=False, parse_col=None):
+        self.extensions = extensions
         self.file = file
         if reload and os.path.isfile(self.file):
             os.remove(self.file)
-        self.con = sqlite3.connect(file)
-        if extensions:
-            self.con.enable_load_extension(True)
-            for e in extensions:
-                self.con.load_extension(e)
+        self.con = get_db(file, *extensions)
         self.cursor = self.con.cursor()
         #self.cursor.execute('pragma foreign_keys = on')
         self.tables = None
@@ -178,23 +183,54 @@ class DBLite:
         self.con.commit()
         self.load_tables()
 
-    def select_to_file(self, sql, file, format=None):
+    def load_csv(self, file, table=None, separator=","):
+        if table is None:
+            base = os.path.basename(file)
+            table, _ = os.path.splitext(base)
+        with open(file, "r") as f:
+            for row in csv.DictReader(f, separator=separator):
+                self.insert(table, **row)
+        self.commit()
+
+    def save_csv(self, file, sql=None, separator=",", sorted=False):
         name, ext = os.path.splitext(file)
         if ext == ".7z":
-            file = name+".txt"
+            file = name+".csv"
+        if sql is None:
+            base = os.path.basename(file)
+            sql, _ = os.path.splitext(base)
+        sql = self._build_select(sql)
+        self.cursor.execute(sql+" limit 0")
+        cols = tuple(col[0] for col in self.cursor.description)
+        head = separator.join(cols)
+        if sorted:
+            sql = sql + " order by "+", ".join(head)
+        self.cursor.execute(sql)
         with open(file, "w") as f:
-            for r in self.select(sql, to_tuples=True):
-                r=[int(i) if isinstance(i, float) and int(i)==i else i for i in r]
-                if format is None:
-                    line = " ".join(['' if i is None else str(i) for i in r]) + "\n"
-                else:
-                    line = format.format(*r)
-                f.write(line)
+            if head:
+                f.write(head)
+            for row in self.cursor.fetchall():
+                f.write("\n")
+                for i, v in row:
+                    if v is None:
+                        v=''
+                    elif isinstance(v, float) and int(v)==v:
+                        v=int(v)
+                    row[i]=str(v)
+                f.write(separator.join(row))
         if ext == ".7z":
             zipfile(file)
             os.remove(file)
 
-    def select_to_table(self, table, select_sql, create=True, to_file=None):
+
+    def to_table(self, table, data, *args, **kargv):
+        if isinstance(data, str):
+            return self._select_to_table(table, data, *args, **kargv)
+        elif isinstance(data, list):
+            return self._dict_to_table(table, data, *args, **kargv)
+        return None
+
+    def _select_to_table(self, table, select_sql, create=True, to_file=None):
         select_sql = textwrap.dedent(select_sql).strip()
         table = table.upper()
         sql=''
@@ -232,19 +268,7 @@ class DBLite:
             sql = sql+";"
         self.execute(sql, to_file=to_file)
 
-    def select_to_csv(self, file, sql):
-        sql = self._build_select(sql)
-        self.cursor.execute(sql+" limit 0")
-        cols = tuple(col[0] for col in self.cursor.description)
-        self.cursor.execute(sql)
-        with open(file, "w") as f:
-            f.write(",".join(cols))
-            for row in self.cursor.fetchall():
-                f.write("\n")
-                row = ['' if r is None else str(r) for r in row]
-                f.write(",".join(row))
-
-    def dict_to_table(self, table, rows, to_file=None):
+    def _dict_to_table(self, table, rows, to_file=None):
         keys={}
         for r in rows:
             for k, v in r.items():
@@ -284,7 +308,7 @@ class DBLite:
 class DBshp(DBLite):
     def __init__(self, *args, **kargv):
         DBLite.__init__(
-            self, *args, extensions=['/usr/lib/x86_64-linux-gnu/mod_spatialite.so'], **kargv)
+            self, *args, extensions=['mod_spatialite.so'], **kargv)
 
     def within(self, table, lat, lon, where=None, to_bunch=False, to_tuples=False):
         if not where:
