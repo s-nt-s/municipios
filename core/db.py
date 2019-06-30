@@ -340,10 +340,10 @@ class DBshp(DBLite):
             use_ellipsoid = ", 0"
         else:
             use_ellipsoid=''
-        if not where:
-            where=''
-        else:
+        if where:
             where = "where " + where
+        else:
+            where=''
         table, field = table.rsplit(".", 1)
         sql = '''
             select
