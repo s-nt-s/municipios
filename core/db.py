@@ -333,7 +333,13 @@ class DBshp(DBLite):
         '''.format(table, field, lat, lon, where)
         return self.select(sql, to_bunch=to_bunch, to_tuples=to_tuples)
 
-    def distance(self, table, lat, lon, where=None, to_bunch=False, to_tuples=False):
+    def distance(self, table, lat, lon, where=None, use_ellipsoid=None, to_bunch=False, to_tuples=False):
+        if use_ellipsoid == True:
+            use_ellipsoid = ", 1"
+        elif use_ellipsoid == False:
+            use_ellipsoid = ", 0"
+        else:
+            use_ellipsoid=''
         if not where:
             where=''
         else:
@@ -341,10 +347,10 @@ class DBshp(DBLite):
         table, field = table.rsplit(".", 1)
         sql = '''
             select
-                ST_Distance(GeomFromText('POINT({3} {2})', 4326), {1}, 1)
+                ST_Distance(GeomFromText('POINT({3} {2})', 4326), {1}{5})
             from
                 {0} {4}
-        '''.format(table, field, lat, lon, where)
+        '''.format(table, field, lat, lon, where, use_ellipsoid)
         return self.select(sql, to_bunch=to_bunch, to_tuples=to_tuples)
 
 def parse_wkt(wkt):
