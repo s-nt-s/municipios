@@ -144,7 +144,7 @@ class DBLite:
                 vals.append(v)
         prm = ['?']*len(vals)
         for i, v in enumerate(vals):
-            if isinstance(v, MultiPolygon) or isinstance(v, Polygon) or isinstance(v, Point):
+            if isinstance(v, (MultiPolygon, Polygon, Point)):
                 vals[i] = parse_wkt(vals[i].wkt)
                 prm[i] = 'GeomFromText(?, 4326)'
         sql = "insert into %s (%s) values (%s)" % (
@@ -210,7 +210,7 @@ class DBLite:
             base = os.path.basename(file)
             table, _ = os.path.splitext(base)
         with open(file, "r") as f:
-            for row in csv.DictReader(f, separator=separator):
+            for row in csv.DictReader(f, delimiter=separator):
                 self.insert(table, **row)
         self.commit()
 
@@ -268,7 +268,7 @@ class DBLite:
                     if name not in columns:
                         v = r[i]
                         if v is not None:
-                            if isinstance(v, int) or isinstance(v, bool):
+                            if isinstance(v, (int, bool)):
                                 columns[name] = 'INTEGER'
                             elif isinstance(v, float):
                                 columns[name] = 'REAL'
