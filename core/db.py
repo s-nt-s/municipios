@@ -1,3 +1,5 @@
+import csv
+import math
 import os
 import re
 import sqlite3
@@ -10,11 +12,17 @@ import yaml
 from bunch import Bunch
 from shapely.geometry import MultiPolygon, Point, Polygon, shape
 from shapely.ops import cascaded_union
-import csv
 
 re_select = re.compile(r"^\s*select\b")
 re_sp = re.compile(r"\s+")
 re_largefloat = re.compile("(\d+\.\d+e-\d+)")
+
+
+def not_num(*args):
+    for a in args:
+        if a is None or math.isnan(a) or math.isinf(a):
+            return True
+    return False
 
 
 def plain_parse_col(c):
@@ -31,6 +39,7 @@ def save(file, content):
         with open(file, "w") as f:
             f.write(content)
 
+
 def zipfile(file):
     zip = os.path.splitext(file)[0]+".7z"
     if os.path.isfile(zip):
@@ -38,6 +47,7 @@ def zipfile(file):
     cmd = "7z a %s ./%s" % (zip, file)
     check_call(cmd.split(), stdout=DEVNULL, stderr=STDOUT)
     return size(zip)
+
 
 def size(file, suffix='B'):
     num = os.path.getsize(file)
@@ -56,14 +66,17 @@ class CaseInsensitiveDict(dict):
         return dict.__getitem__(self, key.lower())
 
 
-def build_result(c, to_tuples=False, to_bunch=False):
+def build_result(c, to_tuples=False, to_bunch=False, to_one=False):
     results = c.fetchall()
     if len(results) == 0:
-        return results
+        return None if to_one else results
     if isinstance(results[0], tuple) and len(results[0]) == 1:
-        return [a[0] for a in results]
+        results = [a[0] for a in results]
+        return results[0] if to_one else results
     if to_tuples:
         return results
+    if to_one:
+        return results[0]
     cols = [(i, col[0]) for i, col in enumerate(c.description)]
     n_results = []
     for r in results:
@@ -75,6 +88,7 @@ def build_result(c, to_tuples=False, to_bunch=False):
         n_results.append(d)
     return n_results
 
+
 def get_db(file, *extensions):
     con = sqlite3.connect(file)
     if extensions:
@@ -82,6 +96,7 @@ def get_db(file, *extensions):
         for e in extensions:
             con.load_extension(e)
     return con
+
 
 class DBLite:
     def __init__(self, file, extensions=None, reload=False, parse_col=None):
@@ -149,10 +164,10 @@ class DBLite:
         self.con.commit()
         self.con.close()
 
-    def select(self, sql, to_bunch=False, to_tuples=False):
+    def select(self, sql, **kargv):
         sql = self._build_select(sql)
         self.cursor.execute(sql)
-        r = build_result(self.cursor, to_bunch=to_bunch, to_tuples=to_tuples)
+        r = build_result(self.cursor, **kargv)
         return r
 
     def get_sql_table(self, table):
@@ -213,15 +228,14 @@ class DBLite:
                 f.write("\n")
                 for i, v in row:
                     if v is None:
-                        v=''
-                    elif isinstance(v, float) and int(v)==v:
-                        v=int(v)
-                    row[i]=str(v)
+                        v = ''
+                    elif isinstance(v, float) and int(v) == v:
+                        v = int(v)
+                    row[i] = str(v)
                 f.write(separator.join(row))
         if ext == ".7z":
             zipfile(file)
             os.remove(file)
-
 
     def to_table(self, table, data, *args, **kargv):
         if isinstance(data, str):
@@ -233,7 +247,7 @@ class DBLite:
     def _select_to_table(self, table, select_sql, create=True, to_file=None):
         select_sql = textwrap.dedent(select_sql).strip()
         table = table.upper()
-        sql=''
+        sql = ''
         if create:
             self.cursor.execute(select_sql)
             cols = [col[0] for col in self.cursor.description]
@@ -256,12 +270,13 @@ class DBLite:
             for name in cols:
                 if name not in columns:
                     columns[name] = 'TEXT'
-            sql = "DROP TABLE IF EXISTS {0};\n\nCREATE TABLE {0} (".format(table)
+            sql = "DROP TABLE IF EXISTS {0};\n\nCREATE TABLE {0} (".format(
+                table)
             for name in cols:
                 sql = sql+'\n  "'+name+'" '+columns[name]+","
             sql = sql[:-1]+"\n);\n"
         else:
-            cols=self.tables[table]
+            cols = self.tables[table]
         sql = sql+'INSERT INTO {} ("{}")\n{}'.format(table,
                                                      '", "'.join(cols), select_sql)
         if not sql.endswith(";"):
@@ -269,14 +284,14 @@ class DBLite:
         self.execute(sql, to_file=to_file)
 
     def _dict_to_table(self, table, rows, to_file=None):
-        keys={}
+        keys = {}
         for r in rows:
             for k, v in r.items():
                 if v is not None:
-                    k=self.parse_col(k)
+                    k = self.parse_col(k)
                     vals = keys.get(k, set())
                     vals.add(type(v))
-                    keys[k]=vals
+                    keys[k] = vals
         sql = "DROP TABLE IF EXISTS {0};\n\nCREATE TABLE {0} (".format(table)
         for name, vals in keys.items():
             tp = "TEXT"
@@ -310,15 +325,20 @@ class DBshp(DBLite):
         DBLite.__init__(
             self, *args, extensions=['mod_spatialite.so'], **kargv)
 
-    def within(self, table, lat, lon, where=None, to_bunch=False, to_tuples=False):
+    def within(self, table, lat, lon, geom="geom", where=None, **kargv):
+        if not_num(lat, lon):
+            return None
         if not where:
-            where=''
+            where = ''
         else:
             where = where + " and "
-        table, field = table.rsplit(".", 1)
+        if ".":
+            table, field = table.rsplit(".", 1)
+        else:
+            field = "*"
         sql = '''
             select
-                *
+                {5}
             from
                 {0}
             where {4}
@@ -330,28 +350,52 @@ class DBshp(DBLite):
                     and ymin < {2}
                     and ymax > {2}
                 )
-        '''.format(table, field, lat, lon, where)
-        return self.select(sql, to_bunch=to_bunch, to_tuples=to_tuples)
+        '''.format(table, geom, lat, lon, where, field)
+        return self.select(sql, **kargv)
 
-    def distance(self, table, lat, lon, where=None, use_ellipsoid=None, to_bunch=False, to_tuples=False):
+    def distance(self, table, lat, lon, geom="geom", where=None, use_ellipsoid=None, **kargv):
+        if not_num(lat, lon):
+            return None
         if use_ellipsoid == True:
             use_ellipsoid = ", 1"
         elif use_ellipsoid == False:
             use_ellipsoid = ", 0"
         else:
-            use_ellipsoid=''
+            use_ellipsoid = ''
         if where:
             where = "where " + where
         else:
-            where=''
-        table, field = table.rsplit(".", 1)
+            where = ''
         sql = '''
             select
-                ST_Distance(GeomFromText('POINT({3} {2})', 4326), {1}{5})
+                ST_Distance(GeomFromText('POINT({3} {2})', 4326), {1}{5}) dis
             from
                 {0} {4}
-        '''.format(table, field, lat, lon, where, use_ellipsoid)
-        return self.select(sql, to_bunch=to_bunch, to_tuples=to_tuples)
+        '''.format(table, geom, lat, lon, where, use_ellipsoid)
+        return self.select(sql, **kargv)
+
+    def nearest(self, table, lat, lon, geom="geom", where=None):
+        if not_num(lat, lon):
+            return None
+        if where:
+            where = "where " + where
+        else:
+            where = ''
+        if ".":
+            table, field = table.rsplit(".", 1)
+        else:
+            field = "*"
+        sql = '''
+            select {5} from (
+                select
+                    {5},
+                    ST_Distance(GeomFromText('POINT({3} {2})', 4326), {1}) dis
+                from
+                    {0} {4}
+            ) order by dis asc
+        '''.format(table, geom, lat, lon, where, field)
+        return self.select(sql, to_one=True)
+
 
 def parse_wkt(wkt):
     ori = wkt
