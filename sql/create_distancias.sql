@@ -7,11 +7,11 @@ create table DST_PROVINCIAS (
   FOREIGN KEY(B) REFERENCES PROVINCIAS(ID)
 );
 
-INSERT INTO DST_PROVINCIAS (A, B, crs)
-select
-  A.ID A,
-  B.ID B,
-  ST_Distance(A.geom, B.geom) crs
-from
-  provincias A JOIN provincias B on A.ID>B.ID
-;
+-- INSERT INTO DST_PROVINCIAS (A, B, crs)
+-- select
+--   A.ID A,
+--   B.ID B,
+--   ST_Distance(A.geom, B.geom) crs
+-- from
+--   provincias A JOIN provincias B on A.ID>B.ID
+-- ;
