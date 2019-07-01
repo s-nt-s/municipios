@@ -17,6 +17,13 @@ re_select = re.compile(r"^\s*select\b")
 re_sp = re.compile(r"\s+")
 re_largefloat = re.compile("(\d+\.\d+e-\d+)")
 
+def ResultIter(cursor, size=1000):
+    while True:
+        results = cursor.fetchmany(size)
+        if not results:
+            break
+        for result in results:
+            yield result
 
 def not_num(*args):
     for a in args:
@@ -221,10 +228,11 @@ class DBLite:
         if sorted:
             sql = sql + " order by "+", ".join(head)
         self.cursor.execute(sql)
+        rows = ResultIter(self.cursor, size=10)
         with open(file, "w") as f:
             if head:
                 f.write(head)
-            for row in self.cursor.fetchall():
+            for row in rows:
                 f.write("\n")
                 row=list(row)
                 for i, v in enumerate(row):
