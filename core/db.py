@@ -226,13 +226,16 @@ class DBLite:
                 f.write(head)
             for row in self.cursor.fetchall():
                 f.write("\n")
-                for i, v in row:
+                row=list(row)
+                for i, v in enumerate(row):
                     if v is None:
                         v = ''
                     elif isinstance(v, float) and int(v) == v:
                         v = int(v)
                     row[i] = str(v)
-                f.write(separator.join(row))
+                line = separator.join(row)
+                line = line.rstrip(separator)
+                f.write(line)
         if ext == ".7z":
             zipfile(file)
             os.remove(file)
