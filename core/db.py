@@ -105,10 +105,11 @@ class DBLite:
         if os.path.isfile(sql):
             with open(sql, 'r') as schema:
                 sql = schema.read()
-        save(to_file, sql)
-        self.cursor.executescript(sql)
-        self.con.commit()
-        self.load_tables()
+        if sql.strip():
+            save(to_file, sql)
+            self.cursor.executescript(sql)
+            self.con.commit()
+            self.load_tables()
 
     def load_tables(self):
         self.tables = CaseInsensitiveDict()

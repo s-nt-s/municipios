@@ -42,17 +42,15 @@ def size(*files, suffix='B'):
     return ("%.1f%s%s" % (num, 'Yi', suffix))
 
 
-def get_parts(file, safe=False):
+def get_parts(file):
     arr=[]
     if os.path.isfile(file):
         arr.append(file)
     arr.extend(sorted(glob(file+".*")))
-    if not safe:
-        if len(arr)==0:
-            zip = os.path.splitext(file)[0]+".7z"
-            arr = get_parts(zip, safe=True)
-        if len(arr)==0:
-            raise Exception(file+" doesn't exists")
+    if len(arr)==0:
+        name, ext = os.path.splitext(file)
+        if ext != ".7z":
+            arr = get_parts(name+".7z")
     return arr
 
 def zipfile(file, mb=47, delete=False, only_if_bigger=False):
