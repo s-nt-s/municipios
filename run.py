@@ -28,7 +28,7 @@ def get_cache(file):
         pass
     return {}
 
-def create_distancias(db, table, capas):
+def create_distancias(db, table, capas=None, field="geom"):
     table = table.upper()
     file = "dataset/tablas/DST_%s.csv" % table
     dsts = get_cache(file)
@@ -45,12 +45,18 @@ def create_distancias(db, table, capas):
     sql='''
         select
             A.ID A,
-            B.ID B,
+            B.ID B,'''
+    if field == "geom":
+        sql = sql + '''
             case
                 when Intersects(A.geom, B.geom) = 1 then 0
                 when ST_Touches(A.geom, B.geom) = 1 then 0
                 else null
-            end crs
+            end crs'''
+    else:
+        sql = sql + '''
+            null crs'''
+    sql = sql + '''
         from {0} A JOIN {0} B on A.ID>B.ID
     '''.format(table)
     ab = db.select(sql, to_tuples=True)
@@ -63,10 +69,19 @@ def create_distancias(db, table, capas):
             if crs is None:
                 crs = dsts.get((a,b))
                 if crs is None:
-                    iA = capas[a][0]
-                    iB = capas[b][0]
-                    crs = iA.distance(iB)
-                    #crs = db.select("select ST_Distance(A.geom, B.geom) from provincias A, provincias B where A.ID='%s' and B.ID='%s'" % (a, b), to_one=True)
+                    if capas:
+                        iA = capas[a][0]
+                        iB = capas[b][0]
+                        crs = iA.distance(iB)
+                    else:
+                        crs = db.select('''
+                            select
+                                ST_Distance(A.{1}, B.{1}) crs
+                            from
+                                {0} A, {0} B
+                            where
+                                A.ID='{2}' and B.ID='{3}'
+                            '''.format(table, field, a, b), to_one=True)
                     if int(crs)==crs:
                         crs=int(crs)
             f.write("%s %s %s\n" %(a, b, crs))
@@ -104,7 +119,8 @@ db.execute("sql/base.sql")
 db.to_table("CAMBIOS", dataset.cambios, to_file="sql/CAMBIOS.sql")
 insert(db, "provincias", dataset.provincias)
 insert(db, "municipios", dataset.municipios)
-create_distancias(db, "provincias", dataset.provincias)
+create_distancias(db, "provincias", capas=dataset.provincias, field="geom")
+create_distancias(db, "municipios", field="point")
 dataset.populate_datamun(db)
 
 db.commit()
