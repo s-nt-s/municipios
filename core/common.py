@@ -18,19 +18,62 @@ import yaml
 from bs4 import BeautifulSoup
 from bunch import Bunch
 from unidecode import unidecode
-
-try:
-    from .mdb_to_sqlite import mdb_to_sqlite
-except:
-    from mdb_to_sqlite import mdb_to_sqlite
+from subprocess import DEVNULL, STDOUT, check_call
+import ntpath
+import sys
+from .mdb_to_sqlite import mdb_to_sqlite
 
 urllib3.disable_warnings()
 
 re_entero = re.compile(r"^\d+(\.0+)?$")
 re_float = re.compile(r"^\d+\.\d+$")
+aemet_key = None
+with open("fuentes/aemet.key") as f:
+    aemet_key = f.read().strip()
 
+def size(*files, suffix='B'):
+    num = 0
+    for file in files:
+        num = num + os.path.getsize(file)
+    for unit in ('', 'K', 'M', 'G', 'T', 'P', 'E', 'Z'):
+        if abs(num) < 1024.0:
+            return ("%3.1f%s%s" % (num, unit, suffix))
+        num /= 1024.0
+    return ("%.1f%s%s" % (num, 'Yi', suffix))
+
+
+def get_parts(file, safe=False):
+    arr=[]
+    if os.path.isfile(file):
+        arr.append(file)
+    arr.extend(sorted(glob(file+".*")))
+    if not safe:
+        if len(arr)==0:
+            zip = os.path.splitext(file)[0]+".7z"
+            arr = get_parts(zip, safe=True)
+        if len(arr)==0:
+            raise Exception(file+" doesn't exists")
+    return arr
+
+def zipfile(file, mb=47, delete=False, only_if_bigger=False):
+    if only_if_bigger == True:
+        only_if_bigger=mb
+    if only_if_bigger and (only_if_bigger*1024*1024)>os.path.getsize(file):
+        return
+    zip = os.path.splitext(file)[0]+".7z"
+    for z in get_parts(zip):
+        os.remove(z)
+    cmd = ["7z", "a", zip, "./"+file, "-v%sm" % mb]
+    check_call(cmd, stdout=DEVNULL, stderr=STDOUT)
+    if delete:
+        os.remove(file)
+    files = get_parts(zip)
+    return size(*files)
 
 def save(file, content):
+    if file.endswith("inventarioestaciones/todasestaciones.json"):
+        content = content.decode('iso-8859-1')
+        content = str.encode(content)
     dir = os.path.dirname(file)
     os.makedirs(dir, exist_ok=True)
     with open(file, "wb") as f:
@@ -134,7 +177,7 @@ def get_yml(yml_file, **kargv):
             yield Bunch(i)
 
 
-def readlines(file, fields=None, name=None):
+def readcontent(file, name=None):
     if os.path.isfile(file):
         if file.endswith(".7z"):
             with open(file, "rb") as f:
@@ -143,19 +186,19 @@ def readlines(file, fields=None, name=None):
                     name = f7z.getnames()[0]
                 txt = f7z.getmember(name)
                 for l in io.StringIO(txt.read().decode()):
-                    l = l.strip()
-                    if l and not l.startswith("#"):
-                        if fields:
-                            l = l.split(None, fields)
-                        yield l
+                    yield l
         else:
             with open(file, "r") as f:
                 for l in f.readlines():
-                    l = l.strip()
-                    if l and not l.startswith("#"):
-                        if fields:
-                            l = l.split(None, fields)
-                        yield l
+                    yield l
+
+def readlines(file, fields=None, name=None):
+    for l in readcontent(file, name=name):
+        l = l.strip()
+        if l and not l.startswith("#"):
+            if fields:
+                l = l.split(None, fields)
+            yield l
 
 def parse_cell(c):
     if isinstance(c, str):
@@ -275,8 +318,14 @@ def read_js(file, intKey=False):
 
 
 def _js(url):
+    is_aemet = url.startswith("https://opendata.aemet.es/opendata/api/")
+    if is_aemet and aemet_key not in url and url.endswith("="):
+        url = url + aemet_key
     r = requests.get(url, verify=False)
     j = r.json()
+    if is_aemet and "datos" in j:
+        r = requests.get(j["datos"], verify=False)
+        j = r.json()
     if "status" in j:
         time.sleep(60)
         return _js(url)
@@ -304,6 +353,8 @@ def get_root_file(dom):
         return "ine"
     if dom == "datos.gob.es":
         return "datos_gob"
+    if dom == "opendata.aemet.es":
+        return "aemet"
     return "otros"
 
 
@@ -314,6 +365,10 @@ def get_js(url):
         return j
     r = _js(url)
     print(url, "-->", file)
+    #print(r.encoding)
+    #print(r.apparent_encoding)
+    #print(type(r.content))
+    #apple.decode('iso-8859-1').encode('utf8')
     save(file, r.content)
     return r.json()
 
@@ -329,6 +384,7 @@ def url_to_file(url, ext):
             file = root+query["Fichero"][0].replace("\\", "/")
     else:
         for u in (
+            "https://opendata.aemet.es/opendata/api/",
             "https://sede.sepe.gob.es/es/",
             "http://servicios.ine.es/wstempus/js/es/",
             "http://www.ine.es/jaxiT3/files/t/es/",
@@ -344,6 +400,8 @@ def url_to_file(url, ext):
     file = file.split("?", 1)[0]
     file = file.replace("//", "/")
     file = "fuentes/" + file
+    if file.endswith("/"):
+        file = file[:-1]
     if not file.endswith(ext):
         file = file + ext
     return file
@@ -401,3 +459,14 @@ def get_cols(*args, kSort=None):
     if kSort:
         return sorted(cols, key=kSort)
     return sorted(cols)
+
+
+def sexa_to_dec(i):
+    g = i[0:2]
+    m = i[2:4]
+    s = i[4:6]
+    o = i[-1]
+    d = int(g) + (int(m) / 60) + (int(s) / 3600)
+    if o in ("S", "W"):
+        return -d
+    return d

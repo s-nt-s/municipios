@@ -12,6 +12,7 @@ import yaml
 from bunch import Bunch
 from shapely.geometry import MultiPolygon, Point, Polygon, shape
 from shapely.ops import cascaded_union
+from .common import size, zipfile
 
 re_select = re.compile(r"^\s*select\b")
 re_sp = re.compile(r"\s+")
@@ -45,24 +46,6 @@ def save(file, content):
         content = textwrap.dedent(content).strip()
         with open(file, "w") as f:
             f.write(content)
-
-
-def zipfile(file):
-    zip = os.path.splitext(file)[0]+".7z"
-    if os.path.isfile(zip):
-        os.remove(zip)
-    cmd = "7z a %s ./%s" % (zip, file)
-    check_call(cmd.split(), stdout=DEVNULL, stderr=STDOUT)
-    return size(zip)
-
-
-def size(file, suffix='B'):
-    num = os.path.getsize(file)
-    for unit in ('', 'K', 'M', 'G', 'T', 'P', 'E', 'Z'):
-        if abs(num) < 1024.0:
-            return ("%3.1f%s%s" % (num, unit, suffix))
-        num /= 1024.0
-    return ("%.1f%s%s" % (num, 'Yi', suffix))
 
 
 class CaseInsensitiveDict(dict):

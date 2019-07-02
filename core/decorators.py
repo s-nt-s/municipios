@@ -1,9 +1,5 @@
 import functools
-
-try:
-    from .common import *
-except:
-    from common import *
+from .common import *
 
 
 class Cache:
@@ -40,13 +36,13 @@ class Cache:
         self.func = func
         return lambda *args, **kargs: self.callCache(*args, **kargs)
 
-
 class JsonCache(Cache):
-    def __init__(self, *args, **kargv):
+    def __init__(self, *args, intKey=True, **kargv):
         Cache.__init__(self, *args, **kargv)
+        self.intKey=intKey
 
     def read(self):
-        return read_js(self.file, intKey=True)
+        return read_js(self.file, intKey=self.intKey)
 
     def save(self, data):
         save_js(self.file, data)

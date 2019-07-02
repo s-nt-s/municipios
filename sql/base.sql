@@ -12,8 +12,6 @@ SELECT AddGeometryColumn('MUNICIPIOS', 'geom', 4326, 'MULTIPOLYGON', 2);
 SELECT CreateSpatialIndex('MUNICIPIOS', 'geom');
 SELECT AddGeometryColumn('MUNICIPIOS', 'point', 4326, 'POINT', 2);
 SELECT CreateSpatialIndex('MUNICIPIOS', 'point');
---SELECT AddGeometryColumn('MUNICIPIOS', 'main_geom', 4326, 'POLYGON', 2);
---SELECT CreateSpatialIndex('MUNICIPIOS', 'main_geom');
 
 create table PROVINCIAS (
   ID TEXT,
@@ -25,5 +23,14 @@ SELECT AddGeometryColumn('PROVINCIAS', 'geom', 4326, 'MULTIPOLYGON', 2);
 SELECT CreateSpatialIndex('PROVINCIAS', 'geom');
 SELECT AddGeometryColumn('PROVINCIAS', 'point', 4326, 'POINT', 2);
 SELECT CreateSpatialIndex('PROVINCIAS', 'point');
---SELECT AddGeometryColumn('PROVINCIAS', 'main_geom', 4326, 'POLYGON', 2);
---SELECT CreateSpatialIndex('PROVINCIAS', 'main_geom');
+
+create table AEMET_BASES (
+  ID TEXT,
+  provincia TEXT,
+  nombre TEXT,
+  indsinop TEXT,
+  PRIMARY KEY (ID),
+  FOREIGN KEY(provincia) REFERENCES PROVINCIAS(ID)
+);
+SELECT AddGeometryColumn('AEMET_BASES', 'point', 4326, 'POINT', 2);
+SELECT CreateSpatialIndex('AEMET_BASES', 'point');

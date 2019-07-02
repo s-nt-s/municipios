@@ -11,22 +11,9 @@ from bs4 import BeautifulSoup
 from bunch import Bunch
 from shapely.geometry import MultiPolygon, Point, Polygon, shape
 from shapely.ops import cascaded_union
-
-try:
-    from .common import *
-except:
-    from common import *
-
-
-try:
-    from .decorators import JsonCache, KmCache
-except:
-    from decorators import JsonCache, KmCache
-
-try:
-    from .provincias import *
-except:
-    from provincias import *
+from .common import *
+from .decorators import JsonCache, KmCache
+from .provincias import *
 
 me = os.path.realpath(__file__)
 dr = os.path.dirname(me)
@@ -471,6 +458,21 @@ class Dataset():
                     dist[(a, b)] = km
         return dist
 
+    @JsonCache(file="dataset/aemet/bases.json", intKey=False)
+    def create_aemet_bases(self):
+        bases=get_js(self.fuentes.aemet.estaciones)
+        for b in bases:
+            b["latitud"]=sexa_to_dec(b["latitud"])
+            b["longitud"]=sexa_to_dec(b["longitud"])
+            b["provincia"] = prov_to_cod(b["provincia"])
+        return bases
+
+    @property
+    @lru_cache(maxsize=None)
+    def aemet_bases(self):
+        bases=self.create_aemet_bases()
+        return bases
+
     @lru_cache(maxsize=None)
     def distancias(self, lcod):
         distancias = self.create_distancias()
@@ -754,7 +756,13 @@ class Dataset():
                 data[c.cod] = st
         return data
 
+
     def populate_datamun(self, db, reload=False):
+        for b in self.aemet_bases:
+            b["point"]=Point(b["longitud"], b["latitud"])
+            b["ID"]=b["indicativo"]
+            db.insert("AEMET_BASES", **b)
+        db.commit()
         pop_rows = {}
         for year, dtY in self.parseData(self.meta_edades).items():
             for mun, dt in dtY.items():
