@@ -4,7 +4,7 @@ import os
 import re
 import sqlite3
 import time
-import zipfile
+import zipfile as zipfilelib
 from glob import glob, iglob
 from io import BytesIO
 from urllib.parse import parse_qs, urljoin, urlparse
@@ -25,11 +25,15 @@ from .mdb_to_sqlite import mdb_to_sqlite
 
 urllib3.disable_warnings()
 
+def readfile(file):
+    if os.path.isfile(file):
+        with open(file) as f:
+            return f.read().strip()
+
+
 re_entero = re.compile(r"^\d+(\.0+)?$")
 re_float = re.compile(r"^\d+\.\d+$")
-aemet_key = None
-with open("fuentes/aemet.key") as f:
-    aemet_key = f.read().strip()
+aemet_key = readfile("fuentes/aemet.key")
 
 def size(*files, suffix='B'):
     num = 0
@@ -54,6 +58,8 @@ def get_parts(file):
     return arr
 
 def zipfile(file, mb=47, delete=False, only_if_bigger=False):
+    if mb is None:
+        mb = 47
     if only_if_bigger == True:
         only_if_bigger=mb
     if only_if_bigger and (only_if_bigger*1024*1024)>os.path.getsize(file):
@@ -154,7 +160,7 @@ def unzip(target, *urls):
         print(url, "-->", target)
         response = requests.get(url, verify=False)
         filehandle = BytesIO(response.content)
-        with zipfile.ZipFile(filehandle, 'r') as zip:
+        with zipfilelib.ZipFile(filehandle, 'r') as zip:
             zip.extractall(target)
     mdbs = set()
     for e in ("mdb", "accdb"):

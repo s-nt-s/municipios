@@ -30,11 +30,10 @@ def load_csv(db, table, insert):
         return
     print("Creando ", file)
     db.execute(insert)
-    db.save_csv(file, separator=" ")
-    zipfile(file, only_if_bigger=True, delete=True)
+    db.save_csv(file, separator=" ", mb=47)
 
 def _setKm(db, j1, j2, min_km, max_km=None, step=5):
-    if not j1.files:
+    if j1.empty:
         print("Creando ", j1.fullname)
         crs=[]
         for r in range(1, (min_km*2)+4, 3):
@@ -62,31 +61,28 @@ def _setKm(db, j1, j2, min_km, max_km=None, step=5):
         for km, crs in zip(kms, f(kms)):
             db.insert("CRS_KM", crs=crs, km=km)
         db.commit()
+        db.save_csv(j1.fullname, separator=" ", mb=47)
 
-        db.save_csv(j1.fullname, separator=" ")
-        zipfile(j1.fullname, only_if_bigger=True, delete=True)
-
-    if not j2.files:
+    if j1.empty or j2.empty:
         print("Creando ", j2.fullname)
         db.execute("sql/AREA_INFLUENCIA.sql")
-        db.save_csv(j2.fullname, separator=" ")
-        zipfile(j2.fullname, only_if_bigger=True, delete=True)
+        db.save_csv(j2.fullname, separator=" ", mb=47)
 
 def setKm(db):
     file1 = "dataset/tablas/CRS_KM.csv"
     file2 = "dataset/tablas/AREA_INFLUENCIA.csv"
     j1 = jFile(file1)
     j2 = jFile(file2)
-    if j1.files and j2.files:
+    if not j1.empty:
         print("Cargando", file1)
         for item in j1.items():
             db.insert("CRS_KM", **item)
         j1.close()
+    if not j1.empty and not j2.empty:
         print("Cargando", file2)
         for item in j2.items():
             db.insert("AREA_INFLUENCIA", **item)
         j1.close()
-        return
     _setKm(db, j1, j2, 50, max_km=50)
 
 

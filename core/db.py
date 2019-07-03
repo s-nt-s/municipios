@@ -199,7 +199,7 @@ class DBLite:
                 self.insert(table, **row)
         self.commit()
 
-    def save_csv(self, file, sql=None, separator=",", sorted=False):
+    def save_csv(self, file, sql=None, separator=",", sorted=False, mb=None):
         name, ext = os.path.splitext(file)
         if ext == ".7z":
             file = name+".csv"
@@ -229,9 +229,8 @@ class DBLite:
                 line = separator.join(row)
                 line = line.rstrip(separator)
                 f.write(line)
-        if ext == ".7z":
-            zipfile(file)
-            os.remove(file)
+        if ext == ".7z" or mb:
+            zipfile(file, only_if_bigger=(ext != ".7z"), delete=True, mb=mb)
 
     def to_table(self, table, data, *args, **kargv):
         if isinstance(data, str):
