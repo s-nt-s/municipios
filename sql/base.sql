@@ -34,3 +34,19 @@ create table AEMET_BASES (
 );
 SELECT AddGeometryColumn('AEMET_BASES', 'point', 4326, 'POINT', 2);
 SELECT CreateSpatialIndex('AEMET_BASES', 'point');
+
+create table CRS_KM (
+  crs REAL,
+  km INTEGER,
+  PRIMARY KEY (crs, km)
+);
+
+create table AREA_INFLUENCIA (
+  A TEXT,
+  B TEXT,
+  km INTEGER,
+  factor REAL,
+  PRIMARY KEY (A, B, km),
+  FOREIGN KEY(A) REFERENCES MUNICIPIOS(ID),
+  FOREIGN KEY(B) REFERENCES MUNICIPIOS(ID)
+);

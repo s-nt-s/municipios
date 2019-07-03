@@ -98,6 +98,7 @@ class DBLite:
         self.cursor = self.con.cursor()
         #self.cursor.execute('pragma foreign_keys = on')
         self.tables = None
+        self.srid = None
         self.parse_col = parse_col if parse_col is not None else lambda x: x
         self.load_tables()
 
@@ -130,7 +131,7 @@ class DBLite:
         for i, v in enumerate(vals):
             if isinstance(v, (MultiPolygon, Polygon, Point)):
                 vals[i] = parse_wkt(vals[i].wkt)
-                prm[i] = 'GeomFromText(?, 4326)'
+                prm[i] = 'GeomFromText(?, %s)' % self.srid
         sql = "insert into %s (%s) values (%s)" % (
             table, ', '.join(keys), ', '.join(prm))
         self.cursor.execute(sql, vals)
@@ -316,9 +317,10 @@ class DBLite:
 
 
 class DBshp(DBLite):
-    def __init__(self, *args, **kargv):
+    def __init__(self, *args, srid=4326, **kargv):
         DBLite.__init__(
             self, *args, extensions=['mod_spatialite.so'], **kargv)
+        self.srid = srid
 
     def within(self, table, lat, lon, geom="geom", where=None, **kargv):
         if not_num(lat, lon):
@@ -337,7 +339,7 @@ class DBshp(DBLite):
             from
                 {0}
             where {4}
-                within(GeomFromText('POINT({3} {2})'), {1})
+                within(GeomFromText('POINT({3} {2})', {5}), {1})
                 and rowid in (
                     SELECT pkid FROM idx_{0}_geom
                     where xmin < {3}
@@ -345,7 +347,7 @@ class DBshp(DBLite):
                     and ymin < {2}
                     and ymax > {2}
                 )
-        '''.format(table, geom, lat, lon, where, field)
+        '''.format(table, geom, lat, lon, where, field, self.srid)
         return self.select(sql, **kargv)
 
     def distance(self, table, lat, lon, geom="geom", where=None, use_ellipsoid=None, **kargv):
@@ -363,10 +365,10 @@ class DBshp(DBLite):
             where = ''
         sql = '''
             select
-                ST_Distance(GeomFromText('POINT({3} {2})', 4326), {1}{5}) dis
+                ST_Distance(GeomFromText('POINT({3} {2})', {6}), {1}{5}) dis
             from
                 {0} {4}
-        '''.format(table, geom, lat, lon, where, use_ellipsoid)
+        '''.format(table, geom, lat, lon, where, use_ellipsoid, self.srid)
         return self.select(sql, **kargv)
 
     def nearest(self, table, lat, lon, geom="geom", where=None):
@@ -384,11 +386,11 @@ class DBshp(DBLite):
             select {5} from (
                 select
                     {5},
-                    ST_Distance(GeomFromText('POINT({3} {2})', 4326), {1}) dis
+                    ST_Distance(GeomFromText('POINT({3} {2})', {6}), {1}) dis
                 from
                     {0} {4}
             ) order by dis asc
-        '''.format(table, geom, lat, lon, where, field)
+        '''.format(table, geom, lat, lon, where, field, self.srid)
         return self.select(sql, to_one=True)
 
 

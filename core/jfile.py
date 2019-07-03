@@ -13,6 +13,7 @@ re_chomp=re.compile(r"[\n\r]+$")
 
 class jFile:
     def __init__(self, file, auto_close=True):
+        self.fullname = file
         self.files=get_parts(file)
         self.path = os.path.dirname(file)
         self.file = ntpath.basename(file)
