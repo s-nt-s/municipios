@@ -494,6 +494,9 @@ class Dataset():
                     for k, v in d.items():
                         if k not in del_key:
                             o[k]=to_num(v, coma=True)
+                    l_keys = len(o.keys())
+                    if l_keys == 0 or (l_keys==1 and "fecha" in o):
+                        continue
                     items.append(o)
         return items
 
@@ -501,7 +504,7 @@ class Dataset():
     def get_mes_estacion(self, id):
         del_key = ("nombre", "provincia", "indicativo", "altitud")
         items=[]
-        for y in (1972, cYear):
+        for y in range(1972, cYear):
             url = self.fuentes.aemet.estacion.mensual.format(id=id, ini=y)
             data = get_js(url)
             if isinstance(data, list):
@@ -510,6 +513,9 @@ class Dataset():
                     for k, v in d.items():
                         if k not in del_key:
                             o[k]=to_num(v)
+                    l_keys = len(o.keys())
+                    if l_keys == 0 or (l_keys==1 and "fecha" in o):
+                        continue
                     items.append(o)
         return items
 

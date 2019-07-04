@@ -337,19 +337,28 @@ def read_js(file, intKey=False):
             return js
     return None
 
+def requests_js(url):
+    try:
+        r = requests.get(url, verify=False)
+        j = r.json()
+        return r, j
+    except:
+        time.sleep(61)
+        return requests_js(url)
 
 def _js(url):
     is_aemet = url.startswith("https://opendata.aemet.es/opendata/api/")
     if is_aemet and aemet_key not in url and url.endswith("="):
         url = url + aemet_key
-    r = requests.get(url, verify=False)
-    j = r.json()
+    r, j = requests_js(url)
+    if is_aemet and j.get("estado") == 429:
+        time.sleep(61)
+        return _js(url)
     if is_aemet and "datos" in j:
         print(j["datos"])
-        r = requests.get(j["datos"], verify=False)
-        j = r.json()
+        r, j = requests_js(j["datos"])
     if "status" in j:
-        time.sleep(60)
+        time.sleep(61)
         return _js(url)
     return r
 
