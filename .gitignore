@@ -9,6 +9,7 @@ debug/*
 *.db
 *.db-journal
 *.7z
+debug.py
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

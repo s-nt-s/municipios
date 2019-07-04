@@ -16,11 +16,11 @@ class Cache:
 
     def callCache(self, slf, *args, **kargs):
         if not self.isReload(slf):
-            data = self.read()
+            data = self.read(*args, **kargs)
             if data:
                 return data
         data = self.func(slf, *args, **kargs)
-        self.save(data)
+        self.save(data, *args, **kargs)
         return data
 
     def isReload(self, slf):
@@ -41,24 +41,35 @@ class JsonCache(Cache):
         Cache.__init__(self, *args, **kargv)
         self.intKey=intKey
 
-    def read(self):
+    def read(self, *args, **kargs):
         return read_js(self.file, intKey=self.intKey)
 
-    def save(self, data):
+    def save(self, data, *args, **kargs):
         save_js(self.file, data)
 
+class ParamJsonCache(JsonCache):
+    def __init__(self, *args, **kargv):
+        JsonCache.__init__(self, *args, **kargv)
+
+    def read(self, *args, **kargs):
+        f = self.file.format(*args, **kargs)
+        return read_js(f, intKey=self.intKey)
+
+    def save(self, data, *args, **kargs):
+        f = self.file.format(*args, *kargs)
+        save_js(f, data)
 
 class KmCache(Cache):
     def __init__(self, *args, **kargv):
         Cache.__init__(self, *args, **kargv)
 
-    def read(self):
+    def read(self, *args, **kargs):
         data = {}
         for a, b, km in readlines(self.file, fields=3):
             data[(a, b)] = float(km)
         return data
 
-    def save(self, data):
+    def save(self, data, *args, **kargs):
         with open(self.file, "w") as f:
             for key, val in sorted(data.items()):
                 if int(km) == km:

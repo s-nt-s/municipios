@@ -2,6 +2,7 @@ import os
 import re
 from functools import lru_cache
 
+from datetime import datetime, date
 import requests
 import shapefile
 import urllib3
@@ -12,12 +13,15 @@ from bunch import Bunch
 from shapely.geometry import MultiPolygon, Point, Polygon, shape
 from shapely.ops import cascaded_union
 from .common import *
-from .decorators import JsonCache, KmCache
+from .decorators import JsonCache, KmCache, ParamJsonCache
 from .provincias import *
 
 me = os.path.realpath(__file__)
 dr = os.path.dirname(me)
 re_nb = re.compile(r"(\d+)")
+re_ft = re.compile(r"^-?\d+(,\d+)?$")
+
+cYear = datetime.now().year
 
 
 def insert(db, table, rows, kSort=None):
@@ -465,7 +469,53 @@ class Dataset():
             b["latitud"]=sexa_to_dec(b["latitud"])
             b["longitud"]=sexa_to_dec(b["longitud"])
             b["provincia"] = prov_to_cod(b["provincia"])
+            altitud = b.get("altitud")
+            if altitud:
+                b["altitud"] = float(altitud)
+                if int(altitud)==altitud:
+                    b["altitud"] = int(altitud)
         return bases
+
+    @ParamJsonCache(file="dataset/aemet/diarios/{}.json", intKey=False)
+    def get_dia_estacion(self, id):
+        del_key = ("nombre", "provincia", "indicativo", "altitud")
+        items=[]
+        y = 1972 - 1
+        while y < cYear:
+            y = y + 1
+            fin = min(y+4, cYear)
+            a = date(y, 1, 1)
+            b = date(fin,12,31)
+            bi = (a-b).days % 365
+            if bi > 1:
+                fin = fin - 1
+            url = self.fuentes.aemet.estacion.diario.format(id=id, ini=y, fin=fin)
+            data = get_js(url)
+            if isinstance(data, list):
+                y = fin
+                for d in data:
+                    o={}
+                    for k, v in d.items():
+                        if k not in del_key:
+                            o[k]=to_num(v, coma=True)
+                    items.append(o)
+        return items
+
+    @ParamJsonCache(file="dataset/aemet/mensual/{}.json", intKey=False)
+    def get_mes_estacion(self, id):
+        del_key = ("nombre", "provincia", "indicativo", "altitud")
+        items=[]
+        for y in (1972, cYear):
+            url = self.fuentes.aemet.estacion.mensual.format(id=id, ini=y)
+            data = get_js(url)
+            if isinstance(data, list):
+                for d in data:
+                    o={}
+                    for k, v in d.items():
+                        if k not in del_key:
+                            o[k]=to_num(v)
+                    items.append(o)
+        return items
 
     @property
     @lru_cache(maxsize=None)

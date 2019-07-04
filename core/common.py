@@ -35,6 +35,23 @@ re_entero = re.compile(r"^\d+(\.0+)?$")
 re_float = re.compile(r"^\d+\.\d+$")
 aemet_key = readfile("fuentes/aemet.key")
 
+
+def to_num(st, coma=False):
+    s = st.strip() if st else None
+    if s is None:
+        return None
+    try:
+        if coma:
+            s = s.replace(".", "")
+            s = s.replace(",", ".")
+        s = float(s)
+        if int(s)==s:
+            s = int(s)
+        return s
+    except:
+        pass
+    return st
+
 def size(*files, suffix='B'):
     num = 0
     for file in files:
@@ -75,7 +92,7 @@ def zipfile(file, mb=47, delete=False, only_if_bigger=False):
     return size(*files)
 
 def save(file, content):
-    if file.endswith("inventarioestaciones/todasestaciones.json"):
+    if file.endswith("inventarioestaciones/todasestaciones.json") or file.startswith("fuentes/aemet/diarios/"):
         content = content.decode('iso-8859-1')
         content = str.encode(content)
     dir = os.path.dirname(file)
@@ -328,6 +345,7 @@ def _js(url):
     r = requests.get(url, verify=False)
     j = r.json()
     if is_aemet and "datos" in j:
+        print(j["datos"])
         r = requests.get(j["datos"], verify=False)
         j = r.json()
     if "status" in j:
@@ -376,13 +394,18 @@ def get_js(url):
     save(file, r.content)
     return r.json()
 
+re_clima = re.compile(r"https://opendata.aemet.es/opendata/api/valores/climatologicos/([^/]+)/datos/fechaini/(\d+)-01-01T00:00:00UTC/fechafin/(\d+)-12-31T23:59:59UTC/estacion/([^/]+)/.*")
 
 def url_to_file(url, ext):
     file = None
     parsed_url = urlparse(url)
     root = get_root_file(parsed_url.netloc) + "/"
 
-    if url.startswith("https://administracionelectronica.navarra.es/GN.InstitutoEstadistica.Web/DescargaFichero.aspx"):
+    m = re_clima.match(url)
+    if m:
+        tp, ini, fin, id = m.groups()
+        file = root + "%s/%s/%s-%s.json" % (tp, id, ini, fin)
+    elif url.startswith("https://administracionelectronica.navarra.es/GN.InstitutoEstadistica.Web/DescargaFichero.aspx"):
         query = parse_qs(parsed_url.query)
         if query and "Fichero" in query:
             file = root+query["Fichero"][0].replace("\\", "/")

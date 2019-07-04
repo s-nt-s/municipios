@@ -40,3 +40,6 @@ miteco:
 aemet:
   root: https://opendata.aemet.es/centrodedescargas/productosAEMET
   estaciones: https://opendata.aemet.es/opendata/api/valores/climatologicos/inventarioestaciones/todasestaciones/?api_key=
+  estacion:
+    diario: https://opendata.aemet.es/opendata/api/valores/climatologicos/diarios/datos/fechaini/{ini}-01-01T00:00:00UTC/fechafin/{fin}-12-31T23:59:59UTC/estacion/{id}/?api_key=
+    mensual: https://opendata.aemet.es/opendata/api/valores/climatologicos/mensualesanuales/datos/anioini/{ini}/aniofin/{ini}/estacion/{id}/?api_key=
