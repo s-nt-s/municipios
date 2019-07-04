@@ -469,11 +469,7 @@ class Dataset():
             b["latitud"]=sexa_to_dec(b["latitud"])
             b["longitud"]=sexa_to_dec(b["longitud"])
             b["provincia"] = prov_to_cod(b["provincia"])
-            altitud = b.get("altitud")
-            if altitud:
-                b["altitud"] = float(altitud)
-                if int(altitud)==altitud:
-                    b["altitud"] = int(altitud)
+            b["altitud"] = to_num(b.get("altitud"))
         return bases
 
     @ParamJsonCache(file="dataset/aemet/diarios/{}.json", intKey=False)

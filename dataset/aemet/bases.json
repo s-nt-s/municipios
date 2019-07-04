@@ -2,7 +2,7 @@
     {
         "latitud": 43.30694444444444,
         "provincia": "15",
-        "altitud": "98",
+        "altitud": 98,
         "indicativo": "1387E",
         "nombre": "A CORU\u00d1A AEROPUERTO",
         "indsinop": "08002",
@@ -11,7 +11,7 @@
     {
         "latitud": 43.365833333333335,
         "provincia": "15",
-        "altitud": "58",
+        "altitud": 58,
         "indicativo": "1387",
         "nombre": "A CORU\u00d1A",
         "indsinop": "08001",
@@ -20,7 +20,7 @@
     {
         "latitud": 43.160555555555554,
         "provincia": "15",
-        "altitud": "50",
+        "altitud": 50,
         "indicativo": "1393",
         "nombre": "CABO VILAN",
         "indsinop": "08006",
@@ -29,7 +29,7 @@
     {
         "latitud": 43.78611111111111,
         "provincia": "15",
-        "altitud": "80",
+        "altitud": 80,
         "indicativo": "1351",
         "nombre": "ESTACA DE BARES",
         "indsinop": "08004",
@@ -38,7 +38,7 @@
     {
         "latitud": 42.92472222222222,
         "provincia": "15",
-        "altitud": "230",
+        "altitud": 230,
         "indicativo": "1400",
         "nombre": "FISTERRA",
         "indsinop": "08040",
@@ -47,7 +47,7 @@
     {
         "latitud": 42.720555555555556,
         "provincia": "15",
-        "altitud": "685",
+        "altitud": 685,
         "indicativo": "1437O",
         "nombre": "MONTE IROITE",
         "indsinop": "08043",
@@ -56,7 +56,7 @@
     {
         "latitud": 42.73833333333334,
         "provincia": "15",
-        "altitud": "100",
+        "altitud": 100,
         "indicativo": "1473A",
         "nombre": "PADR\u00d3N",
         "indsinop": "08039",
@@ -65,7 +65,7 @@
     {
         "latitud": 42.88805555555555,
         "provincia": "15",
-        "altitud": "370",
+        "altitud": 370,
         "indicativo": "1428",
         "nombre": "SANTIAGO DE COMPOSTELA AEROPUERTO",
         "indsinop": "08042",
@@ -74,7 +74,7 @@
     {
         "latitud": 42.876111111111115,
         "provincia": "15",
-        "altitud": "240",
+        "altitud": 240,
         "indicativo": "1475X",
         "nombre": "SANTIAGO DE COMPOSTELA",
         "indsinop": "08041",
@@ -83,7 +83,7 @@
     {
         "latitud": 38.95416666666667,
         "provincia": "02",
-        "altitud": "702",
+        "altitud": 702,
         "indicativo": "8175",
         "nombre": "ALBACETE BASE A\u00c9REA",
         "indsinop": "08280",
@@ -92,7 +92,7 @@
     {
         "latitud": 39.00555555555555,
         "provincia": "02",
-        "altitud": "676",
+        "altitud": 676,
         "indicativo": "8178D",
         "nombre": "ALBACETE",
         "indsinop": "08279",
@@ -101,7 +101,7 @@
     {
         "latitud": 38.93583333333333,
         "provincia": "02",
-        "altitud": "880",
+        "altitud": 880,
         "indicativo": "8177A",
         "nombre": "CHINCHILLA",
         "indsinop": "08278",
@@ -110,7 +110,7 @@
     {
         "latitud": 38.54194444444444,
         "provincia": "02",
-        "altitud": "646",
+        "altitud": 646,
         "indicativo": "7096B",
         "nombre": "HELL\u00cdN",
         "indsinop": "08355",
@@ -119,7 +119,7 @@
     {
         "latitud": 38.3725,
         "provincia": "03",
-        "altitud": "81",
+        "altitud": 81,
         "indicativo": "8025",
         "nombre": "ALICANTE/ALACANT",
         "indsinop": "08359",
@@ -128,7 +128,7 @@
     {
         "latitud": 38.282777777777774,
         "provincia": "03",
-        "altitud": "43",
+        "altitud": 43,
         "indicativo": "8019",
         "nombre": "ALICANTE-ELCHE AEROPUERTO",
         "indsinop": "08360",
@@ -137,7 +137,7 @@
     {
         "latitud": 38.78361111111111,
         "provincia": "03",
-        "altitud": "15",
+        "altitud": 15,
         "indicativo": "8050X",
         "nombre": "J\u00c1VEA/ X\u00c0BIA",
         "indsinop": "08370",
@@ -146,7 +146,7 @@
     {
         "latitud": 38.39972222222222,
         "provincia": "03",
-        "altitud": "575",
+        "altitud": 575,
         "indicativo": "7247X",
         "nombre": "PINOSO ",
         "indsinop": "08357",
@@ -155,7 +155,7 @@
     {
         "latitud": 37.14138888888889,
         "provincia": "04",
-        "altitud": "869",
+        "altitud": 869,
         "indicativo": "6302A",
         "nombre": "ABLA",
         "indsinop": "08427",
@@ -164,7 +164,7 @@
     {
         "latitud": 36.74722222222222,
         "provincia": "04",
-        "altitud": "8",
+        "altitud": 8,
         "indicativo": "6277B",
         "nombre": "ADRA",
         "indsinop": "08486",
@@ -173,7 +173,7 @@
     {
         "latitud": 35.93833333333333,
         "provincia": "04",
-        "altitud": "15",
+        "altitud": 15,
         "indicativo": "6381",
         "nombre": "ALBOR\u00c1N",
         "indsinop": "08490",
@@ -182,7 +182,7 @@
     {
         "latitud": 36.84638888888889,
         "provincia": "04",
-        "altitud": "21",
+        "altitud": 21,
         "indicativo": "6325O",
         "nombre": "ALMER\u00cdA AEROPUERTO",
         "indsinop": "08487",
@@ -191,7 +191,7 @@
     {
         "latitud": 36.83111111111111,
         "provincia": "04",
-        "altitud": "7",
+        "altitud": 7,
         "indicativo": "6297",
         "nombre": "ALMER\u00cdA",
         "indsinop": "",
@@ -200,7 +200,7 @@
     {
         "latitud": 36.98027777777778,
         "provincia": "04",
-        "altitud": "16",
+        "altitud": 16,
         "indicativo": "6332X",
         "nombre": "CARBONERAS",
         "indsinop": "08488",
@@ -209,7 +209,7 @@
     {
         "latitud": 37.39055555555556,
         "provincia": "04",
-        "altitud": "300",
+        "altitud": 300,
         "indicativo": "6367B",
         "nombre": "HU\u00c9RCAL-OVERA",
         "indsinop": "08428",
@@ -218,7 +218,7 @@
     {
         "latitud": 36.68694444444444,
         "provincia": "04",
-        "altitud": "3",
+        "altitud": 3,
         "indicativo": "6293X",
         "nombre": "ROQUETAS DE MAR",
         "indsinop": "08492",
@@ -227,7 +227,7 @@
     {
         "latitud": 42.88194444444444,
         "provincia": "01",
-        "altitud": "513",
+        "altitud": 513,
         "indicativo": "9091O",
         "nombre": "FORONDA-TXOKIZA",
         "indsinop": "08080",
@@ -236,7 +236,7 @@
     {
         "latitud": 42.849722222222226,
         "provincia": "01",
-        "altitud": "521",
+        "altitud": 521,
         "indicativo": "9087",
         "nombre": "VITORIA AER\u00d3DROMO",
         "indsinop": "",
@@ -245,7 +245,7 @@
     {
         "latitud": 42.871944444444445,
         "provincia": "01",
-        "altitud": "513",
+        "altitud": 513,
         "indicativo": "9091R",
         "nombre": "VITORIA GASTEIZ AEROPUERTO",
         "indsinop": "08080",
@@ -254,7 +254,7 @@
     {
         "latitud": 43.566944444444445,
         "provincia": "33",
-        "altitud": "127",
+        "altitud": 127,
         "indicativo": "1212E",
         "nombre": "ASTURIAS AEROPUERTO",
         "indsinop": "08011",
@@ -263,7 +263,7 @@
     {
         "latitud": 43.56916666666667,
         "provincia": "33",
-        "altitud": "60",
+        "altitud": 60,
         "indicativo": "1283U",
         "nombre": "CABO BUSTO",
         "indsinop": "08010",
@@ -272,7 +272,7 @@
     {
         "latitud": 43.655833333333334,
         "provincia": "33",
-        "altitud": "100",
+        "altitud": 100,
         "indicativo": "1210X",
         "nombre": "CABO PE\u00d1AS",
         "indsinop": "08012",
@@ -281,7 +281,7 @@
     {
         "latitud": 43.52472222222222,
         "provincia": "33",
-        "altitud": "40",
+        "altitud": 40,
         "indicativo": "1331A",
         "nombre": "CASTROPOL",
         "indsinop": "08009",
@@ -290,7 +290,7 @@
     {
         "latitud": 43.52305555555555,
         "provincia": "33",
-        "altitud": "26",
+        "altitud": 26,
         "indicativo": "1207U",
         "nombre": "GIJ\u00d3N, CAMPUS",
         "indsinop": "08014",
@@ -299,7 +299,7 @@
     {
         "latitud": 43.541666666666664,
         "provincia": "33",
-        "altitud": "22",
+        "altitud": 22,
         "indicativo": "1208A",
         "nombre": "GIJ\u00d3N. LA MERCED",
         "indsinop": "",
@@ -308,7 +308,7 @@
     {
         "latitud": 43.559999999999995,
         "provincia": "33",
-        "altitud": "5",
+        "altitud": 5,
         "indicativo": "1208H",
         "nombre": "GIJ\u00d3N, PUERTO",
         "indsinop": "08014",
@@ -317,7 +317,7 @@
     {
         "latitud": 43.538888888888884,
         "provincia": "33",
-        "altitud": "3",
+        "altitud": 3,
         "indicativo": "1208",
         "nombre": "GIJ\u00d3N",
         "indsinop": "",
@@ -326,7 +326,7 @@
     {
         "latitud": 43.42027777777778,
         "provincia": "33",
-        "altitud": "10",
+        "altitud": 10,
         "indicativo": "1183X",
         "nombre": "LLANES",
         "indsinop": "08016",
@@ -335,7 +335,7 @@
     {
         "latitud": 43.35333333333333,
         "provincia": "33",
-        "altitud": "336",
+        "altitud": 336,
         "indicativo": "1249I",
         "nombre": "OVIEDO",
         "indsinop": "08015",
@@ -344,7 +344,7 @@
     {
         "latitud": 43.35333333333333,
         "provincia": "33",
-        "altitud": "336",
+        "altitud": 336,
         "indicativo": "1249X",
         "nombre": "OVIEDO",
         "indsinop": "08015",
@@ -353,7 +353,7 @@
     {
         "latitud": 42.978611111111114,
         "provincia": "33",
-        "altitud": "1480",
+        "altitud": 1480,
         "indicativo": "1221D",
         "nombre": "PAJARES-VALGRANDE",
         "indsinop": "08031",
@@ -362,7 +362,7 @@
     {
         "latitud": 42.994166666666665,
         "provincia": "33",
-        "altitud": "1530",
+        "altitud": 1530,
         "indicativo": "1542",
         "nombre": "PUERTO DE LEITARIEGOS",
         "indsinop": "08052",
@@ -371,7 +371,7 @@
     {
         "latitud": 40.656666666666666,
         "provincia": "05",
-        "altitud": "1143",
+        "altitud": 1143,
         "indicativo": "2444C",
         "nombre": "\u00c1VILA, AYUNTAMIENTO",
         "indsinop": "",
@@ -380,7 +380,7 @@
     {
         "latitud": 40.659166666666664,
         "provincia": "05",
-        "altitud": "1130",
+        "altitud": 1130,
         "indicativo": "2444",
         "nombre": "\u00c1VILA",
         "indsinop": "08210",
@@ -389,7 +389,7 @@
     {
         "latitud": 40.35055555555556,
         "provincia": "05",
-        "altitud": "1525",
+        "altitud": 1525,
         "indicativo": "2811A",
         "nombre": "NAVARREDONDA DE GREDOS",
         "indsinop": "08206",
@@ -398,7 +398,7 @@
     {
         "latitud": 40.28861111111111,
         "provincia": "05",
-        "altitud": "630",
+        "altitud": 630,
         "indicativo": "3391",
         "nombre": "SOTILLO DE LA ADRADA",
         "indsinop": "08208",
@@ -407,7 +407,7 @@
     {
         "latitud": 38.88333333333333,
         "provincia": "06",
-        "altitud": "185",
+        "altitud": 185,
         "indicativo": "4452",
         "nombre": "BADAJOZ AEROPUERTO",
         "indsinop": "08330",
@@ -416,7 +416,7 @@
     {
         "latitud": 38.955555555555556,
         "provincia": "06",
-        "altitud": "273",
+        "altitud": 273,
         "indicativo": "4358X",
         "nombre": "DON BENITO",
         "indsinop": "08333",
@@ -425,7 +425,7 @@
     {
         "latitud": 39.169444444444444,
         "provincia": "06",
-        "altitud": "447",
+        "altitud": 447,
         "indicativo": "4244X",
         "nombre": "HERRERA DEL DUQUE",
         "indsinop": "08264",
@@ -434,7 +434,7 @@
     {
         "latitud": 38.29861111111111,
         "provincia": "06",
-        "altitud": "381",
+        "altitud": 381,
         "indicativo": "4511C",
         "nombre": "JEREZ DE LOS CABALLEROS",
         "indsinop": "08337",
@@ -443,7 +443,7 @@
     {
         "latitud": 38.23166666666667,
         "provincia": "06",
-        "altitud": "655",
+        "altitud": 655,
         "indicativo": "4386B",
         "nombre": "LLERENA",
         "indsinop": "08336",
@@ -452,7 +452,7 @@
     {
         "latitud": 38.91583333333333,
         "provincia": "06",
-        "altitud": "228",
+        "altitud": 228,
         "indicativo": "4410X",
         "nombre": "M\u00c9RIDA",
         "indsinop": "08331",
@@ -461,7 +461,7 @@
     {
         "latitud": 41.587500000000006,
         "provincia": "08",
-        "altitud": "74",
+        "altitud": 74,
         "indicativo": "0252D",
         "nombre": "ARENYS DE MAR",
         "indsinop": "08186",
@@ -470,7 +470,7 @@
     {
         "latitud": 41.29277777777778,
         "provincia": "08",
-        "altitud": "4",
+        "altitud": 4,
         "indicativo": "0076",
         "nombre": "BARCELONA AEROPUERTO",
         "indsinop": "08181",
@@ -479,7 +479,7 @@
     {
         "latitud": 41.41833333333333,
         "provincia": "08",
-        "altitud": "408",
+        "altitud": 408,
         "indicativo": "0200E",
         "nombre": "BARCELONA, FABRA",
         "indsinop": "",
@@ -488,7 +488,7 @@
     {
         "latitud": 41.39055555555556,
         "provincia": "08",
-        "altitud": "6",
+        "altitud": 6,
         "indicativo": "0201D",
         "nombre": "BARCELONA",
         "indsinop": "08180",
@@ -497,7 +497,7 @@
     {
         "latitud": 41.72,
         "provincia": "08",
-        "altitud": "291",
+        "altitud": 291,
         "indicativo": "0149X",
         "nombre": "MANRESA",
         "indsinop": "08174",
@@ -506,7 +506,7 @@
     {
         "latitud": 41.52361111111111,
         "provincia": "08",
-        "altitud": "146",
+        "altitud": 146,
         "indicativo": "0229I",
         "nombre": "SABADELL AEROPUERTO",
         "indsinop": "08192",
@@ -515,7 +515,7 @@
     {
         "latitud": 41.65083333333333,
         "provincia": "08",
-        "altitud": "40",
+        "altitud": 40,
         "indicativo": "0255B",
         "nombre": "SANTA SUSANNA",
         "indsinop": "08188",
@@ -524,7 +524,7 @@
     {
         "latitud": 43.29805555555556,
         "provincia": "48",
-        "altitud": "42",
+        "altitud": 42,
         "indicativo": "1082",
         "nombre": "BILBAO AEROPUERTO",
         "indsinop": "08025",
@@ -533,7 +533,7 @@
     {
         "latitud": 43.20333333333333,
         "provincia": "48",
-        "altitud": "208",
+        "altitud": 208,
         "indicativo": "1078I",
         "nombre": "G\u00dcE\u00d1ES",
         "indsinop": "08035",
@@ -542,7 +542,7 @@
     {
         "latitud": 43.37694444444445,
         "provincia": "48",
-        "altitud": "12",
+        "altitud": 12,
         "indicativo": "1055B",
         "nombre": "LEKEITIO",
         "indsinop": "08024",
@@ -551,7 +551,7 @@
     {
         "latitud": 43.45388888888889,
         "provincia": "48",
-        "altitud": "93",
+        "altitud": 93,
         "indicativo": "1057B",
         "nombre": "MACHICHACO",
         "indsinop": "",
@@ -560,7 +560,7 @@
     {
         "latitud": 43.375,
         "provincia": "48",
-        "altitud": "90",
+        "altitud": 90,
         "indicativo": "1059X",
         "nombre": "PUNTA GALEA",
         "indsinop": "08059",
@@ -569,7 +569,7 @@
     {
         "latitud": 41.66583333333333,
         "provincia": "09",
-        "altitud": "790",
+        "altitud": 790,
         "indicativo": "2117D",
         "nombre": "ARANDA DE DUERO",
         "indsinop": "08144",
@@ -578,7 +578,7 @@
     {
         "latitud": 42.42111111111111,
         "provincia": "09",
-        "altitud": "820",
+        "altitud": 820,
         "indicativo": "9111",
         "nombre": "BELORADO",
         "indsinop": "08077",
@@ -587,7 +587,7 @@
     {
         "latitud": 42.356944444444444,
         "provincia": "09",
-        "altitud": "891",
+        "altitud": 891,
         "indicativo": "2331",
         "nombre": "BURGOS AEROPUERTO",
         "indsinop": "08075",
@@ -596,7 +596,7 @@
     {
         "latitud": 42.919999999999995,
         "provincia": "09",
-        "altitud": "580",
+        "altitud": 580,
         "indicativo": "9051",
         "nombre": "MEDINA DE POMAR",
         "indsinop": "08063",
@@ -605,7 +605,7 @@
     {
         "latitud": 41.959722222222226,
         "provincia": "09",
-        "altitud": "1080",
+        "altitud": 1080,
         "indicativo": "2298",
         "nombre": "PALACIOS DE LA SIERRA",
         "indsinop": "08149",
@@ -614,7 +614,7 @@
     {
         "latitud": 39.475833333333334,
         "provincia": "10",
-        "altitud": "459",
+        "altitud": 459,
         "indicativo": "3469",
         "nombre": "C\u00c1CERES, CIUDAD",
         "indsinop": "",
@@ -623,7 +623,7 @@
     {
         "latitud": 39.47138888888889,
         "provincia": "10",
-        "altitud": "394",
+        "altitud": 394,
         "indicativo": "3469A",
         "nombre": "C\u00c1CERES",
         "indsinop": "08261",
@@ -632,7 +632,7 @@
     {
         "latitud": 40.00361111111111,
         "provincia": "10",
-        "altitud": "313",
+        "altitud": 313,
         "indicativo": "3526X",
         "nombre": "CORIA",
         "indsinop": "08251",
@@ -641,7 +641,7 @@
     {
         "latitud": 39.94583333333333,
         "provincia": "10",
-        "altitud": "269",
+        "altitud": 269,
         "indicativo": "3434X",
         "nombre": "NAVALMORAL DE LA MATA",
         "indsinop": "08254",
@@ -650,7 +650,7 @@
     {
         "latitud": 40.043055555555554,
         "provincia": "10",
-        "altitud": "415",
+        "altitud": 415,
         "indicativo": "3519X",
         "nombre": "PLASENCIA",
         "indsinop": "08252",
@@ -659,7 +659,7 @@
     {
         "latitud": 39.4825,
         "provincia": "10",
-        "altitud": "503",
+        "altitud": 503,
         "indicativo": "3463X",
         "nombre": "TRUJILLO",
         "indsinop": "08263",
@@ -668,7 +668,7 @@
     {
         "latitud": 39.414722222222224,
         "provincia": "10",
-        "altitud": "444",
+        "altitud": 444,
         "indicativo": "3576X",
         "nombre": "VALENCIA DE ALC\u00c1NTARA",
         "indsinop": "08260",
@@ -677,7 +677,7 @@
     {
         "latitud": 36.499722222222225,
         "provincia": "11",
-        "altitud": "2",
+        "altitud": 2,
         "indicativo": "5973",
         "nombre": "C\u00c1DIZ",
         "indsinop": "08452",
@@ -686,7 +686,7 @@
     {
         "latitud": 36.760555555555555,
         "provincia": "11",
-        "altitud": "913",
+        "altitud": 913,
         "indicativo": "5911A",
         "nombre": "GRAZALEMA",
         "indsinop": "08455",
@@ -695,7 +695,7 @@
     {
         "latitud": 36.75055555555556,
         "provincia": "11",
-        "altitud": "27",
+        "altitud": 27,
         "indicativo": "5960",
         "nombre": "JEREZ DE LA FRONTERA AEROPUERTO",
         "indsinop": "08451",
@@ -704,7 +704,7 @@
     {
         "latitud": 36.638888888888886,
         "provincia": "11",
-        "altitud": "21",
+        "altitud": 21,
         "indicativo": "5910",
         "nombre": "ROTA, BASE NAVAL",
         "indsinop": "08449",
@@ -713,7 +713,7 @@
     {
         "latitud": 36.46555555555556,
         "provincia": "11",
-        "altitud": "28",
+        "altitud": 28,
         "indicativo": "5972X",
         "nombre": "SAN FERNANDO",
         "indsinop": "08453",
@@ -722,7 +722,7 @@
     {
         "latitud": 36.013888888888886,
         "provincia": "11",
-        "altitud": "32",
+        "altitud": 32,
         "indicativo": "6001",
         "nombre": "TARIFA",
         "indsinop": "08458",
@@ -731,7 +731,7 @@
     {
         "latitud": 36.245555555555555,
         "provincia": "11",
-        "altitud": "186",
+        "altitud": 186,
         "indicativo": "5995B",
         "nombre": "VEJER DE LA FRONTERA",
         "indsinop": "08457",
@@ -740,7 +740,7 @@
     {
         "latitud": 43.39472222222222,
         "provincia": "39",
-        "altitud": "45",
+        "altitud": 45,
         "indicativo": "1083L",
         "nombre": "CASTRO URDIALES",
         "indsinop": "08020",
@@ -749,7 +749,7 @@
     {
         "latitud": 42.99194444444444,
         "provincia": "39",
-        "altitud": "870",
+        "altitud": 870,
         "indicativo": "9001D",
         "nombre": "REINOSA",
         "indsinop": "08032",
@@ -758,7 +758,7 @@
     {
         "latitud": 43.39333333333333,
         "provincia": "39",
-        "altitud": "38",
+        "altitud": 38,
         "indicativo": "1159",
         "nombre": "SAN VICENTE DE LA BARQUERA",
         "indsinop": "08017",
@@ -767,7 +767,7 @@
     {
         "latitud": 43.42388888888889,
         "provincia": "39",
-        "altitud": "3",
+        "altitud": 3,
         "indicativo": "1109",
         "nombre": "SANTANDER AEROPUERTO",
         "indsinop": "08021",
@@ -776,7 +776,7 @@
     {
         "latitud": 43.465,
         "provincia": "39",
-        "altitud": "64",
+        "altitud": 64,
         "indicativo": "1110",
         "nombre": "SANTANDER, CIUDAD",
         "indsinop": "",
@@ -785,7 +785,7 @@
     {
         "latitud": 43.49111111111111,
         "provincia": "39",
-        "altitud": "52",
+        "altitud": 52,
         "indicativo": "1111X",
         "nombre": "SANTANDER",
         "indsinop": "08023",
@@ -794,7 +794,7 @@
     {
         "latitud": 43.49111111111111,
         "provincia": "39",
-        "altitud": "52",
+        "altitud": 52,
         "indicativo": "1111",
         "nombre": "SANTANDER",
         "indsinop": "08023",
@@ -803,7 +803,7 @@
     {
         "latitud": 42.80638888888888,
         "provincia": "39",
-        "altitud": "720",
+        "altitud": 720,
         "indicativo": "9019B",
         "nombre": "VALDERREDIBLE, POLIENTES   ",
         "indsinop": "08033",
@@ -812,7 +812,7 @@
     {
         "latitud": 40.49861111111111,
         "provincia": "12",
-        "altitud": "1220",
+        "altitud": 1220,
         "indicativo": "9563X",
         "nombre": "CASTELLFORT",
         "indsinop": "08237",
@@ -821,7 +821,7 @@
     {
         "latitud": 39.95722222222223,
         "provincia": "12",
-        "altitud": "43",
+        "altitud": 43,
         "indicativo": "8500A",
         "nombre": "CASTELL\u00d3N - ALMASSORA",
         "indsinop": "08286",
@@ -830,7 +830,7 @@
     {
         "latitud": 39.98888888888889,
         "provincia": "12",
-        "altitud": "25",
+        "altitud": 25,
         "indicativo": "8501",
         "nombre": "CASTELL\u00d3N DE LA PLANA",
         "indsinop": "",
@@ -839,7 +839,7 @@
     {
         "latitud": 40.43333333333333,
         "provincia": "12",
-        "altitud": "1131",
+        "altitud": 1131,
         "indicativo": "8489X",
         "nombre": "VILLAFRANCA DEL CID/VILLAFRANCA",
         "indsinop": "08241",
@@ -848,7 +848,7 @@
     {
         "latitud": 40.55416666666667,
         "provincia": "12",
-        "altitud": "111",
+        "altitud": 111,
         "indicativo": "8523X",
         "nombre": "VINAR\u00d2S",
         "indsinop": "08239",
@@ -857,7 +857,7 @@
     {
         "latitud": 35.89555555555555,
         "provincia": "51",
-        "altitud": "200",
+        "altitud": 200,
         "indicativo": "5000A",
         "nombre": "CEUTA, MONTE HACHO",
         "indsinop": "",
@@ -866,7 +866,7 @@
     {
         "latitud": 35.88861111111111,
         "provincia": "51",
-        "altitud": "87",
+        "altitud": 87,
         "indicativo": "5000C",
         "nombre": "CEUTA",
         "indsinop": "60320",
@@ -875,7 +875,7 @@
     {
         "latitud": 38.98777777777778,
         "provincia": "13",
-        "altitud": "627",
+        "altitud": 627,
         "indicativo": "4121C",
         "nombre": "CIUDAD REAL, INSTITUTO",
         "indsinop": "",
@@ -884,7 +884,7 @@
     {
         "latitud": 38.98916666666667,
         "provincia": "13",
-        "altitud": "628",
+        "altitud": 628,
         "indicativo": "4121",
         "nombre": "CIUDAD REAL",
         "indsinop": "08348",
@@ -893,7 +893,7 @@
     {
         "latitud": 39.08861111111111,
         "provincia": "13",
-        "altitud": "486",
+        "altitud": 486,
         "indicativo": "4220X",
         "nombre": "PUEBLA DE DON RODRIGO",
         "indsinop": "08271",
@@ -902,7 +902,7 @@
     {
         "latitud": 39.16916666666666,
         "provincia": "13",
-        "altitud": "662",
+        "altitud": 662,
         "indicativo": "4103X",
         "nombre": "TOMELLOSO",
         "indsinop": "08276",
@@ -911,7 +911,7 @@
     {
         "latitud": 38.75055555555556,
         "provincia": "13",
-        "altitud": "700",
+        "altitud": 700,
         "indicativo": "4147X",
         "nombre": "VALDEPE\u00d1AS",
         "indsinop": "08351",
@@ -920,7 +920,7 @@
     {
         "latitud": 38.518055555555556,
         "provincia": "13",
-        "altitud": "804",
+        "altitud": 804,
         "indicativo": "4148",
         "nombre": "VISO DEL MARQU\u00c9S",
         "indsinop": "08345",
@@ -929,7 +929,7 @@
     {
         "latitud": 37.848888888888894,
         "provincia": "14",
-        "altitud": "90",
+        "altitud": 90,
         "indicativo": "5402",
         "nombre": "C\u00d3RDOBA AEROPUERTO",
         "indsinop": "08410",
@@ -938,7 +938,7 @@
     {
         "latitud": 37.55611111111111,
         "provincia": "14",
-        "altitud": "650",
+        "altitud": 650,
         "indicativo": "5427X",
         "nombre": "DO\u00d1A MENC\u00cdA",
         "indsinop": "08412",
@@ -947,7 +947,7 @@
     {
         "latitud": 38.49861111111111,
         "provincia": "14",
-        "altitud": "551",
+        "altitud": 551,
         "indicativo": "4267X",
         "nombre": "HINOJOSA DEL DUQUE",
         "indsinop": "08335",
@@ -956,7 +956,7 @@
     {
         "latitud": 38.33305555555556,
         "provincia": "14",
-        "altitud": "750",
+        "altitud": 750,
         "indicativo": "5390Y",
         "nombre": "VILLANUEVA DE C\u00d3RDOBA",
         "indsinop": "08346",
@@ -965,7 +965,7 @@
     {
         "latitud": 40.530277777777776,
         "provincia": "16",
-        "altitud": "928",
+        "altitud": 928,
         "indicativo": "3044X",
         "nombre": "CA\u00d1IZARES",
         "indsinop": "08230",
@@ -974,7 +974,7 @@
     {
         "latitud": 40.06722222222223,
         "provincia": "16",
-        "altitud": "948",
+        "altitud": 948,
         "indicativo": "8096",
         "nombre": "CUENCA",
         "indsinop": "08231",
@@ -983,7 +983,7 @@
     {
         "latitud": 39.416666666666664,
         "provincia": "16",
-        "altitud": "728",
+        "altitud": 728,
         "indicativo": "4090Y",
         "nombre": "SAN CLEMENTE",
         "indsinop": "08256",
@@ -992,7 +992,7 @@
     {
         "latitud": 40.01138888888889,
         "provincia": "16",
-        "altitud": "808",
+        "altitud": 808,
         "indicativo": "3094B",
         "nombre": "TARANC\u00d3N",
         "indsinop": "08277",
@@ -1001,7 +1001,7 @@
     {
         "latitud": 43.30638888888888,
         "provincia": "20",
-        "altitud": "251",
+        "altitud": 251,
         "indicativo": "1024E",
         "nombre": "DONOSTIA/SAN SEBASTI\u00c1N, IGUELDO",
         "indsinop": "08027",
@@ -1010,7 +1010,7 @@
     {
         "latitud": 43.20944444444445,
         "provincia": "20",
-        "altitud": "119",
+        "altitud": 119,
         "indicativo": "1050J",
         "nombre": "ELGOIBAR",
         "indsinop": "08036",
@@ -1019,7 +1019,7 @@
     {
         "latitud": 43.356944444444444,
         "provincia": "20",
-        "altitud": "4",
+        "altitud": 4,
         "indicativo": "1014",
         "nombre": "HONDARRIBIA, MALKARROA",
         "indsinop": "08029",
@@ -1028,7 +1028,7 @@
     {
         "latitud": 43.356944444444444,
         "provincia": "20",
-        "altitud": "4",
+        "altitud": 4,
         "indicativo": "1014A",
         "nombre": "SAN SEBASTI\u00c1N AEROPUERTO",
         "indsinop": "08029",
@@ -1037,7 +1037,7 @@
     {
         "latitud": 43.30222222222222,
         "provincia": "20",
-        "altitud": "28",
+        "altitud": 28,
         "indicativo": "1041A",
         "nombre": "ZUMAIA",
         "indsinop": "08026",
@@ -1046,7 +1046,7 @@
     {
         "latitud": 43.080000000000005,
         "provincia": "20",
-        "altitud": "420",
+        "altitud": 420,
         "indicativo": "1037Y",
         "nombre": "ZUMARRAGA",
         "indsinop": "08037",
@@ -1055,7 +1055,7 @@
     {
         "latitud": 41.91166666666666,
         "provincia": "17",
-        "altitud": "143",
+        "altitud": 143,
         "indicativo": "0367",
         "nombre": "GIRONA AEROPUERTO",
         "indsinop": "08184",
@@ -1064,7 +1064,7 @@
     {
         "latitud": 41.980000000000004,
         "provincia": "17",
-        "altitud": "95",
+        "altitud": 95,
         "indicativo": "0370B",
         "nombre": "GIRONA, ANTIC INSTITUT",
         "indsinop": "",
@@ -1073,7 +1073,7 @@
     {
         "latitud": 42.3325,
         "provincia": "17",
-        "altitud": "1703",
+        "altitud": 1703,
         "indicativo": "9585",
         "nombre": "LA MOLINA",
         "indsinop": "08117",
@@ -1082,7 +1082,7 @@
     {
         "latitud": 42.10444444444445,
         "provincia": "17",
-        "altitud": "157",
+        "altitud": 157,
         "indicativo": "0372C",
         "nombre": "PORQUERES",
         "indsinop": "08120",
@@ -1091,7 +1091,7 @@
     {
         "latitud": 42.19138888888889,
         "provincia": "17",
-        "altitud": "675",
+        "altitud": 675,
         "indicativo": "0324A",
         "nombre": "RIPOLL",
         "indsinop": "08118",
@@ -1100,7 +1100,7 @@
     {
         "latitud": 37.505833333333335,
         "provincia": "18",
-        "altitud": "785",
+        "altitud": 785,
         "indicativo": "5047E",
         "nombre": "BAZA",
         "indsinop": "08424",
@@ -1109,7 +1109,7 @@
     {
         "latitud": 37.189722222222215,
         "provincia": "18",
-        "altitud": "567",
+        "altitud": 567,
         "indicativo": "5530E",
         "nombre": "GRANADA AEROPUERTO",
         "indsinop": "08419",
@@ -1118,7 +1118,7 @@
     {
         "latitud": 37.13722222222222,
         "provincia": "18",
-        "altitud": "687",
+        "altitud": 687,
         "indicativo": "5514",
         "nombre": "GRANADA BASE A\u00c9REA",
         "indsinop": "08420",
@@ -1127,7 +1127,7 @@
     {
         "latitud": 37.861111111111114,
         "provincia": "18",
-        "altitud": "1092",
+        "altitud": 1092,
         "indicativo": "5051X",
         "nombre": "HU\u00c9SCAR",
         "indsinop": "08423",
@@ -1136,7 +1136,7 @@
     {
         "latitud": 37.16111111111111,
         "provincia": "18",
-        "altitud": "760",
+        "altitud": 760,
         "indicativo": "5582A",
         "nombre": "LOJA",
         "indsinop": "08414",
@@ -1145,7 +1145,7 @@
     {
         "latitud": 36.72277777777778,
         "provincia": "18",
-        "altitud": "12",
+        "altitud": 12,
         "indicativo": "6268X",
         "nombre": "MOTRIL",
         "indsinop": "08485",
@@ -1154,7 +1154,7 @@
     {
         "latitud": 40.659166666666664,
         "provincia": "19",
-        "altitud": "639",
+        "altitud": 639,
         "indicativo": "3168C",
         "nombre": "GUADALAJARA, EL SERRANILLO",
         "indsinop": "08226",
@@ -1163,7 +1163,7 @@
     {
         "latitud": 40.63472222222222,
         "provincia": "19",
-        "altitud": "685",
+        "altitud": 685,
         "indicativo": "3168A",
         "nombre": "GUADALAJARA, INSTITUTO",
         "indsinop": "",
@@ -1172,7 +1172,7 @@
     {
         "latitud": 40.63027777777778,
         "provincia": "19",
-        "altitud": "721",
+        "altitud": 721,
         "indicativo": "3168D",
         "nombre": "GUADALAJARA",
         "indsinop": "08226",
@@ -1181,7 +1181,7 @@
     {
         "latitud": 40.84166666666667,
         "provincia": "19",
-        "altitud": "1062",
+        "altitud": 1062,
         "indicativo": "3013",
         "nombre": "MOLINA DE ARAG\u00d3N",
         "indsinop": "08232",
@@ -1190,7 +1190,7 @@
     {
         "latitud": 41.08638888888889,
         "provincia": "19",
-        "altitud": "1005",
+        "altitud": 1005,
         "indicativo": "3130C",
         "nombre": "SIG\u00dcENZA",
         "indsinop": "08150",
@@ -1199,7 +1199,7 @@
     {
         "latitud": 37.868611111111115,
         "provincia": "21",
-        "altitud": "572",
+        "altitud": 572,
         "indicativo": "4560Y",
         "nombre": "ALAJAR",
         "indsinop": "08380",
@@ -1208,7 +1208,7 @@
     {
         "latitud": 37.19472222222222,
         "provincia": "21",
-        "altitud": "2",
+        "altitud": 2,
         "indicativo": "4549Y",
         "nombre": "AYAMONTE",
         "indsinop": "08381",
@@ -1217,7 +1217,7 @@
     {
         "latitud": 37.27833333333333,
         "provincia": "21",
-        "altitud": "19",
+        "altitud": 19,
         "indicativo": "4642E",
         "nombre": "HUELVA, RONDA ESTE",
         "indsinop": "08383",
@@ -1226,7 +1226,7 @@
     {
         "latitud": 37.25666666666667,
         "provincia": "21",
-        "altitud": "17",
+        "altitud": 17,
         "indicativo": "4605",
         "nombre": "HUELVA",
         "indsinop": "",
@@ -1235,7 +1235,7 @@
     {
         "latitud": 37.09805555555556,
         "provincia": "21",
-        "altitud": "41",
+        "altitud": 41,
         "indicativo": "5860E",
         "nombre": "MOGUER, EL ARENOSILLO",
         "indsinop": "08384",
@@ -1244,7 +1244,7 @@
     {
         "latitud": 42.70888888888889,
         "provincia": "22",
-        "altitud": "1040",
+        "altitud": 1040,
         "indicativo": "9208E",
         "nombre": "ARAG\u00dc\u00c9S DEL PUERTO",
         "indsinop": "08095",
@@ -1253,7 +1253,7 @@
     {
         "latitud": 42.63,
         "provincia": "22",
-        "altitud": "992",
+        "altitud": 992,
         "indicativo": "9784P",
         "nombre": "BIELSA",
         "indsinop": "08103",
@@ -1262,7 +1262,7 @@
     {
         "latitud": 42.08444444444444,
         "provincia": "22",
-        "altitud": "546",
+        "altitud": 546,
         "indicativo": "9898",
         "nombre": "HUESCA AEROPUERTO",
         "indsinop": "08094",
@@ -1271,7 +1271,7 @@
     {
         "latitud": 42.57888888888889,
         "provincia": "22",
-        "altitud": "823",
+        "altitud": 823,
         "indicativo": "9201K",
         "nombre": "JACA",
         "indsinop": "08091",
@@ -1280,7 +1280,7 @@
     {
         "latitud": 42.626666666666665,
         "provincia": "22",
-        "altitud": "1020",
+        "altitud": 1020,
         "indicativo": "9814A",
         "nombre": "TORLA",
         "indsinop": "08101",
@@ -1289,7 +1289,7 @@
     {
         "latitud": 39.71555555555556,
         "provincia": "07",
-        "altitud": "66",
+        "altitud": 66,
         "indicativo": "B569X",
         "nombre": "CAPDEPERA",
         "indsinop": "08311",
@@ -1298,7 +1298,7 @@
     {
         "latitud": 39.82333333333334,
         "provincia": "07",
-        "altitud": "490",
+        "altitud": 490,
         "indicativo": "B013X",
         "nombre": "ESCORCA, LLUC",
         "indsinop": "08304",
@@ -1307,7 +1307,7 @@
     {
         "latitud": 38.87638888888889,
         "provincia": "07",
-        "altitud": "6",
+        "altitud": 6,
         "indicativo": "B954",
         "nombre": "IBIZA, AEROPUERTO",
         "indsinop": "08373",
@@ -1316,7 +1316,7 @@
     {
         "latitud": 39.85472222222222,
         "provincia": "07",
-        "altitud": "91",
+        "altitud": 91,
         "indicativo": "B893",
         "nombre": "MENORCA, AEROPUERTO",
         "indsinop": "08314",
@@ -1325,7 +1325,7 @@
     {
         "latitud": 39.56083333333333,
         "provincia": "07",
-        "altitud": "8",
+        "altitud": 8,
         "indicativo": "B278",
         "nombre": "PALMA, AEROPUERTO",
         "indsinop": "08306",
@@ -1334,7 +1334,7 @@
     {
         "latitud": 39.55333333333333,
         "provincia": "07",
-        "altitud": "3",
+        "altitud": 3,
         "indicativo": "B228",
         "nombre": "PALMA, PUERTO",
         "indsinop": "08301",
@@ -1343,7 +1343,7 @@
     {
         "latitud": 39.52166666666667,
         "provincia": "07",
-        "altitud": "120",
+        "altitud": 120,
         "indicativo": "B346X",
         "nombre": "PORRERES",
         "indsinop": "08310",
@@ -1352,7 +1352,7 @@
     {
         "latitud": 39.41444444444444,
         "provincia": "07",
-        "altitud": "17",
+        "altitud": 17,
         "indicativo": "B434X",
         "nombre": "PORTOCOLOM  ",
         "indsinop": "08309",
@@ -1361,7 +1361,7 @@
     {
         "latitud": 39.74916666666667,
         "provincia": "07",
-        "altitud": "40",
+        "altitud": 40,
         "indicativo": "B691Y",
         "nombre": "SA POBLA",
         "indsinop": "08312",
@@ -1370,7 +1370,7 @@
     {
         "latitud": 39.735,
         "provincia": "07",
-        "altitud": "1030",
+        "altitud": 1030,
         "indicativo": "B248",
         "nombre": "SIERRA DE ALFABIA, BUNYOLA",
         "indsinop": "08303",
@@ -1379,7 +1379,7 @@
     {
         "latitud": 38.02305555555555,
         "provincia": "23",
-        "altitud": "202",
+        "altitud": 202,
         "indicativo": "5298X",
         "nombre": "AND\u00daJAR",
         "indsinop": "08347",
@@ -1388,7 +1388,7 @@
     {
         "latitud": 38.31472222222222,
         "provincia": "23",
-        "altitud": "580",
+        "altitud": 580,
         "indicativo": "5181D",
         "nombre": "ARROYO DEL OJANCO",
         "indsinop": "08352",
@@ -1397,7 +1397,7 @@
     {
         "latitud": 37.91583333333333,
         "provincia": "23",
-        "altitud": "782",
+        "altitud": 782,
         "indicativo": "5038X",
         "nombre": "CAZORLA",
         "indsinop": "08353",
@@ -1406,7 +1406,7 @@
     {
         "latitud": 37.77638888888889,
         "provincia": "23",
-        "altitud": "510",
+        "altitud": 510,
         "indicativo": "5270",
         "nombre": "JA\u00c9N, INSTITUTO",
         "indsinop": "",
@@ -1415,7 +1415,7 @@
     {
         "latitud": 37.777499999999996,
         "provincia": "23",
-        "altitud": "580",
+        "altitud": 580,
         "indicativo": "5270B",
         "nombre": "JA\u00c9N",
         "indsinop": "08417",
@@ -1424,7 +1424,7 @@
     {
         "latitud": 38.34444444444445,
         "provincia": "23",
-        "altitud": "770",
+        "altitud": 770,
         "indicativo": "5246",
         "nombre": "SANTA ELENA",
         "indsinop": "08350",
@@ -1433,7 +1433,7 @@
     {
         "latitud": 38.48916666666667,
         "provincia": "23",
-        "altitud": "862",
+        "altitud": 862,
         "indicativo": "5192",
         "nombre": "VILLARRODRIGO",
         "indsinop": "08354",
@@ -1442,7 +1442,7 @@
     {
         "latitud": 42.452222222222225,
         "provincia": "26",
-        "altitud": "353",
+        "altitud": 353,
         "indicativo": "9170",
         "nombre": "LOGRO\u00d1O AEROPUERTO",
         "indsinop": "08084",
@@ -1451,7 +1451,7 @@
     {
         "latitud": 28.44472222222222,
         "provincia": "35",
-        "altitud": "25",
+        "altitud": 25,
         "indicativo": "C249I",
         "nombre": "FUERTEVENTURA AEROPUERTO",
         "indsinop": "60035",
@@ -1460,7 +1460,7 @@
     {
         "latitud": 27.91777777777778,
         "provincia": "35",
-        "altitud": "32",
+        "altitud": 32,
         "indicativo": "C649I",
         "nombre": "GRAN CANARIA AEROPUERTO",
         "indsinop": "60030",
@@ -1469,7 +1469,7 @@
     {
         "latitud": 28.000833333333333,
         "provincia": "35",
-        "altitud": "10",
+        "altitud": 10,
         "indicativo": "C619I",
         "nombre": "LA ALDEA DE SAN NICOL\u00c1S",
         "indsinop": "60027",
@@ -1478,7 +1478,7 @@
     {
         "latitud": 28.951944444444443,
         "provincia": "35",
-        "altitud": "14",
+        "altitud": 14,
         "indicativo": "C029O",
         "nombre": "LANZAROTE AEROPUERTO",
         "indsinop": "60040",
@@ -1487,7 +1487,7 @@
     {
         "latitud": 28.113055555555558,
         "provincia": "35",
-        "altitud": "15",
+        "altitud": 15,
         "indicativo": "C659M",
         "nombre": "LAS PALMAS DE GRAN CANARIA, PL. DE LA FERIA",
         "indsinop": "60032",
@@ -1496,7 +1496,7 @@
     {
         "latitud": 28.08972222222222,
         "provincia": "35",
-        "altitud": "55",
+        "altitud": 55,
         "indicativo": "C659H",
         "nombre": "LAS PALMAS DE GRAN CANARIA, SAN CRISTOBAL",
         "indsinop": "60029",
@@ -1505,7 +1505,7 @@
     {
         "latitud": 27.735833333333336,
         "provincia": "35",
-        "altitud": "6",
+        "altitud": 6,
         "indicativo": "C689E",
         "nombre": "MASPALOMAS",
         "indsinop": "60037",
@@ -1514,7 +1514,7 @@
     {
         "latitud": 27.81638888888889,
         "provincia": "35",
-        "altitud": "10",
+        "altitud": 10,
         "indicativo": "C629X",
         "nombre": "MOG\u00c1N, PUERTO",
         "indsinop": "60036",
@@ -1523,7 +1523,7 @@
     {
         "latitud": 28.049166666666668,
         "provincia": "35",
-        "altitud": "15",
+        "altitud": 15,
         "indicativo": "C229J",
         "nombre": "P\u00c1JARA",
         "indsinop": "60034",
@@ -1532,7 +1532,7 @@
     {
         "latitud": 29.231944444444444,
         "provincia": "35",
-        "altitud": "10",
+        "altitud": 10,
         "indicativo": "C839I",
         "nombre": "TEGUISE",
         "indsinop": "",
@@ -1541,7 +1541,7 @@
     {
         "latitud": 42.3775,
         "provincia": "24",
-        "altitud": "1020",
+        "altitud": 1020,
         "indicativo": "2737E",
         "nombre": "LAGUNAS DE SOMOZA",
         "indsinop": "08123",
@@ -1550,7 +1550,7 @@
     {
         "latitud": 42.599444444444444,
         "provincia": "24",
-        "altitud": "912",
+        "altitud": 912,
         "indicativo": "2661B",
         "nombre": "LE\u00d3N AEROPUERTO",
         "indsinop": "08055",
@@ -1559,7 +1559,7 @@
     {
         "latitud": 42.58833333333334,
         "provincia": "24",
-        "altitud": "912",
+        "altitud": 912,
         "indicativo": "2661",
         "nombre": "LE\u00d3N, VIRGEN DEL CAMINO",
         "indsinop": "08055",
@@ -1568,7 +1568,7 @@
     {
         "latitud": 42.56388888888888,
         "provincia": "24",
-        "altitud": "534",
+        "altitud": 534,
         "indicativo": "1549",
         "nombre": "PONFERRADA",
         "indsinop": "08053",
@@ -1577,7 +1577,7 @@
     {
         "latitud": 43.06222222222222,
         "provincia": "24",
-        "altitud": "1510",
+        "altitud": 1510,
         "indicativo": "2630X",
         "nombre": "PUERTO DE SAN ISIDRO",
         "indsinop": "08057",
@@ -1586,7 +1586,7 @@
     {
         "latitud": 42.35472222222222,
         "provincia": "25",
-        "altitud": "677",
+        "altitud": 677,
         "indicativo": "9619",
         "nombre": "LA SEU D'URGELL",
         "indsinop": "08115",
@@ -1595,7 +1595,7 @@
     {
         "latitud": 41.617222222222225,
         "provincia": "25",
-        "altitud": "199",
+        "altitud": 199,
         "indicativo": "9771",
         "nombre": "LLEIDA, OBSERVATORIO",
         "indsinop": "",
@@ -1604,7 +1604,7 @@
     {
         "latitud": 41.626111111111115,
         "provincia": "25",
-        "altitud": "185",
+        "altitud": 185,
         "indicativo": "9771C",
         "nombre": "LLEIDA",
         "indsinop": "08171",
@@ -1613,7 +1613,7 @@
     {
         "latitud": 42.70027777777778,
         "provincia": "25",
-        "altitud": "1161",
+        "altitud": 1161,
         "indicativo": "9990X",
         "nombre": "NAUT ARAN, ARTIES ",
         "indsinop": "08107",
@@ -1622,7 +1622,7 @@
     {
         "latitud": 42.20527777777778,
         "provincia": "25",
-        "altitud": "807",
+        "altitud": 807,
         "indicativo": "9698U",
         "nombre": "TALARN",
         "indsinop": "08112",
@@ -1631,7 +1631,7 @@
     {
         "latitud": 41.650555555555556,
         "provincia": "25",
-        "altitud": "388",
+        "altitud": 388,
         "indicativo": "9720X",
         "nombre": "T\u00c0RREGA",
         "indsinop": "08173",
@@ -1640,7 +1640,7 @@
     {
         "latitud": 43.11138888888889,
         "provincia": "27",
-        "altitud": "445",
+        "altitud": 445,
         "indicativo": "1505",
         "nombre": "LUGO AEROPUERTO",
         "indsinop": "08008",
@@ -1649,7 +1649,7 @@
     {
         "latitud": 40.06722222222223,
         "provincia": "28",
-        "altitud": "540",
+        "altitud": 540,
         "indicativo": "3100B",
         "nombre": "ARANJUEZ",
         "indsinop": "08229",
@@ -1658,7 +1658,7 @@
     {
         "latitud": 41.00694444444444,
         "provincia": "28",
-        "altitud": "1030",
+        "altitud": 1030,
         "indicativo": "3110C",
         "nombre": "BUITRAGO DEL LOZOYA",
         "indsinop": "08146",
@@ -1667,7 +1667,7 @@
     {
         "latitud": 40.69611111111111,
         "provincia": "28",
-        "altitud": "1004",
+        "altitud": 1004,
         "indicativo": "3191E",
         "nombre": "COLMENAR VIEJO",
         "indsinop": "08219",
@@ -1676,7 +1676,7 @@
     {
         "latitud": 40.29944444444444,
         "provincia": "28",
-        "altitud": "620",
+        "altitud": 620,
         "indicativo": "3200",
         "nombre": "GETAFE",
         "indsinop": "08224",
@@ -1685,7 +1685,7 @@
     {
         "latitud": 40.46666666666667,
         "provincia": "28",
-        "altitud": "609",
+        "altitud": 609,
         "indicativo": "3129",
         "nombre": "MADRID AEROPUERTO",
         "indsinop": "08221",
@@ -1694,7 +1694,7 @@
     {
         "latitud": 40.45166666666667,
         "provincia": "28",
-        "altitud": "664",
+        "altitud": 664,
         "indicativo": "3194U",
         "nombre": "MADRID, CIUDAD UNIVERSITARIA",
         "indsinop": "08220",
@@ -1703,7 +1703,7 @@
     {
         "latitud": 40.37555555555556,
         "provincia": "28",
-        "altitud": "690",
+        "altitud": 690,
         "indicativo": "3196",
         "nombre": "MADRID, CUATRO VIENTOS",
         "indsinop": "08223",
@@ -1712,7 +1712,7 @@
     {
         "latitud": 40.411944444444444,
         "provincia": "28",
-        "altitud": "667",
+        "altitud": 667,
         "indicativo": "3195",
         "nombre": "MADRID, RETIRO",
         "indsinop": "08222",
@@ -1721,7 +1721,7 @@
     {
         "latitud": 40.70638888888889,
         "provincia": "28",
-        "altitud": "1532",
+        "altitud": 1532,
         "indicativo": "3266A",
         "nombre": "PUERTO ALTO DEL LE\u00d3N",
         "indsinop": "08217",
@@ -1730,7 +1730,7 @@
     {
         "latitud": 40.793055555555554,
         "provincia": "28",
-        "altitud": "1894",
+        "altitud": 1894,
         "indicativo": "2462",
         "nombre": "PUERTO DE NAVACERRADA",
         "indsinop": "08215",
@@ -1739,7 +1739,7 @@
     {
         "latitud": 40.42777777777778,
         "provincia": "28",
-        "altitud": "763",
+        "altitud": 763,
         "indicativo": "3338",
         "nombre": "ROBLEDO DE CHAVELA",
         "indsinop": "08212",
@@ -1748,7 +1748,7 @@
     {
         "latitud": 41.135555555555555,
         "provincia": "28",
-        "altitud": "1450",
+        "altitud": 1450,
         "indicativo": "3111D",
         "nombre": "SOMOSIERRA",
         "indsinop": "08145",
@@ -1757,7 +1757,7 @@
     {
         "latitud": 40.48861111111111,
         "provincia": "28",
-        "altitud": "607",
+        "altitud": 607,
         "indicativo": "3175",
         "nombre": "TORREJ\u00d3N DE ARDOZ",
         "indsinop": "08227",
@@ -1766,7 +1766,7 @@
     {
         "latitud": 37.029444444444444,
         "provincia": "29",
-        "altitud": "408",
+        "altitud": 408,
         "indicativo": "6106X",
         "nombre": "ANTEQUERA",
         "indsinop": "08413",
@@ -1775,7 +1775,7 @@
     {
         "latitud": 36.41694444444444,
         "provincia": "29",
-        "altitud": "19",
+        "altitud": 19,
         "indicativo": "6058I",
         "nombre": "ESTEPONA",
         "indsinop": "08463",
@@ -1784,7 +1784,7 @@
     {
         "latitud": 36.53861111111111,
         "provincia": "29",
-        "altitud": "8",
+        "altitud": 8,
         "indicativo": "6084X",
         "nombre": "FUENGIROLA",
         "indsinop": "08480",
@@ -1793,7 +1793,7 @@
     {
         "latitud": 36.66611111111111,
         "provincia": "29",
-        "altitud": "5",
+        "altitud": 5,
         "indicativo": "6155A",
         "nombre": "M\u00c1LAGA AEROPUERTO",
         "indsinop": "08482",
@@ -1802,7 +1802,7 @@
     {
         "latitud": 36.717777777777776,
         "provincia": "29",
-        "altitud": "54",
+        "altitud": 54,
         "indicativo": "6156X",
         "nombre": "M\u00c1LAGA, CENTRO METEOROL\u00d3GICO",
         "indsinop": "08481",
@@ -1811,7 +1811,7 @@
     {
         "latitud": 36.71666666666667,
         "provincia": "29",
-        "altitud": "25",
+        "altitud": 25,
         "indicativo": "6172O",
         "nombre": "M\u00c1LAGA, PUERTO",
         "indsinop": "08479",
@@ -1820,7 +1820,7 @@
     {
         "latitud": 36.749722222222225,
         "provincia": "29",
-        "altitud": "766",
+        "altitud": 766,
         "indicativo": "6032B",
         "nombre": "RONDA",
         "indsinop": "08443",
@@ -1829,7 +1829,7 @@
     {
         "latitud": 36.72638888888889,
         "provincia": "29",
-        "altitud": "3",
+        "altitud": 3,
         "indicativo": "6205X",
         "nombre": "TORROX",
         "indsinop": "08484",
@@ -1838,7 +1838,7 @@
     {
         "latitud": 35.27638888888889,
         "provincia": "52",
-        "altitud": "52",
+        "altitud": 52,
         "indicativo": "6000A",
         "nombre": "MELILLA",
         "indsinop": "60338",
@@ -1847,7 +1847,7 @@
     {
         "latitud": 37.41722222222222,
         "provincia": "30",
-        "altitud": "26",
+        "altitud": 26,
         "indicativo": "7002Y",
         "nombre": "\u00c1GUILAS",
         "indsinop": "08432",
@@ -1856,7 +1856,7 @@
     {
         "latitud": 37.95777777777778,
         "provincia": "30",
-        "altitud": "75",
+        "altitud": 75,
         "indicativo": "7228",
         "nombre": "ALCANTARILLA, BASE A\u00c9REA",
         "indsinop": "08429",
@@ -1865,7 +1865,7 @@
     {
         "latitud": 38.1025,
         "provincia": "30",
-        "altitud": "643",
+        "altitud": 643,
         "indicativo": "7119B",
         "nombre": "CARAVACA DE LA CRUZ",
         "indsinop": "08365",
@@ -1874,7 +1874,7 @@
     {
         "latitud": 37.60111111111111,
         "provincia": "30",
-        "altitud": "17",
+        "altitud": 17,
         "indicativo": "7012C",
         "nombre": "CARTAGENA",
         "indsinop": "08434",
@@ -1883,7 +1883,7 @@
     {
         "latitud": 38.23277777777778,
         "provincia": "30",
-        "altitud": "265",
+        "altitud": 265,
         "indicativo": "7145D",
         "nombre": "CIEZA",
         "indsinop": "08363",
@@ -1892,7 +1892,7 @@
     {
         "latitud": 37.65472222222222,
         "provincia": "30",
-        "altitud": "312",
+        "altitud": 312,
         "indicativo": "7209",
         "nombre": "LORCA",
         "indsinop": "08426",
@@ -1901,7 +1901,7 @@
     {
         "latitud": 38.00194444444445,
         "provincia": "30",
-        "altitud": "61",
+        "altitud": 61,
         "indicativo": "7178I",
         "nombre": "MURCIA",
         "indsinop": "08430",
@@ -1910,7 +1910,7 @@
     {
         "latitud": 37.788888888888884,
         "provincia": "30",
-        "altitud": "4",
+        "altitud": 4,
         "indicativo": "7031",
         "nombre": "SAN JAVIER AEROPUERTO",
         "indsinop": "08433",
@@ -1919,7 +1919,7 @@
     {
         "latitud": 37.77833333333333,
         "provincia": "30",
-        "altitud": "4",
+        "altitud": 4,
         "indicativo": "7031X",
         "nombre": "SAN JAVIER AEROPUERTO",
         "indsinop": "08433",
@@ -1928,7 +1928,7 @@
     {
         "latitud": 38.60166666666667,
         "provincia": "30",
-        "altitud": "640",
+        "altitud": 640,
         "indicativo": "7275C",
         "nombre": "YECLA",
         "indsinop": "08356",
@@ -1937,7 +1937,7 @@
     {
         "latitud": 42.77611111111111,
         "provincia": "31",
-        "altitud": "572",
+        "altitud": 572,
         "indicativo": "9263X",
         "nombre": "ARANGUREN, ILUNDAIN  ",
         "indsinop": "08089",
@@ -1946,7 +1946,7 @@
     {
         "latitud": 42.198611111111106,
         "provincia": "31",
-        "altitud": "295",
+        "altitud": 295,
         "indicativo": "9294E",
         "nombre": "BARDENAS REALES, BASE A\u00c9REA ",
         "indsinop": "08087",
@@ -1955,7 +1955,7 @@
     {
         "latitud": 43.13583333333333,
         "provincia": "31",
-        "altitud": "183",
+        "altitud": 183,
         "indicativo": "1002Y",
         "nombre": "BAZTAN, IRURITA ",
         "indsinop": "08030",
@@ -1964,7 +1964,7 @@
     {
         "latitud": 42.206944444444446,
         "provincia": "31",
-        "altitud": "268",
+        "altitud": 268,
         "indicativo": "9283X",
         "nombre": "CADREITA",
         "indsinop": "08153",
@@ -1973,7 +1973,7 @@
     {
         "latitud": 42.776944444444446,
         "provincia": "31",
-        "altitud": "459",
+        "altitud": 459,
         "indicativo": "9263D",
         "nombre": "PAMPLONA AEROPUERTO",
         "indsinop": "08085",
@@ -1982,7 +1982,7 @@
     {
         "latitud": 42.81777777777778,
         "provincia": "31",
-        "altitud": "450",
+        "altitud": 450,
         "indicativo": "9262",
         "nombre": "PAMPLONA",
         "indsinop": "",
@@ -1991,7 +1991,7 @@
     {
         "latitud": 42.339444444444446,
         "provincia": "32",
-        "altitud": "840",
+        "altitud": 840,
         "indicativo": "1631E",
         "nombre": "A POBRA DE TRIVES",
         "indsinop": "08051",
@@ -2000,7 +2000,7 @@
     {
         "latitud": 42.421388888888885,
         "provincia": "32",
-        "altitud": "400",
+        "altitud": 400,
         "indicativo": "1700X",
         "nombre": "CARBALLI\u00d1O, O",
         "indsinop": "08047",
@@ -2009,7 +2009,7 @@
     {
         "latitud": 42.33222222222223,
         "provincia": "32",
-        "altitud": "148",
+        "altitud": 148,
         "indicativo": "1690B",
         "nombre": "OURENSE,INSTITUTO",
         "indsinop": "",
@@ -2018,7 +2018,7 @@
     {
         "latitud": 42.32527777777778,
         "provincia": "32",
-        "altitud": "143",
+        "altitud": 143,
         "indicativo": "1690A",
         "nombre": "OURENSE",
         "indsinop": "08048",
@@ -2027,7 +2027,7 @@
     {
         "latitud": 42.07916666666667,
         "provincia": "32",
-        "altitud": "616",
+        "altitud": 616,
         "indicativo": "1735X",
         "nombre": "XINZO DE LIMIA",
         "indsinop": "08050",
@@ -2036,7 +2036,7 @@
     {
         "latitud": 41.995555555555555,
         "provincia": "34",
-        "altitud": "874",
+        "altitud": 874,
         "indicativo": "2400E",
         "nombre": "AUTILLA DEL PINO",
         "indsinop": "08072",
@@ -2045,7 +2045,7 @@
     {
         "latitud": 42.350833333333334,
         "provincia": "34",
-        "altitud": "830",
+        "altitud": 830,
         "indicativo": "2374X",
         "nombre": "CARRI\u00d3N DE LOS CONDES",
         "indsinop": "08068",
@@ -2054,7 +2054,7 @@
     {
         "latitud": 42.870555555555555,
         "provincia": "34",
-        "altitud": "1140",
+        "altitud": 1140,
         "indicativo": "2235U",
         "nombre": "CERVERA DE PISUERGA",
         "indsinop": "08058",
@@ -2063,7 +2063,7 @@
     {
         "latitud": 42.005,
         "provincia": "34",
-        "altitud": "750",
+        "altitud": 750,
         "indicativo": "2401",
         "nombre": "PALENCIA, OBSERVATORIO",
         "indsinop": "",
@@ -2072,7 +2072,7 @@
     {
         "latitud": 42.43055555555555,
         "provincia": "36",
-        "altitud": "19",
+        "altitud": 19,
         "indicativo": "1484",
         "nombre": "PONTEVEDRA, INSTITUTO",
         "indsinop": "",
@@ -2081,7 +2081,7 @@
     {
         "latitud": 42.43833333333333,
         "provincia": "36",
-        "altitud": "108",
+        "altitud": 108,
         "indicativo": "1484C",
         "nombre": "PONTEVEDRA",
         "indsinop": "08044",
@@ -2090,7 +2090,7 @@
     {
         "latitud": 42.23861111111111,
         "provincia": "36",
-        "altitud": "261",
+        "altitud": 261,
         "indicativo": "1495",
         "nombre": "VIGO AEROPUERTO",
         "indsinop": "08045",
@@ -2099,7 +2099,7 @@
     {
         "latitud": 40.355000000000004,
         "provincia": "37",
-        "altitud": "1960",
+        "altitud": 1960,
         "indicativo": "2491C",
         "nombre": "LA COVATILLA, ESTACI\u00d3N DE ESQU\u00cd",
         "indsinop": "08205",
@@ -2108,7 +2108,7 @@
     {
         "latitud": 40.635,
         "provincia": "37",
-        "altitud": "680",
+        "altitud": 680,
         "indicativo": "2946X",
         "nombre": "SAELICES EL CHICO",
         "indsinop": "08195",
@@ -2117,7 +2117,7 @@
     {
         "latitud": 40.95944444444445,
         "provincia": "37",
-        "altitud": "790",
+        "altitud": 790,
         "indicativo": "2867",
         "nombre": "SALAMANCA AEROPUERTO",
         "indsinop": "08202",
@@ -2126,7 +2126,7 @@
     {
         "latitud": 40.9575,
         "provincia": "37",
-        "altitud": "775",
+        "altitud": 775,
         "indicativo": "2870",
         "nombre": "SALAMANCA",
         "indsinop": "08201",
@@ -2135,7 +2135,7 @@
     {
         "latitud": 41.01138888888889,
         "provincia": "37",
-        "altitud": "769",
+        "altitud": 769,
         "indicativo": "2916A",
         "nombre": "VITIGUDINO",
         "indsinop": "08129",
@@ -2144,7 +2144,7 @@
     {
         "latitud": 41.19194444444444,
         "provincia": "40",
-        "altitud": "1798",
+        "altitud": 1798,
         "indicativo": "2150H",
         "nombre": "LA PINILLA, ESTACI\u00d3N DE ESQU\u00cd",
         "indsinop": "08143",
@@ -2153,7 +2153,7 @@
     {
         "latitud": 40.946666666666665,
         "provincia": "40",
-        "altitud": "990",
+        "altitud": 990,
         "indicativo": "2465A",
         "nombre": "SEGOVIA, INSTITUTO",
         "indsinop": "",
@@ -2162,7 +2162,7 @@
     {
         "latitud": 40.945277777777775,
         "provincia": "40",
-        "altitud": "1005",
+        "altitud": 1005,
         "indicativo": "2465",
         "nombre": "SEGOVIA",
         "indsinop": "08213",
@@ -2171,7 +2171,7 @@
     {
         "latitud": 37.92638888888889,
         "provincia": "41",
-        "altitud": "550",
+        "altitud": 550,
         "indicativo": "5704B",
         "nombre": "CAZALLA DE LA SIERRA",
         "indsinop": "08392",
@@ -2180,7 +2180,7 @@
     {
         "latitud": 37.51611111111111,
         "provincia": "41",
-        "altitud": "130",
+        "altitud": 130,
         "indicativo": "5641X",
         "nombre": "\u00c9CIJA",
         "indsinop": "08395",
@@ -2189,7 +2189,7 @@
     {
         "latitud": 37.19444444444444,
         "provincia": "41",
-        "altitud": "410",
+        "altitud": 410,
         "indicativo": "5612B",
         "nombre": "LA RODA DE ANDALUC\u00cdA",
         "indsinop": "08399",
@@ -2198,7 +2198,7 @@
     {
         "latitud": 37.16444444444444,
         "provincia": "41",
-        "altitud": "87",
+        "altitud": 87,
         "indicativo": "5796",
         "nombre": "MOR\u00d3N DE LA FRONTERA",
         "indsinop": "08397",
@@ -2207,7 +2207,7 @@
     {
         "latitud": 37.416666666666664,
         "provincia": "41",
-        "altitud": "34",
+        "altitud": 34,
         "indicativo": "5783",
         "nombre": "SEVILLA AEROPUERTO",
         "indsinop": "08391",
@@ -2216,7 +2216,7 @@
     {
         "latitud": 41.775,
         "provincia": "42",
-        "altitud": "1082",
+        "altitud": 1082,
         "indicativo": "2030",
         "nombre": "SORIA",
         "indsinop": "08148",
@@ -2225,7 +2225,7 @@
     {
         "latitud": 28.31833333333333,
         "provincia": "38",
-        "altitud": "115",
+        "altitud": 115,
         "indicativo": "C439J",
         "nombre": "G\u00dc\u00cdMAR",
         "indsinop": "60018",
@@ -2234,7 +2234,7 @@
     {
         "latitud": 27.81888888888889,
         "provincia": "38",
-        "altitud": "32",
+        "altitud": 32,
         "indicativo": "C929I",
         "nombre": "HIERRO AEROPUERTO",
         "indsinop": "60001",
@@ -2243,7 +2243,7 @@
     {
         "latitud": 28.30888888888889,
         "provincia": "38",
-        "altitud": "2371",
+        "altitud": 2371,
         "indicativo": "C430E",
         "nombre": "IZA\u00d1A",
         "indsinop": "60010",
@@ -2252,7 +2252,7 @@
     {
         "latitud": 28.633055555555558,
         "provincia": "38",
-        "altitud": "33",
+        "altitud": 33,
         "indicativo": "C139E",
         "nombre": "LA PALMA AEROPUERTO",
         "indsinop": "60005",
@@ -2261,7 +2261,7 @@
     {
         "latitud": 28.418055555555558,
         "provincia": "38",
-        "altitud": "25",
+        "altitud": 25,
         "indicativo": "C459Z",
         "nombre": "PUERTO DE LA CRUZ",
         "indsinop": "60012",
@@ -2270,7 +2270,7 @@
     {
         "latitud": 28.08972222222222,
         "provincia": "38",
-        "altitud": "15",
+        "altitud": 15,
         "indicativo": "C329Z",
         "nombre": "SAN SEBASTI\u00c1N DE LA GOMERA",
         "indsinop": "60008",
@@ -2279,7 +2279,7 @@
     {
         "latitud": 28.46333333333333,
         "provincia": "38",
-        "altitud": "35",
+        "altitud": 35,
         "indicativo": "C449C",
         "nombre": "STA.CRUZ DE TENERIFE",
         "indsinop": "60020",
@@ -2288,7 +2288,7 @@
     {
         "latitud": 28.59583333333333,
         "provincia": "38",
-        "altitud": "62",
+        "altitud": 62,
         "indicativo": "C129Z",
         "nombre": "TAZACORTE",
         "indsinop": "60004",
@@ -2297,7 +2297,7 @@
     {
         "latitud": 28.4775,
         "provincia": "38",
-        "altitud": "632",
+        "altitud": 632,
         "indicativo": "C447A",
         "nombre": "TENERIFE NORTE AEROPUERTO",
         "indsinop": "60015",
@@ -2306,7 +2306,7 @@
     {
         "latitud": 28.046944444444446,
         "provincia": "38",
-        "altitud": "64",
+        "altitud": 64,
         "indicativo": "C429I",
         "nombre": "TENERIFE SUR AEROPUERTO",
         "indsinop": "60025",
@@ -2315,7 +2315,7 @@
     {
         "latitud": 41.144999999999996,
         "provincia": "43",
-        "altitud": "71",
+        "altitud": 71,
         "indicativo": "0016A",
         "nombre": "REUS AEROPUERTO",
         "indsinop": "08175",
@@ -2324,7 +2324,7 @@
     {
         "latitud": 40.69916666666666,
         "provincia": "43",
-        "altitud": "1",
+        "altitud": 1,
         "indicativo": "9987P",
         "nombre": "SANT JAUME D'ENVEJA",
         "indsinop": "08240",
@@ -2333,7 +2333,7 @@
     {
         "latitud": 40.82027777777778,
         "provincia": "43",
-        "altitud": "50",
+        "altitud": 50,
         "indicativo": "9981A",
         "nombre": "TORTOSA",
         "indsinop": "08238",
@@ -2342,7 +2342,7 @@
     {
         "latitud": 40.95805555555556,
         "provincia": "43",
-        "altitud": "32",
+        "altitud": 32,
         "indicativo": "0002I",
         "nombre": "VANDELL\u00d2S  ",
         "indsinop": "08169",
@@ -2351,7 +2351,7 @@
     {
         "latitud": 41.058055555555555,
         "provincia": "44",
-        "altitud": "334",
+        "altitud": 334,
         "indicativo": "9573X",
         "nombre": "ALCA\u00d1IZ",
         "indsinop": "08164",
@@ -2360,7 +2360,7 @@
     {
         "latitud": 40.865,
         "provincia": "44",
-        "altitud": "932",
+        "altitud": 932,
         "indicativo": "9381",
         "nombre": "CALAMOCHA, AER\u00d3DROMO",
         "indsinop": "",
@@ -2369,7 +2369,7 @@
     {
         "latitud": 40.92611111111111,
         "provincia": "44",
-        "altitud": "890",
+        "altitud": 890,
         "indicativo": "9381I",
         "nombre": "CALAMOCHA",
         "indsinop": "08233",
@@ -2378,7 +2378,7 @@
     {
         "latitud": 40.946666666666665,
         "provincia": "44",
-        "altitud": "466",
+        "altitud": 466,
         "indicativo": "9569A",
         "nombre": "CALANDA",
         "indsinop": "08166",
@@ -2387,7 +2387,7 @@
     {
         "latitud": 40.35055555555556,
         "provincia": "44",
-        "altitud": "900",
+        "altitud": 900,
         "indicativo": "8368U",
         "nombre": "TERUEL",
         "indsinop": "08235",
@@ -2396,7 +2396,7 @@
     {
         "latitud": 39.49194444444444,
         "provincia": "45",
-        "altitud": "690",
+        "altitud": 690,
         "indicativo": "4067",
         "nombre": "MADRIDEJOS",
         "indsinop": "08273",
@@ -2405,7 +2405,7 @@
     {
         "latitud": 39.597500000000004,
         "provincia": "45",
-        "altitud": "691",
+        "altitud": 691,
         "indicativo": "4061X",
         "nombre": "QUINTANAR DE LA ORDEN",
         "indsinop": "08275",
@@ -2414,7 +2414,7 @@
     {
         "latitud": 39.54694444444444,
         "provincia": "45",
-        "altitud": "917",
+        "altitud": 917,
         "indicativo": "3298X",
         "nombre": "SAN PABLO DE LOS MONTES",
         "indsinop": "08270",
@@ -2423,7 +2423,7 @@
     {
         "latitud": 39.95861111111111,
         "provincia": "45",
-        "altitud": "372",
+        "altitud": 372,
         "indicativo": "3365A",
         "nombre": "TALAVERA DE LA REINA",
         "indsinop": "08274",
@@ -2432,7 +2432,7 @@
     {
         "latitud": 39.85944444444445,
         "provincia": "45",
-        "altitud": "540",
+        "altitud": 540,
         "indicativo": "3259",
         "nombre": "TOLEDO, LORENZANA",
         "indsinop": "",
@@ -2441,7 +2441,7 @@
     {
         "latitud": 39.88472222222222,
         "provincia": "45",
-        "altitud": "515",
+        "altitud": 515,
         "indicativo": "3260B",
         "nombre": "TOLEDO",
         "indsinop": "08272",
@@ -2450,7 +2450,7 @@
     {
         "latitud": 38.928888888888885,
         "provincia": "46",
-        "altitud": "5",
+        "altitud": 5,
         "indicativo": "8058X",
         "nombre": "OLIVA",
         "indsinop": "08282",
@@ -2459,7 +2459,7 @@
     {
         "latitud": 39.18472222222222,
         "provincia": "46",
-        "altitud": "12",
+        "altitud": 12,
         "indicativo": "8325X",
         "nombre": "POLINY\u00c0 DE X\u00daQUER",
         "indsinop": "08287",
@@ -2468,7 +2468,7 @@
     {
         "latitud": 39.57555555555556,
         "provincia": "46",
-        "altitud": "758",
+        "altitud": 758,
         "indicativo": "8309X",
         "nombre": "UTIEL",
         "indsinop": "08281",
@@ -2477,7 +2477,7 @@
     {
         "latitud": 39.485,
         "provincia": "46",
-        "altitud": "56",
+        "altitud": 56,
         "indicativo": "8414A",
         "nombre": "VALENCIA AEROPUERTO",
         "indsinop": "08284",
@@ -2486,7 +2486,7 @@
     {
         "latitud": 39.480555555555554,
         "provincia": "46",
-        "altitud": "11",
+        "altitud": 11,
         "indicativo": "8416Y",
         "nombre": "VAL\u00c8NCIA, VIVEROS",
         "indsinop": "08285",
@@ -2495,7 +2495,7 @@
     {
         "latitud": 39.480555555555554,
         "provincia": "46",
-        "altitud": "11",
+        "altitud": 11,
         "indicativo": "8416",
         "nombre": "VAL\u00c8NCIA",
         "indsinop": "08285",
@@ -2504,7 +2504,7 @@
     {
         "latitud": 39.001666666666665,
         "provincia": "46",
-        "altitud": "88",
+        "altitud": 88,
         "indicativo": "8293X",
         "nombre": "X\u00c0TIVA",
         "indsinop": "08290",
@@ -2513,7 +2513,7 @@
     {
         "latitud": 41.325833333333335,
         "provincia": "47",
-        "altitud": "740",
+        "altitud": 740,
         "indicativo": "2503X",
         "nombre": "OLMEDO",
         "indsinop": "08142",
@@ -2522,7 +2522,7 @@
     {
         "latitud": 41.71194444444445,
         "provincia": "47",
-        "altitud": "846",
+        "altitud": 846,
         "indicativo": "2539",
         "nombre": "VALLADOLID AEROPUERTO",
         "indsinop": "08140",
@@ -2531,7 +2531,7 @@
     {
         "latitud": 41.64083333333333,
         "provincia": "47",
-        "altitud": "735",
+        "altitud": 735,
         "indicativo": "2422",
         "nombre": "VALLADOLID",
         "indsinop": "08141",
@@ -2540,7 +2540,7 @@
     {
         "latitud": 42.01083333333333,
         "provincia": "49",
-        "altitud": "715",
+        "altitud": 715,
         "indicativo": "2755X",
         "nombre": "BENAVENTE",
         "indsinop": "08056",
@@ -2549,7 +2549,7 @@
     {
         "latitud": 41.94138888888889,
         "provincia": "49",
-        "altitud": "850",
+        "altitud": 850,
         "indicativo": "2775X",
         "nombre": "VILLARDECIERVOS",
         "indsinop": "08125",
@@ -2558,7 +2558,7 @@
     {
         "latitud": 41.51555555555556,
         "provincia": "49",
-        "altitud": "656",
+        "altitud": 656,
         "indicativo": "2614",
         "nombre": "ZAMORA",
         "indsinop": "08130",
@@ -2567,7 +2567,7 @@
     {
         "latitud": 41.5225,
         "provincia": "50",
-        "altitud": "357",
+        "altitud": 357,
         "indicativo": "9576C",
         "nombre": "BUJARALOZ",
         "indsinop": "08165",
@@ -2576,7 +2576,7 @@
     {
         "latitud": 41.33111111111111,
         "provincia": "50",
-        "altitud": "582",
+        "altitud": 582,
         "indicativo": "9394X",
         "nombre": "CALATAYUD",
         "indsinop": "08156",
@@ -2585,7 +2585,7 @@
     {
         "latitud": 41.114444444444445,
         "provincia": "50",
-        "altitud": "779",
+        "altitud": 779,
         "indicativo": "9390",
         "nombre": "DAROCA",
         "indsinop": "08157",
@@ -2594,7 +2594,7 @@
     {
         "latitud": 42.490833333333335,
         "provincia": "50",
-        "altitud": "626",
+        "altitud": 626,
         "indicativo": "9244X",
         "nombre": "SOS DEL REY CAT\u00d3LICO",
         "indsinop": "08090",
@@ -2603,7 +2603,7 @@
     {
         "latitud": 41.660555555555554,
         "provincia": "50",
-        "altitud": "249",
+        "altitud": 249,
         "indicativo": "9434",
         "nombre": "ZARAGOZA AEROPUERTO",
         "indsinop": "08160",
@@ -2612,7 +2612,7 @@
     {
         "latitud": 41.62083333333334,
         "provincia": "50",
-        "altitud": "254",
+        "altitud": 254,
         "indicativo": "9434P",
         "nombre": "ZARAGOZA, VALDESPARTERA",
         "indsinop": "08159",
