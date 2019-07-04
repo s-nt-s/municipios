@@ -353,15 +353,28 @@ def _js(url):
         return _js(url)
     return r
 
+re_json1 = re.compile(r"^\[\s*{")
+re_json2 = re.compile(r" *}\s*\]$")
+re_json3 = re.compile(r"}\s*,\s*{")
+re_json4 = re.compile(r"^  ", re.MULTILINE)
 
-def save_js(file, data, indent=4):
+def obj_to_js(data):
+    txt = json.dumps(data, indent=2)
+    txt = re_json1.sub("[{", txt)
+    txt = re_json2.sub("}]", txt)
+    txt = re_json3.sub("},{", txt)
+    txt = re_json4.sub("", txt)
+    return txt
+
+def save_js(file, data):
     if "*" in file:
         for year, dt in data.items():
             f = file.replace("*", str(year))
             save_js(f, dt)
     else:
+        txt = obj_to_js(data)
         with open(file, "w") as f:
-            json.dump(data, f, indent=indent)
+            f.write(txt)
 
 
 def get_root_file(dom):
