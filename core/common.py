@@ -92,7 +92,7 @@ def zipfile(file, mb=47, delete=False, only_if_bigger=False):
     return size(*files)
 
 def save(file, content):
-    if file.endswith("inventarioestaciones/todasestaciones.json") or file.startswith("fuentes/aemet/diarios/"):
+    if file.startswith("fuentes/aemet/"):
         content = content.decode('iso-8859-1')
         content = str.encode(content)
     dir = os.path.dirname(file)
@@ -394,17 +394,22 @@ def get_js(url):
     save(file, r.content)
     return r.json()
 
-re_clima = re.compile(r"https://opendata.aemet.es/opendata/api/valores/climatologicos/([^/]+)/datos/fechaini/(\d+)-01-01T00:00:00UTC/fechafin/(\d+)-12-31T23:59:59UTC/estacion/([^/]+)/.*")
+re_clima1 = re.compile(r"https://opendata.aemet.es/opendata/api/valores/climatologicos/([^/]+)/datos/fechaini/(\d+)-01-01T00:00:00UTC/fechafin/(\d+)-12-31T23:59:59UTC/estacion/([^/]+)/.*")
+re_clima2 = re.compile(r"https://opendata.aemet.es/opendata/api/valores/climatologicos/([^/]+)/datos/anioini/(\d+)/aniofin/(\d+)/estacion/([^/]+)/.*")
 
 def url_to_file(url, ext):
     file = None
     parsed_url = urlparse(url)
     root = get_root_file(parsed_url.netloc) + "/"
 
-    m = re_clima.match(url)
-    if m:
-        tp, ini, fin, id = m.groups()
+    m1 = re_clima1.match(url)
+    m2 = re_clima2.match(url)
+    if m1:
+        tp, ini, fin, id = m1.groups()
         file = root + "%s/%s/%s-%s.json" % (tp, id, ini, fin)
+    elif m2:
+        tp, ini, fin, id = m2.groups()
+        file = root + "%s/%s/%s.json" % (tp, id, ini)
     elif url.startswith("https://administracionelectronica.navarra.es/GN.InstitutoEstadistica.Web/DescargaFichero.aspx"):
         query = parse_qs(parsed_url.query)
         if query and "Fichero" in query:
