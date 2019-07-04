@@ -88,3 +88,16 @@ class jFile:
                 if k in item:
                     item[k]=v(item[k])
             yield item
+
+    @property
+    def empty(self):
+        if not self.files:
+            return True
+        gen = self.lines()
+        l = next(gen, None)
+        if l is None:
+            return True
+        l = next(gen, None)
+        if l is None and self.type == "csv":
+            return True
+        return False
