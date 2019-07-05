@@ -1,5 +1,4 @@
 import os
-from io import BytesIO
 import py7zlib
 import io
 from glob import glob
@@ -11,6 +10,21 @@ from .common import get_parts
 
 re_chomp=re.compile(r"[\n\r]+$")
 
+class JoinFileOpener:
+    def __init__ (self, *files):
+        if len(files)==1:
+            self._file = open(files[0], "rb")
+        else:
+            self._file = io.BytesIO()
+            for fl in files:
+                with open(fl, "rb") as f:
+                    self._file.write(f.read())
+            self._file.seek(0)
+    def __enter__ (self, *args, **kargs):
+        return self._file
+    def __exit__ (self, *args, **kargs):
+        self._file.close()
+
 class jFile:
     def __init__(self, file, auto_close=True):
         self.fullname = file
@@ -19,30 +33,12 @@ class jFile:
         self.file = ntpath.basename(file)
         self.type = file.rsplit(".", 1)[-1].lower()
         self.main = self.type
-        self.tmp = None
         self.auto_close = auto_close
-
-    def open(self):
-        if len(self.files)>1 and (self.tmp is None or not os.path.isfile(self.tmp)):
-            f1 = self.files[0]
-            if f.endswith(".7z.001") or f.endswith(".7z"):
-                self.main = "7z"
-                with tempfile.NamedTemporaryFile(suffix=".7z", delete=False) as tmp:
-                    for file in self.files:
-                        with open(file, "rb") as f:
-                            tmp.write(f.read())
-                    self.tmp = tmp.name
-
-    def close(self):
-        if self.tmp and os.path.isfile(self.tmp):
-            os.remove(self.tmp)
 
     def content(self):
         if self.files:
-            self.open()
             if self.main == "7z":
-                file = self.tmp or self.files[0]
-                with open(file, "rb") as f:
+                with JoinFileOpener(*self.files) as f:
                     f7z = py7zlib.Archive7z(f)
                     name = f7z.getnames()[0]
                     self.file = ntpath.basename(name)
