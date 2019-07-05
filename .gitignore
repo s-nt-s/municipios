@@ -10,6 +10,8 @@ debug/*
 *.db-journal
 *.7z
 debug.py
+!dataset/tablas/*.7z
+!dataset/tablas/*.7z.*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
