@@ -89,6 +89,10 @@ def zipfile(file, mb=47, delete=False, only_if_bigger=False):
     if delete:
         os.remove(file)
     files = get_parts(zip)
+    if len(files)==1 and files[0].endswith(".7z.001"):
+        dst = files[0][:-4]
+        os.rename(files[0],dst)
+        files=[dst]
     return size(*files)
 
 def save(file, content):
