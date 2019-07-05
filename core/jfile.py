@@ -26,14 +26,15 @@ class JoinFileOpener:
         self._file.close()
 
 class jFile:
-    def __init__(self, file, auto_close=True):
+    def __init__(self, file):
         self.fullname = file
         self.files=get_parts(file)
         self.path = os.path.dirname(file)
         self.file = ntpath.basename(file)
         self.type = file.rsplit(".", 1)[-1].lower()
         self.main = self.type
-        self.auto_close = auto_close
+        if len(self.files) and (self.files[0].endswith(".7z") or self.files[0].endswith(".7z.001")):
+            self.main = "7z"
 
     def content(self):
         if self.files:
@@ -53,8 +54,6 @@ class jFile:
                         for l in f.readlines():
                             l = re_chomp.sub("", l)
                             yield l
-            if self.auto_close:
-                self.close()
 
     def lines(self):
         for l in self.content():

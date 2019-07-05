@@ -23,8 +23,30 @@ re_ft = re.compile(r"^-?\d+(,\d+)?$")
 
 cYear = datetime.now().year
 
+def parse_aemet_cols(aemet_data):
+    cols = get_cols(*[item for sublist in aemet_data.values() for item in sublist])
+    cols.remove("fecha")
+    real=set()
+    strs=set()
+    for b in aemet_data.values():
+        for i in b:
+            for k, v in i.items():
+                if isinstance(v, float):
+                    real.add(k)
+                elif isinstance(v, str):
+                    strs.add(k)
+    kcols={}
+    for c in strs:
+        if c in cols:
+            cols.remove(c)
+            kcols[c]="TEXT"
+    for c in real:
+        if c in cols:
+            cols.remove(c)
+            kcols[c]="REAL"
+    return cols, kcols
 
-def insert(db, table, rows, kSort=None):
+def insert_rel_mun(db, table, rows, kSort=None):
     table = table.upper()
     create = '''
         create table {} (
@@ -810,11 +832,51 @@ class Dataset():
 
 
     def populate_datamun(self, db, reload=False):
+        aemet_mes={}
+        aemet_dia={}
         for b in self.aemet_bases:
             b["point"]=Point(b["longitud"], b["latitud"])
             b["ID"]=b["indicativo"]
             db.insert("AEMET_BASES", **b)
+            aemet_dia[b["indicativo"]] = self.get_dia_estacion(b["indicativo"])
+            aemet_mes[b["indicativo"]] = self.get_mes_estacion(b["indicativo"])
         db.commit()
+
+        table = "AEMET_DIA"
+        cols, kcols = parse_aemet_cols(aemet_dia)
+        create = '''
+            create table {} (
+              BASE TEXT,
+              FECHA DATE,
+              %s
+              PRIMARY KEY (BASE, FECHA),
+              FOREIGN KEY(BASE) REFERENCES AEMET_BASES(ID)
+            )
+        '''.format(table)
+        db.create(create, *cols, **kcols, to_file="sql/%s.sql" % table)
+        for id, vals in aemet_dia.items():
+            for b in vals:
+                db.insert(table, BASE=id, **b)
+        db.commit()
+
+        table = "AEMET_MES"
+        cols, kcols = parse_aemet_cols(aemet_mes)
+        create = '''
+            create table {} (
+              BASE TEXT,
+              FECHA TEXT,
+              %s
+              PRIMARY KEY (BASE, FECHA),
+              FOREIGN KEY(BASE) REFERENCES AEMET_BASES(ID)
+            )
+        '''.format(table)
+        db.create(create, *cols, **kcols, to_file="sql/%s.sql" % table)
+        for id, vals in aemet_mes.items():
+            for b in vals:
+                db.insert(table, BASE=id, **b)
+        db.commit()
+
+
         pop_rows = {}
         for year, dtY in self.parseData(self.meta_edades).items():
             for mun, dt in dtY.items():
@@ -843,7 +905,7 @@ class Dataset():
                         row[k] = v
                 pop_rows[key] = row
 
-        insert(db, "poblacion", pop_rows, kSort=sortColPob)
+        insert_rel_mun(db, "poblacion", pop_rows, kSort=sortColPob)
 
         rows = {}
         for year, dtY in self.agrario.items():
@@ -853,7 +915,7 @@ class Dataset():
                 for k, v in dt.items():
                     row[k] = v
                 rows[key] = row
-        insert(db, "agrario", rows)
+        insert_rel_mun(db, "agrario", rows)
 
         rows = {}
         for year, dtY in self.empresas.items():
@@ -863,7 +925,7 @@ class Dataset():
                 for k, v in dt.items():
                     row[k] = v
                 rows[key] = row
-        insert(db, "empresas", rows)
+        insert_rel_mun(db, "empresas", rows)
 
         rows = {}
         rt1000 = {}
@@ -912,7 +974,7 @@ class Dataset():
                 row["tipo"] = 4
                 rows[key] = row
 
-        insert(db, "renta", rows)
+        insert_rel_mun(db, "renta", rows)
 
         db.create('''
             create table SEPE (

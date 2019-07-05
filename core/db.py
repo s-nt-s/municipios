@@ -181,7 +181,7 @@ class DBLite:
             sql = sql + '"%s" INTEGER,\n' % c
         for c, t in kargv.items():
             c = self.parse_col(c)
-            sql = '"%s" %s,\n' % (c, t)
+            sql = sql + '"%s" %s,\n' % (c, t)
         sql = sql.strip()
         sql = textwrap.dedent(template) % sql
         sql = sql.strip()

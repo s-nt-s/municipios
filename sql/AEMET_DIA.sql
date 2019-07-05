@@ -1,0 +1,21 @@
+create table AEMET_DIA (
+  BASE TEXT,
+  FECHA DATE,
+  "dir" INTEGER,
+"horaracha" TEXT,
+"horapresmax" TEXT,
+"prec" TEXT,
+"horapresmin" TEXT,
+"horatmax" TEXT,
+"horatmin" TEXT,
+"tmin" REAL,
+"sol" REAL,
+"presmin" REAL,
+"tmed" REAL,
+"presmax" REAL,
+"velmedia" REAL,
+"tmax" REAL,
+"racha" REAL,
+  PRIMARY KEY (BASE, FECHA),
+  FOREIGN KEY(BASE) REFERENCES AEMET_BASES(ID)
+)
