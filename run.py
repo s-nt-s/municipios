@@ -26,7 +26,6 @@ def load_csv(db, table, insert):
         print("Cargando", file)
         for item in j.items():
             db.insert(table, **item)
-        j.close()
         return
     print("Creando ", file)
     db.execute(insert)
@@ -77,12 +76,10 @@ def setKm(db):
         print("Cargando", file1)
         for item in j1.items():
             db.insert("CRS_KM", **item)
-        j1.close()
     if not j1.empty and not j2.empty:
         print("Cargando", file2)
         for item in j2.items():
             db.insert("AREA_INFLUENCIA", **item)
-        j1.close()
     _setKm(db, j1, j2, 50, max_km=50)
 
 
