@@ -4,7 +4,7 @@ CREATE TABLE CAMBIOS (
   "viejo" TEXT,
   "nuevo" TEXT,
   "wiki" TEXT,
-  "fecha" TEXT,
+  "fecha" DATE,
   "notas" TEXT,
   "remplaza" INTEGER,
   "municipio" INTEGER,

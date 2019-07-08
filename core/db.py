@@ -84,6 +84,7 @@ def get_cols(object):
     for k, tp in list(tps.items()):
         n_flag, d_flag = False, False
         for sql, pyt in (
+            ("INTEGER", bool),
             ("INTEGER", int),
             ("REAL", float),
         ):
@@ -307,7 +308,7 @@ class DBLite:
             return self._dict_to_table(table, data, *args, **kargv)
         return None
 
-    def _select_to_table(self, table, select_sql, create=True, to_file=None):
+    def _select_to_table(self, table, select_sql, create=True, sufix=None, to_file=None):
         select_sql = textwrap.dedent(select_sql).strip()
         table = table.upper()
         sql = ''
@@ -337,7 +338,11 @@ class DBLite:
                 table)
             for name in cols:
                 sql = sql+'\n  "'+name+'" '+columns[name]+","
-            sql = sql[:-1]+"\n);\n"
+            if sufix:
+                sql = sql.strip() + "\n" + sufix.strip()
+            else:
+                sql = sql[:-1]
+            sql = sql +"\n);\n"
         else:
             cols = self.tables[table]
         sql = sql+'INSERT INTO {} ("{}")\n{}'.format(table,
@@ -346,42 +351,20 @@ class DBLite:
             sql = sql+";"
         self.execute(sql, to_file=to_file)
 
-    def _dict_to_table(self, table, rows, to_file=None):
-        keys = {}
-        for r in rows:
-            for k, v in r.items():
-                if v is not None:
-                    k = self.parse_col(k)
-                    vals = keys.get(k, set())
-                    vals.add(type(v))
-                    keys[k] = vals
+    def _dict_to_table(self, table, rows, sufix=None, to_file=None):
+        kcols=get_cols(rows)
         sql = "DROP TABLE IF EXISTS {0};\n\nCREATE TABLE {0} (".format(table)
-        for name, vals in keys.items():
-            tp = "TEXT"
-            if bool in vals:
-                tp = "INTEGER"
-                vals.remove(bool)
-            if int in vals:
-                tp = "INTEGER"
-                vals.remove(int)
-            if float in vals:
-                tp = "REAL"
-                vals.remove(float)
-            if str in vals:
-                tp = "TEXT"
-                vals.remove(str)
-            if bytes in vals:
-                tp = "BLOB"
-                vals.remove(bytes)
-            elif vals:
-                tp = "TEXT"
+        for name, tp in kcols.items():
             sql = sql+'\n  "'+name+'" '+tp+","
-        sql = sql[:-1]+"\n);\n"
+        if sufix:
+            sql = sql.strip() + "\n" + sufix.strip()
+        else:
+            sql = sql[:-1]
+        sql = sql +"\n);\n"
         self.execute(sql, to_file=to_file)
         for r in rows:
             self.insert(table, **r)
         self.commit()
-
 
 class DBshp(DBLite):
     def __init__(self, *args, srid=4326, **kargv):
