@@ -1,4 +1,5 @@
 import csv
+import io
 import json
 import os
 import re
@@ -7,10 +8,10 @@ import time
 import zipfile as zipfilelib
 from glob import glob, iglob
 from io import BytesIO
+from subprocess import DEVNULL, STDOUT, check_call
 from urllib.parse import parse_qs, urljoin, urlparse
-import py7zlib
-import io
 
+import py7zlib
 import requests
 import urllib3
 import xlrd
@@ -18,12 +19,11 @@ import yaml
 from bs4 import BeautifulSoup
 from bunch import Bunch
 from unidecode import unidecode
-from subprocess import DEVNULL, STDOUT, check_call
-import ntpath
-import sys
+
 from .mdb_to_sqlite import mdb_to_sqlite
 
 urllib3.disable_warnings()
+
 
 def readfile(file):
     if os.path.isfile(file):
@@ -45,12 +45,13 @@ def to_num(st, coma=False):
             s = s.replace(".", "")
             s = s.replace(",", ".")
         s = float(s)
-        if int(s)==s:
+        if int(s) == s:
             s = int(s)
         return s
     except:
         pass
     return st
+
 
 def size(*files, suffix='B'):
     num = 0
@@ -64,22 +65,23 @@ def size(*files, suffix='B'):
 
 
 def get_parts(file):
-    arr=[]
+    arr = []
     if os.path.isfile(file):
         arr.append(file)
     arr.extend(sorted(glob(file+".*")))
-    if len(arr)==0:
+    if len(arr) == 0:
         name, ext = os.path.splitext(file)
         if ext != ".7z":
             arr = get_parts(name+".7z")
     return arr
 
+
 def zipfile(file, mb=47, delete=False, only_if_bigger=False):
     if mb is None:
         mb = 47
     if only_if_bigger == True:
-        only_if_bigger=mb
-    if only_if_bigger and (only_if_bigger*1024*1024)>os.path.getsize(file):
+        only_if_bigger = mb
+    if only_if_bigger and (only_if_bigger*1024*1024) > os.path.getsize(file):
         return
     zip = os.path.splitext(file)[0]+".7z"
     for z in get_parts(zip):
@@ -89,11 +91,12 @@ def zipfile(file, mb=47, delete=False, only_if_bigger=False):
     if delete:
         os.remove(file)
     files = get_parts(zip)
-    if len(files)==1 and files[0].endswith(".7z.001"):
+    if len(files) == 1 and files[0].endswith(".7z.001"):
         dst = files[0][:-4]
-        os.rename(files[0],dst)
-        files=[dst]
+        os.rename(files[0], dst)
+        files = [dst]
     return size(*files)
+
 
 def save(file, content):
     if file.startswith("fuentes/aemet/"):
@@ -217,6 +220,7 @@ def readcontent(file, name=None):
                 for l in f.readlines():
                     yield l
 
+
 def readlines(file, fields=None, name=None):
     for l in readcontent(file, name=name):
         l = l.strip()
@@ -224,6 +228,7 @@ def readlines(file, fields=None, name=None):
             if fields:
                 l = l.split(None, fields)
             yield l
+
 
 def parse_cell(c):
     if isinstance(c, str):
@@ -341,6 +346,7 @@ def read_js(file, intKey=False):
             return js
     return None
 
+
 def requests_js(url):
     try:
         r = requests.get(url, verify=False)
@@ -349,6 +355,7 @@ def requests_js(url):
     except:
         time.sleep(61)
         return requests_js(url)
+
 
 def _js(url):
     is_aemet = url.startswith("https://opendata.aemet.es/opendata/api/")
@@ -366,10 +373,12 @@ def _js(url):
         return _js(url)
     return r
 
+
 re_json1 = re.compile(r"^\[\s*{")
 re_json2 = re.compile(r" *}\s*\]$")
 re_json3 = re.compile(r"}\s*,\s*{")
 re_json4 = re.compile(r"^  ", re.MULTILINE)
+
 
 def obj_to_js(data):
     txt = json.dumps(data, indent=2)
@@ -378,6 +387,7 @@ def obj_to_js(data):
     txt = re_json3.sub("},{", txt)
     txt = re_json4.sub("", txt)
     return txt
+
 
 def save_js(file, data):
     if "*" in file:
@@ -413,15 +423,19 @@ def get_js(url):
         return j
     r = _js(url)
     print(url, "-->", file)
-    #print(r.encoding)
-    #print(r.apparent_encoding)
-    #print(type(r.content))
-    #apple.decode('iso-8859-1').encode('utf8')
+    # print(r.encoding)
+    # print(r.apparent_encoding)
+    # print(type(r.content))
+    # apple.decode('iso-8859-1').encode('utf8')
     save(file, r.content)
     return r.json()
 
-re_clima1 = re.compile(r"https://opendata.aemet.es/opendata/api/valores/climatologicos/([^/]+)/datos/fechaini/(\d+)-01-01T00:00:00UTC/fechafin/(\d+)-12-31T23:59:59UTC/estacion/([^/]+)/.*")
-re_clima2 = re.compile(r"https://opendata.aemet.es/opendata/api/valores/climatologicos/([^/]+)/datos/anioini/(\d+)/aniofin/(\d+)/estacion/([^/]+)/.*")
+
+re_clima1 = re.compile(
+    r"https://opendata.aemet.es/opendata/api/valores/climatologicos/([^/]+)/datos/fechaini/(\d+)-01-01T00:00:00UTC/fechafin/(\d+)-12-31T23:59:59UTC/estacion/([^/]+)/.*")
+re_clima2 = re.compile(
+    r"https://opendata.aemet.es/opendata/api/valores/climatologicos/([^/]+)/datos/anioini/(\d+)/aniofin/(\d+)/estacion/([^/]+)/.*")
+
 
 def url_to_file(url, ext):
     file = None
@@ -491,6 +505,7 @@ def wstempus(url):
     url = "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA%s%s?tip=AM" % (
         qs["path"][0], qs["file"][0])
     return url
+
 
 def sexa_to_dec(i):
     g = i[0:2]

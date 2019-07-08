@@ -1,9 +1,11 @@
 beautifulsoup4==4.7.1
 bunch==1.0.1
 lxml==4.3.3
+pylzma==0.5.0
 pyshp==2.1.0
 PyYAML==5.1.1
 requests==2.18.4
+scipy==1.2.1
 Shapely==1.6.4.post2
 Unidecode==1.0.23
 urllib3==1.22

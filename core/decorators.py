@@ -1,4 +1,5 @@
 import functools
+
 from .common import *
 
 
@@ -36,16 +37,18 @@ class Cache:
         self.func = func
         return lambda *args, **kargs: self.callCache(*args, **kargs)
 
+
 class JsonCache(Cache):
     def __init__(self, *args, intKey=True, **kargv):
         Cache.__init__(self, *args, **kargv)
-        self.intKey=intKey
+        self.intKey = intKey
 
     def read(self, *args, **kargs):
         return read_js(self.file, intKey=self.intKey)
 
     def save(self, data, *args, **kargs):
         save_js(self.file, data)
+
 
 class ParamJsonCache(JsonCache):
     def __init__(self, *args, **kargv):
@@ -58,6 +61,7 @@ class ParamJsonCache(JsonCache):
     def save(self, data, *args, **kargs):
         f = self.file.format(*args, *kargs)
         save_js(f, data)
+
 
 class KmCache(Cache):
     def __init__(self, *args, **kargv):

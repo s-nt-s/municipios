@@ -1,18 +1,18 @@
-import os
-import py7zlib
 import io
-from glob import glob
-import re
-import tempfile
-import os
 import ntpath
+import os
+import re
+
+import py7zlib
+
 from .common import get_parts
 
-re_chomp=re.compile(r"[\n\r]+$")
+re_chomp = re.compile(r"[\n\r]+$")
+
 
 class JoinFileOpener:
-    def __init__ (self, *files):
-        if len(files)==1:
+    def __init__(self, *files):
+        if len(files) == 1:
             self._file = open(files[0], "rb")
         else:
             self._file = io.BytesIO()
@@ -20,15 +20,18 @@ class JoinFileOpener:
                 with open(fl, "rb") as f:
                     self._file.write(f.read())
             self._file.seek(0)
-    def __enter__ (self, *args, **kargs):
+
+    def __enter__(self, *args, **kargs):
         return self._file
-    def __exit__ (self, *args, **kargs):
+
+    def __exit__(self, *args, **kargs):
         self._file.close()
+
 
 class jFile:
     def __init__(self, file):
         self.fullname = file
-        self.files=get_parts(file)
+        self.files = get_parts(file)
         self.path = os.path.dirname(file)
         self.file = ntpath.basename(file)
         self.type = file.rsplit(".", 1)[-1].lower()
@@ -71,17 +74,17 @@ class jFile:
         for l in gen:
             tp = l.split(separator, length)
             if cast:
-                tp = tuple((c(i) for c,i in zip(cast, tp)))
+                tp = tuple((c(i) for c, i in zip(cast, tp)))
             yield tp
 
     def items(self, *args, separator=None, **kargv):
         gen = self.tuples(head=True, cast=args, separator=separator)
         head = next(gen)
         for tp in gen:
-            item = {k:v for k,v in zip(head, tp)}
+            item = {k: v for k, v in zip(head, tp)}
             for k, v in kargv.items():
                 if k in item:
-                    item[k]=v(item[k])
+                    item[k] = v(item[k])
             yield item
 
     @property

@@ -4,7 +4,6 @@ import os
 import re
 import sqlite3
 import textwrap
-from subprocess import DEVNULL, STDOUT, check_call
 from datetime import date, datetime
 
 import shapefile
@@ -13,11 +12,13 @@ import yaml
 from bunch import Bunch
 from shapely.geometry import MultiPolygon, Point, Polygon, shape
 from shapely.ops import cascaded_union
-from .common import size, zipfile, to_num
+
+from .common import size, to_num, zipfile
 
 re_select = re.compile(r"^\s*select\b")
 re_sp = re.compile(r"\s+")
 re_largefloat = re.compile("(\d+\.\d+e-\d+)")
+
 
 def ResultIter(cursor, size=1000):
     while True:
@@ -26,6 +27,7 @@ def ResultIter(cursor, size=1000):
             break
         for result in results:
             yield result
+
 
 def not_num(*args):
     for a in args:
@@ -68,16 +70,17 @@ def _get_types(object):
             for k, v in object.items():
                 if v is None or (isinstance(v, str) and not v.strip()):
                     continue
-                if isinstance(v, float) and int(v)==v:
+                if isinstance(v, float) and int(v) == v:
                     v = int(v)
                 yield k, type(v)
 
+
 def get_cols(object):
-    tps={}
+    tps = {}
     for k, tp in _get_types(object):
         t = tps.get(k, set())
         t.add(tp)
-        tps[k]=t
+        tps[k] = t
     for k, tp in list(tps.items()):
         n_flag, d_flag = False, False
         for sql, pyt in (
@@ -85,31 +88,32 @@ def get_cols(object):
             ("REAL", float),
         ):
             if pyt in tp:
-                n_flag=True
-                tps[k]=sql
+                n_flag = True
+                tps[k] = sql
                 tp.remove(pyt)
         for sql, pyt in (
             ("DATE", date),
             ("DATETIME", datetime),
         ):
             if pyt in tp:
-                d_flag=True
-                tps[k]=sql
+                d_flag = True
+                tps[k] = sql
                 tp.remove(pyt)
         if str in tp or (n_flag and d_flag):
-            tps[k]="TEXT"
+            tps[k] = "TEXT"
             if str in tp:
                 tp.remove(str)
-        if len(tp)>0:
-            tps[k]="BLOB"
+        if len(tp) > 0:
+            tps[k] = "BLOB"
     return tps
 
 
 def week_ISO_8601(dt):
     if isinstance(dt, str):
-        dt =  datetime.strptime(dt, '%Y-%m-%d')
+        dt = datetime.strptime(dt, '%Y-%m-%d')
     y, w, _ = dt.isocalendar()
     return "%d-%02d" % (y, w)
+
 
 class CaseInsensitiveDict(dict):
     def __setitem__(self, key, value):
@@ -240,7 +244,8 @@ class DBLite:
 
     def create(self, template, to_file=None, kSort=None, **kargv):
         sql = ""
-        keys = sorted(kargv.keys()) if kSort is None else sorted(kargv.keys(), key=kSort)
+        keys = sorted(kargv.keys()) if kSort is None else sorted(
+            kargv.keys(), key=kSort)
         for c in keys:
             t = kargv[c]
             c = self.parse_col(c)
@@ -282,7 +287,7 @@ class DBLite:
                 f.write(head)
             for row in rows:
                 f.write("\n")
-                row=list(row)
+                row = list(row)
                 for i, v in enumerate(row):
                     if v is None:
                         v = ''

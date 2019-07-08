@@ -2,12 +2,13 @@
 
 import sys
 
+from scipy.interpolate import interp1d
+
+from core.common import readlines, zipfile
 from core.dataset import Dataset
 from core.db import DBshp, plain_parse_col
-from core.common import readlines, zipfile
 from core.jfile import jFile
-from scipy.interpolate import interp1d
-import os
+
 
 def insert(db, table, shps):
     for key, data in shps.items():
@@ -17,6 +18,7 @@ def insert(db, table, shps):
             centroid = poli.representative_point()
         db.insert(table, id=key, nombre=nombre, point=centroid, geom=poli)
     db.commit()
+
 
 def load_csv(db, table, insert):
     table = table.upper()
@@ -31,13 +33,14 @@ def load_csv(db, table, insert):
     db.execute(insert)
     db.save_csv(file, separator=" ", mb=47)
 
+
 def _setKm(db, j1, j2, min_km, max_km=None, step=5):
     if j1.empty:
         print("Creando ", j1.fullname)
-        crs=[]
+        crs = []
         for r in range(1, (min_km*2)+4, 3):
             crs.append("select %s crs" % (r/100))
-        sql='''
+        sql = '''
             select
             	R.crs crs,
                 Avg(St_Distance(A.point, ST_Buffer(A.point, R.crs), 1)/1000) km
@@ -46,8 +49,8 @@ def _setKm(db, j1, j2, min_km, max_km=None, step=5):
             group by R.crs
             order by R.crs
         ''' % " union ".join(crs)
-        x=[0]
-        y=[0]
+        x = [0]
+        y = [0]
         for crs, km in db.select(sql, to_tuples=True):
             x.append(km)
             y.append(crs)
@@ -67,6 +70,7 @@ def _setKm(db, j1, j2, min_km, max_km=None, step=5):
         db.execute("sql/AREA_INFLUENCIA.sql")
         db.save_csv(j2.fullname, separator=" ", mb=47)
 
+
 def setKm(db):
     file1 = "dataset/tablas/CRS_KM.csv"
     file2 = "dataset/tablas/AREA_INFLUENCIA.csv"
@@ -83,10 +87,10 @@ def setKm(db):
     _setKm(db, j1, j2, 500, max_km=700)
 
 
-database="dataset/municipios.db"
-#database="debug.db"
-if len(sys.argv)==2:
-    database=sys.argv[1]
+database = "dataset/municipios.db"
+# database="debug.db"
+if len(sys.argv) == 2:
+    database = sys.argv[1]
 
 dataset = Dataset()
 dataset.unzip()
@@ -106,4 +110,4 @@ dataset.populate_datamun(db)
 
 db.commit()
 db.close(vacuum=False)
-#print(db.zip())
+# print(db.zip())

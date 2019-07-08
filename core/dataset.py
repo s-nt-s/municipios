@@ -1,8 +1,8 @@
 import os
 import re
+from datetime import date, datetime
 from functools import lru_cache
 
-from datetime import datetime, date
 import requests
 import shapefile
 import urllib3
@@ -12,10 +12,11 @@ from bs4 import BeautifulSoup
 from bunch import Bunch
 from shapely.geometry import MultiPolygon, Point, Polygon, shape
 from shapely.ops import cascaded_union
+
 from .common import *
+from .db import get_cols
 from .decorators import JsonCache, KmCache, ParamJsonCache
 from .provincias import *
-from .db import get_cols
 
 me = os.path.realpath(__file__)
 dr = os.path.dirname(me)
@@ -23,8 +24,6 @@ re_nb = re.compile(r"(\d+)")
 re_ft = re.compile(r"^-?\d+(,\d+)?$")
 
 cYear = datetime.now().year
-
-
 
 
 def insert_rel_mun(db, table, rows, kSort=None):
@@ -38,7 +37,7 @@ def insert_rel_mun(db, table, rows, kSort=None):
           FOREIGN KEY(MUN) REFERENCES municipios(ID)
         )
     '''.format(table)
-    db.create(create, **get_cols(rows),kSort=kSort,
+    db.create(create, **get_cols(rows), kSort=kSort,
               to_file="sql/%s.sql" % table)
     for key, row in rows.items():
         row["MUN"], row["YR"] = key
@@ -467,10 +466,10 @@ class Dataset():
 
     @JsonCache(file="dataset/aemet/bases.json", intKey=False)
     def create_aemet_bases(self):
-        bases=get_js(self.fuentes.aemet.estaciones)
+        bases = get_js(self.fuentes.aemet.estaciones)
         for b in bases:
-            b["latitud"]=sexa_to_dec(b["latitud"])
-            b["longitud"]=sexa_to_dec(b["longitud"])
+            b["latitud"] = sexa_to_dec(b["latitud"])
+            b["longitud"] = sexa_to_dec(b["longitud"])
             b["provincia"] = prov_to_cod(b["provincia"])
             b["altitud"] = to_num(b.get("altitud"))
         return bases
@@ -478,27 +477,28 @@ class Dataset():
     @ParamJsonCache(file="dataset/aemet/diarios/{}.json", intKey=False)
     def get_dia_estacion(self, id):
         del_key = ("nombre", "provincia", "indicativo", "altitud")
-        items=[]
+        items = []
         y = 1972 - 1
         while y < cYear:
             y = y + 1
             fin = min(y+4, cYear)
             a = date(y, 1, 1)
-            b = date(fin,12,31)
+            b = date(fin, 12, 31)
             bi = (a-b).days % 365
             if bi > 1:
                 fin = fin - 1
-            url = self.fuentes.aemet.estacion.diario.format(id=id, ini=y, fin=fin)
+            url = self.fuentes.aemet.estacion.diario.format(
+                id=id, ini=y, fin=fin)
             data = get_js(url)
             if isinstance(data, list):
                 y = fin
                 for d in data:
-                    o={}
+                    o = {}
                     for k, v in d.items():
                         if k not in del_key:
-                            o[k]=to_num(v, coma=True)
+                            o[k] = to_num(v, coma=True)
                     l_keys = len(o.keys())
-                    if l_keys == 0 or (l_keys==1 and "fecha" in o):
+                    if l_keys == 0 or (l_keys == 1 and "fecha" in o):
                         continue
                     items.append(o)
         return items
@@ -506,18 +506,18 @@ class Dataset():
     @ParamJsonCache(file="dataset/aemet/mensual/{}.json", intKey=False)
     def get_mes_estacion(self, id):
         del_key = ("nombre", "provincia", "indicativo", "altitud")
-        items=[]
+        items = []
         for y in range(1972, cYear):
             url = self.fuentes.aemet.estacion.mensual.format(id=id, ini=y)
             data = get_js(url)
             if isinstance(data, list):
                 for d in data:
-                    o={}
+                    o = {}
                     for k, v in d.items():
                         if k not in del_key:
-                            o[k]=to_num(v)
+                            o[k] = to_num(v)
                     l_keys = len(o.keys())
-                    if l_keys == 0 or (l_keys==1 and "fecha" in o):
+                    if l_keys == 0 or (l_keys == 1 and "fecha" in o):
                         continue
                     items.append(o)
         return items
@@ -525,7 +525,7 @@ class Dataset():
     @property
     @lru_cache(maxsize=None)
     def aemet_bases(self):
-        bases=self.create_aemet_bases()
+        bases = self.create_aemet_bases()
         return bases
 
     @lru_cache(maxsize=None)
@@ -533,7 +533,7 @@ class Dataset():
         distancias = self.create_distancias()
         for key, km in list(distancias.items()):
             b, a = key
-            if len(a)!=lcod:
+            if len(a) != lcod:
                 del distancias[key]
                 continue
             distancias[(a, b)] = km
@@ -811,13 +811,12 @@ class Dataset():
                 data[c.cod] = st
         return data
 
-
     def populate_datamun(self, db, reload=False):
-        aemet_mes={}
-        aemet_dia={}
+        aemet_mes = {}
+        aemet_dia = {}
         for b in self.aemet_bases:
-            b["point"]=Point(b["longitud"], b["latitud"])
-            b["ID"]=b["indicativo"]
+            b["point"] = Point(b["longitud"], b["latitud"])
+            b["ID"] = b["indicativo"]
             db.insert("AEMET_BASES", **b)
             aemet_dia[b["indicativo"]] = self.get_dia_estacion(b["indicativo"])
             aemet_mes[b["indicativo"]] = self.get_mes_estacion(b["indicativo"])
@@ -825,7 +824,7 @@ class Dataset():
 
         table = "AEMET_DIA"
         kcols = get_cols(aemet_dia)
-        kcols["prec"]="REAL"
+        kcols["prec"] = "REAL"
         del kcols["fecha"]
         create = '''
             create table {} (
@@ -840,7 +839,7 @@ class Dataset():
         for id, vals in aemet_dia.items():
             for b in vals:
                 if b.get("prec") == "Ip":
-                    b["prec"]=0.09
+                    b["prec"] = 0.09
                 db.insert(table, BASE=id, **b)
         db.commit()
 
@@ -859,10 +858,10 @@ class Dataset():
         db.create(create, **kcols, to_file="sql/%s.sql" % table)
         for id, vals in aemet_mes.items():
             for b in vals:
-                b["fecha"] = "%d-%02d" % tuple(int(i) for i in b["fecha"].split("-"))
+                b["fecha"] = "%d-%02d" % tuple(int(i)
+                                               for i in b["fecha"].split("-"))
                 db.insert(table, BASE=id, **b)
         db.commit()
-
 
         pop_rows = {}
         for year, dtY in self.parseData(self.meta_edades).items():

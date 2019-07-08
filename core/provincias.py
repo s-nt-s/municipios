@@ -79,7 +79,7 @@ def prov_to_cod(p):
         return "03"
     if p == "ALMERIA":
         return "04"
-    if p in ("ARABA" ,"ALAVA"):
+    if p in ("ARABA", "ALAVA"):
         return "01"
     if p == "ASTURIAS":
         return "33"
