@@ -80,10 +80,11 @@ def setKm(db):
         print("Cargando", file2)
         for item in j2.items():
             db.insert("AREA_INFLUENCIA", **item)
-    _setKm(db, j1, j2, 50, max_km=50)
+    _setKm(db, j1, j2, 500, max_km=700)
 
 
 database="dataset/municipios.db"
+#database="debug.db"
 if len(sys.argv)==2:
     database=sys.argv[1]
 

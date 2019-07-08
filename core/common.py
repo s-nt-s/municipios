@@ -492,33 +492,6 @@ def wstempus(url):
         qs["path"][0], qs["file"][0])
     return url
 
-
-def _get_cols(data):
-    cols = set()
-    vals = list(data.values())
-    if len(vals) == 0:
-        return cols
-    if isinstance(vals[0], dict):
-        for v in vals:
-            cols = cols.union(_get_cols(v))
-    else:
-        for k in data.keys():
-            cols.add(k)
-    return cols
-
-
-def get_cols(*args, kSort=None):
-    cols = set()
-    for a in args:
-        if isinstance(a, dict):
-            cols = _get_cols(a)
-        else:
-            cols.add(a)
-    if kSort:
-        return sorted(cols, key=kSort)
-    return sorted(cols)
-
-
 def sexa_to_dec(i):
     g = i[0:2]
     m = i[2:4]

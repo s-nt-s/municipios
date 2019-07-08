@@ -5,6 +5,7 @@ import re
 import sqlite3
 import textwrap
 from subprocess import DEVNULL, STDOUT, check_call
+from datetime import date, datetime
 
 import shapefile
 import unidecode
@@ -12,7 +13,7 @@ import yaml
 from bunch import Bunch
 from shapely.geometry import MultiPolygon, Point, Polygon, shape
 from shapely.ops import cascaded_union
-from .common import size, zipfile
+from .common import size, zipfile, to_num
 
 re_select = re.compile(r"^\s*select\b")
 re_sp = re.compile(r"\s+")
@@ -47,6 +48,68 @@ def save(file, content):
         with open(file, "w") as f:
             f.write(content)
 
+
+def _get_types(object):
+    if isinstance(object, list):
+        for o in object:
+            for r in _get_types(o):
+                yield r
+    elif isinstance(object, dict):
+        complex = False
+        for v in object.values():
+            if isinstance(v, (dict, list, set, tuple)):
+                complex = True
+                break
+        if complex:
+            for o in object.values():
+                for r in _get_types(o):
+                    yield r
+        else:
+            for k, v in object.items():
+                if v is None or (isinstance(v, str) and not v.strip()):
+                    continue
+                if isinstance(v, float) and int(v)==v:
+                    v = int(v)
+                yield k, type(v)
+
+def get_cols(object):
+    tps={}
+    for k, tp in _get_types(object):
+        t = tps.get(k, set())
+        t.add(tp)
+        tps[k]=t
+    for k, tp in list(tps.items()):
+        n_flag, d_flag = False, False
+        for sql, pyt in (
+            ("INTEGER", int),
+            ("REAL", float),
+        ):
+            if pyt in tp:
+                n_flag=True
+                tps[k]=sql
+                tp.remove(pyt)
+        for sql, pyt in (
+            ("DATE", date),
+            ("DATETIME", datetime),
+        ):
+            if pyt in tp:
+                d_flag=True
+                tps[k]=sql
+                tp.remove(pyt)
+        if str in tp or (n_flag and d_flag):
+            tps[k]="TEXT"
+            if str in tp:
+                tp.remove(str)
+        if len(tp)>0:
+            tps[k]="BLOB"
+    return tps
+
+
+def week_ISO_8601(dt):
+    if isinstance(dt, str):
+        dt =  datetime.strptime(dt, '%Y-%m-%d')
+    y, w, _ = dt.isocalendar()
+    return "%d-%02d" % (y, w)
 
 class CaseInsensitiveDict(dict):
     def __setitem__(self, key, value):
@@ -85,16 +148,17 @@ def get_db(file, *extensions):
         con.enable_load_extension(True)
         for e in extensions:
             con.load_extension(e)
+    con.create_function("week_ISO_8601", 1, week_ISO_8601)
     return con
 
 
 class DBLite:
     def __init__(self, file, extensions=None, reload=False, parse_col=None):
-        self.extensions = extensions
+        self.extensions = extensions or []
         self.file = file
         if reload and os.path.isfile(self.file):
             os.remove(self.file)
-        self.con = get_db(file, *extensions)
+        self.con = get_db(file, *self.extensions)
         self.cursor = self.con.cursor()
         #self.cursor.execute('pragma foreign_keys = on')
         self.tables = None
@@ -174,14 +238,13 @@ class DBLite:
     def zip(self):
         return zipfile(self.file)
 
-    def create(self, template, *cols, to_file=None, **kargv):
+    def create(self, template, to_file=None, kSort=None, **kargv):
         sql = ""
-        for c in cols:
+        keys = sorted(kargv.keys()) if kSort is None else sorted(kargv.keys(), key=kSort)
+        for c in keys:
+            t = kargv[c]
             c = self.parse_col(c)
-            sql = sql + '"%s" INTEGER,\n' % c
-        for c, t in kargv.items():
-            c = self.parse_col(c)
-            sql = sql + '"%s" %s,\n' % (c, t)
+            sql = sql + '  "%s" %s,\n' % (c, t)
         sql = sql.strip()
         sql = textwrap.dedent(template) % sql
         sql = sql.strip()

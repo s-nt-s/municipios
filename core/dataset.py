@@ -15,6 +15,7 @@ from shapely.ops import cascaded_union
 from .common import *
 from .decorators import JsonCache, KmCache, ParamJsonCache
 from .provincias import *
+from .db import get_cols
 
 me = os.path.realpath(__file__)
 dr = os.path.dirname(me)
@@ -23,28 +24,8 @@ re_ft = re.compile(r"^-?\d+(,\d+)?$")
 
 cYear = datetime.now().year
 
-def parse_aemet_cols(aemet_data):
-    cols = get_cols(*[item for sublist in aemet_data.values() for item in sublist])
-    cols.remove("fecha")
-    real=set()
-    strs=set()
-    for b in aemet_data.values():
-        for i in b:
-            for k, v in i.items():
-                if isinstance(v, float):
-                    real.add(k)
-                elif isinstance(v, str):
-                    strs.add(k)
-    kcols={}
-    for c in strs:
-        if c in cols:
-            cols.remove(c)
-            kcols[c]="TEXT"
-    for c in real:
-        if c in cols:
-            cols.remove(c)
-            kcols[c]="REAL"
-    return cols, kcols
+
+
 
 def insert_rel_mun(db, table, rows, kSort=None):
     table = table.upper()
@@ -57,7 +38,7 @@ def insert_rel_mun(db, table, rows, kSort=None):
           FOREIGN KEY(MUN) REFERENCES municipios(ID)
         )
     '''.format(table)
-    db.create(create, *get_cols(rows, kSort=kSort),
+    db.create(create, **get_cols(rows),kSort=kSort,
               to_file="sql/%s.sql" % table)
     for key, row in rows.items():
         row["MUN"], row["YR"] = key
@@ -843,7 +824,9 @@ class Dataset():
         db.commit()
 
         table = "AEMET_DIA"
-        cols, kcols = parse_aemet_cols(aemet_dia)
+        kcols = get_cols(aemet_dia)
+        kcols["prec"]="REAL"
+        del kcols["fecha"]
         create = '''
             create table {} (
               BASE TEXT,
@@ -853,14 +836,17 @@ class Dataset():
               FOREIGN KEY(BASE) REFERENCES AEMET_BASES(ID)
             )
         '''.format(table)
-        db.create(create, *cols, **kcols, to_file="sql/%s.sql" % table)
+        db.create(create, **kcols, to_file="sql/%s.sql" % table)
         for id, vals in aemet_dia.items():
             for b in vals:
+                if b.get("prec") == "Ip":
+                    b["prec"]=0.09
                 db.insert(table, BASE=id, **b)
         db.commit()
 
         table = "AEMET_MES"
-        cols, kcols = parse_aemet_cols(aemet_mes)
+        kcols = get_cols(aemet_mes)
+        del kcols["fecha"]
         create = '''
             create table {} (
               BASE TEXT,
@@ -870,9 +856,10 @@ class Dataset():
               FOREIGN KEY(BASE) REFERENCES AEMET_BASES(ID)
             )
         '''.format(table)
-        db.create(create, *cols, **kcols, to_file="sql/%s.sql" % table)
+        db.create(create, **kcols, to_file="sql/%s.sql" % table)
         for id, vals in aemet_mes.items():
             for b in vals:
+                b["fecha"] = "%d-%02d" % tuple(int(i) for i in b["fecha"].split("-"))
                 db.insert(table, BASE=id, **b)
         db.commit()
 
@@ -985,7 +972,7 @@ class Dataset():
               PRIMARY KEY (MUN, YR, MES),
               FOREIGN KEY(MUN) REFERENCES municipios(ID)
             )
-        ''', *get_cols(self.paro))
+        ''', **get_cols(self.paro))
 
         for year, dMun in self.paro.items():
             for mun, dMes in dMun.items():
