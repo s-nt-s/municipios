@@ -5,6 +5,7 @@ import re
 import sqlite3
 import textwrap
 from datetime import date, datetime
+from decimal import Decimal
 
 import shapefile
 import unidecode
@@ -113,7 +114,7 @@ def week_ISO_8601(dt):
     if isinstance(dt, str):
         dt = datetime.strptime(dt, '%Y-%m-%d')
     y, w, _ = dt.isocalendar()
-    return "%d-%02d" % (y, w)
+    return y + (w/100)
 
 
 class CaseInsensitiveDict(dict):
@@ -181,6 +182,10 @@ class DBLite:
             self.con.commit()
             self.load_tables()
 
+    @property
+    def indices(self):
+        return self.select("SELECT name FROM sqlite_master WHERE type='index' order by name")
+
     def load_tables(self):
         self.tables = CaseInsensitiveDict()
         for t in self.select("SELECT name FROM sqlite_master WHERE type='table'"):
@@ -192,15 +197,21 @@ class DBLite:
         keys = []
         vals = []
         for k, v in kargv.items():
-            k = self.parse_col(k)
-            if k.upper() in ok_keys and v is not None and not(isinstance(v, str) and len(v) == 0):
-                keys.append('"'+k+'"')
-                vals.append(v)
+            if v is None or (isinstance(v, str) and len(v) == 0):
+                continue
+            if k.upper() not in ok_keys:
+                k = self.parse_col(k)
+                if k.upper() not in ok_keys:
+                    continue
+            keys.append('"'+k+'"')
+            vals.append(v)
         prm = ['?']*len(vals)
         for i, v in enumerate(vals):
             if isinstance(v, (MultiPolygon, Polygon, Point)):
-                vals[i] = parse_wkt(vals[i].wkt)
+                vals[i] = parse_wkt(v.wkt)
                 prm[i] = 'GeomFromText(?, %s)' % self.srid
+            elif isinstance(v, Decimal):
+                vals[i]=float(v)
         sql = "insert into %s (%s) values (%s)" % (
             table, ', '.join(keys), ', '.join(prm))
         self.cursor.execute(sql, vals)

@@ -25,10 +25,13 @@ from .mdb_to_sqlite import mdb_to_sqlite
 urllib3.disable_warnings()
 
 
-def readfile(file):
+def readfile(file, *args):
     if os.path.isfile(file):
         with open(file) as f:
-            return f.read().strip()
+            txt = f.read().strip()
+            if len(args):
+                txt = txt.format(*args)
+            return txt
 
 
 re_entero = re.compile(r"^\d+(\.0+)?$")
