@@ -4,7 +4,7 @@ import sys
 
 from scipy.interpolate import interp1d
 
-from core.common import readlines, zipfile
+from core.common import readlines, zipfile, readfile
 from core.dataset import Dataset
 from core.db import DBshp, plain_parse_col
 from core.jfile import jFile
@@ -86,6 +86,25 @@ def setKm(db):
             db.insert("AREA_INFLUENCIA", **item)
     _setKm(db, j1, j2, 500, max_km=700)
 
+def setAemetSemana(db):
+    if "aemet_semana" not in db.tables:
+        db.execute("sql/aemet_semana/create.sql")
+    file = "dataset/tablas/AEMET_SEMANA.csv"
+    j = jFile(file)
+    if not j.empty:
+        print("Cargando", file)
+        for item in j.items(separator=";"):
+            db.insert("AEMET_SEMANA", **item)
+    db.commit()
+    minSem = db.select("select ifnull(max(SEMANA),0) from AEMET_SEMANA", to_one=True)
+    sql = readfile("sql/aemet_semana/insert.sql", minSem)
+    minSem = db.select("select ifnull(max(SEMANA),0) from AEMET_SEMANA where tdesviacion is not null", to_one=True)
+    sql = readfile("sql/aemet_semana/desviacion.sql", minSem)
+    for base, sem, tdesviacion in db.select(sql, to_tuples=True):
+        db.execute("UPDATE AEMET_SEMANA SET tdesviacion={0} where BASE='{1}' and SEMANA={2}".format(tdesviacion, base, sem))
+    db.commit()
+    print(j.fullname)
+    db.save_csv(j.fullname, separator=";", mb=47)
 
 database = "dataset/municipios.db"
 # database="debug.db"
@@ -107,6 +126,7 @@ if False:
     db.execute("sql/distancias/11-complete.sql")
     db.execute("sql/distancias/21-delete.sql")
 dataset.populate_datamun(db)
+setAemetSemana(db)
 
 db.commit()
 db.close(vacuum=False)
