@@ -2,7 +2,7 @@ select
   BASE,
   SEMANA,
   sqrt(
-    sum(dif*dif)/count(*)
+    avg(dif*dif)
   ) tdesviacion
 from (
   select
