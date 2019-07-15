@@ -4,7 +4,7 @@ import os
 import re
 import sqlite3
 import textwrap
-from datetime import date, datetime
+from datetime import date, datetime, timedelta
 from decimal import Decimal
 
 import shapefile
@@ -112,10 +112,43 @@ def get_cols(object):
 
 def week_ISO_8601(dt):
     if isinstance(dt, str):
+        if (len(dt))>10:
+            dt = dt[:10]
         dt = datetime.strptime(dt, '%Y-%m-%d')
     y, w, _ = dt.isocalendar()
     return y + (w/100)
 
+def previous_week(w):
+    y = int(w)
+    if w>(y+0.01):
+        return w-0.01
+    y = y - 1
+    d=32
+    while True:
+        d = d - 1
+        dt = date(y, 12, d)
+        ys, ws, _ = dt.isocalendar()
+        if ys == y:
+            return y + (ws/100)
+
+def day_of_week(w, weekday, salida=0):
+    y = int(w)
+    d = date(y, 1, 1)
+    while d.isocalendar()[1]!=1:
+        d = date(y, 1, d.day+1)
+    w_of_first = d.isocalendar()[1]
+    while d.weekday() != weekday:
+        d = date(y, 1, d.day+1)
+        w_of_first = d.isocalendar()[1]
+    wk = int(str(w).split(".")[-1])
+    wk = wk - w_of_first
+    if wk != 0:
+        d = d + timedelta(weeks=wk)
+    if salida==1:
+        d = d.month + (d.day/100)
+    if salida==2:
+        d = d.year
+    return d
 
 class CaseInsensitiveDict(dict):
     def __setitem__(self, key, value):
@@ -155,6 +188,8 @@ def get_db(file, *extensions):
         for e in extensions:
             con.load_extension(e)
     con.create_function("week_ISO_8601", 1, week_ISO_8601)
+    con.create_function("previous_week", 1, previous_week)
+    con.create_function("day_of_week", 3, day_of_week)
     return con
 
 
