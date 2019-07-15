@@ -105,6 +105,8 @@ def setAemetSemana(db):
     db.commit()
     print(j.fullname)
     db.save_csv(j.fullname, separator=";", mb=47)
+    db.execute("sql/aemet_semana/view.sql")
+    db.commit()
 
 database = "dataset/municipios.db"
 # database="debug.db"
