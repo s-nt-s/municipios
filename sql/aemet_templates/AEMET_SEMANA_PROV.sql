@@ -1,0 +1,69 @@
+DROP TABLE IF EXISTS AEMET_SEMANA_PROV;
+
+CREATE TABLE AEMET_SEMANA_PROV (
+  PROVINCIA TEXT,
+  SEMANA REAL,
+  tdesviacion REAL,
+  {0},
+  PRIMARY KEY (PROVINCIA, SEMANA),
+  FOREIGN KEY(PROVINCIA) REFERENCES PROVINCIAS(ID)
+);
+
+INSERT INTO AEMET_SEMANA_PROV (
+  PROVINCIA,
+  SEMANA,
+  {1}
+)
+select
+  PROVINCIA,
+  SEMANA,
+  {2}
+from (
+  select
+    week_ISO_8601(fecha) SEMANA,
+    DP.*
+  from
+    AEMET_DIA_PROV DP
+)
+group by
+  PROVINCIA, SEMANA
+;
+
+DROP TABLE IF EXISTS TMP_DESVIACION;
+
+CREATE TABLE TMP_DESVIACION (
+  PROVINCIA TEXT,
+  SEMANA REAL,
+  tdesviacion REAL
+);
+
+INSERT INTO TMP_DESVIACION (
+  PROVINCIA,
+  SEMANA,
+  tdesviacion
+)
+select
+  PROVINCIA,
+  SEMANA,
+  sqrt(
+    avg(dif*dif)
+  ) tdesviacion
+from (
+  select
+    S.PROVINCIA,
+    S.SEMANA,
+    (D.tmed - S.tmed) dif
+  from
+    AEMET_SEMANA_PROV S join AEMET_DIA_PROV D on week_ISO_8601(D.fecha)=S.SEMANA and S.PROVINCIA=D.PROVINCIA
+  where
+    D.tmed is not null and S.tmed is not null
+)
+group by
+  PROVINCIA, SEMANA
+;
+
+UPDATE AEMET_SEMANA_PROV SET tdesviacion=(
+  select tdesviacion from TMP_DESVIACION TMP where TMP.PROVINCIA=AEMET_SEMANA_PROV.PROVINCIA and TMP.SEMANA=AEMET_SEMANA_PROV.SEMANA
+);
+
+DROP TABLE IF EXISTS TMP_DESVIACION;

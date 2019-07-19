@@ -86,26 +86,51 @@ def setKm(db):
             db.insert("AREA_INFLUENCIA", **item)
     _setKm(db, j1, j2, 500, max_km=700)
 
-def setAemetSemana(db):
-    if "aemet_semana" not in db.tables:
-        db.execute("sql/aemet_semana/create.sql")
-    file = "dataset/tablas/AEMET_SEMANA.csv"
-    j = jFile(file)
-    if not j.empty:
-        print("Cargando", file)
-        for item in j.items(separator=";"):
-            db.insert("AEMET_SEMANA", **item)
+def completeAemet(db):
+    db.load_tables()
+    cols=set()
+    create_cols1=''
+    for c in db.tables["AEMET_DIA"]:
+        if c not in ("BASE", "FECHA", "dir") and not c.startswith("hora"):
+            cols.add(c)
+            fun = "avg"
+            if c == "prec":
+                fun = "sum"
+            elif c in ("racha", "sol") or "max" in c:
+                fun = "max"
+            elif "min" in c:
+                fun = "min"
+            create_cols1=create_cols1+'\n  	{1}({0}) {0},'.format(c, fun)
+    create_cols1=create_cols1[:-1].strip()
+
+    create_cols2=''
+    for c in db.tables["AEMET_MES"]:
+        if c in ("hr", "e", "q_mar"):
+            cols.add(c)
+            fun = "avg"
+            create_cols2=create_cols2+'\n  	{1}({0}) {0},'.format(c, fun)
+    create_cols2=create_cols2[:-1].strip()
+    cols = sorted(cols)
+    sql = readfile("sql/aemet_templates/AEMET_DIA_PROV.sql", create_cols1, create_cols2, ",\n  ".join(cols))
+    db.execute(sql, to_file="sql/AEMET_DIA_PROV.sql")
     db.commit()
-    minSem = db.select("select ifnull(max(SEMANA),0) from AEMET_SEMANA", to_one=True)
-    sql = readfile("sql/aemet_semana/insert.sql", minSem)
-    minSem = db.select("select ifnull(max(SEMANA),0) from AEMET_SEMANA where tdesviacion is not null", to_one=True)
-    sql = readfile("sql/aemet_semana/desviacion.sql", minSem)
-    for base, sem, tdesviacion in db.select(sql, to_tuples=True):
-        db.execute("UPDATE AEMET_SEMANA SET tdesviacion={0} where BASE='{1}' and SEMANA={2}".format(tdesviacion, base, sem))
-    db.commit()
-    print(j.fullname)
-    db.save_csv(j.fullname, separator=";", mb=47)
-    db.execute("sql/aemet_semana/view.sql")
+
+    create_cols3=''
+    create_cols4=''
+    for c in cols:
+        create_cols3=create_cols3+'\n  	{0} REAL,'.format(c)
+        fun = "avg"
+        if c in ("sol", "prec"):
+            func="sum"
+        elif c in ("racha",) or "max" in c:
+            fun = "max"
+        elif "min" in c:
+            fun = "min"
+        create_cols4=create_cols4+'\n  	{1}({0}) {0},'.format(c, fun)
+    create_cols3=create_cols3[:-1].strip()
+    create_cols4=create_cols4[:-1].strip()
+    sql = readfile("sql/aemet_templates/AEMET_SEMANA_PROV.sql", create_cols3, ",\n  ".join(cols), create_cols4)
+    db.execute(sql, to_file="sql/AEMET_SEMANA_PROV.sql")
     db.commit()
 
 database = "dataset/municipios.db"
@@ -128,7 +153,7 @@ if False:
     db.execute("sql/distancias/11-complete.sql")
     db.execute("sql/distancias/21-delete.sql")
 dataset.populate_datamun(db)
-setAemetSemana(db)
+completeAemet(db)
 
 db.commit()
 db.close(vacuum=False)
