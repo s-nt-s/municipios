@@ -116,12 +116,12 @@ def week_ISO_8601(dt):
             dt = dt[:10]
         dt = datetime.strptime(dt, '%Y-%m-%d')
     y, w, _ = dt.isocalendar()
-    return y + (w/100)
+    return round(y + (w/100), 2)
 
 def previous_week(w):
     y = int(w)
     if w>(y+0.01):
-        return w-0.01
+        return round(w-0.01, 2)
     y = y - 1
     d=32
     while True:
@@ -129,7 +129,7 @@ def previous_week(w):
         dt = date(y, 12, d)
         ys, ws, _ = dt.isocalendar()
         if ys == y:
-            return y + (ws/100)
+            return round(y + (ws/100), 2)
 
 def day_of_week(w, weekday, salida=0):
     y = int(w)
@@ -145,7 +145,7 @@ def day_of_week(w, weekday, salida=0):
     if wk != 0:
         d = d + timedelta(weeks=wk)
     if salida==1:
-        d = d.month + (d.day/100)
+        d = round(d.month + (d.day/100), 2)
     if salida==2:
         d = d.year
     return d
