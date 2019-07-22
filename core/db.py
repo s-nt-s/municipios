@@ -140,7 +140,7 @@ def day_of_week(w, weekday, salida=0):
     while d.weekday() != weekday:
         d = date(y, 1, d.day+1)
         w_of_first = d.isocalendar()[1]
-    wk = int(str(w).split(".")[-1])
+    wk = round((w - int(w))*100)
     wk = wk - w_of_first
     if wk != 0:
         d = d + timedelta(weeks=wk)
