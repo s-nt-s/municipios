@@ -139,6 +139,7 @@ if len(sys.argv) == 2:
     database = sys.argv[1]
 
 dataset = Dataset(reload=True)
+dataset.collect()
 dataset.unzip()
 db = DBshp(database, parse_col=plain_parse_col, reload=True)
 db.execute("sql/base.sql")
