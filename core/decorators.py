@@ -4,10 +4,11 @@ from .common import *
 
 
 class Cache:
-    def __init__(self, file):
+    def __init__(self, file, avoidReload=False):
         self.file = file
         self.data = {}
         self.func = None
+        self.avoidReload = avoidReload
 
     def read(self):
         pass
@@ -25,6 +26,8 @@ class Cache:
         return data
 
     def isReload(self, slf):
+        if self.avoidReload:
+            return False
         reload = getattr(slf, "reload", None)
         if reload is None or reload == True:
             return True

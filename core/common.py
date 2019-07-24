@@ -164,10 +164,16 @@ def sqlite_to_dict(db, sql):
 
 def get_xls(url):
     file = url_to_file(url, ".xls")
-    if not os.path.isfile(file):
-        print(url, "-->", file)
-        r = requests.get(url, verify=False)
-        save(file, r.content)
+    if os.path.isfile(file):
+        try:
+            book = xlrd.open_workbook(file)
+            return book
+        except Exception as e:
+            print(file)
+            print(e)
+    print(url, "-->", file)
+    r = requests.get(url, verify=False)
+    save(file, r.content)
     book = xlrd.open_workbook(file)
     return book
 
@@ -277,9 +283,13 @@ def csvBunch(file, enconde="utf-8", delimiter=","):
 
 def get_csv(url, enconde=None, delimiter=","):
     file = url_to_file(url, ".csv")
-    j = read_csv(file, enconde=enconde, delimiter=delimiter)
-    if j:
-        return j
+    try:
+        j = read_csv(file, enconde=enconde, delimiter=delimiter)
+        if j:
+            return j
+    except Exception as e:
+        print(file)
+        print(e)
     print(url, "-->", file)
     r = requests.get(url, verify=False)
     content = r.content
@@ -355,7 +365,13 @@ def requests_js(url):
         r = requests.get(url, verify=False)
         j = r.json()
         return r, j
-    except:
+    except Exception as e:
+        print(url)
+        m = re.search(r"<b>description</b>\s*<u>(.+?)\s*\.?\s*</u>", r.text)
+        if m:
+            print(m.group(1))
+        else:
+            print(e)
         time.sleep(61)
         return requests_js(url)
 
@@ -421,9 +437,13 @@ def get_root_file(dom):
 
 def get_js(url):
     file = url_to_file(url, ".json")
-    j = read_js(file)
-    if j:
-        return j
+    try:
+        j = read_js(file)
+        if j:
+            return j
+    except Exception as e:
+        print(file)
+        print(e)
     r = _js(url)
     print(url, "-->", file)
     # print(r.encoding)

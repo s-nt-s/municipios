@@ -65,6 +65,7 @@ def getShp(path_glob, ini, end, r_key=4, r_data=5):
     dShapes = {}
     for _shp in iglob(path_glob):
         print(_shp)
+        #_shp = os.path.realpath(_shp)
         with shapefile.Reader(_shp) as shp:
             for sr in shp.shapeRecords():
                 if sr.shape.points and sr.record and len(sr.record) > 4:
@@ -484,7 +485,7 @@ class Dataset():
                     dist[(a, b)] = km
         return dist
 
-    @JsonCache(file="dataset/aemet/bases.json", intKey=False)
+    @JsonCache(file="dataset/aemet/bases.json", intKey=False, avoidReload=True)
     def create_aemet_bases(self):
         bases = get_js(self.fuentes.aemet.estaciones)
         for b in bases:
@@ -494,7 +495,7 @@ class Dataset():
             b["altitud"] = to_num(b.get("altitud"))
         return bases
 
-    @ParamJsonCache(file="dataset/aemet/diarios/{}.json", intKey=False)
+    @ParamJsonCache(file="dataset/aemet/diarios/{}.json", intKey=False, avoidReload=True)
     def get_dia_estacion(self, id):
         del_key = ("nombre", "provincia", "indicativo", "altitud")
         items = []
@@ -523,7 +524,7 @@ class Dataset():
                     items.append(o)
         return items
 
-    @ParamJsonCache(file="dataset/aemet/mensual/{}.json", intKey=False)
+    @ParamJsonCache(file="dataset/aemet/mensual/{}.json", intKey=False, avoidReload=True)
     def get_mes_estacion(self, id):
         del_key = ("nombre", "provincia", "indicativo", "altitud")
         items = []
