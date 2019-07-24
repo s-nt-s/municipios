@@ -149,6 +149,8 @@ class Dataset():
                 continue
             for year, url in pob.items():
                 year = int(year)
+                if year >= cYear:
+                    continue
                 js = get_js(url)
                 if not js:
                     continue
@@ -192,6 +194,8 @@ class Dataset():
             mun = "%05d" % c0
 
             for i, y in years:
+                if y >= cYear:
+                    continue
                 v = r[i]
                 v = v.replace(".", "")
                 v = v.replace(",", ".")
@@ -208,6 +212,9 @@ class Dataset():
         firt_data = 8
         yrParo = {}
         for year, url in self.core.todas["paro_sepe"].items():
+            year = int(year)
+            if year >= cYear:
+                continue
             paro = {}
             rows = get_csv(url, enconde="windows-1252", delimiter=";")
             head = rows[1][firt_data:]
@@ -247,6 +254,9 @@ class Dataset():
     def create_aeat(self):
         yrRenta = {}
         for year, url in self.core.todas["renta"]["aeat"].items():
+            year = int(year)
+            if year >= cYear:
+                continue
             soup = get_bs(url)
             data = {}
             for tr in soup.select("table tr"):
@@ -281,6 +291,9 @@ class Dataset():
     def create_navarra(self):
         yrNavarra = {}
         for year, url in self.core.todas["renta"]["navarra"].items():
+            year = int(year)
+            if year >= cYear:
+                continue
             book = get_xls(url)
             sheet = book.sheet_by_index(0)
             data = {}
@@ -361,6 +374,9 @@ class Dataset():
         years = {}
         for cod, poblacion in self.getCore("poblacion5"):
             for year, url in sorted(poblacion.items()):
+                year = int(year)
+                if year >= cYear:
+                    continue
                 data = years.get(year, {})
                 for i in get_js(url):
                     sex, mun, edad = i["MetaData"]
@@ -417,6 +433,10 @@ class Dataset():
                     for d in i["Data"]:
                         year = d["Anyo"]
                         valor = d["Valor"]
+
+                        year = int(year)
+                        if year >= cYear:
+                            continue
 
                         yDt = years.get(year, {})
                         mDt = yDt.get(mun, {})
