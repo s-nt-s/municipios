@@ -93,6 +93,7 @@ def setKm(db):
     _setKm(db, j1, j2, 500, max_km=700)
 
 def completeAemet(db):
+    print("Completando AEMET")
     db.load_tables()
     cols=set()
     create_cols1=''
@@ -142,8 +143,8 @@ database = "dataset/municipios.db"
 if len(sys.argv) == 2:
     database = sys.argv[1]
 
-dataset = Dataset(reload=True)
-dataset.collect()
+dataset = Dataset()
+#dataset.collect()
 dataset.unzip()
 db = DBshp(database, parse_col=plain_parse_col, reload=True)
 db.execute("sql/base.sql")

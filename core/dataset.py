@@ -27,6 +27,7 @@ cYear = datetime.now().year
 
 
 def insert_rel_mun(db, table, rows, kSort=None):
+    print("Creando "+table)
     table = table.upper()
     create = '''
         create table {} (
@@ -845,6 +846,7 @@ class Dataset():
             aemet_mes[b["indicativo"]] = self.get_mes_estacion(b["indicativo"])
 
         table = "AEMET_DIA"
+        print("Creando "+table)
         kcols = get_cols(aemet_dia)
         kcols["prec"] = "REAL"
         del kcols["fecha"]
@@ -869,6 +871,7 @@ class Dataset():
         del aemet_dia
 
         table = "AEMET_MES"
+        print("Creando "+table)
         kcols = get_cols(aemet_mes)
         del kcols["fecha"]
         create = '''
@@ -992,6 +995,7 @@ class Dataset():
 
         insert_rel_mun(db, "renta", rows)
 
+        print("Creando SEPE")
         db.create('''
             create table SEPE (
               MUN TEXT,
