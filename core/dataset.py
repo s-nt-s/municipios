@@ -145,7 +145,7 @@ class Dataset():
         return data
 
     @JsonCache(file="dataset/poblacion/edades.json")
-    def create_edades(self):
+    def create_edades(self, *arg, old_data=None, **kargv):
         data = {}
         for prov, dt in self.core.items():
             pob = dt.get("poblacion1", None)
@@ -183,7 +183,7 @@ class Dataset():
         return data
 
     @JsonCache(file="dataset/renta/euskadi.json")
-    def create_euskadi(self):
+    def create_euskadi(self, *arg, old_data=None, **kargv):
         url = self.core.todas["renta"]["euskadi"]
         rows = get_csv(url, enconde="windows-1252", delimiter=";")
         years = None
@@ -212,7 +212,7 @@ class Dataset():
         return data
 
     @JsonCache(file="dataset/empleo/paro_sepe_*.json")
-    def create_sepe(self):
+    def create_sepe(self, *arg, old_data=None, **kargv):
         firt_data = 8
         yrParo = {}
         for year, url in self.core.todas["paro_sepe"].items():
@@ -255,7 +255,7 @@ class Dataset():
         return yrParo
 
     @JsonCache(file="dataset/renta/aeat_*.json")
-    def create_aeat(self):
+    def create_aeat(self, *arg, old_data=None, **kargv):
         yrRenta = {}
         for year, url in self.core.todas["renta"]["aeat"].items():
             year = int(year)
@@ -292,7 +292,7 @@ class Dataset():
         return yrRenta
 
     @JsonCache(file="dataset/renta/navarra.json")
-    def create_navarra(self):
+    def create_navarra(self, *arg, old_data=None, **kargv):
         yrNavarra = {}
         for year, url in self.core.todas["renta"]["navarra"].items():
             year = int(year)
@@ -314,7 +314,7 @@ class Dataset():
         return yrNavarra
 
     @JsonCache(file="dataset/economia/agrario.json")
-    def create_agrario(self):
+    def create_agrario(self, *arg, old_data=None, **kargv):
         years = {}
         year = 1999
         for cod, data in self.core.items():
@@ -373,7 +373,7 @@ class Dataset():
         return years
 
     @JsonCache(file="dataset/poblacion/edad_*.json")
-    def create_edad(self):
+    def create_edad(self, *arg, old_data=None, **kargv):
         flag = False
         years = {}
         for cod, poblacion in self.getCore("poblacion5"):
@@ -417,7 +417,7 @@ class Dataset():
         return years
 
     @JsonCache(file="dataset/poblacion/sexo.json")
-    def create_poblacion(self):
+    def create_poblacion(self, *arg, old_data=None, **kargv):
         years = {}
         for cod, pob in self.getCore("poblacion"):
             for i in get_js(pob):
@@ -453,7 +453,7 @@ class Dataset():
         return years
 
     @JsonCache(file="dataset/economia/empresas.json")
-    def create_empresas(self):
+    def create_empresas(self, *arg, old_data=None, **kargv):
         empresas = get_csv(self.core.todas["empresas"])
         col_empresas = [
             r if r != "Total" else "Total empresas" for r in empresas[4] if r]
@@ -477,7 +477,7 @@ class Dataset():
         return years
 
     @KmCache(file="dataset/geografia/distancias.txt")
-    def create_distancias(self):
+    def create_distancias(self, *arg, old_data=None, **kargv):
         dist = {}
         for dShapes in (self.provincias, self.municipios):
             items = list(sorted([(k, v[0]) for k, v in dShapes.items()]))
@@ -489,7 +489,7 @@ class Dataset():
         return dist
 
     @JsonCache(file="dataset/aemet/bases.json", intKey=False, avoidReload=True)
-    def create_aemet_bases(self):
+    def create_aemet_bases(self, *arg, old_data=None, **kargv):
         bases = get_js(self.fuentes.aemet.estaciones)
         for b in bases:
             b["latitud"] = sexa_to_dec(b["latitud"])
@@ -499,7 +499,7 @@ class Dataset():
         return bases
 
     @ParamJsonCache(file="dataset/aemet/diarios/{}.json", intKey=False, avoidReload=True)
-    def get_dia_estacion(self, id):
+    def get_dia_estacion(self, id, *arg, old_data=None, **kargv):
         del_key = ("nombre", "provincia", "indicativo", "altitud")
         items = []
         y = 1972 - 1
@@ -528,7 +528,7 @@ class Dataset():
         return items
 
     @ParamJsonCache(file="dataset/aemet/mensual/{}.json", intKey=False, avoidReload=True)
-    def get_mes_estacion(self, id):
+    def get_mes_estacion(self, id, *arg, old_data=None, **kargv):
         del_key = ("nombre", "provincia", "indicativo", "altitud")
         items = []
         for y in range(1972, cYear):
