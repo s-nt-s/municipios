@@ -333,7 +333,11 @@ def _get_cod_municipio(prov, mun):
 
 
 def get_bs(url, parser='lxml'):
-    r = requests.get(url, verify=False)
+    try:
+        r = requests.get(url, verify=False)
+    except:
+        print(url)
+        raise
     soup = BeautifulSoup(r.content, parser)
     for a in soup.findAll("a"):
         href = a.attrs.get("href", None)

@@ -11,13 +11,14 @@ from core.jfile import jFile
 
 
 def insert(db, table, shps):
+    db.openTransaction()
     for key, data in shps.items():
         poli, nombre = data
         centroid = poli.centroid
         if not centroid.within(poli):
             centroid = poli.representative_point()
         db.insert(table, id=key, nombre=nombre, point=centroid, geom=poli)
-    db.commit()
+    db.closeTransaction()
 
 
 def load_csv(db, table, insert):
@@ -26,8 +27,10 @@ def load_csv(db, table, insert):
     j = jFile(file)
     if j.files:
         print("Cargando", file)
+        db.openTransaction()
         for item in j.items():
             db.insert(table, **item)
+        db.closeTransaction()
         return
     print("Creando ", file)
     db.execute(insert)
@@ -60,9 +63,10 @@ def _setKm(db, j1, j2, min_km, max_km=None, step=5):
             max_km = min(max_km, int(max(x)))
         kms = list(range(step, max_km+1, step))
         f = interp1d(x, y, kind='quadratic')
+        db.openTransaction()
         for km, crs in zip(kms, f(kms)):
             db.insert("CRS_KM", crs=crs, km=km)
-        db.commit()
+        db.closeTransaction()
         db.save_csv(j1.fullname, separator=" ", mb=47)
 
     if j1.empty or j2.empty:
@@ -76,6 +80,7 @@ def setKm(db):
     file2 = "dataset/tablas/AREA_INFLUENCIA.csv"
     j1 = jFile(file1)
     j2 = jFile(file2)
+    db.openTransaction()
     if not j1.empty:
         print("Cargando", file1)
         for item in j1.items():
@@ -84,6 +89,7 @@ def setKm(db):
         print("Cargando", file2)
         for item in j2.items():
             db.insert("AREA_INFLUENCIA", **item)
+    db.closeTransaction()
     _setKm(db, j1, j2, 500, max_km=700)
 
 def completeAemet(db):
@@ -113,7 +119,6 @@ def completeAemet(db):
     cols = sorted(cols)
     sql = readfile("sql/aemet_templates/AEMET_DIA_PROV.sql", create_cols1, create_cols2, ",\n  ".join(cols))
     db.execute(sql, to_file="sql/AEMET_DIA_PROV.sql")
-    db.commit()
 
     create_cols3=''
     create_cols4=''
@@ -131,7 +136,6 @@ def completeAemet(db):
     create_cols4=create_cols4[:-1].strip()
     sql = readfile("sql/aemet_templates/AEMET_SEMANA_PROV.sql", create_cols3, ",\n  ".join(cols), create_cols4)
     db.execute(sql, to_file="sql/AEMET_SEMANA_PROV.sql")
-    db.commit()
 
 database = "dataset/municipios.db"
 # database="debug.db"
@@ -156,6 +160,5 @@ if False:
 dataset.populate_datamun(db)
 completeAemet(db)
 
-db.commit()
 db.close(vacuum=False)
 # print(db.zip())

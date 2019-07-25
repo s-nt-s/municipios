@@ -39,10 +39,12 @@ def insert_rel_mun(db, table, rows, kSort=None):
     '''.format(table)
     db.create(create, **get_cols(rows), kSort=kSort,
               to_file="sql/%s.sql" % table)
+    db.openTransaction()
     for key, row in rows.items():
         row["MUN"], row["YR"] = key
         db.insert(table, **row)
-
+    db.closeTransaction()
+    del rows
 
 def sortColPob(s):
     if s == "total":
@@ -841,7 +843,6 @@ class Dataset():
             db.insert("AEMET_BASES", **b)
             aemet_dia[b["indicativo"]] = self.get_dia_estacion(b["indicativo"])
             aemet_mes[b["indicativo"]] = self.get_mes_estacion(b["indicativo"])
-        db.commit()
 
         table = "AEMET_DIA"
         kcols = get_cols(aemet_dia)
@@ -857,12 +858,15 @@ class Dataset():
             )
         '''.format(table)
         db.create(create, **kcols, to_file="sql/%s.sql" % table)
+
+        db.openTransaction()
         for id, vals in aemet_dia.items():
             for b in vals:
                 if b.get("prec") == "Ip":
                     b["prec"] = 0.09
                 db.insert(table, BASE=id, **b)
-        db.commit()
+        db.closeTransaction()
+        del aemet_dia
 
         table = "AEMET_MES"
         kcols = get_cols(aemet_mes)
@@ -877,12 +881,15 @@ class Dataset():
             )
         '''.format(table)
         db.create(create, **kcols, to_file="sql/%s.sql" % table)
+
+        db.openTransaction()
         for id, vals in aemet_mes.items():
             for b in vals:
                 b["fecha"] = "%d-%02d" % tuple(int(i)
                                                for i in b["fecha"].split("-"))
                 db.insert(table, BASE=id, **b)
-        db.commit()
+        db.closeTransaction()
+        del aemet_mes
 
         pop_rows = {}
         for year, dtY in self.parseData(self.meta_edades).items():
@@ -922,6 +929,7 @@ class Dataset():
                 for k, v in dt.items():
                     row[k] = v
                 rows[key] = row
+
         insert_rel_mun(db, "agrario", rows)
 
         rows = {}
@@ -932,6 +940,7 @@ class Dataset():
                 for k, v in dt.items():
                     row[k] = v
                 rows[key] = row
+
         insert_rel_mun(db, "empresas", rows)
 
         rows = {}
@@ -994,6 +1003,7 @@ class Dataset():
             )
         ''', **get_cols(self.paro))
 
+        db.openTransaction()
         for year, dMun in self.paro.items():
             for mun, dMes in dMun.items():
                 for mes, sepe in dMes.items():
@@ -1001,6 +1011,7 @@ class Dataset():
                     sepe["YR"] = year
                     sepe["MES"] = mes
                     db.insert("sepe", **sepe)
+        db.closeTransaction()
 
         fields = list(db.tables["SEPE"])
         fields.remove("YR")

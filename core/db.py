@@ -206,6 +206,18 @@ class DBLite:
         self.srid = None
         self.parse_col = parse_col if parse_col is not None else lambda x: x
         self.load_tables()
+        self.inTransaction=False
+
+    def openTransaction(self):
+        if self.inTransaction:
+            self.con.execute("END TRANSACTION")
+        self.con.execute("BEGIN TRANSACTION")
+        self.inTransaction=True
+
+    def closeTransaction(self):
+        if self.inTransaction:
+            self.con.execute("END TRANSACTION")
+            self.inTransaction=False
 
     def execute(self, sql, to_file=None):
         if os.path.isfile(sql):
@@ -264,6 +276,7 @@ class DBLite:
         self.con.commit()
 
     def close(self, vacuum=True):
+        self.closeTransaction()
         self.con.commit()
         self.cursor.close()
         if vacuum:
