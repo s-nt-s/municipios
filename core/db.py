@@ -112,18 +112,19 @@ def get_cols(object):
 
 def week_ISO_8601(dt):
     if isinstance(dt, str):
-        if (len(dt))>10:
+        if (len(dt)) > 10:
             dt = dt[:10]
         dt = datetime.strptime(dt, '%Y-%m-%d')
     y, w, _ = dt.isocalendar()
     return round(y + (w/100), 2)
 
+
 def previous_week(w):
     y = int(w)
-    if w>(y+0.01):
+    if w > (y+0.01):
         return round(w-0.01, 2)
     y = y - 1
-    d=32
+    d = 32
     while True:
         d = d - 1
         dt = date(y, 12, d)
@@ -131,10 +132,11 @@ def previous_week(w):
         if ys == y:
             return round(y + (ws/100), 2)
 
+
 def day_of_week(w, weekday, salida=0):
     y = int(w)
     d = date(y, 1, 1)
-    while d.isocalendar()[1]!=1:
+    while d.isocalendar()[1] != 1:
         d = date(y, 1, d.day+1)
     w_of_first = d.isocalendar()[1]
     while d.weekday() != weekday:
@@ -144,11 +146,12 @@ def day_of_week(w, weekday, salida=0):
     wk = wk - w_of_first
     if wk != 0:
         d = d + timedelta(weeks=wk)
-    if salida==1:
+    if salida == 1:
         d = round(d.month + (d.day/100), 2)
-    if salida==2:
+    if salida == 2:
         d = d.year
     return d
+
 
 class CaseInsensitiveDict(dict):
     def __setitem__(self, key, value):
@@ -206,18 +209,18 @@ class DBLite:
         self.srid = None
         self.parse_col = parse_col if parse_col is not None else lambda x: x
         self.load_tables()
-        self.inTransaction=False
+        self.inTransaction = False
 
     def openTransaction(self):
         if self.inTransaction:
             self.con.execute("END TRANSACTION")
         self.con.execute("BEGIN TRANSACTION")
-        self.inTransaction=True
+        self.inTransaction = True
 
     def closeTransaction(self):
         if self.inTransaction:
             self.con.execute("END TRANSACTION")
-            self.inTransaction=False
+            self.inTransaction = False
 
     def execute(self, sql, to_file=None):
         if os.path.isfile(sql):
@@ -258,7 +261,7 @@ class DBLite:
                 vals[i] = parse_wkt(v.wkt)
                 prm[i] = 'GeomFromText(?, %s)' % self.srid
             elif isinstance(v, Decimal):
-                vals[i]=float(v)
+                vals[i] = float(v)
         sql = "insert into %s (%s) values (%s)" % (
             table, ', '.join(keys), ', '.join(prm))
         self.cursor.execute(sql, vals)
@@ -401,7 +404,7 @@ class DBLite:
                 sql = sql.strip() + "\n" + sufix.strip()
             else:
                 sql = sql[:-1]
-            sql = sql +"\n);\n"
+            sql = sql + "\n);\n"
         else:
             cols = self.tables[table]
         sql = sql+'INSERT INTO {} ("{}")\n{}'.format(table,
@@ -411,7 +414,7 @@ class DBLite:
         self.execute(sql, to_file=to_file)
 
     def _dict_to_table(self, table, rows, sufix=None, to_file=None):
-        kcols=get_cols(rows)
+        kcols = get_cols(rows)
         sql = "DROP TABLE IF EXISTS {0};\n\nCREATE TABLE {0} (".format(table)
         for name, tp in kcols.items():
             sql = sql+'\n  "'+name+'" '+tp+","
@@ -419,11 +422,12 @@ class DBLite:
             sql = sql.strip() + "\n" + sufix.strip()
         else:
             sql = sql[:-1]
-        sql = sql +"\n);\n"
+        sql = sql + "\n);\n"
         self.execute(sql, to_file=to_file)
         for r in rows:
             self.insert(table, **r)
         self.commit()
+
 
 class DBshp(DBLite):
     def __init__(self, *args, srid=4326, **kargv):

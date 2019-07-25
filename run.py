@@ -4,7 +4,7 @@ import sys
 
 from scipy.interpolate import interp1d
 
-from core.common import readlines, zipfile, readfile
+from core.common import readfile, readlines, zipfile
 from core.dataset import Dataset
 from core.db import DBshp, plain_parse_col
 from core.jfile import jFile
@@ -92,11 +92,12 @@ def setKm(db):
     db.closeTransaction()
     _setKm(db, j1, j2, 500, max_km=700)
 
+
 def completeAemet(db):
     print("Completando AEMET")
     db.load_tables()
-    cols=set()
-    create_cols1=''
+    cols = set()
+    create_cols1 = ''
     for c in db.tables["AEMET_DIA"]:
         if c not in ("BASE", "FECHA", "dir") and not c.startswith("hora"):
             cols.add(c)
@@ -107,36 +108,39 @@ def completeAemet(db):
                 fun = "max"
             elif "min" in c:
                 fun = "min"
-            create_cols1=create_cols1+'\n  	{1}({0}) {0},'.format(c, fun)
-    create_cols1=create_cols1[:-1].strip()
+            create_cols1 = create_cols1+'\n  	{1}({0}) {0},'.format(c, fun)
+    create_cols1 = create_cols1[:-1].strip()
 
-    create_cols2=''
+    create_cols2 = ''
     for c in db.tables["AEMET_MES"]:
         if c in ("hr", "e", "q_mar"):
             cols.add(c)
             fun = "avg"
-            create_cols2=create_cols2+'\n  	{1}({0}) {0},'.format(c, fun)
-    create_cols2=create_cols2[:-1].strip()
+            create_cols2 = create_cols2+'\n  	{1}({0}) {0},'.format(c, fun)
+    create_cols2 = create_cols2[:-1].strip()
     cols = sorted(cols)
-    sql = readfile("sql/aemet_templates/AEMET_DIA_PROV.sql", create_cols1, create_cols2, ",\n  ".join(cols))
+    sql = readfile("sql/aemet_templates/AEMET_DIA_PROV.sql",
+                   create_cols1, create_cols2, ",\n  ".join(cols))
     db.execute(sql, to_file="sql/AEMET_DIA_PROV.sql")
 
-    create_cols3=''
-    create_cols4=''
+    create_cols3 = ''
+    create_cols4 = ''
     for c in cols:
-        create_cols3=create_cols3+'\n  	{0} REAL,'.format(c)
+        create_cols3 = create_cols3+'\n  	{0} REAL,'.format(c)
         fun = "avg"
         if c in ("sol", "prec"):
-            func="sum"
+            func = "sum"
         elif c in ("racha",) or "max" in c:
             fun = "max"
         elif "min" in c:
             fun = "min"
-        create_cols4=create_cols4+'\n  	{1}({0}) {0},'.format(c, fun)
-    create_cols3=create_cols3[:-1].strip()
-    create_cols4=create_cols4[:-1].strip()
-    sql = readfile("sql/aemet_templates/AEMET_SEMANA_PROV.sql", create_cols3, ",\n  ".join(cols), create_cols4)
+        create_cols4 = create_cols4+'\n  	{1}({0}) {0},'.format(c, fun)
+    create_cols3 = create_cols3[:-1].strip()
+    create_cols4 = create_cols4[:-1].strip()
+    sql = readfile("sql/aemet_templates/AEMET_SEMANA_PROV.sql",
+                   create_cols3, ",\n  ".join(cols), create_cols4)
     db.execute(sql, to_file="sql/AEMET_SEMANA_PROV.sql")
+
 
 database = "dataset/municipios.db"
 # database="debug.db"
@@ -144,7 +148,7 @@ if len(sys.argv) == 2:
     database = sys.argv[1]
 
 dataset = Dataset()
-#dataset.collect()
+# dataset.collect()
 dataset.unzip()
 db = DBshp(database, parse_col=plain_parse_col, reload=True)
 db.execute("sql/base.sql")

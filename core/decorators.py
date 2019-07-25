@@ -17,12 +17,15 @@ class Cache:
         pass
 
     def callCache(self, slf, *args, **kargs):
-        data = self.read(*args, **kargs)
-        if not self.isReload(slf):
-            if data:
-                return data
+        reload = self.isReload(slf)
+        data = None
+        if not reload:
+            data = self.read(*args, **kargs)
+        ln1 = len(data) if data else -1
         data = self.func(slf, *args, old_data=data, **kargs)
-        self.save(data, *args, **kargs)
+        ln2 = len(data) if data else -1
+        if reload or (ln2 != ln1):
+            self.save(data, *args, **kargs)
         return data
 
     def isReload(self, slf):

@@ -47,6 +47,7 @@ def insert_rel_mun(db, table, rows, kSort=None):
     db.closeTransaction()
     del rows
 
+
 def sortColPob(s):
     if s == "total":
         sexo = "ambos"
@@ -144,8 +145,9 @@ class Dataset():
                     dt[nuevo] = dNuevo
         return data
 
-    @JsonCache(file="dataset/poblacion/edades.json")
+    @JsonCache(file="dataset/poblacion/edades.json", intKey=True)
     def create_edades(self, *arg, old_data=None, **kargv):
+        min_year = max(old_data.keys())+1 if old_data else -1
         data = {}
         for prov, dt in self.core.items():
             pob = dt.get("poblacion1", None)
@@ -153,7 +155,7 @@ class Dataset():
                 continue
             for year, url in pob.items():
                 year = int(year)
-                if year >= cYear:
+                if year >= cYear and year < min_year:
                     continue
                 js = get_js(url)
                 if not js:
@@ -180,14 +182,19 @@ class Dataset():
                     x = mData.get(i, 0)
                     arr.append(str(x) if x > 0 else "")
                 yData[mun] = (",".join(arr)).rstrip(",")
+        if old_data:
+            for k, v in data.items():
+                old_data[k] = v
+            data = old_data
         return data
 
-    @JsonCache(file="dataset/renta/euskadi.json")
+    @JsonCache(file="dataset/renta/euskadi.json", intKey=True)
     def create_euskadi(self, *arg, old_data=None, **kargv):
+        min_year = max(old_data.keys())+1 if old_data else -1
         url = self.core.todas["renta"]["euskadi"]
         rows = get_csv(url, enconde="windows-1252", delimiter=";")
         years = None
-        data = {}
+        data = old_data or {}
         for r in rows:
             c0 = r[0]
             if years is None:
@@ -198,7 +205,7 @@ class Dataset():
             mun = "%05d" % c0
 
             for i, y in years:
-                if y >= cYear:
+                if y >= cYear and y < min_year:
                     continue
                 v = r[i]
                 v = v.replace(".", "")
@@ -213,11 +220,12 @@ class Dataset():
 
     @JsonCache(file="dataset/empleo/paro_sepe_*.json")
     def create_sepe(self, *arg, old_data=None, **kargv):
+        min_year = max(old_data.keys())+1 if old_data else -1
         firt_data = 8
-        yrParo = {}
+        yrParo = old_data or {}
         for year, url in self.core.todas["paro_sepe"].items():
             year = int(year)
-            if year >= cYear:
+            if year >= cYear and year < min_year:
                 continue
             paro = {}
             rows = get_csv(url, enconde="windows-1252", delimiter=";")
@@ -256,10 +264,11 @@ class Dataset():
 
     @JsonCache(file="dataset/renta/aeat_*.json")
     def create_aeat(self, *arg, old_data=None, **kargv):
-        yrRenta = {}
+        min_year = max(old_data.keys())+1 if old_data else -1
+        yrRenta = old_data or {}
         for year, url in self.core.todas["renta"]["aeat"].items():
             year = int(year)
-            if year >= cYear:
+            if year >= cYear or year < min_year:
                 continue
             soup = get_bs(url)
             data = {}
@@ -291,12 +300,13 @@ class Dataset():
             yrRenta[year] = data
         return yrRenta
 
-    @JsonCache(file="dataset/renta/navarra.json")
+    @JsonCache(file="dataset/renta/navarra.json", intKey=True)
     def create_navarra(self, *arg, old_data=None, **kargv):
-        yrNavarra = {}
+        min_year = max(old_data.keys())+1 if old_data else -1
+        yrNavarra = old_data or {}
         for year, url in self.core.todas["renta"]["navarra"].items():
             year = int(year)
-            if year >= cYear:
+            if year >= cYear or year < min_year:
                 continue
             book = get_xls(url)
             sheet = book.sheet_by_index(0)
@@ -313,7 +323,7 @@ class Dataset():
             yrNavarra[year] = data
         return yrNavarra
 
-    @JsonCache(file="dataset/economia/agrario.json")
+    @JsonCache(file="dataset/economia/agrario.json", intKey=True)
     def create_agrario(self, *arg, old_data=None, **kargv):
         years = {}
         year = 1999
@@ -374,12 +384,13 @@ class Dataset():
 
     @JsonCache(file="dataset/poblacion/edad_*.json")
     def create_edad(self, *arg, old_data=None, **kargv):
+        min_year = max(old_data.keys())+1 if old_data else -1
         flag = False
-        years = {}
+        years = old_data or {}
         for cod, poblacion in self.getCore("poblacion5"):
             for year, url in sorted(poblacion.items()):
                 year = int(year)
-                if year >= cYear:
+                if year >= cYear or year < min_year:
                     continue
                 data = years.get(year, {})
                 for i in get_js(url):
@@ -416,9 +427,10 @@ class Dataset():
                 years[year] = data
         return years
 
-    @JsonCache(file="dataset/poblacion/sexo.json")
+    @JsonCache(file="dataset/poblacion/sexo.json", intKey=True)
     def create_poblacion(self, *arg, old_data=None, **kargv):
-        years = {}
+        min_year = max(old_data.keys())+1 if old_data else -1
+        years = old_data or {}
         for cod, pob in self.getCore("poblacion"):
             for i in get_js(pob):
                 mun, sex, _, _ = i["MetaData"]
@@ -439,7 +451,7 @@ class Dataset():
                         valor = d["Valor"]
 
                         year = int(year)
-                        if year >= cYear:
+                        if year >= cYear and year < min_year:
                             continue
 
                         yDt = years.get(year, {})
@@ -498,11 +510,12 @@ class Dataset():
             b["altitud"] = to_num(b.get("altitud"))
         return bases
 
-    @ParamJsonCache(file="dataset/aemet/diarios/{}.json", intKey=False, avoidReload=True)
+    @ParamJsonCache(file="dataset/aemet/diarios/{}.json", intKey=False)
     def get_dia_estacion(self, id, *arg, old_data=None, **kargv):
+        y = max(int(d["fecha"][:4])
+                for d in old_data) if old_data else (1972 - 1)
         del_key = ("nombre", "provincia", "indicativo", "altitud")
-        items = []
-        y = 1972 - 1
+        items = old_data or []
         while y < cYear:
             y = y + 1
             fin = min(y+4, cYear)
@@ -527,11 +540,13 @@ class Dataset():
                     items.append(o)
         return items
 
-    @ParamJsonCache(file="dataset/aemet/mensual/{}.json", intKey=False, avoidReload=True)
+    @ParamJsonCache(file="dataset/aemet/mensual/{}.json", intKey=False)
     def get_mes_estacion(self, id, *arg, old_data=None, **kargv):
+        min_year = max(int(d["fecha"][:4])
+                       for d in old_data)+1 if old_data else 1972
         del_key = ("nombre", "provincia", "indicativo", "altitud")
-        items = []
-        for y in range(1972, cYear):
+        items = old_data or []
+        for y in range(min_year, cYear):
             url = self.fuentes.aemet.estacion.mensual.format(id=id, ini=y)
             data = get_js(url)
             if isinstance(data, list):
@@ -835,7 +850,7 @@ class Dataset():
                 data[c.cod] = st
         return data
 
-    def populate_datamun(self, db, reload=False):
+    def populate_datamun(self, db):
         aemet_mes = {}
         aemet_dia = {}
         for b in self.aemet_bases:
