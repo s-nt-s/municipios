@@ -500,7 +500,7 @@ class Dataset():
                     dist[(a, b)] = km
         return dist
 
-    @JsonCache(file="dataset/aemet/bases.json", intKey=False, avoidReload=True)
+    @JsonCache(file="dataset/aemet/bases.json", intKey=False)
     def create_aemet_bases(self, *arg, old_data=None, **kargv):
         bases = get_js(self.fuentes.aemet.estaciones)
         for b in bases:

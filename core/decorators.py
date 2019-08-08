@@ -4,7 +4,7 @@ from .common import *
 
 
 class Cache:
-    def __init__(self, file, avoidReload=False):
+    def __init__(self, file, *args, avoidReload=False, **kargv):
         self.file = file
         self.data = {}
         self.func = None

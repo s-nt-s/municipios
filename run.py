@@ -155,6 +155,7 @@ db.execute("sql/base.sql")
 db.to_table("CAMBIOS", dataset.cambios, to_file="sql/CAMBIOS.sql")
 insert(db, "provincias", dataset.provincias)
 insert(db, "municipios", dataset.municipios)
+db.execute("sql/provmun.sql")
 setKm(db)
 if False:
     db.execute("sql/distancias/01-create.sql")
