@@ -8,7 +8,16 @@ from core.common import readfile, readlines, zipfile
 from core.dataset import Dataset
 from core.db import DBshp, plain_parse_col
 from core.jfile import jFile
+import logging
+import argparse
 
+parser = argparse.ArgumentParser("Crea base de datos de municipios")
+parser.add_argument('--verbose', '-v', action='count', help="Nivel de depuración")
+parser.add_argument('salida', nargs='?', help='Nombre de la base de datos de salida', default="dataset/municipios.db")
+args = parser.parse_args()
+levels = [logging.WARNING, logging.INFO, logging.DEBUG]
+level = levels[min(len(levels)-1,args.verbose)]
+logging.basicConfig(level=level, format='%(asctime)s - %(levelname)s - %(message)s')
 
 def insert(db, table, shps):
     db.openTransaction()
@@ -26,20 +35,20 @@ def load_csv(db, table, insert):
     file = "dataset/tablas/%s.csv" % table
     j = jFile(file)
     if j.files:
-        print("Cargando", file)
+        logging.info("Cargando "+ file)
         db.openTransaction()
         for item in j.items():
             db.insert(table, **item)
         db.closeTransaction()
         return
-    print("Creando ", file)
+    logging.info("Creando "+ file)
     db.execute(insert)
     db.save_csv(file, separator=" ", mb=47)
 
 
 def _setKm(db, j1, j2, min_km, max_km=None, step=5):
     if j1.empty:
-        print("Creando ", j1.fullname)
+        logging.info("Creando "+ j1.fullname)
         crs = []
         for r in range(1, (min_km*2)+4, 3):
             crs.append("select %s crs" % (r/100))
@@ -70,7 +79,7 @@ def _setKm(db, j1, j2, min_km, max_km=None, step=5):
         db.save_csv(j1.fullname, separator=" ", mb=47)
 
     if j1.empty or j2.empty:
-        print("Creando ", j2.fullname)
+        logging.info("Creando "+ j2.fullname)
         db.execute("sql/AREA_INFLUENCIA.sql")
         db.save_csv(j2.fullname, separator=" ", mb=47)
 
@@ -82,11 +91,11 @@ def setKm(db):
     j2 = jFile(file2)
     db.openTransaction()
     if not j1.empty:
-        print("Cargando", file1)
+        logging.info("Cargando "+ file1)
         for item in j1.items():
             db.insert("CRS_KM", **item)
     if not j1.empty and not j2.empty:
-        print("Cargando", file2)
+        logging.info("Cargando "+ file2)
         for item in j2.items():
             db.insert("AREA_INFLUENCIA", **item)
     db.closeTransaction()
@@ -94,7 +103,7 @@ def setKm(db):
 
 
 def completeAemet(db):
-    print("Completando AEMET")
+    logging.info("Completando AEMET")
     db.load_tables()
     cols = set()
     create_cols1 = ''
@@ -141,16 +150,11 @@ def completeAemet(db):
                    create_cols3, ",\n  ".join(cols), create_cols4)
     db.execute(sql, to_file="sql/AEMET_SEMANA_PROV.sql")
 
-
-database = "dataset/municipios.db"
-# database="debug.db"
-if len(sys.argv) == 2:
-    database = sys.argv[1]
-
+logging.info("Salida en "+args.salida)
 dataset = Dataset()
 # dataset.collect()
 dataset.unzip()
-db = DBshp(database, parse_col=plain_parse_col, reload=True)
+db = DBshp(args.salida, parse_col=plain_parse_col, reload=True)
 db.execute("sql/base.sql")
 db.to_table("CAMBIOS", dataset.cambios, to_file="sql/CAMBIOS.sql")
 insert(db, "provincias", dataset.provincias)

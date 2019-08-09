@@ -2,6 +2,7 @@ import os
 import re
 from datetime import date, datetime
 from functools import lru_cache
+import logging
 
 import requests
 import shapefile
@@ -27,7 +28,7 @@ cYear = datetime.now().year
 
 
 def insert_rel_mun(db, table, rows, kSort=None):
-    print("Creando "+table)
+    logging.info("Creando "+table)
     table = table.upper()
     create = '''
         create table {} (
@@ -68,7 +69,7 @@ def sortColPob(s):
 def getShp(path_glob, ini, end, r_key=4, r_data=5):
     dShapes = {}
     for _shp in iglob(path_glob):
-        print(_shp)
+        logging.info(_shp)
         #_shp = os.path.realpath(_shp)
         with shapefile.Reader(_shp) as shp:
             for sr in shp.shapeRecords():
@@ -89,7 +90,7 @@ def getShp(path_glob, ini, end, r_key=4, r_data=5):
             poli.append(p)
             nombre.add(n)
         if len(nombre) > 1:
-            print(key, nombre)
+            logging.info("Clave %s con varios nombres: %s", key, nombre)
         nombre = nombre.pop()
         main = None
         for ps in poli:
@@ -700,7 +701,7 @@ class Dataset():
                         cNuevos.add(nuevo)
                 if len(cNuevos) == 0:
                     continue
-                print("paro", year, viejo, cNuevos)
+                logging.info("PARO-%s Se agrega %s en %s", year, cNuevos, viejo)
                 dViejo = dt.get(viejo, {})
                 dt[viejo] = dViejo
                 for nuevo in cNuevos:
@@ -755,7 +756,7 @@ class Dataset():
                 cNuevos = set(n for n in nuevos if n not in my and n in data)
                 if len(cNuevos) == 0:
                     continue
-                print("euskadi", year, viejo, cNuevos)
+                logging.info("EUSKADI-%s Se agrega %s en %s", year, cNuevos, viejo)
                 dViejo = data[viejo]
                 for n in cNuevos:
                     dNuevo = data[n]
@@ -797,7 +798,7 @@ class Dataset():
                 cNuevos = set(n for n in nuevos if n not in pob and n in data)
                 if len(cNuevos) == 0:
                     continue
-                print("renta", year, viejo, cNuevos)
+                logging.info("AEAT-%s Se agrega %s en %s", year, cNuevos, viejo)
                 dViejo = data[viejo]
                 for n in cNuevos:
                     dNuevo = data[n]
@@ -861,7 +862,7 @@ class Dataset():
             aemet_mes[b["indicativo"]] = self.get_mes_estacion(b["indicativo"])
 
         table = "AEMET_DIA"
-        print("Creando "+table)
+        logging.info("Creando "+table)
         kcols = get_cols(aemet_dia)
         kcols["prec"] = "REAL"
         del kcols["fecha"]
@@ -886,7 +887,7 @@ class Dataset():
         del aemet_dia
 
         table = "AEMET_MES"
-        print("Creando "+table)
+        logging.info("Creando "+table)
         kcols = get_cols(aemet_mes)
         del kcols["fecha"]
         create = '''
@@ -1010,7 +1011,7 @@ class Dataset():
 
         insert_rel_mun(db, "renta", rows)
 
-        print("Creando SEPE")
+        logging.info("Creando SEPE")
         db.create('''
             create table SEPE (
               MUN TEXT,

@@ -19,10 +19,12 @@ import yaml
 from bs4 import BeautifulSoup
 from bunch import Bunch
 from unidecode import unidecode
+import logging
 
 from .mdb_to_sqlite import mdb_to_sqlite
 
 urllib3.disable_warnings()
+
 
 
 def readfile(file, *args):
@@ -169,9 +171,8 @@ def get_xls(url):
             book = xlrd.open_workbook(file)
             return book
         except Exception as e:
-            print(file)
-            print(e)
-    print(url, "-->", file)
+            logging.debug(url, exc_info=True)
+    logging.info(url +" --> " + file)
     r = requests.get(url, verify=False)
     save(file, r.content)
     book = xlrd.open_workbook(file)
@@ -190,7 +191,7 @@ def unzip(target, *urls):
         return
     os.makedirs(target, exist_ok=True)
     for url in urls:
-        print(url, "-->", target)
+        logging.info(url +" --> " + target)
         response = requests.get(url, verify=False)
         filehandle = BytesIO(response.content)
         with zipfilelib.ZipFile(filehandle, 'r') as zip:
@@ -288,9 +289,8 @@ def get_csv(url, enconde=None, delimiter=","):
         if j:
             return j
     except Exception as e:
-        print(file)
-        print(e)
-    print(url, "-->", file)
+        logging.debug(file, exc_info=True)
+    logging.info(url +" --> " + file)
     r = requests.get(url, verify=False)
     content = r.content
     if file.endswith("ine/csv_c/4721.csv"):
@@ -336,7 +336,7 @@ def get_bs(url, parser='lxml'):
     try:
         r = requests.get(url, verify=False)
     except:
-        print(url)
+        logging.critical(url, exc_info=true)
         raise
     soup = BeautifulSoup(r.content, parser)
     for a in soup.findAll("a"):
@@ -370,12 +370,11 @@ def requests_js(url):
         j = r.json()
         return r, j
     except Exception as e:
-        print(url)
         m = re.search(r"<b>description</b>\s*<u>(.+?)\s*\.?\s*</u>", r.text)
         if m:
-            print(m.group(1))
+            logging.debug(url+" : "+m.group(1))
         else:
-            print(e)
+            logging.debug(url, exc_info=True)
         time.sleep(61)
         return requests_js(url)
 
@@ -389,7 +388,6 @@ def _js(url):
         time.sleep(61)
         return _js(url)
     if is_aemet and "datos" in j:
-        print(j["datos"])
         r, j = requests_js(j["datos"])
     if "status" in j:
         time.sleep(61)
@@ -446,13 +444,12 @@ def get_js(url):
         if j:
             return j
     except Exception as e:
-        print(file)
-        print(e)
+        logging.error(file, exc_info=True)
     r = _js(url)
-    print(url, "-->", file)
-    # print(r.encoding)
-    # print(r.apparent_encoding)
-    # print(type(r.content))
+    logging.info(url + " --> " + file)
+    # logging.info(r.encoding)
+    # logging.info(r.apparent_encoding)
+    # logging.info(type(r.content))
     # apple.decode('iso-8859-1').encode('utf8')
     save(file, r.content)
     return r.json()
