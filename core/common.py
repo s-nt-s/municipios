@@ -1,6 +1,7 @@
 import csv
 import io
 import json
+import logging
 import os
 import re
 import sqlite3
@@ -19,12 +20,10 @@ import yaml
 from bs4 import BeautifulSoup
 from bunch import Bunch
 from unidecode import unidecode
-import logging
 
 from .mdb_to_sqlite import mdb_to_sqlite
 
 urllib3.disable_warnings()
-
 
 
 def readfile(file, *args):
@@ -172,7 +171,7 @@ def get_xls(url):
             return book
         except Exception as e:
             logging.debug(url, exc_info=True)
-    logging.info(url +" --> " + file)
+    logging.info(url + " --> " + file)
     r = requests.get(url, verify=False)
     save(file, r.content)
     book = xlrd.open_workbook(file)
@@ -191,7 +190,7 @@ def unzip(target, *urls):
         return
     os.makedirs(target, exist_ok=True)
     for url in urls:
-        logging.info(url +" --> " + target)
+        logging.info(url + " --> " + target)
         response = requests.get(url, verify=False)
         filehandle = BytesIO(response.content)
         with zipfilelib.ZipFile(filehandle, 'r') as zip:
@@ -290,7 +289,7 @@ def get_csv(url, enconde=None, delimiter=","):
             return j
     except Exception as e:
         logging.debug(file, exc_info=True)
-    logging.info(url +" --> " + file)
+    logging.info(url + " --> " + file)
     r = requests.get(url, verify=False)
     content = r.content
     if file.endswith("ine/csv_c/4721.csv"):

@@ -1,12 +1,14 @@
+import logging
+import os
+from pathlib import Path
+
 from scipy.interpolate import interp1d
 
 from .common import readfile, readlines, zipfile
 from .dataset import Dataset
 from .db import DBshp, plain_parse_col
 from .jfile import jFile
-import logging
-import os
-from pathlib import Path
+
 
 def insert(db, table, shps):
     db.openTransaction()
@@ -18,24 +20,26 @@ def insert(db, table, shps):
         db.insert(table, id=key, nombre=nombre, point=centroid, geom=poli)
     db.closeTransaction()
 
+
 def load_csv(db, table, insert):
     table = table.upper()
     file = "dataset/tablas/%s.csv" % table
     j = jFile(file)
     if j.files:
-        logging.info("Cargando "+ file)
+        logging.info("Cargando " + file)
         db.openTransaction()
         for item in j.items():
             db.insert(table, **item)
         db.closeTransaction()
         return
-    logging.info("Creando "+ file)
+    logging.info("Creando " + file)
     db.execute(insert)
     db.save_csv(file, separator=" ", mb=47)
 
+
 def _setKm(db, j1, j2, min_km, max_km=None, step=5):
     if j1.empty:
-        logging.info("Creando "+ j1.fullname)
+        logging.info("Creando " + j1.fullname)
         crs = []
         for r in range(1, (min_km*2)+4, 3):
             crs.append("select %s crs" % (r/100))
@@ -66,9 +70,10 @@ def _setKm(db, j1, j2, min_km, max_km=None, step=5):
         db.save_csv(j1.fullname, separator=" ", mb=47)
 
     if j1.empty or j2.empty:
-        logging.info("Creando "+ j2.fullname)
+        logging.info("Creando " + j2.fullname)
         db.execute("sql/AREA_INFLUENCIA.sql")
         db.save_csv(j2.fullname, separator=" ", mb=47)
+
 
 def setKm(db):
     file1 = "dataset/tablas/CRS_KM.csv"
@@ -77,11 +82,11 @@ def setKm(db):
     j2 = jFile(file2)
     db.openTransaction()
     if not j1.empty:
-        logging.info("Cargando "+ file1)
+        logging.info("Cargando " + file1)
         for item in j1.items():
             db.insert("CRS_KM", **item)
     if not j1.empty and not j2.empty:
-        logging.info("Cargando "+ file2)
+        logging.info("Cargando " + file2)
         for item in j2.items():
             db.insert("AREA_INFLUENCIA", **item)
     db.closeTransaction()

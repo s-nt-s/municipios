@@ -1,8 +1,8 @@
+import logging
 import os
 import re
 from datetime import date, datetime
 from functools import lru_cache
-import logging
 
 import requests
 import shapefile
@@ -701,7 +701,8 @@ class Dataset():
                         cNuevos.add(nuevo)
                 if len(cNuevos) == 0:
                     continue
-                logging.info("PARO-%s Se agrega %s en %s", year, cNuevos, viejo)
+                logging.info("PARO-%s Se agrega %s en %s",
+                             year, cNuevos, viejo)
                 dViejo = dt.get(viejo, {})
                 dt[viejo] = dViejo
                 for nuevo in cNuevos:
@@ -756,7 +757,8 @@ class Dataset():
                 cNuevos = set(n for n in nuevos if n not in my and n in data)
                 if len(cNuevos) == 0:
                     continue
-                logging.info("EUSKADI-%s Se agrega %s en %s", year, cNuevos, viejo)
+                logging.info("EUSKADI-%s Se agrega %s en %s",
+                             year, cNuevos, viejo)
                 dViejo = data[viejo]
                 for n in cNuevos:
                     dNuevo = data[n]
@@ -798,7 +800,8 @@ class Dataset():
                 cNuevos = set(n for n in nuevos if n not in pob and n in data)
                 if len(cNuevos) == 0:
                     continue
-                logging.info("AEAT-%s Se agrega %s en %s", year, cNuevos, viejo)
+                logging.info("AEAT-%s Se agrega %s en %s",
+                             year, cNuevos, viejo)
                 dViejo = data[viejo]
                 for n in cNuevos:
                     dNuevo = data[n]
