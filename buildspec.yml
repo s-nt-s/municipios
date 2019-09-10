@@ -9,12 +9,13 @@ phases:
       - apt install -y spatialite-bin
       - apt install -y libsqlite3-mod-spatialite
       - apt install -y mdbtools
-      - mkdir -p build/python/lib/3.6/site-packages
+      #- mkdir -p build/python/lib/3.6/site-packages
       - pipenv -v --python 3.6
-      - pipenv run pip install -r requirements.txt --target build/python/lib/3.6/site-packages
+      - pipenv run pip install -r requirements.txt
+      # --target build/python/lib/3.6/site-packages
   post_build:
     commands:
-      - pipenv run python run.py
+      - pipenv run python3 run.py
 artifacts:
   files:
       - dataset/**/*
