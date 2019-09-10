@@ -6,9 +6,9 @@ phases:
       python: 3.7
   build:
     commands:
-      - apt install spatialite-bin
-      - apt install libsqlite3-mod-spatialite
-      - apt install mdbtools
+      - apt install -y spatialite-bin
+      - apt install -y libsqlite3-mod-spatialite
+      - apt install -y mdbtools
       - mkdir -p build/python/lib/3.6/site-packages
       - pipenv -v --python 3.6
       - pipenv run pip install -r requirements.txt --target build/python/lib/3.6/site-packages
