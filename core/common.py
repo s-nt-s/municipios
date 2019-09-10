@@ -37,7 +37,7 @@ def readfile(file, *args):
 
 re_entero = re.compile(r"^\d+(\.0+)?$")
 re_float = re.compile(r"^\d+\.\d+$")
-aemet_key = readfile("fuentes/aemet.key")
+aemet_key = readfile("fuentes/aemet.key") or os.environ['AEMET_KEY']
 
 
 def to_num(st, coma=False):
