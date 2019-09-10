@@ -14,7 +14,7 @@ phases:
       - pipenv run pip install -r requirements.txt --target build/python/lib/3.6/site-packages
   post_build:
     commands:
-      - pipenv run python3 run.py
+      - pipenv run python run.py
 artifacts:
   files:
       - dataset/**/*
