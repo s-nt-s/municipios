@@ -1,7 +1,6 @@
 version: 0.1
 
 phases:
-phases:
   install:
     runtime-versions:
       python: 3.6
