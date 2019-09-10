@@ -2,12 +2,13 @@
 
 import argparse
 import logging
+import os
 
 from core.create_db import create_db
 
 parser = argparse.ArgumentParser("Crea base de datos de municipios")
 parser.add_argument('--verbose', '-v', action='count',
-                    help="Nivel de depuración", default=0)
+                    help="Nivel de depuración", default=int(os.environ.get("DEBUG_LEVEL", 0)))
 parser.add_argument('salida', nargs='?',
                     help='Nombre de la base de datos de salida', default="dataset/municipios.db")
 args = parser.parse_args()
