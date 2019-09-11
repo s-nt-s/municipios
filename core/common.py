@@ -364,12 +364,13 @@ def read_js(file, intKey=False):
 
 
 def requests_js(url):
+    r = None
     try:
         r = requests.get(url, verify=False)
         j = r.json()
         return r, j
     except Exception as e:
-        m = re.search(r"<b>description</b>\s*<u>(.+?)\s*\.?\s*</u>", r.text)
+        m = re.search(r"<b>description</b>\s*<u>(.+?)\s*\.?\s*</u>", r.text) if r and r.text else None
         if m:
             logging.debug(url+" : "+m.group(1))
         else:

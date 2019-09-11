@@ -1,14 +1,18 @@
 import functools
+import logging
 
 from .common import *
 
 
 class Cache:
     def __init__(self, file, *args, avoidReload=False, **kargv):
-        self.file = file
+        self._file = file
         self.data = {}
         self.func = None
         self.avoidReload = avoidReload
+
+    def file_path(self):
+        return self._file
 
     def read(self):
         pass
@@ -17,7 +21,7 @@ class Cache:
         pass
 
     def callCache(self, slf, *args, **kargs):
-        reload = self.isReload(slf)
+        reload = self.isReload(slf, *args, **kargs)
         data = None
         if not reload:
             data = self.read(*args, **kargs)
@@ -28,13 +32,21 @@ class Cache:
             self.save(data, *args, **kargs)
         return data
 
-    def isReload(self, slf):
+    def isReload(self, slf, *args, **kargs):
+        fl = self.file_path(*args, **kargs)
+        if "*" not in fl:
+            if os.path.isfile(fl):
+                logging.debug("EXITE: " + fl)
+            else:
+                logging.debug("NO EXITE: " + fl)
         if self.avoidReload:
             return False
         reload = getattr(slf, "reload", None)
-        if reload is None or reload == True:
+        if reload is not None and reload == True:
+            logging.debug("RECARGA por orden de la clase")
             return True
-        if (isinstance(reload, list) or isinstance(reload, tuple)) and self.file in reload:
+        if (isinstance(reload, list) or isinstance(reload, tuple)) and self._file in reload:
+            logging.debug("RECARGA por orden de la clase")
             return True
         return False
 
@@ -50,10 +62,12 @@ class JsonCache(Cache):
         self.intKey = intKey
 
     def read(self, *args, **kargs):
-        return read_js(self.file, intKey=self.intKey)
+        fl = self.file_path(*args, *kargs)
+        return read_js(fl, intKey=self.intKey)
 
     def save(self, data, *args, **kargs):
-        save_js(self.file, data)
+        fl = self.file_path(*args, *kargs)
+        save_js(fl, data)
 
 
 class ParamJsonCache(JsonCache):
@@ -61,12 +75,15 @@ class ParamJsonCache(JsonCache):
         JsonCache.__init__(self, *args, **kargv)
 
     def read(self, *args, **kargs):
-        f = self.file.format(*args, **kargs)
+        f = self.file_path(*args, *kargs)
         return read_js(f, intKey=self.intKey)
 
     def save(self, data, *args, **kargs):
-        f = self.file.format(*args, *kargs)
+        f = self.file_path(*args, *kargs)
         save_js(f, data)
+
+    def file_path(self, *args, **kargs):
+        return self._file.format(*args, *kargs)
 
 
 class KmCache(Cache):
@@ -74,13 +91,15 @@ class KmCache(Cache):
         Cache.__init__(self, *args, **kargv)
 
     def read(self, *args, **kargs):
+        fl = self.file_path(*args, **kargs)
         data = {}
-        for a, b, km in readlines(self.file, fields=3):
+        for a, b, km in readlines(fl, fields=3):
             data[(a, b)] = float(km)
         return data
 
     def save(self, data, *args, **kargs):
-        with open(self.file, "w") as f:
+        fl = self.file_path(*args, **kargs)
+        with open(fl, "w") as f:
             for key, val in sorted(data.items()):
                 if int(km) == km:
                     km = int(km)
