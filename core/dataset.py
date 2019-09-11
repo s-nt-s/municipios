@@ -547,7 +547,7 @@ class Dataset():
     @ParamJsonCache(file="dataset/aemet/mensual/{}.json", intKey=False)
     def get_mes_estacion(self, id, *arg, old_data=None, cursor=None, **kargv):
         c_y = cursor.get(id, -1) if cursor else -1
-        min_year = max(1972 - 1, c_y, *(int(d["fecha"][:4]) for d in old_data))
+        min_year = max(1972 - 1, c_y, *(int(d["fecha"][:4]) for d in old_data))+1
         del_key = ("nombre", "provincia", "indicativo", "altitud")
         items = old_data or []
         for y in range(min_year, cYear):
@@ -570,7 +570,7 @@ class Dataset():
         cursor = read_js(cusor_file) or {}
         dia = self.get_dia_estacion(id, cursor=cursor)
         mes = self.get_mes_estacion(id, cursor=cursor)
-        cursor[id]=cYear-2
+        cursor[id]=cYear-1
         save_js(cusor_file, cursor)
         return dia, mes
 
