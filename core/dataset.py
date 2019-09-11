@@ -433,6 +433,8 @@ class Dataset():
     def create_poblacion(self, *arg, old_data=None, **kargv):
         min_year = max(old_data.keys())+1 if old_data else -1
         years = old_data or {}
+        if min_year == cYear:
+            return years
         for cod, pob in self.getCore("poblacion"):
             for i in get_js(pob):
                 mun, sex, _, _ = i["MetaData"]
