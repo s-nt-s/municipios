@@ -128,7 +128,8 @@ class Dataset():
         unzip("fuentes/fomento/mdb",
               self.core.todas["nomenclator"])  # , self.core.todas["nomenclator_basico"])
         for pro, dt in self.core.items():
-            if "miteco" in dt:
+            # Los datos del mapa forestal aún no se usan
+            if False and "miteco" in dt:
                 unzip("fuentes/miteco/mapaforestal/%s %s" %
                       (pro, dt["nombre"].split("/")[0]), dt["miteco"])
 
@@ -501,6 +502,7 @@ class Dataset():
                     dist[(a, b)] = km
         return dist
 
+
     @JsonCache(file="dataset/aemet/bases.json", intKey=False)
     def create_aemet_bases(self, *arg, old_data=None, **kargv):
         bases = get_js(self.fuentes.aemet.estaciones)
@@ -511,10 +513,11 @@ class Dataset():
             b["altitud"] = to_num(b.get("altitud"))
         return bases
 
+
     @ParamJsonCache(file="dataset/aemet/diarios/{}.json", intKey=False)
-    def get_dia_estacion(self, id, *arg, old_data=None, **kargv):
-        y = max(int(d["fecha"][:4])
-                for d in old_data) if old_data else (1972 - 1)
+    def get_dia_estacion(self, id, *arg, old_data=None, cursor=None, **kargv):
+        c_y = cursor.get(id, -1) if cursor else -1
+        y = max(1972 - 1, c_y, *(int(d["fecha"][:4]) for d in old_data))
         del_key = ("nombre", "provincia", "indicativo", "altitud")
         items = old_data or []
         while y < cYear:
@@ -542,9 +545,9 @@ class Dataset():
         return items
 
     @ParamJsonCache(file="dataset/aemet/mensual/{}.json", intKey=False)
-    def get_mes_estacion(self, id, *arg, old_data=None, **kargv):
-        min_year = max(int(d["fecha"][:4])
-                       for d in old_data)+1 if old_data else 1972
+    def get_mes_estacion(self, id, *arg, old_data=None, cursor=None, **kargv):
+        c_y = cursor.get(id, -1) if cursor else -1
+        min_year = max(1972 - 1, c_y, *(int(d["fecha"][:4]) for d in old_data))
         del_key = ("nombre", "provincia", "indicativo", "altitud")
         items = old_data or []
         for y in range(min_year, cYear):
@@ -561,6 +564,15 @@ class Dataset():
                         continue
                     items.append(o)
         return items
+
+    def get_estacion(self, id):
+        cusor_file = "dataset/aemet/cursor.json"
+        cursor = read_js(cusor_file) or {}
+        dia = self.get_dia_estacion(id, cursor=cursor)
+        mes = self.get_mes_estacion(id, cursor=cursor)
+        cursor[id]=cYear-2
+        save_js(cusor_file, cursor)
+        return dia, mes
 
     @property
     @lru_cache(maxsize=None)
@@ -861,8 +873,9 @@ class Dataset():
             b["point"] = Point(b["longitud"], b["latitud"])
             b["ID"] = b["indicativo"]
             db.insert("AEMET_BASES", **b)
-            aemet_dia[b["indicativo"]] = self.get_dia_estacion(b["indicativo"])
-            aemet_mes[b["indicativo"]] = self.get_mes_estacion(b["indicativo"])
+            dia, mes = self. get_estacion(b["indicativo"])
+            aemet_dia[b["indicativo"]] = dia
+            aemet_mes[b["indicativo"]] = mes
 
         table = "AEMET_DIA"
         logging.info("Creando "+table)
