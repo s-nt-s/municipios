@@ -453,7 +453,7 @@ class Dataset():
                         valor = d["Valor"]
 
                         year = int(year)
-                        if year >= cYear and year < min_year:
+                        if year >= cYear or year < min_year:
                             continue
 
                         yDt = years.get(year, {})
