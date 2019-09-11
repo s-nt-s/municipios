@@ -157,7 +157,7 @@ class Dataset():
                 continue
             for year, url in pob.items():
                 year = int(year)
-                if year >= cYear and year < min_year:
+                if year >= cYear or year < min_year:
                     continue
                 js = get_js(url)
                 if not js:
@@ -207,7 +207,7 @@ class Dataset():
             mun = "%05d" % c0
 
             for i, y in years:
-                if y >= cYear and y < min_year:
+                if y >= cYear or y < min_year:
                     continue
                 v = r[i]
                 v = v.replace(".", "")
@@ -227,7 +227,7 @@ class Dataset():
         yrParo = old_data or {}
         for year, url in self.core.todas["paro_sepe"].items():
             year = int(year)
-            if year >= cYear and year < min_year:
+            if year >= cYear or year < min_year:
                 continue
             paro = {}
             rows = get_csv(url, enconde="windows-1252", delimiter=";")
