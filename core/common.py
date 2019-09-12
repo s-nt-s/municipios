@@ -291,12 +291,12 @@ def get_csv(url, enconde=None, delimiter=","):
         logging.debug(file, exc_info=True)
     logging.info(url + " --> " + file)
     r = requests.get(url, verify=False)
-    content = r.content
-    if file.endswith("ine/csv_c/4721.csv"):
-        content = content.decode("UTF-8")
-        content = content.replace(", ", " ")
-        content = str.encode(content)
-    save(file, content)
+    if r.text.strip().startswith("<!DOCTYPE"):
+        logging.debug("La respuesta no es un csv")
+        logging.debug(r.text)
+        time.sleep(61)
+        return get_csv(url, enconde=enconde, delimiter=delimiter)
+    save(file, r.content)
     return read_csv(file, enconde=enconde, delimiter=delimiter)
 
 

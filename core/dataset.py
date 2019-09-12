@@ -470,9 +470,9 @@ class Dataset():
 
     @JsonCache(file="dataset/economia/empresas.json")
     def create_empresas(self, *arg, old_data=None, **kargv):
-        empresas = get_csv(self.core.todas["empresas"])
+        empresas = get_csv(self.core.todas["empresas"], delimiter=";")#, enconde='iso-8859-1'
         col_empresas = [
-            r if r != "Total" else "Total empresas" for r in empresas[4] if r]
+            r.replace(",", "") if r != "Total" else "Total empresas" for r in empresas[4] if r]
         years = {}
         for record in empresas:
             if len(record) < 2 or record[0] is None:
