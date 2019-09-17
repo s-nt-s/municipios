@@ -6,8 +6,12 @@ phases:
       python: 3.7
   pre_build:
     commands:
+      - ls -lah ./dataset
+      - du -sh ./dataset
       - echo "$S3_BUCKET_TARGET"
       - aws s3 sync "$S3_BUCKET_TARGET" ./dataset
+      - ls -lah ./dataset
+      - du -sh ./dataset
   build:
     commands:
       - apt install -y spatialite-bin
