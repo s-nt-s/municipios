@@ -6,7 +6,8 @@ phases:
       python: 3.7
   pre_build:
     commands:
-      - aws s3 sync $S3_BUCKET_TARGET ./dataset
+      - echo "$S3_BUCKET_TARGET"
+      - aws s3 sync "$S3_BUCKET_TARGET" ./dataset
   build:
     commands:
       - apt install -y spatialite-bin
@@ -19,7 +20,7 @@ phases:
   post_build:
     commands:
       - pipenv run python3 run.py
-      - aws s3 sync ./dataset $S3_BUCKET_TARGET
+      - aws s3 sync ./dataset "$S3_BUCKET_TARGET"
 # artifacts:
 #   files:
 #       - dataset/**/*
