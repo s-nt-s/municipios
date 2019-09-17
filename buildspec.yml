@@ -9,7 +9,7 @@ phases:
       - ls -lah ./dataset
       - du -sh ./dataset
       - echo "$S3_BUCKET_TARGET"
-      - aws s3 sync "$S3_BUCKET_TARGET" ./dataset
+      - aws s3 sync "$S3_BUCKET_TARGET" ./dataset --exclude "*.db"
       - ls -lah ./dataset
       - du -sh ./dataset
   build:

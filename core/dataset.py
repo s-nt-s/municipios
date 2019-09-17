@@ -327,61 +327,63 @@ class Dataset():
 
     @JsonCache(file="dataset/economia/agrario.json", intKey=True)
     def create_agrario(self, *arg, old_data=None, **kargv):
-        years = {}
+        years = old_data or {}
         year = 1999
-        for cod, data in self.core.items():
-            censo = data.get("censo_%s" % year, None)
-            if censo is not None:
-                for i in get_js(censo["superficie"]):
-                    mun, tenencia = i["MetaData"]
-                    mun = get_cod_municipio(cod, mun)
-                    if mun is not None and tenencia["Codigo"] == "todoslosregimenes":
-                        valor = i["Data"][0]["Valor"]
-                        if valor is not None:
-                            dt = years.get(year, {})
-                            yr = dt.get(mun, {})
-                            yr["SAU"] = int(valor)
-                            dt[mun] = yr
-                            years[year] = dt
-                for i in get_js(censo["unidades"]):
-                    mun, tipo = i["MetaData"]
-                    mun = get_cod_municipio(cod, mun)
-                    if mun is None:
-                        continue
-                    c_tipo = tipo["Codigo"]
-                    key = None
-                    if c_tipo == "numerodeexplotacionestotal":
-                        key = "explotaciones"
-                    elif c_tipo == "unidadesganaderasug":
-                        key = "unidadesganaderas"
-                    elif c_tipo == "unidadesdetrabajoanouta":
-                        key = "UTA"
-                    if key:
-                        valor = i["Data"][0]["Valor"]
-                        if valor is not None:
-                            dt = years.get(year, {})
-                            yr = dt.get(mun, {})
-                            yr[key] = int(valor)
-                            dt[mun] = yr
-                            years[year] = dt
+        if year not in years:
+            for cod, data in self.core.items():
+                censo = data.get("censo_%s" % year, None)
+                if censo is not None:
+                    for i in get_js(censo["superficie"]):
+                        mun, tenencia = i["MetaData"]
+                        mun = get_cod_municipio(cod, mun)
+                        if mun is not None and tenencia["Codigo"] == "todoslosregimenes":
+                            valor = i["Data"][0]["Valor"]
+                            if valor is not None:
+                                dt = years.get(year, {})
+                                yr = dt.get(mun, {})
+                                yr["SAU"] = int(valor)
+                                dt[mun] = yr
+                                years[year] = dt
+                    for i in get_js(censo["unidades"]):
+                        mun, tipo = i["MetaData"]
+                        mun = get_cod_municipio(cod, mun)
+                        if mun is None:
+                            continue
+                        c_tipo = tipo["Codigo"]
+                        key = None
+                        if c_tipo == "numerodeexplotacionestotal":
+                            key = "explotaciones"
+                        elif c_tipo == "unidadesganaderasug":
+                            key = "unidadesganaderas"
+                        elif c_tipo == "unidadesdetrabajoanouta":
+                            key = "UTA"
+                        if key:
+                            valor = i["Data"][0]["Valor"]
+                            if valor is not None:
+                                dt = years.get(year, {})
+                                yr = dt.get(mun, {})
+                                yr[key] = int(valor)
+                                dt[mun] = yr
+                                years[year] = dt
         year = 2009
-        with open(self.core.todas["censo_%s" % year], "r") as f:
-            soup = BeautifulSoup(f, "lxml")
+        if year not in years:
+            with open(self.core.todas["censo_%s" % year], "r") as f:
+                soup = BeautifulSoup(f, "lxml")
 
-        for tr in soup.findAll("tr"):
-            tds = tr.findAll(["th", "td"])
-            if len(tds) == 20:
-                cod = tds[0].get_text().strip().split()[0]
-                if cod.isdigit() and len(cod) == 5:
-                    datos = [parse_td(td) for td in tds[1:]]
-                    dt = years.get(year, {})
-                    yr = dt.get(cod, {})
-                    yr["explotaciones"] = datos[0]
-                    yr["SAU"] = datos[1]
-                    yr["unidadesganaderas"] = datos[10]
-                    yr["UTA"] = datos[11]
-                    dt[cod] = yr
-                    years[year] = dt
+            for tr in soup.findAll("tr"):
+                tds = tr.findAll(["th", "td"])
+                if len(tds) == 20:
+                    cod = tds[0].get_text().strip().split()[0]
+                    if cod.isdigit() and len(cod) == 5:
+                        datos = [parse_td(td) for td in tds[1:]]
+                        dt = years.get(year, {})
+                        yr = dt.get(cod, {})
+                        yr["explotaciones"] = datos[0]
+                        yr["SAU"] = datos[1]
+                        yr["unidadesganaderas"] = datos[10]
+                        yr["UTA"] = datos[11]
+                        dt[cod] = yr
+                        years[year] = dt
         return years
 
     @JsonCache(file="dataset/poblacion/edad_*.json")
