@@ -207,7 +207,7 @@ class Dataset():
             mun = "%05d" % c0
 
             for i, y in years:
-                if y >= cYear or y < min_year:
+                if y >= cYear:# or y < min_year:
                     continue
                 v = r[i]
                 v = v.replace(".", "")
@@ -475,7 +475,7 @@ class Dataset():
         empresas = get_csv(self.core.todas["empresas"], delimiter=";")#, enconde='iso-8859-1'
         col_empresas = [
             r.replace(",", "") if r != "Total" else "Total empresas" for r in empresas[4] if r]
-        years = {}
+        years = old_data or {}
         for record in empresas:
             if len(record) < 2 or record[0] is None:
                 continue
