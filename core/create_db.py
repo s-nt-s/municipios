@@ -168,6 +168,8 @@ def create_db(salida):
         db.execute("sql/distancias/21-delete.sql")
     dataset.populate_datamun(db)
     completeAemet(db)
-
+    db.save_js("dataset/provinicas.json",
+               sql="select ID, nombre from provincias order by id", mb=47)
     db.close(vacuum=True)
+    return db
     # print(db.zip())

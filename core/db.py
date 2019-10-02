@@ -1,4 +1,5 @@
 import csv
+import json
 import math
 import os
 import re
@@ -200,16 +201,19 @@ class DBLite:
     def __init__(self, file, extensions=None, reload=False, parse_col=None):
         self.extensions = extensions or []
         self.file = file
+        self.parse_col = parse_col if parse_col is not None else lambda x: x
         if reload and os.path.isfile(self.file):
             os.remove(self.file)
-        self.con = get_db(file, *self.extensions)
+        self.open()
+
+    def open(self):
+        self.con = get_db(self.file, *self.extensions)
         self.cursor = self.con.cursor()
         #self.cursor.execute('pragma foreign_keys = on')
         self.tables = None
         self.srid = None
-        self.parse_col = parse_col if parse_col is not None else lambda x: x
-        self.load_tables()
         self.inTransaction = False
+        self.load_tables()
 
     def openTransaction(self):
         if self.inTransaction:
@@ -360,6 +364,22 @@ class DBLite:
                 line = separator.join(row)
                 line = line.rstrip(separator)
                 f.write(line)
+        if ext == ".7z" or mb:
+            zipfile(file, only_if_bigger=(ext != ".7z"), delete=True, mb=mb)
+
+    def save_js(self, file, sql=None, indent=None, mb=None, js_ext=".json", parse_result=None):
+        separators = (',', ':') if indent is None else None
+        name, ext = os.path.splitext(file)
+        if ext == ".7z":
+            file = name+js_ext
+        if sql is None:
+            base = os.path.basename(file)
+            sql, _ = os.path.splitext(base)
+        r = self.select(sql)
+        if parse_result is not None:
+            r = parse_result(r)
+        with open(file, "w") as f:
+            json.dump(r, f, indent=indent, separators=separators)
         if ext == ".7z" or mb:
             zipfile(file, only_if_bigger=(ext != ".7z"), delete=True, mb=mb)
 

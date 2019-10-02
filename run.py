@@ -5,6 +5,7 @@ import logging
 import os
 
 from core.create_db import create_db
+from core.db import DBshp, plain_parse_col
 
 parser = argparse.ArgumentParser("Crea base de datos de municipios")
 parser.add_argument('--verbose', '-v', action='count',

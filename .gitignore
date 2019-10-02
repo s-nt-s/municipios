@@ -10,6 +10,7 @@ debug/*
 *.db-journal
 debug.py
 dataset/municipios.7z
+dataset/geo
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
