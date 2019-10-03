@@ -38,10 +38,6 @@ def create_script(db, t):
     file = "dataset/geo/"+t+".js"
     db.save_js(file, sql="select ID, nombre, AsGeoJSON(geom, 4) geom from " +
                t+" order by nombre, id", indent=None, parse_result=parse_result)
-    with open(file, 'r+') as f:
-        content = f.read()
-        f.seek(0, 0)
-        f.write("var geo" + t+" = " + content)
 
 os.makedirs("dataset/geo", exist_ok=True)
 db = DBshp(args.salida, parse_col=plain_parse_col)
