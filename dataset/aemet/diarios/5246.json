@@ -78863,4 +78863,11 @@
   "horaPresMax": 20,
   "presMin": 931.9,
   "horaPresMin": 5
+},{
+  "fecha": "2019-10-10",
+  "prec": 0
+},{
+  "fecha": "2019-10-11",
+  "velmedia": 1.4,
+  "sol": 0
 }]

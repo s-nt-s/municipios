@@ -82045,4 +82045,15 @@
   "velmedia": 0.6,
   "racha": 6.1,
   "horaracha": "15:40"
+},{
+  "fecha": "2019-09-30",
+  "tmed": 22,
+  "tmin": 14.7,
+  "horatmin": "06:00",
+  "tmax": 29.4,
+  "horatmax": "13:50",
+  "dir": 14,
+  "velmedia": 1.4,
+  "racha": 6.7,
+  "horaracha": "17:20"
 }]

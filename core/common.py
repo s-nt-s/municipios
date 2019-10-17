@@ -438,14 +438,15 @@ def get_root_file(dom):
     return "otros"
 
 
-def get_js(url):
+def get_js(url, reload=False):
     file = url_to_file(url, ".json")
-    try:
-        j = read_js(file)
-        if j:
-            return j
-    except Exception as e:
-        logging.error(file, exc_info=True)
+    if not reload:
+        try:
+            j = read_js(file)
+            if j:
+                return j
+        except Exception as e:
+            logging.error(file, exc_info=True)
     r = _js(url)
     logging.info(url + " --> " + file)
     # logging.info(r.encoding)

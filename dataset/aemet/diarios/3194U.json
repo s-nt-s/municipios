@@ -154792,4 +154792,116 @@
   "horatmin": "06:50",
   "tmax": 30.6,
   "horatmax": "14:20"
+},{
+  "fecha": "2019-09-30",
+  "tmed": 20.4,
+  "prec": 0,
+  "tmin": 10.5,
+  "horatmin": "06:00",
+  "tmax": 30.4,
+  "horatmax": "15:50"
+},{
+  "fecha": "2019-10-01",
+  "tmed": 19,
+  "prec": 0,
+  "tmin": 10,
+  "horatmin": "06:00",
+  "tmax": 28.1,
+  "horatmax": "14:20"
+},{
+  "fecha": "2019-10-02",
+  "tmed": 18,
+  "prec": 0,
+  "tmin": 11.5,
+  "horatmin": "06:50",
+  "tmax": 24.5,
+  "horatmax": "14:30"
+},{
+  "fecha": "2019-10-03",
+  "tmed": 16.9,
+  "prec": 0,
+  "tmin": 7.9,
+  "horatmin": "06:40",
+  "tmax": 25.9,
+  "horatmax": "15:20"
+},{
+  "fecha": "2019-10-04",
+  "tmed": 18.8,
+  "prec": 0,
+  "tmin": 8.8,
+  "horatmin": "06:00",
+  "tmax": 28.8,
+  "horatmax": "15:40"
+},{
+  "fecha": "2019-10-05",
+  "tmed": 18.7,
+  "prec": 0,
+  "tmin": 10,
+  "horatmin": "06:00",
+  "tmax": 27.4,
+  "horatmax": "16:10"
+},{
+  "fecha": "2019-10-06",
+  "tmed": 19.1,
+  "prec": 0,
+  "tmin": 9.5,
+  "horatmin": "06:40",
+  "tmax": 28.7,
+  "horatmax": "15:10"
+},{
+  "fecha": "2019-10-07",
+  "tmed": 19.8,
+  "prec": 0,
+  "tmin": 11,
+  "horatmin": "06:40",
+  "tmax": 28.7,
+  "horatmax": "15:50"
+},{
+  "fecha": "2019-10-08",
+  "tmed": 20.6,
+  "prec": 0,
+  "tmin": 11.4,
+  "horatmin": "05:30",
+  "tmax": 29.8,
+  "horatmax": "16:00"
+},{
+  "fecha": "2019-10-09",
+  "tmed": 20.8,
+  "prec": 0,
+  "tmin": 12.5,
+  "horatmin": "06:30",
+  "tmax": 29.1,
+  "horatmax": "15:20"
+},{
+  "fecha": "2019-10-10",
+  "tmed": 20.4,
+  "prec": 0,
+  "tmin": 14.3,
+  "horatmin": "05:20",
+  "tmax": 26.6,
+  "horatmax": "15:40"
+},{
+  "fecha": "2019-10-11",
+  "tmed": 19.8,
+  "prec": 0,
+  "tmin": 12.6,
+  "horatmin": "06:40",
+  "tmax": 27,
+  "horatmax": "15:40"
+},{
+  "fecha": "2019-10-12",
+  "tmed": 20.7,
+  "prec": 6,
+  "tmin": 15.3,
+  "horatmin": "06:40",
+  "tmax": 26.1,
+  "horatmax": "Varias"
+},{
+  "fecha": "2019-10-13",
+  "tmed": 18.7,
+  "prec": 0,
+  "tmin": 12.6,
+  "horatmin": "06:50",
+  "tmax": 24.8,
+  "horatmax": "15:50"
 }]

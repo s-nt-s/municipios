@@ -525,6 +525,7 @@ class Dataset():
         del_key = ("nombre", "provincia", "indicativo", "altitud")
         items = old_data or []
         items = {i["fecha"]:i for i in items}
+        logging.info("AEMET DIARIO %s [%s ,%s)", id, y+1, cYear)
         while y < cYear:
             y = y + 1
             fin = min(y+4, cYear)
@@ -535,7 +536,7 @@ class Dataset():
                 fin = fin - 1
             url = self.fuentes.aemet.estacion.diario.format(
                 id=id, ini=y, fin=fin)
-            data = get_js(url)
+            data = get_js(url, reload=(y==cYear))
             if isinstance(data, list):
                 y = fin
                 for d in data:
@@ -558,9 +559,10 @@ class Dataset():
         del_key = ("nombre", "provincia", "indicativo", "altitud")
         items = old_data or []
         items = {i["fecha"]:i for i in items}
+        logging.info("AEMET MENSUAL %s [%s ,%s]", id, min_year, cYear)
         for y in range(min_year, cYear+1):
             url = self.fuentes.aemet.estacion.mensual.format(id=id, ini=y)
-            data = get_js(url)
+            data = get_js(url, reload=(y==cYear))
             if isinstance(data, list):
                 for d in data:
                     o = {}
