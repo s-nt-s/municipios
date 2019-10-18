@@ -95072,4 +95072,12 @@
   "horatmin": "01:30",
   "tmax": 20.4,
   "horatmax": "13:50"
+},{
+  "fecha": "2019-10-14",
+  "tmed": 13.6,
+  "prec": 0.5,
+  "tmin": 9.6,
+  "horatmin": "23:59",
+  "tmax": 17.5,
+  "horatmax": "11:10"
 }]

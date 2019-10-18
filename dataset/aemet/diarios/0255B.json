@@ -31104,4 +31104,15 @@
   "velmedia": 0.8,
   "racha": 7.2,
   "horaracha": "12:10"
+},{
+  "fecha": "2019-10-14",
+  "tmed": 21.2,
+  "tmin": 16.6,
+  "horatmin": "21:40",
+  "tmax": 25.7,
+  "horatmax": "12:50",
+  "dir": 6,
+  "velmedia": 1.1,
+  "racha": 6.4,
+  "horaracha": "12:30"
 }]

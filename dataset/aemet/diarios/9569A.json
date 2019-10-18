@@ -80036,4 +80036,21 @@
   "horaPresMax": 0,
   "presMin": 959.8,
   "horaPresMin": 16
+},{
+  "fecha": "2019-10-14",
+  "tmed": 20,
+  "prec": 0.2,
+  "tmin": 14.6,
+  "horatmin": "23:59",
+  "tmax": 25.3,
+  "horatmax": "11:20",
+  "dir": 16,
+  "velmedia": 5.3,
+  "racha": 16.7,
+  "horaracha": "06:40",
+  "sol": 2.2,
+  "presMax": 960.8,
+  "horaPresMax": 24,
+  "presMin": 955.2,
+  "horaPresMin": 16
 }]

@@ -370,12 +370,13 @@ def requests_js(url):
         j = r.json()
         return r, j
     except Exception as e:
+        text = r.text.strip() if r and r.text else None
         m = re.search(r"<b>(description|descripci.*?n)</b>\s*<u>(.+?)\s*\.?\s*</u>",
-                      r.text) if r and r.text else None
+                      text) if text else None
         if m:
             logging.debug(url+" : "+m.group(2))
         else:
-            logging.debug(url, exc_info=True)
+            logging.debug(url+"\nBODY: %s", text, exc_info=True)
         time.sleep(61)
         return requests_js(url)
 

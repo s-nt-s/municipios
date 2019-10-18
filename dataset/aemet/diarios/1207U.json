@@ -57305,4 +57305,21 @@
   "horaPresMax": 12,
   "presMin": 1002.2,
   "horaPresMin": 3
+},{
+  "fecha": "2019-10-14",
+  "tmed": 14.1,
+  "prec": 4.6,
+  "tmin": 11.4,
+  "horatmin": "18:50",
+  "tmax": 16.8,
+  "horatmax": "14:20",
+  "dir": 26,
+  "velmedia": 0.8,
+  "racha": 11.1,
+  "horaracha": "14:30",
+  "sol": 0.1,
+  "presMax": 1012,
+  "horaPresMax": "Varias",
+  "presMin": 1002.7,
+  "horaPresMin": "Varias"
 }]

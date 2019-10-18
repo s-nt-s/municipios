@@ -109282,7 +109282,6 @@
 },{
   "fecha": "2019-10-05",
   "prec": 0,
-  "horatmin": "01:30",
   "tmax": 27.1,
   "horatmax": "09:30",
   "dir": 18,
@@ -109385,4 +109384,16 @@
   "velmedia": 1.1,
   "racha": 6.7,
   "horaracha": "14:10"
+},{
+  "fecha": "2019-10-14",
+  "tmed": 20.8,
+  "prec": 1.3,
+  "tmin": 15.5,
+  "horatmin": "23:59",
+  "tmax": 26,
+  "horatmax": "10:00",
+  "dir": 12,
+  "velmedia": 1.4,
+  "racha": 5.8,
+  "horaracha": "11:50"
 }]

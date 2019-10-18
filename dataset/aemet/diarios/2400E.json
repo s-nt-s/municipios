@@ -153695,4 +153695,16 @@
   "velmedia": 4.2,
   "racha": 12.5,
   "horaracha": "Varias"
+},{
+  "fecha": "2019-10-14",
+  "tmed": 9.8,
+  "prec": 2.4,
+  "tmin": 4.3,
+  "horatmin": "23:59",
+  "tmax": 15.3,
+  "horatmax": "11:30",
+  "dir": 24,
+  "velmedia": 6.4,
+  "racha": 18.3,
+  "horaracha": "08:20"
 }]

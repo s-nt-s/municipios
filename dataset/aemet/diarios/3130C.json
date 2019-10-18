@@ -105330,4 +105330,17 @@
   "racha": 10.8,
   "horaracha": "11:10",
   "sol": 3.1
+},{
+  "fecha": "2019-10-14",
+  "tmed": 11.8,
+  "prec": 2.6,
+  "tmin": 5.9,
+  "horatmin": "23:59",
+  "tmax": 17.7,
+  "horatmax": "14:30",
+  "dir": 19,
+  "velmedia": 3.6,
+  "racha": 14.2,
+  "horaracha": "10:00",
+  "sol": 1.4
 }]

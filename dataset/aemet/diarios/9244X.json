@@ -97808,4 +97808,16 @@
   "velmedia": 4.7,
   "racha": 14.7,
   "horaracha": "21:00"
+},{
+  "fecha": "2019-10-14",
+  "tmed": 14.4,
+  "prec": 4.9,
+  "tmin": 9.7,
+  "horatmin": "23:00",
+  "tmax": 19,
+  "horatmax": "00:10",
+  "dir": 88,
+  "velmedia": 4.7,
+  "racha": 18.3,
+  "horaracha": "06:40"
 }]

@@ -42755,4 +42755,21 @@
   "horaPresMax": 0,
   "presMin": 983,
   "horaPresMin": "Varias"
+},{
+  "fecha": "2019-10-14",
+  "tmed": 20.2,
+  "prec": 2.2,
+  "tmin": 14,
+  "horatmin": "23:59",
+  "tmax": 26.3,
+  "horatmax": "13:20",
+  "dir": 15,
+  "velmedia": 4.2,
+  "racha": 14.7,
+  "horaracha": "13:30",
+  "sol": 2.2,
+  "presMax": 984.6,
+  "horaPresMax": 24,
+  "presMin": 978.6,
+  "horaPresMin": 15
 }]

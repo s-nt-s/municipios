@@ -45708,4 +45708,16 @@
   "horaPresMax": 0,
   "presMin": 909.8,
   "horaPresMin": "Varias"
+},{
+  "fecha": "2019-10-14",
+  "tmed": 13.9,
+  "prec": 5.1,
+  "tmin": 8.3,
+  "horatmin": "02:00",
+  "tmax": 19.5,
+  "horatmax": "13:10",
+  "presMax": 911.2,
+  "horaPresMax": 24,
+  "presMin": 906.2,
+  "horaPresMin": "Varias"
 }]

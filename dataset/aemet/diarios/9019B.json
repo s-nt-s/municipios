@@ -90279,4 +90279,16 @@
   "velmedia": 4.7,
   "racha": 19.7,
   "horaracha": "00:30"
+},{
+  "fecha": "2019-10-14",
+  "tmed": 11.6,
+  "prec": 1.7,
+  "tmin": 6.1,
+  "horatmin": "23:59",
+  "tmax": 17.1,
+  "horatmax": "11:50",
+  "dir": 24,
+  "velmedia": 2.5,
+  "racha": 16.4,
+  "horaracha": "09:40"
 }]

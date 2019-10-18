@@ -113426,4 +113426,20 @@
   "fecha": "2019-10-13",
   "prec": 0,
   "velmedia": 2.2
+},{
+  "fecha": "2019-10-14",
+  "tmed": 12.1,
+  "prec": 3.5,
+  "tmin": 6.1,
+  "horatmin": "22:00",
+  "tmax": 18.1,
+  "horatmax": "12:30",
+  "dir": 18,
+  "velmedia": 2.2,
+  "racha": 11.7,
+  "horaracha": "10:30",
+  "presMax": 903.9,
+  "horaPresMax": 24,
+  "presMin": 897.6,
+  "horaPresMin": 6
 }]

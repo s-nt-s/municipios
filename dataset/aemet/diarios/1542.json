@@ -73902,6 +73902,7 @@
   "tmax": 11.2,
   "horatmax": "17:00",
   "dir": 16,
+  "velmedia": 5,
   "racha": 14.7,
   "horaracha": "21:00",
   "sol": 0,
@@ -73909,4 +73910,21 @@
   "horaPresMax": 11,
   "presMin": 841,
   "horaPresMin": 24
+},{
+  "fecha": "2019-10-14",
+  "tmed": 5.7,
+  "prec": 9.2,
+  "tmin": 1.1,
+  "horatmin": "20:00",
+  "tmax": 10.3,
+  "horatmax": "01:50",
+  "dir": 14,
+  "velmedia": 3.6,
+  "racha": 14.2,
+  "horaracha": "10:10",
+  "sol": 0,
+  "presMax": 846.3,
+  "horaPresMax": 24,
+  "presMin": 838.5,
+  "horaPresMin": 7
 }]

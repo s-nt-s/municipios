@@ -87994,4 +87994,17 @@
   "horaPresMax": 12,
   "presMin": 1004.9,
   "horaPresMin": 3
+},{
+  "fecha": "2019-10-14",
+  "tmed": 15.6,
+  "prec": 3.6,
+  "tmin": 13.3,
+  "horatmin": "Varias",
+  "tmax": 18,
+  "horatmax": "14:00",
+  "sol": 0.3,
+  "presMax": 1013.8,
+  "horaPresMax": 24,
+  "presMin": 1005.3,
+  "horaPresMin": 7
 }]

@@ -131900,4 +131900,16 @@
   "velmedia": 0.8,
   "racha": 7.2,
   "horaracha": "16:10"
+},{
+  "fecha": "2019-10-14",
+  "tmed": 15.4,
+  "prec": 0.6,
+  "tmin": 8.7,
+  "horatmin": "22:50",
+  "tmax": 22.1,
+  "horatmax": "13:40",
+  "dir": 30,
+  "velmedia": 4.4,
+  "racha": 21.9,
+  "horaracha": "14:40"
 }]

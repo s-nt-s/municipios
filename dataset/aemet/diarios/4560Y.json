@@ -55469,4 +55469,20 @@
   "horaPresMax": 9,
   "presMin": 946.8,
   "horaPresMin": 24
+},{
+  "fecha": "2019-10-14",
+  "tmed": 14.8,
+  "prec": 2.4,
+  "tmin": 9.4,
+  "horatmin": "23:59",
+  "tmax": 20.1,
+  "horatmax": "13:10",
+  "dir": 29,
+  "velmedia": 3.9,
+  "racha": 11.1,
+  "horaracha": "11:20",
+  "presMax": 954.7,
+  "horaPresMax": 24,
+  "presMin": 946.3,
+  "horaPresMin": 4
 }]

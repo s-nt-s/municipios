@@ -67172,4 +67172,20 @@
   "horaPresMax": "Varias",
   "presMin": 960.3,
   "horaPresMin": 24
+},{
+  "fecha": "2019-10-14",
+  "tmed": 14.5,
+  "prec": 13.2,
+  "tmin": 7.3,
+  "horatmin": "23:50",
+  "tmax": 21.7,
+  "horatmax": "11:10",
+  "dir": 30,
+  "velmedia": 2.8,
+  "racha": 14.4,
+  "horaracha": "17:10",
+  "presMax": 964.4,
+  "horaPresMax": 24,
+  "presMin": 956.5,
+  "horaPresMin": 6
 }]

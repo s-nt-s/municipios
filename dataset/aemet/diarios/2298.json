@@ -90123,4 +90123,21 @@
   "horaPresMax": 0,
   "presMin": 891.9,
   "horaPresMin": 24
+},{
+  "fecha": "2019-10-14",
+  "tmed": 11.8,
+  "prec": 8,
+  "tmin": 5,
+  "horatmin": "23:59",
+  "tmax": 18.6,
+  "horatmax": "10:30",
+  "dir": 30,
+  "velmedia": 3.1,
+  "racha": 16.7,
+  "horaracha": "16:00",
+  "sol": 2.8,
+  "presMax": 894,
+  "horaPresMax": 24,
+  "presMin": 888.8,
+  "horaPresMin": 6
 }]

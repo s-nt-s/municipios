@@ -44434,4 +44434,15 @@
   "velmedia": 1.4,
   "racha": 10.3,
   "horaracha": "15:40"
+},{
+  "fecha": "2019-10-14",
+  "tmed": 16.6,
+  "tmin": 10.5,
+  "horatmin": "23:59",
+  "tmax": 22.8,
+  "horatmax": "13:00",
+  "dir": 29,
+  "velmedia": 1.7,
+  "racha": 14.7,
+  "horaracha": "15:50"
 }]

@@ -203973,4 +203973,21 @@
   "horaPresMax": 0,
   "presMin": 913.6,
   "horaPresMin": 15
+},{
+  "fecha": "2019-10-14",
+  "tmed": 14.8,
+  "prec": 2.2,
+  "tmin": 9.4,
+  "horatmin": "23:59",
+  "tmax": 20.2,
+  "horatmax": "14:50",
+  "dir": 14,
+  "velmedia": 2.5,
+  "racha": 11.1,
+  "horaracha": "11:10",
+  "sol": 2.8,
+  "presMax": 914.7,
+  "horaPresMax": 0,
+  "presMin": 909.3,
+  "horaPresMin": 15
 }]

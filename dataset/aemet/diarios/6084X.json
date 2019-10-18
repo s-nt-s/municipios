@@ -97400,4 +97400,20 @@
   "horaPresMax": 10,
   "presMin": 1013.2,
   "horaPresMin": 17
+},{
+  "fecha": "2019-10-14",
+  "tmed": 21.6,
+  "prec": 0,
+  "tmin": 19.3,
+  "horatmin": "23:30",
+  "tmax": 23.9,
+  "horatmax": "15:10",
+  "dir": 29,
+  "velmedia": 1.9,
+  "racha": 11.7,
+  "horaracha": "14:50",
+  "presMax": 1018.6,
+  "horaPresMax": 22,
+  "presMin": 1012.9,
+  "horaPresMin": 2
 }]

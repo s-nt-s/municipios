@@ -82959,4 +82959,16 @@
   "velmedia": 0.8,
   "racha": 6.4,
   "horaracha": "16:10"
+},{
+  "fecha": "2019-10-14",
+  "tmed": 14.6,
+  "prec": 5.6,
+  "tmin": 9.9,
+  "horatmin": "23:59",
+  "tmax": 19.4,
+  "horatmax": "00:10",
+  "dir": 25,
+  "velmedia": 2.5,
+  "racha": 9.7,
+  "horaracha": "14:10"
 }]

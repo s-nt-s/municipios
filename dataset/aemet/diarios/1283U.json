@@ -82772,4 +82772,21 @@
   "horaPresMax": 12,
   "presMin": 997.3,
   "horaPresMin": 4
+},{
+  "fecha": "2019-10-14",
+  "tmed": 14.8,
+  "prec": 0.2,
+  "tmin": 12.9,
+  "horatmin": "03:00",
+  "tmax": 16.7,
+  "horatmax": "12:00",
+  "dir": 26,
+  "velmedia": 6.9,
+  "racha": 20.3,
+  "horaracha": "15:40",
+  "sol": 1.2,
+  "presMax": 1007.2,
+  "horaPresMax": 23,
+  "presMin": 996.9,
+  "horaPresMin": 7
 }]

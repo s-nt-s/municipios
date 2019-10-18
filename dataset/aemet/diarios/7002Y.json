@@ -64463,4 +64463,21 @@
   "horaPresMax": 10,
   "presMin": 1011.6,
   "horaPresMin": 3
+},{
+  "fecha": "2019-10-14",
+  "tmed": 23,
+  "prec": 0,
+  "tmin": 18.1,
+  "horatmin": "05:40",
+  "tmax": 28,
+  "horatmax": "15:20",
+  "dir": 30,
+  "velmedia": 2.2,
+  "racha": 16.4,
+  "horaracha": "20:30",
+  "sol": 7.4,
+  "presMax": 1012.6,
+  "horaPresMax": 24,
+  "presMin": 1007.3,
+  "horaPresMin": 15
 }]

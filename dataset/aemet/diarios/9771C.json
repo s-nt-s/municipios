@@ -227014,4 +227014,21 @@
   "horaPresMax": 0,
   "presMin": 991.2,
   "horaPresMin": 16
+},{
+  "fecha": "2019-10-14",
+  "tmed": 18.8,
+  "prec": 4.6,
+  "tmin": 14.2,
+  "horatmin": "23:59",
+  "tmax": 23.3,
+  "horatmax": "12:20",
+  "dir": 30,
+  "velmedia": 2.5,
+  "racha": 12.5,
+  "horaracha": "21:40",
+  "sol": 3.6,
+  "presMax": 993.1,
+  "horaPresMax": 0,
+  "presMin": 986,
+  "horaPresMin": 17
 }]

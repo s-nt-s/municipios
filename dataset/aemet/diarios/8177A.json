@@ -52745,4 +52745,20 @@
   "horaPresMax": 10,
   "presMin": 916.1,
   "horaPresMin": 14
+},{
+  "fecha": "2019-10-14",
+  "tmed": 15,
+  "prec": 0.2,
+  "tmin": 8.8,
+  "horatmin": "23:30",
+  "tmax": 21.2,
+  "horatmax": "13:50",
+  "dir": 28,
+  "velmedia": 4.7,
+  "racha": 16.1,
+  "horaracha": "18:10",
+  "presMax": 916.5,
+  "horaPresMax": 0,
+  "presMin": 913.2,
+  "horaPresMin": 14
 }]

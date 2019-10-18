@@ -52753,4 +52753,16 @@
   "velmedia": 1.4,
   "racha": 5.3,
   "horaracha": "Varias"
+},{
+  "fecha": "2019-10-14",
+  "tmed": 21.8,
+  "prec": 0.6,
+  "tmin": 19.1,
+  "horatmin": "23:59",
+  "tmax": 24.5,
+  "horatmax": "15:10",
+  "dir": 25,
+  "velmedia": 1.4,
+  "racha": 11.1,
+  "horaracha": "23:59"
 }]

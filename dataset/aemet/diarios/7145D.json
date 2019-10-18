@@ -96695,4 +96695,16 @@
   "velmedia": 2.8,
   "racha": 9.7,
   "horaracha": "16:40"
+},{
+  "fecha": "2019-10-14",
+  "tmed": 21.9,
+  "prec": 0,
+  "tmin": 16.9,
+  "horatmin": "23:59",
+  "tmax": 26.9,
+  "horatmax": "14:50",
+  "dir": 1,
+  "velmedia": 0.3,
+  "racha": 8.1,
+  "horaracha": "17:50"
 }]
