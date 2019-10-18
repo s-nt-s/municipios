@@ -536,7 +536,7 @@ class Dataset():
                 fin = fin - 1
             url = self.fuentes.aemet.estacion.diario.format(
                 id=id, ini=y, fin=fin)
-            data = get_js(url, reload=(y==cYear))
+            data = get_js(url, reload=(y<=cYear and cYear<=fin))
             if isinstance(data, list):
                 y = fin
                 for d in data:
