@@ -363,22 +363,27 @@ def read_js(file, intKey=False):
     return None
 
 
-def requests_js(url):
+def requests_js(url, intento=0):
     r = None
     try:
         r = requests.get(url, verify=False)
         j = r.json()
         return r, j
     except Exception as e:
-        text = r.text.strip() if r and r.text else None
-        m = re.search(r"<b>(description|descripci.*?n)</b>\s*<u>(.+?)\s*\.?\s*</u>",
-                      text) if text else None
-        if m:
-            logging.debug(url+" : "+m.group(2))
-        else:
-            logging.debug(url+"\nBODY: %s", text, exc_info=True)
+        if intento>0:
+            text = r.text.strip() if r and r.text else None
+            status = ("[%s] " % r.status_code) if r else "[XXX] "
+            m = re.search(r"<b>(description|descripci.*?n)</b>\s*<u>(.+?)\s*\.?\s*</u>",
+                          text) if text else None
+            if m:
+                logging.debug(status+url+" : "+m.group(2))
+            else:
+                if text is None:
+                    logging.debug(status+url+" (response.text is None)")
+                else:
+                    logging.debug(status+url+"\nBODY: %s", text, exc_info=True)
         time.sleep(61)
-        return requests_js(url)
+        return requests_js(url, intento=intento+1)
 
 
 def _js(url):
