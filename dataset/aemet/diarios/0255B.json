@@ -31115,4 +31115,37 @@
   "velmedia": 1.1,
   "racha": 6.4,
   "horaracha": "12:30"
+},{
+  "fecha": "2019-10-15",
+  "tmed": 16,
+  "tmin": 10.9,
+  "horatmin": "23:59",
+  "tmax": 21.2,
+  "horatmax": "13:00",
+  "dir": 26,
+  "velmedia": 0.6,
+  "racha": 6.9,
+  "horaracha": "01:00"
+},{
+  "fecha": "2019-10-16",
+  "tmed": 15.6,
+  "tmin": 9,
+  "horatmin": "04:40",
+  "tmax": 22.2,
+  "horatmax": "12:40",
+  "dir": 22,
+  "velmedia": 1.4,
+  "racha": 9.7,
+  "horaracha": "11:00"
+},{
+  "fecha": "2019-10-17",
+  "tmed": 16,
+  "tmin": 8.9,
+  "horatmin": "06:00",
+  "tmax": 23,
+  "horatmax": "13:00",
+  "dir": 17,
+  "velmedia": 1.7,
+  "racha": 8.9,
+  "horaracha": "11:10"
 }]

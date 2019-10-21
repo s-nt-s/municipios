@@ -75785,4 +75785,30 @@
   "velmedia": 4.7,
   "racha": 18.3,
   "horaracha": "16:00"
+},{
+  "fecha": "2019-10-15",
+  "tmed": 16.4,
+  "prec": 2.7,
+  "tmin": 13.2,
+  "horatmin": "00:50",
+  "tmax": 19.6,
+  "horatmax": "11:40",
+  "dir": 24,
+  "velmedia": 6.4,
+  "racha": 14.7,
+  "horaracha": "02:10"
+},{
+  "fecha": "2019-10-16",
+  "prec": 14.3,
+  "dir": 13,
+  "velmedia": 1.7,
+  "racha": 7.2,
+  "horaracha": "15:00"
+},{
+  "fecha": "2019-10-17",
+  "prec": 1.9,
+  "dir": 24,
+  "velmedia": 4.2,
+  "racha": 14.4,
+  "horaracha": "19:40"
 }]

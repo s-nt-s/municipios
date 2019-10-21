@@ -88007,4 +88007,43 @@
   "horaPresMax": 24,
   "presMin": 1005.3,
   "horaPresMin": 7
+},{
+  "fecha": "2019-10-15",
+  "tmed": 17.3,
+  "prec": 4.5,
+  "tmin": 13.2,
+  "horatmin": "00:10",
+  "tmax": 21.4,
+  "horatmax": "15:40",
+  "sol": 3.8,
+  "presMax": 1015.9,
+  "horaPresMax": 19,
+  "presMin": 1011.8,
+  "horaPresMin": 24
+},{
+  "fecha": "2019-10-16",
+  "tmed": 18,
+  "prec": 14.9,
+  "tmin": 14,
+  "horatmin": "00:10",
+  "tmax": 22,
+  "horatmax": "12:20",
+  "sol": 1.8,
+  "presMax": 1011.8,
+  "horaPresMax": 0,
+  "presMin": 1008.7,
+  "horaPresMin": 11
+},{
+  "fecha": "2019-10-17",
+  "tmed": 17.2,
+  "prec": 1,
+  "tmin": 15,
+  "horatmin": "09:48",
+  "tmax": 19.3,
+  "horatmax": "13:40",
+  "sol": 7.2,
+  "presMax": 1013.8,
+  "horaPresMax": 11,
+  "presMin": 1010.3,
+  "horaPresMin": 0
 }]

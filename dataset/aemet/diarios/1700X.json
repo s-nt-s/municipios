@@ -105497,4 +105497,40 @@
   "velmedia": 0,
   "racha": 10.6,
   "horaracha": "11:10"
+},{
+  "fecha": "2019-10-15",
+  "tmed": 9.8,
+  "prec": 1.4,
+  "tmin": 5.5,
+  "horatmin": "05:40",
+  "tmax": 14,
+  "horatmax": "15:00",
+  "dir": 24,
+  "velmedia": 0,
+  "racha": 6.7,
+  "horaracha": "21:30"
+},{
+  "fecha": "2019-10-16",
+  "tmed": 14.4,
+  "prec": 20.4,
+  "tmin": 13,
+  "horatmin": "02:10",
+  "tmax": 15.7,
+  "horatmax": "12:00",
+  "dir": 20,
+  "velmedia": 0.3,
+  "racha": 8.6,
+  "horaracha": "11:30"
+},{
+  "fecha": "2019-10-17",
+  "tmed": 13.6,
+  "prec": 0.3,
+  "tmin": 10.7,
+  "horatmin": "23:59",
+  "tmax": 16.6,
+  "horatmax": "12:30",
+  "dir": 26,
+  "velmedia": 0.8,
+  "racha": 5.3,
+  "horaracha": "06:10"
 }]

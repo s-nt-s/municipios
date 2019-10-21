@@ -97820,4 +97820,40 @@
   "velmedia": 4.7,
   "racha": 18.3,
   "horaracha": "06:40"
+},{
+  "fecha": "2019-10-15",
+  "tmed": 11.4,
+  "prec": 0,
+  "tmin": 7.1,
+  "horatmin": "06:50",
+  "tmax": 15.6,
+  "horatmax": "12:50",
+  "dir": 88,
+  "velmedia": 1.4,
+  "racha": 7.5,
+  "horaracha": "01:30"
+},{
+  "fecha": "2019-10-16",
+  "tmed": 13.2,
+  "prec": 0,
+  "tmin": 7.6,
+  "horatmin": "06:00",
+  "tmax": 18.8,
+  "horatmax": "15:00",
+  "dir": 88,
+  "velmedia": 1.7,
+  "racha": 6.4,
+  "horaracha": "09:40"
+},{
+  "fecha": "2019-10-17",
+  "tmed": 15.7,
+  "prec": 4.6,
+  "tmin": 11.1,
+  "horatmin": "02:20",
+  "tmax": 20.3,
+  "horatmax": "14:50",
+  "dir": 88,
+  "velmedia": 1.1,
+  "racha": 7.8,
+  "horaracha": "08:10"
 }]

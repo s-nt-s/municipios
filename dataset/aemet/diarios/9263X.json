@@ -35633,4 +35633,39 @@
   "velmedia": 5.3,
   "racha": 16.1,
   "horaracha": "13:10"
+},{
+  "fecha": "2019-10-15",
+  "tmed": 11.6,
+  "prec": 0,
+  "tmin": 6.4,
+  "horatmin": "07:00",
+  "tmax": 16.9,
+  "horatmax": "15:00",
+  "dir": 25,
+  "velmedia": 0.8,
+  "racha": 6.1,
+  "horaracha": "14:00"
+},{
+  "fecha": "2019-10-16",
+  "tmed": 15.6,
+  "prec": 0,
+  "tmin": 10.9,
+  "tmax": 20.4,
+  "horatmax": "15:10",
+  "dir": 15,
+  "velmedia": 2.2,
+  "racha": 7.8,
+  "horaracha": "23:30"
+},{
+  "fecha": "2019-10-17",
+  "tmed": 17,
+  "prec": 0.6,
+  "tmin": 12.5,
+  "horatmin": "07:20",
+  "tmax": 21.6,
+  "horatmax": "14:20",
+  "dir": 17,
+  "velmedia": 1.7,
+  "racha": 10.6,
+  "horaracha": "23:20"
 }]

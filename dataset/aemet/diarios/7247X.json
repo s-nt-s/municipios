@@ -62607,4 +62607,40 @@
   "velmedia": 1.1,
   "racha": 13.3,
   "horaracha": "17:40"
+},{
+  "fecha": "2019-10-15",
+  "tmed": 13.6,
+  "prec": 0,
+  "tmin": 6.9,
+  "horatmin": "23:59",
+  "tmax": 20.2,
+  "horatmax": "14:50",
+  "dir": 27,
+  "velmedia": 1.7,
+  "racha": 9.2,
+  "horaracha": "08:40"
+},{
+  "fecha": "2019-10-16",
+  "tmed": 13.8,
+  "prec": 0,
+  "tmin": 4.9,
+  "horatmin": "05:00",
+  "tmax": 22.6,
+  "horatmax": "14:00",
+  "dir": 19,
+  "velmedia": 1.1,
+  "racha": 6.1,
+  "horaracha": "12:10"
+},{
+  "fecha": "2019-10-17",
+  "tmed": 15.6,
+  "prec": 0,
+  "tmin": 5.5,
+  "horatmin": "06:30",
+  "tmax": 25.6,
+  "horatmax": "14:40",
+  "dir": 99,
+  "velmedia": 0.8,
+  "racha": 7.2,
+  "horaracha": "Varias"
 }]

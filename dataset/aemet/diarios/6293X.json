@@ -50434,4 +50434,41 @@
   "horaPresMax": 24,
   "presMin": 1012.1,
   "horaPresMin": "Varias"
+},{
+  "fecha": "2019-10-15",
+  "tmed": 17.5,
+  "prec": 0,
+  "tmin": 12.2,
+  "horatmin": "23:59",
+  "tmax": 22.8,
+  "horatmax": "15:50",
+  "dir": 28,
+  "velmedia": 3.1,
+  "racha": 18.6,
+  "horaracha": "00:30",
+  "sol": 0,
+  "presMax": 1020.9,
+  "horaPresMax": "Varias",
+  "presMin": 1016.1,
+  "horaPresMin": 3
+},{
+  "fecha": "2019-10-16",
+  "tmed": 16.5,
+  "prec": 0,
+  "tmin": 10,
+  "horatmin": "06:00",
+  "tmax": 23,
+  "horatmax": "14:40",
+  "dir": 26,
+  "velmedia": 2.5,
+  "racha": 5.8,
+  "horaracha": "14:50",
+  "sol": 0,
+  "presMax": 1021.3,
+  "horaPresMax": 10,
+  "presMin": 1017.4,
+  "horaPresMin": 18
+},{
+  "fecha": "2019-10-17",
+  "velmedia": 3.9
 }]

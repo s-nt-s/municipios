@@ -86159,4 +86159,25 @@
   "velmedia": 0.8,
   "racha": 10.8,
   "horaracha": "15:40"
+},{
+  "fecha": "2019-10-15",
+  "prec": 0.1,
+  "dir": 15,
+  "velmedia": 1.1,
+  "racha": 5.8,
+  "horaracha": "03:30"
+},{
+  "fecha": "2019-10-16",
+  "prec": 0,
+  "dir": 18,
+  "velmedia": 0.8,
+  "racha": 8.1,
+  "horaracha": "11:40"
+},{
+  "fecha": "2019-10-17",
+  "prec": 0,
+  "dir": 17,
+  "velmedia": 1.1,
+  "racha": 8.3,
+  "horaracha": "14:40"
 }]

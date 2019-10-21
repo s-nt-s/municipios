@@ -98846,9 +98846,29 @@
   "tmin": 8,
   "horatmin": "23:59",
   "tmax": 18.1,
-  "horatmax": "08:30",
-  "dir": 11,
-  "velmedia": 1.7,
-  "racha": 13.3,
-  "horaracha": "12:20"
+  "horatmax": "08:30"
+},{
+  "fecha": "2019-10-15",
+  "tmed": 9.4,
+  "prec": 0,
+  "tmin": 4.8,
+  "horatmin": "05:00",
+  "tmax": 14,
+  "horatmax": "14:20"
+},{
+  "fecha": "2019-10-16",
+  "tmed": 12.3,
+  "prec": 0.2,
+  "tmin": 5.7,
+  "horatmin": "01:50",
+  "tmax": 18.9,
+  "horatmax": "14:30"
+},{
+  "fecha": "2019-10-17",
+  "tmed": 12.7,
+  "prec": 8.5,
+  "tmin": 7.2,
+  "horatmin": "02:50",
+  "tmax": 18.2,
+  "horatmax": "14:50"
 }]

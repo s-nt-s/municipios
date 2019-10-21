@@ -105343,4 +105343,43 @@
   "racha": 14.2,
   "horaracha": "10:00",
   "sol": 1.4
+},{
+  "fecha": "2019-10-15",
+  "tmed": 8.2,
+  "prec": 0,
+  "tmin": 1.2,
+  "horatmin": "06:30",
+  "tmax": 15.3,
+  "horatmax": "14:10",
+  "dir": 20,
+  "velmedia": 1.1,
+  "racha": 7.8,
+  "horaracha": "16:10",
+  "sol": 3.1
+},{
+  "fecha": "2019-10-16",
+  "tmed": 8.5,
+  "prec": 0,
+  "tmin": 0.4,
+  "horatmin": "06:50",
+  "tmax": 16.6,
+  "horatmax": "15:00",
+  "dir": 21,
+  "velmedia": 1.9,
+  "racha": 10,
+  "horaracha": "12:30",
+  "sol": 3.1
+},{
+  "fecha": "2019-10-17",
+  "tmed": 7.1,
+  "prec": 2.2,
+  "tmin": 1.5,
+  "horatmin": "03:20",
+  "tmax": 12.7,
+  "horatmax": "15:30",
+  "dir": 20,
+  "velmedia": 2.8,
+  "racha": 8.6,
+  "horaracha": "11:10",
+  "sol": 0
 }]

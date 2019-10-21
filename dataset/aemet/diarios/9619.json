@@ -120804,4 +120804,28 @@
   "horatmin": "02:00",
   "tmax": 18,
   "horatmax": "10:40"
+},{
+  "fecha": "2019-10-15",
+  "tmed": 13,
+  "prec": 0,
+  "tmin": 5.8,
+  "horatmin": "23:59",
+  "tmax": 20.3,
+  "horatmax": "13:00"
+},{
+  "fecha": "2019-10-16",
+  "tmed": 12.2,
+  "prec": 0,
+  "tmin": 3.7,
+  "horatmin": "05:40",
+  "tmax": 20.8,
+  "horatmax": "14:40"
+},{
+  "fecha": "2019-10-17",
+  "tmed": 13.4,
+  "prec": 0,
+  "tmin": 4,
+  "horatmin": "06:20",
+  "tmax": 22.9,
+  "horatmax": "12:50"
 }]

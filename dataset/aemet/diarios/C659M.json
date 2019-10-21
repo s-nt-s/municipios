@@ -33261,4 +33261,47 @@
   "horaPresMax": 23,
   "presMin": 1016,
   "horaPresMin": 3
+},{
+  "fecha": "2019-10-15",
+  "tmed": 23.2,
+  "prec": 0,
+  "tmin": 21.5,
+  "horatmin": "04:00",
+  "tmax": 24.8,
+  "horatmax": "09:20",
+  "dir": 8,
+  "velmedia": 1.7,
+  "racha": 5.3,
+  "horaracha": "11:30",
+  "presMax": 1020.1,
+  "horaPresMax": 11,
+  "presMin": 1017.5,
+  "horaPresMin": 15
+},{
+  "fecha": "2019-10-16",
+  "tmed": 22.6,
+  "prec": 0,
+  "tmin": 21.3,
+  "horatmin": "04:20",
+  "tmax": 23.9,
+  "horatmax": "10:20",
+  "dir": 6,
+  "velmedia": 1.4,
+  "racha": 5,
+  "horaracha": "00:30",
+  "presMax": 1019.8,
+  "horaPresMax": 11,
+  "presMin": 1017.3,
+  "horaPresMin": 5
+},{
+  "fecha": "2019-10-17",
+  "prec": 0,
+  "dir": 8,
+  "velmedia": 1.1,
+  "racha": 5.6,
+  "horaracha": "14:10",
+  "presMax": 1020.3,
+  "horaPresMax": 11,
+  "presMin": 1017.7,
+  "horaPresMin": 18
 }]

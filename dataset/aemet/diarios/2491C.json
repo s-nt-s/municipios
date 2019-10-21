@@ -66669,4 +66669,17 @@
   "horaPresMax": 0,
   "presMin": 806,
   "horaPresMin": 24
+},{
+  "fecha": "2019-10-17",
+  "tmed": 9.1,
+  "prec": 10.6,
+  "tmin": 6.9,
+  "horatmin": "06:00",
+  "tmax": 11.3,
+  "horatmax": "00:10",
+  "sol": 1.3,
+  "presMax": 806.3,
+  "horaPresMax": 11,
+  "presMin": 804,
+  "horaPresMin": "Varias"
 }]

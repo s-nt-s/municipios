@@ -15,11 +15,24 @@ from bunch import Bunch
 from shapely.geometry import MultiPolygon, Point, Polygon, shape
 from shapely.ops import cascaded_union
 
-from .common import size, to_num, zipfile
+from .common import size, zipfile
 
 re_select = re.compile(r"^\s*select\b")
 re_sp = re.compile(r"\s+")
 re_largefloat = re.compile("(\d+\.\d+e-\d+)")
+
+def dict_factory(cursor, row):
+    d = {}
+    for idx, col in enumerate(cursor.description):
+        d[col[0]] = row[idx]
+    return d
+
+def bunch_factory(cursor, row):
+    d = dict_factory(cursor, row)
+    return Bunch(**d)
+
+def one_factory(cursor, row):
+    return row[0]
 
 
 def ResultIter(cursor, size=1000):
@@ -162,29 +175,6 @@ class CaseInsensitiveDict(dict):
         return dict.__getitem__(self, key.lower())
 
 
-def build_result(c, to_tuples=False, to_bunch=False, to_one=False):
-    results = c.fetchall()
-    if len(results) == 0:
-        return None if to_one else results
-    if isinstance(results[0], tuple) and len(results[0]) == 1:
-        results = [a[0] for a in results]
-        return results[0] if to_one else results
-    if to_tuples:
-        return results
-    if to_one:
-        return results[0]
-    cols = [(i, col[0]) for i, col in enumerate(c.description)]
-    n_results = []
-    for r in results:
-        d = {}
-        for i, col in cols:
-            d[col] = r[i]
-        if to_bunch:
-            d = Bunch(**d)
-        n_results.append(d)
-    return n_results
-
-
 def get_db(file, *extensions):
     con = sqlite3.connect(file)
     if extensions:
@@ -208,7 +198,7 @@ class DBLite:
 
     def open(self):
         self.con = get_db(self.file, *self.extensions)
-        self.cursor = self.con.cursor()
+        # self.cursor = self.con.cursor()
         #self.cursor.execute('pragma foreign_keys = on')
         self.tables = None
         self.srid = None
@@ -232,19 +222,26 @@ class DBLite:
                 sql = schema.read()
         if sql.strip():
             save(to_file, sql)
-            self.cursor.executescript(sql)
+            self.con.executescript(sql)
             self.con.commit()
             self.load_tables()
 
     @property
     def indices(self):
-        return self.select("SELECT name FROM sqlite_master WHERE type='index' order by name")
+        for i, in self.select("SELECT name FROM sqlite_master WHERE type='index' order by name"):
+            yield i
+
+    def get_cols(self, sql):
+        cursor = self.con.cursor()
+        cursor.execute(sql)
+        cols = tuple(col[0] for col in cursor.description)
+        cursor.close()
+        return cols
 
     def load_tables(self):
         self.tables = CaseInsensitiveDict()
-        for t in self.select("SELECT name FROM sqlite_master WHERE type='table'"):
-            self.cursor.execute("select * from "+t+" limit 0")
-            self.tables[t] = tuple(col[0] for col in self.cursor.description)
+        for t, in list(self.select("SELECT name FROM sqlite_master WHERE type='table'")):
+            self.tables[t] = self.get_cols("select * from "+t+" limit 0")
 
     def insert(self, table, **kargv):
         ok_keys = [k.upper() for k in self.tables[table]]
@@ -268,7 +265,7 @@ class DBLite:
                 vals[i] = float(v)
         sql = "insert into %s (%s) values (%s)" % (
             table, ', '.join(keys), ', '.join(prm))
-        self.cursor.execute(sql, vals)
+        self.con.execute(sql, vals)
 
     def _build_select(self, sql):
         sql = sql.strip()
@@ -285,22 +282,39 @@ class DBLite:
     def close(self, vacuum=True):
         self.closeTransaction()
         self.con.commit()
-        self.cursor.close()
         if vacuum:
             self.con.execute("VACUUM")
         self.con.commit()
         self.con.close()
 
-    def select(self, sql, **kargv):
+    def select(self, sql, row_factory=None, **kargv):
         sql = self._build_select(sql)
-        self.cursor.execute(sql)
-        r = build_result(self.cursor, **kargv)
+        self.con.row_factory=row_factory
+        cursor = self.con.cursor()
+        cursor.execute(sql)
+        for r in ResultIter(cursor):
+            yield r
+        cursor.close()
+        self.con.row_factory=None
+
+    def one(self, sql):
+        sql = self._build_select(sql)
+        cursor = self.con.cursor()
+        cursor.execute(sql)
+        r = cursor.fetchone()
+        cursor.close()
+        if not r:
+            return None
+        if len(r)==1:
+            return r[0]
         return r
 
     def get_sql_table(self, table):
         sql = "SELECT sql FROM sqlite_master WHERE type='table' AND name=?"
-        self.cursor.execute(sql, (table,))
-        sql = self.cursor.fetchone()[0]
+        cursor = self.con.cursor()
+        cursor.execute(sql, (table,))
+        sql = cursor.fetchone()[0]
+        cursor.close()
         return sql
 
     def size(self, file=None, suffix='B'):
@@ -321,7 +335,7 @@ class DBLite:
         sql = textwrap.dedent(template) % sql
         sql = sql.strip()
         save(to_file, sql)
-        self.cursor.execute(sql)
+        self.con.execute(sql)
         self.con.commit()
         self.load_tables()
 
@@ -342,13 +356,13 @@ class DBLite:
             base = os.path.basename(file)
             sql, _ = os.path.splitext(base)
         sql = self._build_select(sql)
-        self.cursor.execute(sql+" limit 0")
-        cols = tuple(col[0] for col in self.cursor.description)
+        cols = get_cols(sql+" limit 0")
         head = separator.join(cols)
         if sorted:
             sql = sql + " order by "+", ".join(head)
-        self.cursor.execute(sql)
-        rows = ResultIter(self.cursor)
+        cursor = self.con.cursor()
+        cursor.execute(sql)
+        rows = ResultIter(cursor)
         with open(file, "w") as f:
             if head:
                 f.write(head)
@@ -364,6 +378,7 @@ class DBLite:
                 line = separator.join(row)
                 line = line.rstrip(separator)
                 f.write(line)
+        cursor.close()
         if ext == ".7z" or mb:
             zipfile(file, only_if_bigger=(ext != ".7z"), delete=True, mb=mb)
 
@@ -375,7 +390,7 @@ class DBLite:
         if sql is None:
             base = os.path.basename(file)
             sql, _ = os.path.splitext(base)
-        r = self.select(sql)
+        r = list(self.select(sql, row_factory=dict_factory))
         if parse_result is not None:
             r = parse_result(r)
         with open(file, "w") as f:
@@ -395,10 +410,11 @@ class DBLite:
         table = table.upper()
         sql = ''
         if create:
-            self.cursor.execute(select_sql)
-            cols = [col[0] for col in self.cursor.description]
+            cursor = self.con.cursor()
+            cursor.execute(select_sql)
+            cols = [col[0] for col in cursor.description]
             columns = {}
-            for r in self.cursor.fetchall():
+            for r in cursor.fetchall():
                 for i, name in enumerate(cols):
                     if name not in columns:
                         v = r[i]
@@ -413,6 +429,7 @@ class DBLite:
                                 columns[name] = 'BLOB'
                 if len(columns) == len(cols):
                     break
+            cursor.close()
             for name in cols:
                 if name not in columns:
                     columns[name] = 'TEXT'
@@ -481,7 +498,7 @@ class DBshp(DBLite):
                     and ymax > {2}
                 )
         '''.format(table, geom, lat, lon, where, field, self.srid)
-        return self.select(sql, **kargv)
+        return self.one(sql)
 
     def distance(self, table, lat, lon, geom="geom", where=None, use_ellipsoid=None, **kargv):
         if not_num(lat, lon):
@@ -502,7 +519,7 @@ class DBshp(DBLite):
             from
                 {0} {4}
         '''.format(table, geom, lat, lon, where, use_ellipsoid, self.srid)
-        return self.select(sql, **kargv)
+        return self.one(sql)
 
     def nearest(self, table, lat, lon, geom="geom", where=None):
         if not_num(lat, lon):
@@ -524,7 +541,7 @@ class DBshp(DBLite):
                     {0} {4}
             ) order by dis asc
         '''.format(table, geom, lat, lon, where, field, self.srid)
-        return self.select(sql, to_one=True)
+        return self.one(sql)
 
 
 def parse_wkt(wkt):

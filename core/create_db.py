@@ -54,7 +54,7 @@ def _setKm(db, j1, j2, min_km, max_km=None, step=5):
         ''' % " union ".join(crs)
         x = [0]
         y = [0]
-        for crs, km in db.select(sql, to_tuples=True):
+        for crs, km in db.select(sql):
             x.append(km)
             y.append(crs)
         if max_km is None:

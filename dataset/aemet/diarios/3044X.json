@@ -45720,4 +45720,40 @@
   "horaPresMax": 24,
   "presMin": 906.2,
   "horaPresMin": "Varias"
+},{
+  "fecha": "2019-10-15",
+  "tmed": 10.4,
+  "prec": 0,
+  "tmin": 2.7,
+  "horatmin": "07:10",
+  "tmax": 18.2,
+  "horatmax": "14:00",
+  "presMax": 915.8,
+  "horaPresMax": 22,
+  "presMin": 911.1,
+  "horaPresMin": 0
+},{
+  "fecha": "2019-10-16",
+  "tmed": 11,
+  "prec": 0.1,
+  "tmin": 2.3,
+  "horatmin": "07:00",
+  "tmax": 19.8,
+  "horatmax": "14:30",
+  "presMax": 915.5,
+  "horaPresMax": 0,
+  "presMin": 911.8,
+  "horaPresMin": 17
+},{
+  "fecha": "2019-10-17",
+  "tmed": 9,
+  "prec": 0.9,
+  "tmin": 2,
+  "horatmin": "06:30",
+  "tmax": 15.9,
+  "horatmax": "15:10",
+  "presMax": 914.6,
+  "horaPresMax": "Varias",
+  "presMin": 912.3,
+  "horaPresMin": 4
 }]
