@@ -20,6 +20,7 @@ from .common import size, zipfile
 re_select = re.compile(r"^\s*select\b")
 re_sp = re.compile(r"\s+")
 re_largefloat = re.compile("(\d+\.\d+e-\d+)")
+re_bl = re.compile(r"\n\s*\n", re.IGNORECASE)
 
 def dict_factory(cursor, row):
     d = {}
@@ -175,8 +176,12 @@ class CaseInsensitiveDict(dict):
         return dict.__getitem__(self, key.lower())
 
 
-def get_db(file, *extensions):
-    con = sqlite3.connect(file)
+def get_db(file, *extensions, readonly=False):
+    if readonly:
+        file = "file:"+file+"?mode=ro"
+        con = sqlite3.connect(file, uri=True)
+    else:
+        con = sqlite3.connect(file)
     if extensions:
         con.enable_load_extension(True)
         for e in extensions:
@@ -188,7 +193,8 @@ def get_db(file, *extensions):
 
 
 class DBLite:
-    def __init__(self, file, extensions=None, reload=False, parse_col=None):
+    def __init__(self, file, extensions=None, reload=False, parse_col=None, readonly=False):
+        self.readonly = readonly
         self.extensions = extensions or []
         self.file = file
         self.parse_col = parse_col if parse_col is not None else lambda x: x
@@ -197,7 +203,7 @@ class DBLite:
         self.open()
 
     def open(self):
-        self.con = get_db(self.file, *self.extensions)
+        self.con = get_db(self.file, *self.extensions, readonly=self.readonly)
         # self.cursor = self.con.cursor()
         #self.cursor.execute('pragma foreign_keys = on')
         self.tables = None
@@ -216,10 +222,18 @@ class DBLite:
             self.con.execute("END TRANSACTION")
             self.inTransaction = False
 
+    def read_sql_file(self, sql, *args):
+        with open(sql, 'r') as schema:
+            sql = schema.read()
+            sql = sql.strip()
+            sql = re_bl.sub("\n", sql)
+            if args:
+                sql = sql.format(*args)
+        return sql
+
     def execute(self, sql, to_file=None):
         if os.path.isfile(sql):
-            with open(sql, 'r') as schema:
-                sql = schema.read()
+            sql = self.read_sql_file(sql)
         if sql.strip():
             save(to_file, sql)
             self.con.executescript(sql)
@@ -280,6 +294,9 @@ class DBLite:
         self.con.commit()
 
     def close(self, vacuum=True):
+        if self.readonly:
+            self.con.close()
+            return
         self.closeTransaction()
         self.con.commit()
         if vacuum:

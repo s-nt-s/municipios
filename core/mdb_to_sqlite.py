@@ -60,4 +60,9 @@ def mdb_to_sqlite(DATABASE, save_sql=False):
 
 
 if __name__ == "__main__":
-    mdb_to_sqlite("fuentes/fomento/mdb/NGBE.accdb")
+    if len(sys.argv)<2:
+        sys.exit("Ha de pasar como parametro la ruta de un fichero")
+    f = sys.argv[1]
+    if not os.path.isfile(f):
+        sys.exit(f+" no existe")
+    mdb_to_sqlite(f)
