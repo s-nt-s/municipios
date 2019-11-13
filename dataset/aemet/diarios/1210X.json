@@ -75715,84 +75715,49 @@
   "horaracha": "13:00"
 },{
   "fecha": "2019-10-09",
-  "tmed": 16.6,
   "prec": 0,
-  "tmin": 13.8,
-  "horatmin": "23:30",
-  "tmax": 19.3,
-  "horatmax": "11:10",
   "dir": 26,
   "velmedia": 5.6,
   "racha": 12.2,
   "horaracha": "01:20"
 },{
   "fecha": "2019-10-10",
-  "tmed": 16.2,
   "prec": 0,
-  "tmin": 12.8,
-  "horatmin": "04:40",
-  "tmax": 19.7,
-  "horatmax": "10:40",
   "dir": 11,
   "velmedia": 3.3,
   "racha": 8.6,
   "horaracha": "19:10"
 },{
   "fecha": "2019-10-11",
-  "tmed": 16.4,
   "prec": 0,
-  "tmin": 12.1,
-  "horatmin": "04:30",
-  "tmax": 20.7,
-  "horatmax": "14:10",
   "dir": 14,
   "velmedia": 3.6,
   "racha": 7.8,
   "horaracha": "00:10"
 },{
   "fecha": "2019-10-12",
-  "tmed": 19.8,
   "prec": 0,
-  "tmin": 14.6,
-  "horatmin": "06:50",
-  "tmax": 25,
-  "horatmax": "20:20",
   "dir": 11,
   "velmedia": 3.9,
   "racha": 9.2,
   "horaracha": "21:20"
 },{
   "fecha": "2019-10-13",
-  "tmed": 17.6,
   "prec": 8.6,
-  "tmin": 12.5,
-  "horatmin": "23:50",
-  "tmax": 22.7,
-  "horatmax": "02:40",
   "dir": 34,
   "velmedia": 2.2,
   "racha": 15,
   "horaracha": "09:50"
 },{
   "fecha": "2019-10-14",
-  "tmed": 14.2,
   "prec": 1.3,
-  "tmin": 11.8,
-  "horatmin": "17:20",
-  "tmax": 16.5,
-  "horatmax": "13:40",
   "dir": 29,
   "velmedia": 4.7,
   "racha": 18.3,
   "horaracha": "16:00"
 },{
   "fecha": "2019-10-15",
-  "tmed": 16.4,
   "prec": 2.7,
-  "tmin": 13.2,
-  "horatmin": "00:50",
-  "tmax": 19.6,
-  "horatmax": "11:40",
   "dir": 24,
   "velmedia": 6.4,
   "racha": 14.7,
@@ -75811,4 +75776,150 @@
   "velmedia": 4.2,
   "racha": 14.4,
   "horaracha": "19:40"
+},{
+  "fecha": "2019-10-18",
+  "prec": 9.9,
+  "dir": 25,
+  "velmedia": 3.3,
+  "racha": 12.8,
+  "horaracha": "04:50"
+},{
+  "fecha": "2019-10-19",
+  "prec": 57.4,
+  "dir": 27,
+  "velmedia": 2.5,
+  "racha": 8.6,
+  "horaracha": "04:20"
+},{
+  "fecha": "2019-10-20",
+  "prec": 9.6,
+  "dir": 22,
+  "velmedia": 3.3,
+  "racha": 11.4,
+  "horaracha": "21:40"
+},{
+  "fecha": "2019-10-21",
+  "prec": 2.8,
+  "dir": 27,
+  "velmedia": 1.9,
+  "racha": 10.3,
+  "horaracha": "02:40"
+},{
+  "fecha": "2019-10-22",
+  "prec": 0.4,
+  "dir": 12,
+  "velmedia": 2.5,
+  "racha": 11.9,
+  "horaracha": "21:10"
+},{
+  "fecha": "2019-10-23",
+  "prec": 10,
+  "dir": 32,
+  "velmedia": 5.6,
+  "racha": 18.3,
+  "horaracha": "22:10"
+},{
+  "fecha": "2019-10-24",
+  "prec": 0.5,
+  "dir": 26,
+  "velmedia": 3.9,
+  "racha": 16.4,
+  "horaracha": "10:20"
+},{
+  "fecha": "2019-10-25",
+  "prec": 0,
+  "dir": 11,
+  "velmedia": 3.3,
+  "racha": 8.3,
+  "horaracha": "18:00"
+},{
+  "fecha": "2019-10-26",
+  "prec": 0,
+  "dir": 16,
+  "velmedia": 1.7,
+  "racha": 4.7,
+  "horaracha": "00:10"
+},{
+  "fecha": "2019-10-27",
+  "prec": 0.1,
+  "dir": 9,
+  "velmedia": 2.5,
+  "racha": 7.5,
+  "horaracha": "19:40"
+},{
+  "fecha": "2019-10-28",
+  "prec": 0,
+  "dir": 13,
+  "velmedia": 1.1,
+  "racha": 7.5,
+  "horaracha": "22:20"
+},{
+  "fecha": "2019-10-29",
+  "prec": 0,
+  "dir": 32,
+  "velmedia": 3.1,
+  "racha": 11.7,
+  "horaracha": "04:20"
+},{
+  "fecha": "2019-10-30",
+  "prec": 1.2,
+  "dir": 32,
+  "velmedia": 2.5,
+  "racha": 8.6,
+  "horaracha": "23:50"
+},{
+  "fecha": "2019-10-31",
+  "prec": 2.7,
+  "dir": 33,
+  "velmedia": 2.5,
+  "racha": 10.6,
+  "horaracha": "02:00"
+},{
+  "fecha": "2019-11-01",
+  "prec": 1.9,
+  "dir": 29,
+  "velmedia": 4.2,
+  "racha": 17.5,
+  "horaracha": "22:30"
+},{
+  "fecha": "2019-11-02",
+  "dir": 22,
+  "velmedia": 7.5,
+  "racha": 22.8,
+  "horaracha": "23:30"
+},{
+  "fecha": "2019-11-05",
+  "prec": 16.8,
+  "dir": 33,
+  "velmedia": 10.8,
+  "racha": 28.9,
+  "horaracha": "11:50"
+},{
+  "fecha": "2019-11-06",
+  "prec": 14.7,
+  "dir": 33,
+  "velmedia": 5,
+  "racha": 21.7,
+  "horaracha": "20:40"
+},{
+  "fecha": "2019-11-07",
+  "prec": 32.5,
+  "dir": 33,
+  "velmedia": 8.6,
+  "racha": 27.2,
+  "horaracha": "10:50"
+},{
+  "fecha": "2019-11-08",
+  "prec": 8,
+  "dir": 32,
+  "velmedia": 10,
+  "racha": 25.6,
+  "horaracha": "09:40"
+},{
+  "fecha": "2019-11-09",
+  "prec": 9.8,
+  "dir": 30,
+  "velmedia": 8.9,
+  "racha": 25,
+  "horaracha": "17:30"
 }]

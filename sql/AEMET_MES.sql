@@ -1,6 +1,6 @@
 create table AEMET_MES (
   BASE TEXT,
-  FECHA TEXT,
+  FECHA DATE,
   "e" INTEGER,
   "evap" INTEGER,
   "glo" INTEGER,

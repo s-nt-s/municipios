@@ -920,7 +920,7 @@ class Dataset():
         create = '''
             create table {} (
               BASE TEXT,
-              FECHA TEXT,
+              FECHA DATE,
               %s
               PRIMARY KEY (BASE, FECHA),
               FOREIGN KEY(BASE) REFERENCES AEMET_BASES(ID)
