@@ -82178,4 +82178,32 @@
   "velmedia": 1.7,
   "racha": 7.8,
   "horaracha": "09:30"
+},{
+  "fecha": "2019-11-10",
+  "prec": 0,
+  "dir": 24,
+  "velmedia": 2.2,
+  "racha": 9.4,
+  "horaracha": "14:50"
+},{
+  "fecha": "2019-11-11",
+  "prec": 0,
+  "dir": 99,
+  "velmedia": 1.4,
+  "racha": 5.8,
+  "horaracha": "Varias"
+},{
+  "fecha": "2019-11-12",
+  "prec": 0,
+  "dir": 25,
+  "velmedia": 1.4,
+  "racha": 9.4,
+  "horaracha": "14:20"
+},{
+  "fecha": "2019-11-13",
+  "prec": 0.6,
+  "dir": 25,
+  "velmedia": 0.8,
+  "racha": 5.3,
+  "horaracha": "14:50"
 }]

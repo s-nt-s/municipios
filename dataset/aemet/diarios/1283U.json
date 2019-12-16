@@ -82681,6 +82681,7 @@
 },{
   "fecha": "2019-10-08",
   "tmed": 19.4,
+  "prec": 1.6,
   "tmin": 15.4,
   "horatmin": "14:30",
   "tmax": 23.3,
@@ -83073,5 +83074,31 @@
   "horaPresMin": 24
 },{
   "fecha": "2019-11-01",
+  "velmedia": 11.4,
   "sol": 3.7
+},{
+  "fecha": "2019-11-06",
+  "tmed": 14,
+  "prec": 6.8,
+  "tmin": 10.8,
+  "horatmin": "23:59",
+  "tmax": 17.3,
+  "horatmax": "13:00",
+  "sol": 0.9,
+  "presMax": 1009.5,
+  "horaPresMax": 0,
+  "presMin": 1000.5,
+  "horaPresMin": 18
+},{
+  "fecha": "2019-11-07",
+  "tmed": 9.4,
+  "tmin": 7.1,
+  "horatmin": "15:40",
+  "tmax": 11.6,
+  "horatmax": "11:00",
+  "sol": 2.3,
+  "presMax": 1004.1,
+  "horaPresMax": 1,
+  "presMin": 1001.5,
+  "horaPresMin": 17
 }]
