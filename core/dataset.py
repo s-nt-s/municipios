@@ -68,7 +68,7 @@ def sortColPob(s):
 
 def getShp(path_glob, ini, end, r_key=4, r_data=5):
     dShapes = {}
-    for _shp in iglob(path_glob):
+    for _shp in iglob(path_glob, recursive=True):
         logging.info(_shp)
         #_shp = os.path.realpath(_shp)
         with shapefile.Reader(_shp) as shp:
