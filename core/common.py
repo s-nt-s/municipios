@@ -197,8 +197,8 @@ def unzip(target, *urls):
             zip.extractall(target)
     mdbs = set()
     for e in ("mdb", "accdb"):
-        mdbs = mdbs.union(set(iglob(target+"/**/*."+e)))
-        mdbs = mdbs.union(set(glob(target+"/*."+e)))
+        mdbs = mdbs.union(set(iglob(target+"/**/*."+e, recursive=True)))
+        mdbs = mdbs.union(set(glob(target+"/*."+e, recursive=True)))
     for mdb in sorted(mdbs):
         mdb_to_sqlite(mdb)
 
