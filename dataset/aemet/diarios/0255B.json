@@ -32123,4 +32123,16 @@
   "velmedia": 1.7,
   "racha": 10.8,
   "horaracha": "13:40"
+},{
+  "fecha": "2020-01-10",
+  "tmed": 7.4,
+  "prec": 2.8,
+  "tmin": 2.9,
+  "horatmin": "23:40",
+  "tmax": 12,
+  "horatmax": "15:20",
+  "dir": 34,
+  "velmedia": 1.4,
+  "racha": 6.4,
+  "horaracha": "07:00"
 }]

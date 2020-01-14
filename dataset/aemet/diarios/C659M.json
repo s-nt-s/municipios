@@ -34444,4 +34444,15 @@
   "horaPresMax": 11,
   "presMin": 1024.7,
   "horaPresMin": 5
+},{
+  "fecha": "2020-01-10",
+  "prec": 1.1,
+  "dir": 4,
+  "velmedia": 1.4,
+  "racha": 8.1,
+  "horaracha": "09:10",
+  "presMax": 1027.2,
+  "horaPresMax": 11,
+  "presMin": 1024.5,
+  "horaPresMin": 16
 }]

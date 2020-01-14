@@ -121500,4 +121500,12 @@
   "horatmin": "07:30",
   "tmax": 14.6,
   "horatmax": "14:40"
+},{
+  "fecha": "2020-01-10",
+  "tmed": 6.3,
+  "prec": 0,
+  "tmin": -1.4,
+  "horatmin": "23:59",
+  "tmax": 14,
+  "horatmax": "13:40"
 }]

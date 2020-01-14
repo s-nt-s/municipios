@@ -57301,4 +57301,21 @@
   "horaPresMax": 10,
   "presMin": 947.8,
   "horaPresMin": 17
+},{
+  "fecha": "2020-01-10",
+  "tmed": 5.7,
+  "prec": 0,
+  "tmin": 0.5,
+  "horatmin": "23:59",
+  "tmax": 10.9,
+  "horatmax": "14:00",
+  "dir": 1,
+  "velmedia": 3.9,
+  "racha": 10.6,
+  "horaracha": "13:20",
+  "sol": 7.3,
+  "presMax": 952.1,
+  "horaPresMax": 23,
+  "presMin": 947.8,
+  "horaPresMin": 5
 }]

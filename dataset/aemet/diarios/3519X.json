@@ -84015,4 +84015,16 @@
   "velmedia": 1.1,
   "racha": 5,
   "horaracha": "01:40"
+},{
+  "fecha": "2020-01-10",
+  "tmed": 9.6,
+  "prec": 0,
+  "tmin": 5.7,
+  "horatmin": "08:20",
+  "tmax": 13.4,
+  "horatmax": "15:30",
+  "dir": 35,
+  "velmedia": 1.4,
+  "racha": 12.8,
+  "horaracha": "04:50"
 }]

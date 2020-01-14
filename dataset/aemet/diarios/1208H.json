@@ -89138,4 +89138,17 @@
   "horaPresMax": 24,
   "presMin": 1017.6,
   "horaPresMin": 12
+},{
+  "fecha": "2020-01-10",
+  "tmed": 9.8,
+  "prec": 0.6,
+  "tmin": 7.4,
+  "horatmin": "Varias",
+  "tmax": 12.3,
+  "horatmax": "15:00",
+  "sol": 1.5,
+  "presMax": 1033.2,
+  "horaPresMax": 24,
+  "presMin": 1027,
+  "horaPresMin": 0
 }]

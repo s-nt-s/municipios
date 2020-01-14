@@ -106465,4 +106465,17 @@
   "racha": 6.4,
   "horaracha": "13:50",
   "sol": 7.2
+},{
+  "fecha": "2020-01-10",
+  "tmed": 3,
+  "prec": 0,
+  "tmin": -2.6,
+  "horatmin": "23:30",
+  "tmax": 8.7,
+  "horatmax": "14:30",
+  "dir": 2,
+  "velmedia": 2.5,
+  "racha": 10.3,
+  "horaracha": "15:40",
+  "sol": 5.2
 }]

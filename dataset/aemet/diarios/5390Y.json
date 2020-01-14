@@ -91622,4 +91622,20 @@
   "horaPresMax": 11,
   "presMin": 938.4,
   "horaPresMin": 16
+},{
+  "fecha": "2020-01-10",
+  "tmed": 7.6,
+  "prec": 0,
+  "tmin": 3.9,
+  "horatmin": "23:59",
+  "tmax": 11.2,
+  "horatmax": "14:00",
+  "dir": 3,
+  "velmedia": 2.8,
+  "racha": 10.3,
+  "horaracha": "16:20",
+  "presMax": 941.5,
+  "horaPresMax": 24,
+  "presMin": 937.9,
+  "horaPresMin": 4
 }]

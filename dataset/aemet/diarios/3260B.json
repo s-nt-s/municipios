@@ -234945,4 +234945,21 @@
   "horaPresMax": 10,
   "presMin": 963.7,
   "horaPresMin": 16
+},{
+  "fecha": "2020-01-10",
+  "tmed": 8.4,
+  "prec": 0,
+  "tmin": 3.7,
+  "horatmin": "Varias",
+  "tmax": 13,
+  "horatmax": "14:00",
+  "dir": 2,
+  "velmedia": 3.1,
+  "racha": 9.7,
+  "horaracha": "14:10",
+  "sol": 8.9,
+  "presMax": 969.8,
+  "horaPresMax": 23,
+  "presMin": 964.5,
+  "horaPresMin": 1
 }]

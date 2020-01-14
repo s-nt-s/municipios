@@ -65386,4 +65386,21 @@
   "horaPresMax": 10,
   "presMin": 949.6,
   "horaPresMin": 5
+},{
+  "fecha": "2020-01-10",
+  "tmed": 7,
+  "prec": 0,
+  "tmin": 2.5,
+  "horatmin": "08:00",
+  "tmax": 11.4,
+  "horatmax": "16:00",
+  "dir": 8,
+  "velmedia": 3.1,
+  "racha": 8.6,
+  "horaracha": "14:40",
+  "sol": 9.1,
+  "presMax": 952.7,
+  "horaPresMax": 23,
+  "presMin": 949,
+  "horaPresMin": 14
 }]

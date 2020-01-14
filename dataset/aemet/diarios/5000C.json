@@ -92334,6 +92334,7 @@
 },{
   "fecha": "2020-01-09",
   "tmed": 14.2,
+  "prec": 0,
   "tmin": 11.8,
   "horatmin": "22:20",
   "tmax": 16.7,
@@ -92347,4 +92348,21 @@
   "horaPresMax": 10,
   "presMin": 1016.1,
   "horaPresMin": 15
+},{
+  "fecha": "2020-01-10",
+  "tmed": 13.8,
+  "prec": 0,
+  "tmin": 11.9,
+  "horatmin": "22:00",
+  "tmax": 15.8,
+  "horatmax": "10:30",
+  "dir": 30,
+  "velmedia": 2.8,
+  "racha": 10.8,
+  "horaracha": "05:10",
+  "sol": 3,
+  "presMax": 1016.5,
+  "horaPresMax": 10,
+  "presMin": 1013.6,
+  "horaPresMin": 16
 }]

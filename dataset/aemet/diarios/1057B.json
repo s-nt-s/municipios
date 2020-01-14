@@ -59545,4 +59545,16 @@
   "velmedia": 9.2,
   "racha": 33.9,
   "horaracha": "15:40"
+},{
+  "fecha": "2020-01-10",
+  "tmed": 10.6,
+  "prec": 3.2,
+  "tmin": 9.2,
+  "horatmin": "02:59",
+  "tmax": 12.1,
+  "horatmax": "13:33",
+  "dir": 28,
+  "velmedia": 7.5,
+  "racha": 27.5,
+  "horaracha": "00:20"
 }]

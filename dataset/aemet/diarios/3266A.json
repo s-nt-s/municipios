@@ -91206,4 +91206,10 @@
   "horaPresMax": 0,
   "presMin": 851.9,
   "horaPresMin": 24
+},{
+  "fecha": "2020-01-10",
+  "dir": 30,
+  "velmedia": 5,
+  "racha": 20.8,
+  "horaracha": "63:50"
 }]

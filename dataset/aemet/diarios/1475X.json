@@ -107020,5 +107020,21 @@
   "tmin": 5.8,
   "horatmin": "23:59",
   "tmax": 12.8,
-  "horatmax": "12:00"
+  "horatmax": "12:00",
+  "dir": 25,
+  "velmedia": 1.4,
+  "racha": 10.6,
+  "horaracha": "09:50"
+},{
+  "fecha": "2020-01-10",
+  "tmed": 7.9,
+  "prec": 0,
+  "tmin": 3.6,
+  "horatmin": "04:30",
+  "tmax": 12.2,
+  "horatmax": "15:00",
+  "dir": 5,
+  "velmedia": 0.3,
+  "racha": 4.7,
+  "horaracha": "14:10"
 }]

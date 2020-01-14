@@ -66134,4 +66134,16 @@
   "velmedia": 4.4,
   "racha": 10.3,
   "horaracha": "18:10"
+},{
+  "fecha": "2020-01-10",
+  "tmed": 18.4,
+  "prec": 0.4,
+  "tmin": 15.9,
+  "horatmin": "23:40",
+  "tmax": 21,
+  "horatmax": "13:10",
+  "dir": 4,
+  "velmedia": 3.6,
+  "racha": 11.4,
+  "horaracha": "09:10"
 }]

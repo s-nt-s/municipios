@@ -87125,4 +87125,16 @@
   "velmedia": 1.4,
   "racha": 6.4,
   "horaracha": "12:20"
+},{
+  "fecha": "2020-01-10",
+  "tmed": 5.7,
+  "prec": 0.1,
+  "tmin": 2.2,
+  "horatmin": "00:10",
+  "tmax": 9.2,
+  "horatmax": "14:10",
+  "dir": 14,
+  "velmedia": 0.6,
+  "racha": 5.8,
+  "horaracha": "14:20"
 }]

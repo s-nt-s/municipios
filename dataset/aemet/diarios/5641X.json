@@ -94315,4 +94315,20 @@
   "horaPresMax": "Varias",
   "presMin": 1011.5,
   "horaPresMin": 16
+},{
+  "fecha": "2020-01-10",
+  "tmed": 10.2,
+  "prec": 0,
+  "tmin": 4.4,
+  "horatmin": "00:20",
+  "tmax": 15.9,
+  "horatmax": "16:00",
+  "dir": 6,
+  "velmedia": 1.1,
+  "racha": 7.5,
+  "horaracha": "15:20",
+  "presMax": 1014.2,
+  "horaPresMax": 23,
+  "presMin": 1010.1,
+  "horaPresMin": 15
 }]

@@ -91190,4 +91190,16 @@
   "horaPresMax": 12,
   "presMin": 948.3,
   "horaPresMin": 24
+},{
+  "fecha": "2020-01-10",
+  "tmed": 8.6,
+  "prec": 0,
+  "tmin": 3.8,
+  "horatmin": "00:20",
+  "tmax": 13.3,
+  "horatmax": "15:00",
+  "presMax": 951.3,
+  "horaPresMax": 23,
+  "presMin": 947.5,
+  "horaPresMin": 5
 }]

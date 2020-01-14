@@ -98444,4 +98444,15 @@
   "horaPresMax": 0,
   "presMin": 1025.4,
   "horaPresMin": 17
+},{
+  "fecha": "2020-01-10",
+  "prec": 0,
+  "dir": 35,
+  "velmedia": 2.5,
+  "racha": 13.3,
+  "horaracha": "18:00",
+  "presMax": 1026.2,
+  "horaPresMax": 23,
+  "presMin": 1021.4,
+  "horaPresMin": 16
 }]

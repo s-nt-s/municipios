@@ -97879,4 +97879,20 @@
   "horaPresMax": 11,
   "presMin": 1004.4,
   "horaPresMin": 14
+},{
+  "fecha": "2020-01-10",
+  "tmed": 12.4,
+  "prec": 0,
+  "tmin": 9.5,
+  "horatmin": "08:00",
+  "tmax": 15.3,
+  "horatmax": "15:20",
+  "dir": 36,
+  "velmedia": 1.7,
+  "racha": 7.5,
+  "horaracha": "21:00",
+  "presMax": 1005.9,
+  "horaPresMax": 10,
+  "presMin": 1002.9,
+  "horaPresMin": 15
 }]

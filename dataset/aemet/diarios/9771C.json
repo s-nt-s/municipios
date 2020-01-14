@@ -228510,4 +228510,21 @@
   "horaPresMax": 0,
   "presMin": 1001.2,
   "horaPresMin": "Varias"
+},{
+  "fecha": "2020-01-10",
+  "tmed": 5.6,
+  "prec": 0.2,
+  "tmin": 2.6,
+  "horatmin": "21:10",
+  "tmax": 8.7,
+  "horatmax": "15:10",
+  "dir": 20,
+  "velmedia": 1.7,
+  "racha": 5.8,
+  "horaracha": "03:20",
+  "sol": 2.1,
+  "presMax": 1006.3,
+  "horaPresMax": 24,
+  "presMin": 1000.7,
+  "horaPresMin": 1
 }]

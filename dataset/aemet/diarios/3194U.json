@@ -155759,4 +155759,12 @@
   "horatmin": "06:50",
   "tmax": 12.7,
   "horatmax": "14:30"
+},{
+  "fecha": "2020-01-10",
+  "tmed": 6.2,
+  "prec": 0,
+  "tmin": 0.5,
+  "horatmin": "08:10",
+  "tmax": 12,
+  "horatmax": "14:40"
 }]

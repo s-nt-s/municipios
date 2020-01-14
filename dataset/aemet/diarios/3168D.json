@@ -52290,4 +52290,21 @@
   "horaPresMax": 0,
   "presMin": 938.7,
   "horaPresMin": 16
+},{
+  "fecha": "2020-01-10",
+  "tmed": 6.2,
+  "prec": 0,
+  "tmin": 1.4,
+  "horatmin": "08:00",
+  "tmax": 11,
+  "horatmax": "15:40",
+  "dir": 3,
+  "velmedia": 2.5,
+  "racha": 10.8,
+  "horaracha": "14:50",
+  "sol": 8.2,
+  "presMax": 944.7,
+  "horaPresMax": 23,
+  "presMin": 939.3,
+  "horaPresMin": 2
 }]

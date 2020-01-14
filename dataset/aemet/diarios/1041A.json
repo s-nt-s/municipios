@@ -98119,4 +98119,16 @@
   "velmedia": 5.6,
   "racha": 24.7,
   "horaracha": "16:10"
+},{
+  "fecha": "2020-01-10",
+  "tmed": 10.2,
+  "prec": 3.9,
+  "tmin": 7.3,
+  "horatmin": "23:50",
+  "tmax": 13.2,
+  "horatmax": "14:10",
+  "dir": 33,
+  "velmedia": 3.9,
+  "racha": 14.7,
+  "horaracha": "12:30"
 }]

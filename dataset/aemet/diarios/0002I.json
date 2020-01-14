@@ -216829,4 +216829,16 @@
   "velmedia": 1.1,
   "racha": 3.9,
   "horaracha": "Varias"
+},{
+  "fecha": "2020-01-10",
+  "tmed": 9.2,
+  "prec": 1.1,
+  "tmin": 6.6,
+  "horatmin": "04:30",
+  "tmax": 11.8,
+  "horatmax": "18:00",
+  "dir": 31,
+  "velmedia": 3.3,
+  "racha": 18.1,
+  "horaracha": "23:10"
 }]

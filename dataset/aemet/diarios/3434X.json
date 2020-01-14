@@ -95432,4 +95432,21 @@
   "horaPresMax": 10,
   "presMin": 993.1,
   "horaPresMin": 24
+},{
+  "fecha": "2020-01-10",
+  "tmed": 6.3,
+  "prec": 0,
+  "tmin": -1.4,
+  "horatmin": "07:50",
+  "tmax": 14,
+  "horatmax": "16:00",
+  "dir": 8,
+  "velmedia": 0.8,
+  "racha": 5.3,
+  "horaracha": "01:40",
+  "sol": 8,
+  "presMax": 998.9,
+  "horaPresMax": 23,
+  "presMin": 992.6,
+  "horaPresMin": 1
 }]

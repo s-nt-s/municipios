@@ -53713,4 +53713,16 @@
   "velmedia": 1.1,
   "racha": 4.7,
   "horaracha": "15:50"
+},{
+  "fecha": "2020-01-10",
+  "tmed": 12.1,
+  "prec": 0,
+  "tmin": 7.2,
+  "horatmin": "02:50",
+  "tmax": 17,
+  "horatmax": "13:30",
+  "dir": 36,
+  "velmedia": 1.4,
+  "racha": 12.5,
+  "horaracha": "14:30"
 }]

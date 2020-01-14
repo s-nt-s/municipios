@@ -21668,4 +21668,16 @@
   "velmedia": 5,
   "racha": 16.9,
   "horaracha": "13:20"
+},{
+  "fecha": "2020-01-10",
+  "tmed": 8.6,
+  "prec": 0.3,
+  "tmin": 4.1,
+  "horatmin": "23:59",
+  "tmax": 13.1,
+  "horatmax": "14:00",
+  "dir": 23,
+  "velmedia": 0.8,
+  "racha": 6.1,
+  "horaracha": "01:00"
 }]

@@ -108581,4 +108581,21 @@
   "horaPresMax": "Varias",
   "presMin": 954.1,
   "horaPresMin": 16
+},{
+  "fecha": "2020-01-10",
+  "tmed": 6,
+  "prec": 0,
+  "tmin": 0.8,
+  "horatmin": "23:59",
+  "tmax": 11.3,
+  "horatmax": "13:30",
+  "dir": 4,
+  "velmedia": 2.8,
+  "racha": 10.3,
+  "horaracha": "14:20",
+  "sol": 6.5,
+  "presMax": 962,
+  "horaPresMax": 23,
+  "presMin": 955.4,
+  "horaPresMin": 0
 }]

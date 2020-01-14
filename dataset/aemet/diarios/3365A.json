@@ -132945,4 +132945,16 @@
   "velmedia": 1.7,
   "racha": 4.2,
   "horaracha": "10:20"
+},{
+  "fecha": "2020-01-10",
+  "tmed": 7.1,
+  "prec": 0,
+  "tmin": 0.4,
+  "horatmin": "01:00",
+  "tmax": 13.8,
+  "horatmax": "14:00",
+  "dir": 10,
+  "velmedia": 1.7,
+  "racha": 8.3,
+  "horaracha": "14:10"
 }]

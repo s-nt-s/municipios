@@ -113276,4 +113276,16 @@
   "velmedia": 3.3,
   "racha": 6.1,
   "horaracha": "Varias"
+},{
+  "fecha": "2020-01-10",
+  "tmed": 12.8,
+  "prec": 0.3,
+  "tmin": 11.5,
+  "horatmin": "01:20",
+  "tmax": 14,
+  "horatmax": "10:40",
+  "dir": 3,
+  "velmedia": 9.2,
+  "racha": 18.6,
+  "horaracha": "17:30"
 }]

@@ -117165,4 +117165,16 @@
   "velmedia": 1.4,
   "racha": 4.4,
   "horaracha": "13:30"
+},{
+  "fecha": "2020-01-10",
+  "tmed": 8.5,
+  "prec": 0.5,
+  "tmin": 4.1,
+  "horatmin": "00:10",
+  "tmax": 12.9,
+  "horatmax": "11:00",
+  "dir": 4,
+  "velmedia": 1.4,
+  "racha": 8.3,
+  "horaracha": "21:40"
 }]

@@ -26,7 +26,6 @@ re_ft = re.compile(r"^-?\d+(,\d+)?$")
 
 cYear = datetime.now().year
 
-
 def insert_rel_mun(db, table, rows, kSort=None):
     logging.info("Creando "+table)
     table = table.upper()
@@ -473,9 +472,11 @@ class Dataset():
     @JsonCache(file="dataset/economia/empresas.json")
     def create_empresas(self, *arg, old_data=None, **kargv):
         # , enconde='iso-8859-1'
-        empresas = get_csv(self.core.todas["empresas"], delimiter=";")
+        empresas = get_csv(self.core.todas["empresas"], delimiter=";", parse_cell=parse_cell_to_int)#, thousands='.', decimal =',')
         col_empresas = [
             r.replace(",", "") if r != "Total" else "Total empresas" for r in empresas[4] if r]
+        colYears = sorted(set([int(r) for r in empresas[5] if r]), reverse=True)
+        l_colYears = len(colYears)
         years = old_data or {}
         for record in empresas:
             if len(record) < 2 or record[0] is None:
@@ -484,8 +485,8 @@ class Dataset():
             if not mun.isdigit() or len(mun) != 5:
                 continue
             for j, col in enumerate(col_empresas):
-                for i, year in enumerate(range(2018, 2011, -1)):
-                    index = (j*7)+i+1
+                for i, year in enumerate(colYears):
+                    index = (j*l_colYears)+i+1
                     e = record[index]
                     if e is not None:
                         dtY = years.get(year, {})

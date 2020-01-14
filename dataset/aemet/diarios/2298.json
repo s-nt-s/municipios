@@ -91337,4 +91337,21 @@
   "horaPresMax": 0,
   "presMin": 900,
   "horaPresMin": 20
+},{
+  "fecha": "2020-01-10",
+  "tmed": 2.7,
+  "prec": 0,
+  "tmin": -0.9,
+  "horatmin": "23:59",
+  "tmax": 6.3,
+  "horatmax": "12:50",
+  "dir": 22,
+  "velmedia": 3.3,
+  "racha": 16.9,
+  "horaracha": "14:20",
+  "sol": 2.5,
+  "presMax": 906.6,
+  "horaPresMax": 20,
+  "presMin": 901,
+  "horaPresMin": 0
 }]

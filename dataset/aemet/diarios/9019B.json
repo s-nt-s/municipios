@@ -91074,4 +91074,16 @@
   "velmedia": 1.4,
   "racha": 10.3,
   "horaracha": "11:10"
+},{
+  "fecha": "2020-01-10",
+  "tmed": 4,
+  "prec": 0.5,
+  "tmin": -0.8,
+  "horatmin": "07:00",
+  "tmax": 8.9,
+  "horatmax": "14:00",
+  "dir": 4,
+  "velmedia": 0.8,
+  "racha": 7.5,
+  "horaracha": "14:40"
 }]

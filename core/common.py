@@ -239,7 +239,7 @@ def readlines(file, fields=None, name=None):
             yield l
 
 
-def parse_cell(c):
+def _parse_cell(c):
     if isinstance(c, str):
         c = c.strip()
         if len(c) == 0 or c == ".":
@@ -253,12 +253,20 @@ def parse_cell(c):
         return int(c)
     return c
 
+def parse_cell_to_int(c):
+    try:
+        i = c.replace(".", "")
+        return int(i)
+    except:
+        return _parse_cell(c)
 
-def read_csv(file, enconde="utf-8", delimiter=","):
+def read_csv(file, enconde="utf-8", delimiter=",", parse_cell=None, **kargv):
+    if parse_cell is None:
+        parse_cell = _parse_cell
     rows = []
     if file and os.path.isfile(file):
         with open(file, 'r', encoding=enconde) as f:
-            for row in csv.reader(f, delimiter=delimiter):
+            for row in csv.reader(f, delimiter=delimiter, **kargv):
                 row = [parse_cell(i) for i in row]
                 flag = False
                 for r in row:
@@ -281,10 +289,10 @@ def csvBunch(file, enconde="utf-8", delimiter=","):
     return arr
 
 
-def get_csv(url, enconde=None, delimiter=","):
+def get_csv(url, enconde=None, delimiter=",", **kargv):
     file = url_to_file(url, ".csv")
     try:
-        j = read_csv(file, enconde=enconde, delimiter=delimiter)
+        j = read_csv(file, enconde=enconde, delimiter=delimiter, **kargv)
         if j:
             return j
     except Exception as e:
@@ -295,9 +303,9 @@ def get_csv(url, enconde=None, delimiter=","):
         logging.debug("La respuesta no es un csv")
         logging.debug(r.text)
         time.sleep(61)
-        return get_csv(url, enconde=enconde, delimiter=delimiter)
+        return get_csv(url, enconde=enconde, delimiter=delimiter, **kargv)
     save(file, r.content)
-    return read_csv(file, enconde=enconde, delimiter=delimiter)
+    return read_csv(file, enconde=enconde, delimiter=delimiter, **kargv)
 
 
 def get_cod_municipio(prov, num, *args, cambiar=None, **kargs):

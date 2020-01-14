@@ -95775,4 +95775,12 @@
   "horatmin": "01:00",
   "tmax": 11.6,
   "horatmax": "12:30"
+},{
+  "fecha": "2020-01-10",
+  "tmed": 4.2,
+  "prec": 0,
+  "tmin": 1,
+  "horatmin": "23:59",
+  "tmax": 7.5,
+  "horatmax": "00:40"
 }]

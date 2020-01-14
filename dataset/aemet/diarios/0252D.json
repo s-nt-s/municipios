@@ -91307,4 +91307,16 @@
   "velmedia": 1.9,
   "racha": 7.8,
   "horaracha": "13:30"
+},{
+  "fecha": "2020-01-10",
+  "tmed": 9.4,
+  "prec": 4.2,
+  "tmin": 6.6,
+  "horatmin": "23:59",
+  "tmax": 12.1,
+  "horatmax": "13:50",
+  "dir": 35,
+  "velmedia": 0.8,
+  "racha": 7.8,
+  "horaracha": "08:50"
 }]
