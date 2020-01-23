@@ -151,7 +151,7 @@ def create_db(salida):
     os.chdir(wks_dir)
     logging.info("cd "+wks_dir)
     dataset = Dataset()
-    # dataset.collect()
+    dataset.collect()
     dataset.unzip()
     db = DBshp(salida, parse_col=plain_parse_col, reload=True)
     db.execute("sql/base.sql")

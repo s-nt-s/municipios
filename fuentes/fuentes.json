@@ -24,7 +24,8 @@
     "2015": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2015/l0/00001001.px?tip=AM",
     "2016": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2016/l0/00001001.px?tip=AM",
     "2017": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2017/l0/00001001.px?tip=AM",
-    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00001001.px?tip=AM"
+    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00001001.px?tip=AM",
+    "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00001001.px?tip=AM"
   },
   "poblacion1": {
     "2011": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2011/l0/00001006.px?tip=AM",
@@ -34,7 +35,8 @@
     "2015": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2015/l0/00001006.px?tip=AM",
     "2016": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2016/l0/00001006.px?tip=AM",
     "2017": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2017/l0/00001006.px?tip=AM",
-    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00001006.px?tip=AM"
+    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00001006.px?tip=AM",
+    "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00001006.px?tip=AM"
   },
   "censo_1999": {
     "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov01/l0/10007.px?tip=AM",
@@ -67,7 +69,8 @@
     "2015": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2015/l0/00002001.px?tip=AM",
     "2016": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2016/l0/00002001.px?tip=AM",
     "2017": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2017/l0/00002001.px?tip=AM",
-    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00002001.px?tip=AM"
+    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00002001.px?tip=AM",
+    "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00002001.px?tip=AM"
   },
   "poblacion1": {
     "2011": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2011/l0/00002006.px?tip=AM",
@@ -77,7 +80,8 @@
     "2015": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2015/l0/00002006.px?tip=AM",
     "2016": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2016/l0/00002006.px?tip=AM",
     "2017": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2017/l0/00002006.px?tip=AM",
-    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00002006.px?tip=AM"
+    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00002006.px?tip=AM",
+    "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00002006.px?tip=AM"
   },
   "censo_1999": {
     "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov02/l0/10007.px?tip=AM",
@@ -110,7 +114,8 @@
     "2015": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2015/l0/00003001.px?tip=AM",
     "2016": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2016/l0/00003001.px?tip=AM",
     "2017": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2017/l0/00003001.px?tip=AM",
-    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00003001.px?tip=AM"
+    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00003001.px?tip=AM",
+    "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00003001.px?tip=AM"
   },
   "poblacion1": {
     "2011": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2011/l0/00003006.px?tip=AM",
@@ -120,7 +125,8 @@
     "2015": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2015/l0/00003006.px?tip=AM",
     "2016": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2016/l0/00003006.px?tip=AM",
     "2017": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2017/l0/00003006.px?tip=AM",
-    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00003006.px?tip=AM"
+    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00003006.px?tip=AM",
+    "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00003006.px?tip=AM"
   },
   "censo_1999": {
     "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov03/l0/10007.px?tip=AM",
@@ -153,7 +159,8 @@
     "2015": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2015/l0/00004001.px?tip=AM",
     "2016": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2016/l0/00004001.px?tip=AM",
     "2017": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2017/l0/00004001.px?tip=AM",
-    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00004001.px?tip=AM"
+    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00004001.px?tip=AM",
+    "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00004001.px?tip=AM"
   },
   "poblacion1": {
     "2011": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2011/l0/00004006.px?tip=AM",
@@ -163,7 +170,8 @@
     "2015": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2015/l0/00004006.px?tip=AM",
     "2016": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2016/l0/00004006.px?tip=AM",
     "2017": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2017/l0/00004006.px?tip=AM",
-    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00004006.px?tip=AM"
+    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00004006.px?tip=AM",
+    "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00004006.px?tip=AM"
   },
   "censo_1999": {
     "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov04/l0/10007.px?tip=AM",
@@ -196,7 +204,8 @@
     "2015": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2015/l0/00005001.px?tip=AM",
     "2016": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2016/l0/00005001.px?tip=AM",
     "2017": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2017/l0/00005001.px?tip=AM",
-    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00005001.px?tip=AM"
+    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00005001.px?tip=AM",
+    "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00005001.px?tip=AM"
   },
   "poblacion1": {
     "2011": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2011/l0/00005006.px?tip=AM",
@@ -206,7 +215,8 @@
     "2015": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2015/l0/00005006.px?tip=AM",
     "2016": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2016/l0/00005006.px?tip=AM",
     "2017": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2017/l0/00005006.px?tip=AM",
-    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00005006.px?tip=AM"
+    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00005006.px?tip=AM",
+    "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00005006.px?tip=AM"
   },
   "censo_1999": {
     "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov05/l0/10007.px?tip=AM",
@@ -239,7 +249,8 @@
     "2015": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2015/l0/00006001.px?tip=AM",
     "2016": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2016/l0/00006001.px?tip=AM",
     "2017": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2017/l0/00006001.px?tip=AM",
-    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00006001.px?tip=AM"
+    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00006001.px?tip=AM",
+    "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00006001.px?tip=AM"
   },
   "poblacion1": {
     "2011": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2011/l0/00006006.px?tip=AM",
@@ -249,7 +260,8 @@
     "2015": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2015/l0/00006006.px?tip=AM",
     "2016": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2016/l0/00006006.px?tip=AM",
     "2017": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2017/l0/00006006.px?tip=AM",
-    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00006006.px?tip=AM"
+    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00006006.px?tip=AM",
+    "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00006006.px?tip=AM"
   },
   "censo_1999": {
     "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov06/l0/10007.px?tip=AM",
@@ -282,7 +294,8 @@
     "2015": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2015/l0/00007001.px?tip=AM",
     "2016": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2016/l0/00007001.px?tip=AM",
     "2017": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2017/l0/00007001.px?tip=AM",
-    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00007001.px?tip=AM"
+    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00007001.px?tip=AM",
+    "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00007001.px?tip=AM"
   },
   "poblacion1": {
     "2011": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2011/l0/00007006.px?tip=AM",
@@ -292,7 +305,8 @@
     "2015": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2015/l0/00007006.px?tip=AM",
     "2016": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2016/l0/00007006.px?tip=AM",
     "2017": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2017/l0/00007006.px?tip=AM",
-    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00007006.px?tip=AM"
+    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00007006.px?tip=AM",
+    "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00007006.px?tip=AM"
   },
   "censo_1999": {
     "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov07/l0/10007.px?tip=AM",
@@ -325,7 +339,8 @@
     "2015": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2015/l0/00008001.px?tip=AM",
     "2016": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2016/l0/00008001.px?tip=AM",
     "2017": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2017/l0/00008001.px?tip=AM",
-    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00008001.px?tip=AM"
+    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00008001.px?tip=AM",
+    "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00008001.px?tip=AM"
   },
   "poblacion1": {
     "2011": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2011/l0/00008006.px?tip=AM",
@@ -335,7 +350,8 @@
     "2015": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2015/l0/00008006.px?tip=AM",
     "2016": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2016/l0/00008006.px?tip=AM",
     "2017": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2017/l0/00008006.px?tip=AM",
-    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00008006.px?tip=AM"
+    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00008006.px?tip=AM",
+    "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00008006.px?tip=AM"
   },
   "censo_1999": {
     "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov08/l0/10007.px?tip=AM",
@@ -368,7 +384,8 @@
     "2015": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2015/l0/00009001.px?tip=AM",
     "2016": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2016/l0/00009001.px?tip=AM",
     "2017": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2017/l0/00009001.px?tip=AM",
-    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00009001.px?tip=AM"
+    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00009001.px?tip=AM",
+    "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00009001.px?tip=AM"
   },
   "poblacion1": {
     "2011": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2011/l0/00009006.px?tip=AM",
@@ -378,7 +395,8 @@
     "2015": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2015/l0/00009006.px?tip=AM",
     "2016": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2016/l0/00009006.px?tip=AM",
     "2017": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2017/l0/00009006.px?tip=AM",
-    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00009006.px?tip=AM"
+    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00009006.px?tip=AM",
+    "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00009006.px?tip=AM"
   },
   "censo_1999": {
     "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov09/l0/10007.px?tip=AM",
@@ -411,7 +429,8 @@
     "2015": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2015/l0/00010001.px?tip=AM",
     "2016": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2016/l0/00010001.px?tip=AM",
     "2017": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2017/l0/00010001.px?tip=AM",
-    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00010001.px?tip=AM"
+    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00010001.px?tip=AM",
+    "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00010001.px?tip=AM"
   },
   "poblacion1": {
     "2011": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2011/l0/00010006.px?tip=AM",
@@ -421,7 +440,8 @@
     "2015": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2015/l0/00010006.px?tip=AM",
     "2016": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2016/l0/00010006.px?tip=AM",
     "2017": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2017/l0/00010006.px?tip=AM",
-    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00010006.px?tip=AM"
+    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00010006.px?tip=AM",
+    "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00010006.px?tip=AM"
   },
   "censo_1999": {
     "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov10/l0/10007.px?tip=AM",
@@ -454,7 +474,8 @@
     "2015": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2015/l0/00011001.px?tip=AM",
     "2016": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2016/l0/00011001.px?tip=AM",
     "2017": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2017/l0/00011001.px?tip=AM",
-    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00011001.px?tip=AM"
+    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00011001.px?tip=AM",
+    "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00011001.px?tip=AM"
   },
   "poblacion1": {
     "2011": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2011/l0/00011006.px?tip=AM",
@@ -464,7 +485,8 @@
     "2015": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2015/l0/00011006.px?tip=AM",
     "2016": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2016/l0/00011006.px?tip=AM",
     "2017": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2017/l0/00011006.px?tip=AM",
-    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00011006.px?tip=AM"
+    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00011006.px?tip=AM",
+    "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00011006.px?tip=AM"
   },
   "censo_1999": {
     "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov11/l0/10007.px?tip=AM",
@@ -497,7 +519,8 @@
     "2015": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2015/l0/00012001.px?tip=AM",
     "2016": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2016/l0/00012001.px?tip=AM",
     "2017": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2017/l0/00012001.px?tip=AM",
-    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00012001.px?tip=AM"
+    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00012001.px?tip=AM",
+    "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00012001.px?tip=AM"
   },
   "poblacion1": {
     "2011": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2011/l0/00012006.px?tip=AM",
@@ -507,7 +530,8 @@
     "2015": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2015/l0/00012006.px?tip=AM",
     "2016": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2016/l0/00012006.px?tip=AM",
     "2017": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2017/l0/00012006.px?tip=AM",
-    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00012006.px?tip=AM"
+    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00012006.px?tip=AM",
+    "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00012006.px?tip=AM"
   },
   "censo_1999": {
     "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov12/l0/10007.px?tip=AM",
@@ -540,7 +564,8 @@
     "2015": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2015/l0/00013001.px?tip=AM",
     "2016": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2016/l0/00013001.px?tip=AM",
     "2017": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2017/l0/00013001.px?tip=AM",
-    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00013001.px?tip=AM"
+    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00013001.px?tip=AM",
+    "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00013001.px?tip=AM"
   },
   "poblacion1": {
     "2011": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2011/l0/00013006.px?tip=AM",
@@ -550,7 +575,8 @@
     "2015": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2015/l0/00013006.px?tip=AM",
     "2016": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2016/l0/00013006.px?tip=AM",
     "2017": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2017/l0/00013006.px?tip=AM",
-    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00013006.px?tip=AM"
+    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00013006.px?tip=AM",
+    "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00013006.px?tip=AM"
   },
   "censo_1999": {
     "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov13/l0/10007.px?tip=AM",
@@ -583,7 +609,8 @@
     "2015": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2015/l0/00014001.px?tip=AM",
     "2016": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2016/l0/00014001.px?tip=AM",
     "2017": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2017/l0/00014001.px?tip=AM",
-    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00014001.px?tip=AM"
+    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00014001.px?tip=AM",
+    "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00014001.px?tip=AM"
   },
   "poblacion1": {
     "2011": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2011/l0/00014006.px?tip=AM",
@@ -593,7 +620,8 @@
     "2015": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2015/l0/00014006.px?tip=AM",
     "2016": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2016/l0/00014006.px?tip=AM",
     "2017": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2017/l0/00014006.px?tip=AM",
-    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00014006.px?tip=AM"
+    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00014006.px?tip=AM",
+    "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00014006.px?tip=AM"
   },
   "censo_1999": {
     "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov14/l0/10007.px?tip=AM",
@@ -626,7 +654,8 @@
     "2015": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2015/l0/00015001.px?tip=AM",
     "2016": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2016/l0/00015001.px?tip=AM",
     "2017": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2017/l0/00015001.px?tip=AM",
-    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00015001.px?tip=AM"
+    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00015001.px?tip=AM",
+    "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00015001.px?tip=AM"
   },
   "poblacion1": {
     "2011": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2011/l0/00015006.px?tip=AM",
@@ -636,7 +665,8 @@
     "2015": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2015/l0/00015006.px?tip=AM",
     "2016": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2016/l0/00015006.px?tip=AM",
     "2017": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2017/l0/00015006.px?tip=AM",
-    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00015006.px?tip=AM"
+    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00015006.px?tip=AM",
+    "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00015006.px?tip=AM"
   },
   "censo_1999": {
     "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov15/l0/10007.px?tip=AM",
@@ -669,7 +699,8 @@
     "2015": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2015/l0/00016001.px?tip=AM",
     "2016": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2016/l0/00016001.px?tip=AM",
     "2017": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2017/l0/00016001.px?tip=AM",
-    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00016001.px?tip=AM"
+    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00016001.px?tip=AM",
+    "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00016001.px?tip=AM"
   },
   "poblacion1": {
     "2011": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2011/l0/00016006.px?tip=AM",
@@ -679,7 +710,8 @@
     "2015": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2015/l0/00016006.px?tip=AM",
     "2016": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2016/l0/00016006.px?tip=AM",
     "2017": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2017/l0/00016006.px?tip=AM",
-    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00016006.px?tip=AM"
+    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00016006.px?tip=AM",
+    "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00016006.px?tip=AM"
   },
   "censo_1999": {
     "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov16/l0/10007.px?tip=AM",
@@ -712,7 +744,8 @@
     "2015": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2015/l0/00017001.px?tip=AM",
     "2016": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2016/l0/00017001.px?tip=AM",
     "2017": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2017/l0/00017001.px?tip=AM",
-    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00017001.px?tip=AM"
+    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00017001.px?tip=AM",
+    "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00017001.px?tip=AM"
   },
   "poblacion1": {
     "2011": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2011/l0/00017006.px?tip=AM",
@@ -722,7 +755,8 @@
     "2015": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2015/l0/00017006.px?tip=AM",
     "2016": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2016/l0/00017006.px?tip=AM",
     "2017": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2017/l0/00017006.px?tip=AM",
-    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00017006.px?tip=AM"
+    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00017006.px?tip=AM",
+    "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00017006.px?tip=AM"
   },
   "censo_1999": {
     "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov17/l0/10007.px?tip=AM",
@@ -755,7 +789,8 @@
     "2015": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2015/l0/00018001.px?tip=AM",
     "2016": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2016/l0/00018001.px?tip=AM",
     "2017": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2017/l0/00018001.px?tip=AM",
-    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00018001.px?tip=AM"
+    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00018001.px?tip=AM",
+    "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00018001.px?tip=AM"
   },
   "poblacion1": {
     "2011": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2011/l0/00018006.px?tip=AM",
@@ -765,7 +800,8 @@
     "2015": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2015/l0/00018006.px?tip=AM",
     "2016": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2016/l0/00018006.px?tip=AM",
     "2017": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2017/l0/00018006.px?tip=AM",
-    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00018006.px?tip=AM"
+    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00018006.px?tip=AM",
+    "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00018006.px?tip=AM"
   },
   "censo_1999": {
     "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov18/l0/10007.px?tip=AM",
@@ -798,7 +834,8 @@
     "2015": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2015/l0/00019001.px?tip=AM",
     "2016": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2016/l0/00019001.px?tip=AM",
     "2017": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2017/l0/00019001.px?tip=AM",
-    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00019001.px?tip=AM"
+    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00019001.px?tip=AM",
+    "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00019001.px?tip=AM"
   },
   "poblacion1": {
     "2011": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2011/l0/00019006.px?tip=AM",
@@ -808,7 +845,8 @@
     "2015": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2015/l0/00019006.px?tip=AM",
     "2016": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2016/l0/00019006.px?tip=AM",
     "2017": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2017/l0/00019006.px?tip=AM",
-    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00019006.px?tip=AM"
+    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00019006.px?tip=AM",
+    "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00019006.px?tip=AM"
   },
   "censo_1999": {
     "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov19/l0/10007.px?tip=AM",
@@ -841,7 +879,8 @@
     "2015": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2015/l0/00020001.px?tip=AM",
     "2016": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2016/l0/00020001.px?tip=AM",
     "2017": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2017/l0/00020001.px?tip=AM",
-    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00020001.px?tip=AM"
+    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00020001.px?tip=AM",
+    "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00020001.px?tip=AM"
   },
   "poblacion1": {
     "2011": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2011/l0/00020006.px?tip=AM",
@@ -851,7 +890,8 @@
     "2015": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2015/l0/00020006.px?tip=AM",
     "2016": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2016/l0/00020006.px?tip=AM",
     "2017": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2017/l0/00020006.px?tip=AM",
-    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00020006.px?tip=AM"
+    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00020006.px?tip=AM",
+    "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00020006.px?tip=AM"
   },
   "censo_1999": {
     "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov20/l0/10007.px?tip=AM",
@@ -884,7 +924,8 @@
     "2015": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2015/l0/00021001.px?tip=AM",
     "2016": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2016/l0/00021001.px?tip=AM",
     "2017": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2017/l0/00021001.px?tip=AM",
-    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00021001.px?tip=AM"
+    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00021001.px?tip=AM",
+    "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00021001.px?tip=AM"
   },
   "poblacion1": {
     "2011": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2011/l0/00021006.px?tip=AM",
@@ -894,7 +935,8 @@
     "2015": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2015/l0/00021006.px?tip=AM",
     "2016": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2016/l0/00021006.px?tip=AM",
     "2017": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2017/l0/00021006.px?tip=AM",
-    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00021006.px?tip=AM"
+    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00021006.px?tip=AM",
+    "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00021006.px?tip=AM"
   },
   "censo_1999": {
     "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov21/l0/10007.px?tip=AM",
@@ -927,7 +969,8 @@
     "2015": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2015/l0/00022001.px?tip=AM",
     "2016": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2016/l0/00022001.px?tip=AM",
     "2017": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2017/l0/00022001.px?tip=AM",
-    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00022001.px?tip=AM"
+    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00022001.px?tip=AM",
+    "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00022001.px?tip=AM"
   },
   "poblacion1": {
     "2011": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2011/l0/00022006.px?tip=AM",
@@ -937,7 +980,8 @@
     "2015": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2015/l0/00022006.px?tip=AM",
     "2016": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2016/l0/00022006.px?tip=AM",
     "2017": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2017/l0/00022006.px?tip=AM",
-    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00022006.px?tip=AM"
+    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00022006.px?tip=AM",
+    "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00022006.px?tip=AM"
   },
   "censo_1999": {
     "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov22/l0/10007.px?tip=AM",
@@ -970,7 +1014,8 @@
     "2015": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2015/l0/00023001.px?tip=AM",
     "2016": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2016/l0/00023001.px?tip=AM",
     "2017": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2017/l0/00023001.px?tip=AM",
-    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00023001.px?tip=AM"
+    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00023001.px?tip=AM",
+    "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00023001.px?tip=AM"
   },
   "poblacion1": {
     "2011": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2011/l0/00023006.px?tip=AM",
@@ -980,7 +1025,8 @@
     "2015": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2015/l0/00023006.px?tip=AM",
     "2016": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2016/l0/00023006.px?tip=AM",
     "2017": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2017/l0/00023006.px?tip=AM",
-    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00023006.px?tip=AM"
+    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00023006.px?tip=AM",
+    "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00023006.px?tip=AM"
   },
   "censo_1999": {
     "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov23/l0/10007.px?tip=AM",
@@ -1013,7 +1059,8 @@
     "2015": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2015/l0/00024001.px?tip=AM",
     "2016": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2016/l0/00024001.px?tip=AM",
     "2017": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2017/l0/00024001.px?tip=AM",
-    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00024001.px?tip=AM"
+    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00024001.px?tip=AM",
+    "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00024001.px?tip=AM"
   },
   "poblacion1": {
     "2011": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2011/l0/00024006.px?tip=AM",
@@ -1023,7 +1070,8 @@
     "2015": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2015/l0/00024006.px?tip=AM",
     "2016": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2016/l0/00024006.px?tip=AM",
     "2017": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2017/l0/00024006.px?tip=AM",
-    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00024006.px?tip=AM"
+    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00024006.px?tip=AM",
+    "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00024006.px?tip=AM"
   },
   "censo_1999": {
     "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov24/l0/10007.px?tip=AM",
@@ -1056,7 +1104,8 @@
     "2015": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2015/l0/00025001.px?tip=AM",
     "2016": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2016/l0/00025001.px?tip=AM",
     "2017": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2017/l0/00025001.px?tip=AM",
-    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00025001.px?tip=AM"
+    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00025001.px?tip=AM",
+    "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00025001.px?tip=AM"
   },
   "poblacion1": {
     "2011": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2011/l0/00025006.px?tip=AM",
@@ -1066,7 +1115,8 @@
     "2015": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2015/l0/00025006.px?tip=AM",
     "2016": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2016/l0/00025006.px?tip=AM",
     "2017": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2017/l0/00025006.px?tip=AM",
-    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00025006.px?tip=AM"
+    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00025006.px?tip=AM",
+    "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00025006.px?tip=AM"
   },
   "censo_1999": {
     "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov25/l0/10007.px?tip=AM",
@@ -1099,7 +1149,8 @@
     "2015": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2015/l0/00026001.px?tip=AM",
     "2016": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2016/l0/00026001.px?tip=AM",
     "2017": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2017/l0/00026001.px?tip=AM",
-    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00026001.px?tip=AM"
+    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00026001.px?tip=AM",
+    "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00026001.px?tip=AM"
   },
   "poblacion1": {
     "2011": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2011/l0/00026006.px?tip=AM",
@@ -1109,7 +1160,8 @@
     "2015": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2015/l0/00026006.px?tip=AM",
     "2016": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2016/l0/00026006.px?tip=AM",
     "2017": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2017/l0/00026006.px?tip=AM",
-    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00026006.px?tip=AM"
+    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00026006.px?tip=AM",
+    "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00026006.px?tip=AM"
   },
   "censo_1999": {
     "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov26/l0/10007.px?tip=AM",
@@ -1142,7 +1194,8 @@
     "2015": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2015/l0/00027001.px?tip=AM",
     "2016": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2016/l0/00027001.px?tip=AM",
     "2017": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2017/l0/00027001.px?tip=AM",
-    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00027001.px?tip=AM"
+    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00027001.px?tip=AM",
+    "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00027001.px?tip=AM"
   },
   "poblacion1": {
     "2011": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2011/l0/00027006.px?tip=AM",
@@ -1152,7 +1205,8 @@
     "2015": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2015/l0/00027006.px?tip=AM",
     "2016": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2016/l0/00027006.px?tip=AM",
     "2017": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2017/l0/00027006.px?tip=AM",
-    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00027006.px?tip=AM"
+    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00027006.px?tip=AM",
+    "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00027006.px?tip=AM"
   },
   "censo_1999": {
     "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov27/l0/10007.px?tip=AM",
@@ -1185,7 +1239,8 @@
     "2015": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2015/l0/00028001.px?tip=AM",
     "2016": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2016/l0/00028001.px?tip=AM",
     "2017": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2017/l0/00028001.px?tip=AM",
-    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00028001.px?tip=AM"
+    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00028001.px?tip=AM",
+    "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00028001.px?tip=AM"
   },
   "poblacion1": {
     "2011": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2011/l0/00028006.px?tip=AM",
@@ -1195,7 +1250,8 @@
     "2015": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2015/l0/00028006.px?tip=AM",
     "2016": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2016/l0/00028006.px?tip=AM",
     "2017": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2017/l0/00028006.px?tip=AM",
-    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00028006.px?tip=AM"
+    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00028006.px?tip=AM",
+    "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00028006.px?tip=AM"
   },
   "censo_1999": {
     "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov28/l0/10007.px?tip=AM",
@@ -1228,7 +1284,8 @@
     "2015": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2015/l0/00029001.px?tip=AM",
     "2016": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2016/l0/00029001.px?tip=AM",
     "2017": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2017/l0/00029001.px?tip=AM",
-    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00029001.px?tip=AM"
+    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00029001.px?tip=AM",
+    "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00029001.px?tip=AM"
   },
   "poblacion1": {
     "2011": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2011/l0/00029006.px?tip=AM",
@@ -1238,7 +1295,8 @@
     "2015": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2015/l0/00029006.px?tip=AM",
     "2016": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2016/l0/00029006.px?tip=AM",
     "2017": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2017/l0/00029006.px?tip=AM",
-    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00029006.px?tip=AM"
+    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00029006.px?tip=AM",
+    "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00029006.px?tip=AM"
   },
   "censo_1999": {
     "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov29/l0/10007.px?tip=AM",
@@ -1271,7 +1329,8 @@
     "2015": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2015/l0/00030001.px?tip=AM",
     "2016": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2016/l0/00030001.px?tip=AM",
     "2017": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2017/l0/00030001.px?tip=AM",
-    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00030001.px?tip=AM"
+    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00030001.px?tip=AM",
+    "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00030001.px?tip=AM"
   },
   "poblacion1": {
     "2011": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2011/l0/00030006.px?tip=AM",
@@ -1281,7 +1340,8 @@
     "2015": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2015/l0/00030006.px?tip=AM",
     "2016": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2016/l0/00030006.px?tip=AM",
     "2017": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2017/l0/00030006.px?tip=AM",
-    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00030006.px?tip=AM"
+    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00030006.px?tip=AM",
+    "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00030006.px?tip=AM"
   },
   "censo_1999": {
     "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov30/l0/10007.px?tip=AM",
@@ -1314,7 +1374,8 @@
     "2015": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2015/l0/00031001.px?tip=AM",
     "2016": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2016/l0/00031001.px?tip=AM",
     "2017": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2017/l0/00031001.px?tip=AM",
-    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00031001.px?tip=AM"
+    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00031001.px?tip=AM",
+    "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00031001.px?tip=AM"
   },
   "poblacion1": {
     "2011": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2011/l0/00031006.px?tip=AM",
@@ -1324,7 +1385,8 @@
     "2015": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2015/l0/00031006.px?tip=AM",
     "2016": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2016/l0/00031006.px?tip=AM",
     "2017": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2017/l0/00031006.px?tip=AM",
-    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00031006.px?tip=AM"
+    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00031006.px?tip=AM",
+    "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00031006.px?tip=AM"
   },
   "censo_1999": {
     "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov31/l0/10007.px?tip=AM",
@@ -1357,7 +1419,8 @@
     "2015": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2015/l0/00032001.px?tip=AM",
     "2016": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2016/l0/00032001.px?tip=AM",
     "2017": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2017/l0/00032001.px?tip=AM",
-    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00032001.px?tip=AM"
+    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00032001.px?tip=AM",
+    "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00032001.px?tip=AM"
   },
   "poblacion1": {
     "2011": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2011/l0/00032006.px?tip=AM",
@@ -1367,7 +1430,8 @@
     "2015": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2015/l0/00032006.px?tip=AM",
     "2016": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2016/l0/00032006.px?tip=AM",
     "2017": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2017/l0/00032006.px?tip=AM",
-    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00032006.px?tip=AM"
+    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00032006.px?tip=AM",
+    "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00032006.px?tip=AM"
   },
   "censo_1999": {
     "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov32/l0/10007.px?tip=AM",
@@ -1400,7 +1464,8 @@
     "2015": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2015/l0/00033001.px?tip=AM",
     "2016": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2016/l0/00033001.px?tip=AM",
     "2017": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2017/l0/00033001.px?tip=AM",
-    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00033001.px?tip=AM"
+    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00033001.px?tip=AM",
+    "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00033001.px?tip=AM"
   },
   "poblacion1": {
     "2011": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2011/l0/00033006.px?tip=AM",
@@ -1410,7 +1475,8 @@
     "2015": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2015/l0/00033006.px?tip=AM",
     "2016": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2016/l0/00033006.px?tip=AM",
     "2017": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2017/l0/00033006.px?tip=AM",
-    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00033006.px?tip=AM"
+    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00033006.px?tip=AM",
+    "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00033006.px?tip=AM"
   },
   "censo_1999": {
     "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov33/l0/10007.px?tip=AM",
@@ -1443,7 +1509,8 @@
     "2015": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2015/l0/00034001.px?tip=AM",
     "2016": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2016/l0/00034001.px?tip=AM",
     "2017": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2017/l0/00034001.px?tip=AM",
-    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00034001.px?tip=AM"
+    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00034001.px?tip=AM",
+    "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00034001.px?tip=AM"
   },
   "poblacion1": {
     "2011": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2011/l0/00034006.px?tip=AM",
@@ -1453,7 +1520,8 @@
     "2015": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2015/l0/00034006.px?tip=AM",
     "2016": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2016/l0/00034006.px?tip=AM",
     "2017": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2017/l0/00034006.px?tip=AM",
-    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00034006.px?tip=AM"
+    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00034006.px?tip=AM",
+    "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00034006.px?tip=AM"
   },
   "censo_1999": {
     "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov34/l0/10007.px?tip=AM",
@@ -1486,7 +1554,8 @@
     "2015": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2015/l0/00035001.px?tip=AM",
     "2016": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2016/l0/00035001.px?tip=AM",
     "2017": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2017/l0/00035001.px?tip=AM",
-    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00035001.px?tip=AM"
+    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00035001.px?tip=AM",
+    "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00035001.px?tip=AM"
   },
   "poblacion1": {
     "2011": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2011/l0/00035006.px?tip=AM",
@@ -1496,7 +1565,8 @@
     "2015": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2015/l0/00035006.px?tip=AM",
     "2016": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2016/l0/00035006.px?tip=AM",
     "2017": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2017/l0/00035006.px?tip=AM",
-    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00035006.px?tip=AM"
+    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00035006.px?tip=AM",
+    "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00035006.px?tip=AM"
   },
   "censo_1999": {
     "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov35/l0/10007.px?tip=AM",
@@ -1529,7 +1599,8 @@
     "2015": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2015/l0/00036001.px?tip=AM",
     "2016": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2016/l0/00036001.px?tip=AM",
     "2017": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2017/l0/00036001.px?tip=AM",
-    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00036001.px?tip=AM"
+    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00036001.px?tip=AM",
+    "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00036001.px?tip=AM"
   },
   "poblacion1": {
     "2011": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2011/l0/00036006.px?tip=AM",
@@ -1539,7 +1610,8 @@
     "2015": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2015/l0/00036006.px?tip=AM",
     "2016": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2016/l0/00036006.px?tip=AM",
     "2017": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2017/l0/00036006.px?tip=AM",
-    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00036006.px?tip=AM"
+    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00036006.px?tip=AM",
+    "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00036006.px?tip=AM"
   },
   "censo_1999": {
     "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov36/l0/10007.px?tip=AM",
@@ -1572,7 +1644,8 @@
     "2015": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2015/l0/00037001.px?tip=AM",
     "2016": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2016/l0/00037001.px?tip=AM",
     "2017": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2017/l0/00037001.px?tip=AM",
-    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00037001.px?tip=AM"
+    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00037001.px?tip=AM",
+    "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00037001.px?tip=AM"
   },
   "poblacion1": {
     "2011": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2011/l0/00037006.px?tip=AM",
@@ -1582,7 +1655,8 @@
     "2015": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2015/l0/00037006.px?tip=AM",
     "2016": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2016/l0/00037006.px?tip=AM",
     "2017": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2017/l0/00037006.px?tip=AM",
-    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00037006.px?tip=AM"
+    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00037006.px?tip=AM",
+    "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00037006.px?tip=AM"
   },
   "censo_1999": {
     "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov37/l0/10007.px?tip=AM",
@@ -1615,7 +1689,8 @@
     "2015": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2015/l0/00038001.px?tip=AM",
     "2016": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2016/l0/00038001.px?tip=AM",
     "2017": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2017/l0/00038001.px?tip=AM",
-    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00038001.px?tip=AM"
+    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00038001.px?tip=AM",
+    "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00038001.px?tip=AM"
   },
   "poblacion1": {
     "2011": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2011/l0/00038006.px?tip=AM",
@@ -1625,7 +1700,8 @@
     "2015": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2015/l0/00038006.px?tip=AM",
     "2016": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2016/l0/00038006.px?tip=AM",
     "2017": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2017/l0/00038006.px?tip=AM",
-    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00038006.px?tip=AM"
+    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00038006.px?tip=AM",
+    "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00038006.px?tip=AM"
   },
   "censo_1999": {
     "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov38/l0/10007.px?tip=AM",
@@ -1658,7 +1734,8 @@
     "2015": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2015/l0/00039001.px?tip=AM",
     "2016": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2016/l0/00039001.px?tip=AM",
     "2017": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2017/l0/00039001.px?tip=AM",
-    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00039001.px?tip=AM"
+    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00039001.px?tip=AM",
+    "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00039001.px?tip=AM"
   },
   "poblacion1": {
     "2011": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2011/l0/00039006.px?tip=AM",
@@ -1668,7 +1745,8 @@
     "2015": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2015/l0/00039006.px?tip=AM",
     "2016": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2016/l0/00039006.px?tip=AM",
     "2017": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2017/l0/00039006.px?tip=AM",
-    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00039006.px?tip=AM"
+    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00039006.px?tip=AM",
+    "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00039006.px?tip=AM"
   },
   "censo_1999": {
     "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov39/l0/10007.px?tip=AM",
@@ -1701,7 +1779,8 @@
     "2015": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2015/l0/00040001.px?tip=AM",
     "2016": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2016/l0/00040001.px?tip=AM",
     "2017": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2017/l0/00040001.px?tip=AM",
-    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00040001.px?tip=AM"
+    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00040001.px?tip=AM",
+    "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00040001.px?tip=AM"
   },
   "poblacion1": {
     "2011": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2011/l0/00040006.px?tip=AM",
@@ -1711,7 +1790,8 @@
     "2015": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2015/l0/00040006.px?tip=AM",
     "2016": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2016/l0/00040006.px?tip=AM",
     "2017": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2017/l0/00040006.px?tip=AM",
-    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00040006.px?tip=AM"
+    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00040006.px?tip=AM",
+    "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00040006.px?tip=AM"
   },
   "censo_1999": {
     "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov40/l0/10007.px?tip=AM",
@@ -1744,7 +1824,8 @@
     "2015": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2015/l0/00041001.px?tip=AM",
     "2016": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2016/l0/00041001.px?tip=AM",
     "2017": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2017/l0/00041001.px?tip=AM",
-    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00041001.px?tip=AM"
+    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00041001.px?tip=AM",
+    "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00041001.px?tip=AM"
   },
   "poblacion1": {
     "2011": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2011/l0/00041006.px?tip=AM",
@@ -1754,7 +1835,8 @@
     "2015": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2015/l0/00041006.px?tip=AM",
     "2016": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2016/l0/00041006.px?tip=AM",
     "2017": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2017/l0/00041006.px?tip=AM",
-    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00041006.px?tip=AM"
+    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00041006.px?tip=AM",
+    "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00041006.px?tip=AM"
   },
   "censo_1999": {
     "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov41/l0/10007.px?tip=AM",
@@ -1787,7 +1869,8 @@
     "2015": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2015/l0/00042001.px?tip=AM",
     "2016": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2016/l0/00042001.px?tip=AM",
     "2017": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2017/l0/00042001.px?tip=AM",
-    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00042001.px?tip=AM"
+    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00042001.px?tip=AM",
+    "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00042001.px?tip=AM"
   },
   "poblacion1": {
     "2011": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2011/l0/00042006.px?tip=AM",
@@ -1797,7 +1880,8 @@
     "2015": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2015/l0/00042006.px?tip=AM",
     "2016": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2016/l0/00042006.px?tip=AM",
     "2017": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2017/l0/00042006.px?tip=AM",
-    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00042006.px?tip=AM"
+    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00042006.px?tip=AM",
+    "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00042006.px?tip=AM"
   },
   "censo_1999": {
     "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov42/l0/10007.px?tip=AM",
@@ -1830,7 +1914,8 @@
     "2015": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2015/l0/00043001.px?tip=AM",
     "2016": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2016/l0/00043001.px?tip=AM",
     "2017": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2017/l0/00043001.px?tip=AM",
-    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00043001.px?tip=AM"
+    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00043001.px?tip=AM",
+    "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00043001.px?tip=AM"
   },
   "poblacion1": {
     "2011": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2011/l0/00043006.px?tip=AM",
@@ -1840,7 +1925,8 @@
     "2015": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2015/l0/00043006.px?tip=AM",
     "2016": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2016/l0/00043006.px?tip=AM",
     "2017": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2017/l0/00043006.px?tip=AM",
-    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00043006.px?tip=AM"
+    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00043006.px?tip=AM",
+    "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00043006.px?tip=AM"
   },
   "censo_1999": {
     "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov43/l0/10007.px?tip=AM",
@@ -1873,7 +1959,8 @@
     "2015": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2015/l0/00044001.px?tip=AM",
     "2016": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2016/l0/00044001.px?tip=AM",
     "2017": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2017/l0/00044001.px?tip=AM",
-    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00044001.px?tip=AM"
+    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00044001.px?tip=AM",
+    "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00044001.px?tip=AM"
   },
   "poblacion1": {
     "2011": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2011/l0/00044006.px?tip=AM",
@@ -1883,7 +1970,8 @@
     "2015": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2015/l0/00044006.px?tip=AM",
     "2016": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2016/l0/00044006.px?tip=AM",
     "2017": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2017/l0/00044006.px?tip=AM",
-    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00044006.px?tip=AM"
+    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00044006.px?tip=AM",
+    "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00044006.px?tip=AM"
   },
   "censo_1999": {
     "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov44/l0/10007.px?tip=AM",
@@ -1916,7 +2004,8 @@
     "2015": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2015/l0/00045001.px?tip=AM",
     "2016": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2016/l0/00045001.px?tip=AM",
     "2017": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2017/l0/00045001.px?tip=AM",
-    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00045001.px?tip=AM"
+    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00045001.px?tip=AM",
+    "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00045001.px?tip=AM"
   },
   "poblacion1": {
     "2011": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2011/l0/00045006.px?tip=AM",
@@ -1926,7 +2015,8 @@
     "2015": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2015/l0/00045006.px?tip=AM",
     "2016": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2016/l0/00045006.px?tip=AM",
     "2017": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2017/l0/00045006.px?tip=AM",
-    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00045006.px?tip=AM"
+    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00045006.px?tip=AM",
+    "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00045006.px?tip=AM"
   },
   "censo_1999": {
     "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov45/l0/10007.px?tip=AM",
@@ -1959,7 +2049,8 @@
     "2015": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2015/l0/00046001.px?tip=AM",
     "2016": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2016/l0/00046001.px?tip=AM",
     "2017": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2017/l0/00046001.px?tip=AM",
-    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00046001.px?tip=AM"
+    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00046001.px?tip=AM",
+    "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00046001.px?tip=AM"
   },
   "poblacion1": {
     "2011": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2011/l0/00046006.px?tip=AM",
@@ -1969,7 +2060,8 @@
     "2015": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2015/l0/00046006.px?tip=AM",
     "2016": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2016/l0/00046006.px?tip=AM",
     "2017": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2017/l0/00046006.px?tip=AM",
-    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00046006.px?tip=AM"
+    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00046006.px?tip=AM",
+    "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00046006.px?tip=AM"
   },
   "censo_1999": {
     "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov46/l0/10007.px?tip=AM",
@@ -2002,7 +2094,8 @@
     "2015": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2015/l0/00047001.px?tip=AM",
     "2016": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2016/l0/00047001.px?tip=AM",
     "2017": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2017/l0/00047001.px?tip=AM",
-    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00047001.px?tip=AM"
+    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00047001.px?tip=AM",
+    "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00047001.px?tip=AM"
   },
   "poblacion1": {
     "2011": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2011/l0/00047006.px?tip=AM",
@@ -2012,7 +2105,8 @@
     "2015": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2015/l0/00047006.px?tip=AM",
     "2016": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2016/l0/00047006.px?tip=AM",
     "2017": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2017/l0/00047006.px?tip=AM",
-    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00047006.px?tip=AM"
+    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00047006.px?tip=AM",
+    "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00047006.px?tip=AM"
   },
   "censo_1999": {
     "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov47/l0/10007.px?tip=AM",
@@ -2045,7 +2139,8 @@
     "2015": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2015/l0/00048001.px?tip=AM",
     "2016": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2016/l0/00048001.px?tip=AM",
     "2017": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2017/l0/00048001.px?tip=AM",
-    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00048001.px?tip=AM"
+    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00048001.px?tip=AM",
+    "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00048001.px?tip=AM"
   },
   "poblacion1": {
     "2011": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2011/l0/00048006.px?tip=AM",
@@ -2055,7 +2150,8 @@
     "2015": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2015/l0/00048006.px?tip=AM",
     "2016": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2016/l0/00048006.px?tip=AM",
     "2017": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2017/l0/00048006.px?tip=AM",
-    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00048006.px?tip=AM"
+    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00048006.px?tip=AM",
+    "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00048006.px?tip=AM"
   },
   "censo_1999": {
     "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov48/l0/10007.px?tip=AM",
@@ -2088,7 +2184,8 @@
     "2015": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2015/l0/00049001.px?tip=AM",
     "2016": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2016/l0/00049001.px?tip=AM",
     "2017": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2017/l0/00049001.px?tip=AM",
-    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00049001.px?tip=AM"
+    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00049001.px?tip=AM",
+    "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00049001.px?tip=AM"
   },
   "poblacion1": {
     "2011": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2011/l0/00049006.px?tip=AM",
@@ -2098,7 +2195,8 @@
     "2015": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2015/l0/00049006.px?tip=AM",
     "2016": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2016/l0/00049006.px?tip=AM",
     "2017": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2017/l0/00049006.px?tip=AM",
-    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00049006.px?tip=AM"
+    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00049006.px?tip=AM",
+    "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00049006.px?tip=AM"
   },
   "censo_1999": {
     "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov49/l0/10007.px?tip=AM",
@@ -2131,7 +2229,8 @@
     "2015": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2015/l0/00050001.px?tip=AM",
     "2016": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2016/l0/00050001.px?tip=AM",
     "2017": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2017/l0/00050001.px?tip=AM",
-    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00050001.px?tip=AM"
+    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00050001.px?tip=AM",
+    "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00050001.px?tip=AM"
   },
   "poblacion1": {
     "2011": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2011/l0/00050006.px?tip=AM",
@@ -2141,7 +2240,8 @@
     "2015": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2015/l0/00050006.px?tip=AM",
     "2016": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2016/l0/00050006.px?tip=AM",
     "2017": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2017/l0/00050006.px?tip=AM",
-    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00050006.px?tip=AM"
+    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00050006.px?tip=AM",
+    "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00050006.px?tip=AM"
   },
   "censo_1999": {
     "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov50/l0/10007.px?tip=AM",
@@ -2174,7 +2274,8 @@
     "2015": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2015/l0/00051001.px?tip=AM",
     "2016": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2016/l0/00051001.px?tip=AM",
     "2017": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2017/l0/00051001.px?tip=AM",
-    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00051001.px?tip=AM"
+    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00051001.px?tip=AM",
+    "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00051001.px?tip=AM"
   },
   "poblacion1": {
     "2011": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2011/l0/00051006.px?tip=AM",
@@ -2184,7 +2285,8 @@
     "2015": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2015/l0/00051006.px?tip=AM",
     "2016": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2016/l0/00051006.px?tip=AM",
     "2017": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2017/l0/00051006.px?tip=AM",
-    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00051006.px?tip=AM"
+    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00051006.px?tip=AM",
+    "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00051006.px?tip=AM"
   }
 },
 "52": {
@@ -2212,7 +2314,8 @@
     "2015": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2015/l0/00052001.px?tip=AM",
     "2016": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2016/l0/00052001.px?tip=AM",
     "2017": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2017/l0/00052001.px?tip=AM",
-    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00052001.px?tip=AM"
+    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00052001.px?tip=AM",
+    "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00052001.px?tip=AM"
   },
   "poblacion1": {
     "2011": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2011/l0/00052006.px?tip=AM",
@@ -2222,7 +2325,8 @@
     "2015": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2015/l0/00052006.px?tip=AM",
     "2016": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2016/l0/00052006.px?tip=AM",
     "2017": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2017/l0/00052006.px?tip=AM",
-    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00052006.px?tip=AM"
+    "2018": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2018/l0/00052006.px?tip=AM",
+    "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00052006.px?tip=AM"
   }
 },
 "todas": {
@@ -2249,6 +2353,7 @@
   },
   "renta": {
     "aeat": {
+      "2017": "https://www.agenciatributaria.es/AEAT/Contenidos_Comunes/La_Agencia_Tributaria/Estadisticas/Publicaciones/sites/irpfmunicipios/2017/jrubik5c71ccbbf784b68bb03524d7a59879e024c6c9e2.html",
       "2016": "https://www.agenciatributaria.es/AEAT/Contenidos_Comunes/La_Agencia_Tributaria/Estadisticas/Publicaciones/sites/irpfmunicipios/2016/jrubik1ef468a251d390b847ce88908aaafc743028fb8d.html",
       "2015": "https://www.agenciatributaria.es/AEAT/Contenidos_Comunes/La_Agencia_Tributaria/Estadisticas/Publicaciones/sites/irpfmunicipios/2015/jrubik1ba3b6ffb879f0b4654305cde4f7da3038a346e9.html",
       "2014": "https://www.agenciatributaria.es/AEAT/Contenidos_Comunes/La_Agencia_Tributaria/Estadisticas/Publicaciones/sites/irpfmunicipios/2014/jrubik4e93d46e7e85aa3dd4296c3fb35c28a0723d87a0.html",
