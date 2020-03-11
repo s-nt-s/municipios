@@ -1143,7 +1143,10 @@ class Dataset():
         select = soup.select("select")[-1]
         for option in select.findAll("option"):
             if "value" in option.attrs:
-                url = "http://www.ine.es"+option.attrs["value"]
+                url = option.attrs["value"]
+                prot = url.split("://")[0].lower()
+                if prot not in ("ftp", "http", "https"):
+                    url = "http://www.ine.es"+option.attrs["value"]
                 sp = get_bs(url)
                 for s in sp.select(".ocultar"):
                     s.extract()

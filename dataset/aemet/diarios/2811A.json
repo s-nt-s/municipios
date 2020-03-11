@@ -64756,4 +64756,205 @@
   "horaPresMax": 23,
   "presMin": 847.2,
   "horaPresMin": 8
+},{
+  "fecha": "2020-01-20",
+  "prec": 5.3,
+  "presMax": 851.4,
+  "horaPresMax": 0,
+  "presMin": 847.9,
+  "horaPresMin": 16
+},{
+  "fecha": "2020-01-21",
+  "prec": 16.2,
+  "presMax": 849.3,
+  "horaPresMax": 0,
+  "presMin": 843.3,
+  "horaPresMin": 15
+},{
+  "fecha": "2020-01-22",
+  "prec": 8,
+  "presMax": 845.7,
+  "horaPresMax": "Varias",
+  "presMin": 843.6,
+  "horaPresMin": 6
+},{
+  "fecha": "2020-01-23",
+  "prec": 40,
+  "presMax": 846.4,
+  "horaPresMax": "Varias",
+  "presMin": 843.6,
+  "horaPresMin": 5
+},{
+  "fecha": "2020-01-24",
+  "prec": 8.4,
+  "presMax": 847.4,
+  "horaPresMax": 11,
+  "presMin": 845.2,
+  "horaPresMin": 24
+},{
+  "fecha": "2020-01-25",
+  "prec": 1.9,
+  "presMax": 846.4,
+  "horaPresMax": 24,
+  "presMin": 842.6,
+  "horaPresMin": 5
+},{
+  "fecha": "2020-01-26",
+  "prec": 0,
+  "presMax": 852,
+  "horaPresMax": 21,
+  "presMin": 846.3,
+  "horaPresMin": 0
+},{
+  "fecha": "2020-01-27",
+  "prec": 0.1,
+  "presMax": 851.6,
+  "horaPresMax": 1,
+  "presMin": 848.6,
+  "horaPresMin": 16
+},{
+  "fecha": "2020-01-28",
+  "prec": 0.4,
+  "presMax": 852,
+  "horaPresMax": 21,
+  "presMin": 849.2,
+  "horaPresMin": 5
+},{
+  "fecha": "2020-01-29",
+  "prec": 0.1,
+  "presMax": 853,
+  "horaPresMax": 10,
+  "presMin": 850.7,
+  "horaPresMin": 14
+},{
+  "fecha": "2020-01-30",
+  "prec": 0,
+  "presMax": 853.2,
+  "horaPresMax": 22,
+  "presMin": 850.1,
+  "horaPresMin": 7
+},{
+  "fecha": "2020-01-31",
+  "prec": 0.1,
+  "presMax": 853.7,
+  "horaPresMax": 10,
+  "presMin": 851.8,
+  "horaPresMin": 5
+},{
+  "fecha": "2020-02-01",
+  "prec": 0.1,
+  "presMax": 857.6,
+  "horaPresMax": 22,
+  "presMin": 851.8,
+  "horaPresMin": "Varias"
+},{
+  "fecha": "2020-02-02",
+  "prec": 0,
+  "presMax": 860.9,
+  "horaPresMax": 22,
+  "presMin": 856.7,
+  "horaPresMin": 3
+},{
+  "fecha": "2020-02-03",
+  "prec": 0,
+  "presMax": 860.5,
+  "horaPresMax": 0,
+  "presMin": 858.6,
+  "horaPresMin": "Varias"
+},{
+  "fecha": "2020-02-04",
+  "prec": 0,
+  "presMax": 860,
+  "horaPresMax": 0,
+  "presMin": 857,
+  "horaPresMin": 17
+},{
+  "fecha": "2020-02-05",
+  "prec": 0,
+  "presMax": 858.1,
+  "horaPresMax": 0,
+  "presMin": 852.2,
+  "horaPresMin": 16
+},{
+  "fecha": "2020-02-06",
+  "prec": 0,
+  "presMax": 852.3,
+  "horaPresMax": 0,
+  "presMin": 849.6,
+  "horaPresMin": 16
+},{
+  "fecha": "2020-02-07",
+  "prec": 0
+},{
+  "fecha": "2020-02-08",
+  "prec": 0
+},{
+  "fecha": "2020-02-09",
+  "prec": 0
+},{
+  "fecha": "2020-02-10",
+  "prec": 0
+},{
+  "fecha": "2020-02-11",
+  "prec": 0
+},{
+  "fecha": "2020-02-13",
+  "prec": 0
+},{
+  "fecha": "2020-02-14",
+  "prec": 0
+},{
+  "fecha": "2020-02-15",
+  "prec": 0
+},{
+  "fecha": "2020-02-16",
+  "prec": 0
+},{
+  "fecha": "2020-02-17",
+  "prec": 0
+},{
+  "fecha": "2020-02-18",
+  "prec": 0
+},{
+  "fecha": "2020-02-19",
+  "prec": 0
+},{
+  "fecha": "2020-02-20",
+  "prec": 0
+},{
+  "fecha": "2020-02-21",
+  "prec": 0
+},{
+  "fecha": "2020-02-22",
+  "prec": 0
+},{
+  "fecha": "2020-02-23",
+  "prec": 0
+},{
+  "fecha": "2020-02-24",
+  "prec": 0
+},{
+  "fecha": "2020-02-25",
+  "prec": 0
+},{
+  "fecha": "2020-02-26",
+  "prec": 0
+},{
+  "fecha": "2020-02-27",
+  "prec": 0
+},{
+  "fecha": "2020-02-28",
+  "prec": 0
+},{
+  "fecha": "2020-02-29",
+  "prec": 0
+},{
+  "fecha": "2020-03-01",
+  "prec": 0
+},{
+  "fecha": "2020-03-02",
+  "prec": 0
+},{
+  "fecha": "2020-03-03",
+  "prec": 0
 }]

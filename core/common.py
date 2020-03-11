@@ -343,12 +343,12 @@ def get_bs(url, parser='lxml'):
     try:
         r = requests.get(url, verify=False)
     except:
-        logging.critical(url, exc_info=true)
+        logging.critical(url, exc_info=True)
         raise
     soup = BeautifulSoup(r.content, parser)
     for a in soup.findAll("a"):
         href = a.attrs.get("href", None)
-        if href is not None and not href.startswith("#"):
+        if href is not None and not href.startswith("#") and not href.startswith("ftp://"):
             a.attrs["href"] = urljoin(url, href)
     return soup
 

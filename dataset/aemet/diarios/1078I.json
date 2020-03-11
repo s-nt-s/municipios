@@ -109633,4 +109633,123 @@
   "horaPresMax": 22,
   "presMin": 992.7,
   "horaPresMin": 3
+},{
+  "fecha": "2020-02-20",
+  "prec": 0,
+  "dir": 32,
+  "velmedia": 0.3,
+  "racha": 6.4,
+  "horaracha": "14:00"
+},{
+  "fecha": "2020-02-21",
+  "prec": 0.1,
+  "dir": 6,
+  "velmedia": 0.8,
+  "racha": 4.2,
+  "horaracha": "16:10"
+},{
+  "fecha": "2020-02-22",
+  "prec": 0.1,
+  "dir": 33,
+  "velmedia": 0.3,
+  "racha": 5.3,
+  "horaracha": "14:10"
+},{
+  "fecha": "2020-02-23",
+  "prec": 0,
+  "dir": 5,
+  "velmedia": 1.1,
+  "racha": 5.6,
+  "horaracha": "15:10"
+},{
+  "fecha": "2020-02-24",
+  "prec": 0,
+  "dir": 8,
+  "velmedia": 1.1,
+  "racha": 6.1,
+  "horaracha": "13:20"
+},{
+  "fecha": "2020-02-25",
+  "prec": 5.1,
+  "dir": 30,
+  "velmedia": 1.7,
+  "racha": 8.6,
+  "horaracha": "14:40"
+},{
+  "fecha": "2020-02-26",
+  "prec": 3.5,
+  "dir": 30,
+  "velmedia": 2.5,
+  "racha": 10.6,
+  "horaracha": "05:50"
+},{
+  "fecha": "2020-02-27",
+  "prec": 4.7,
+  "dir": 33,
+  "velmedia": 0.8,
+  "racha": 13.6,
+  "horaracha": "15:50"
+},{
+  "fecha": "2020-02-28",
+  "prec": 0,
+  "dir": 11,
+  "velmedia": 1.1,
+  "racha": 8.6,
+  "horaracha": "23:50"
+},{
+  "fecha": "2020-02-29",
+  "prec": 1.2,
+  "dir": 24,
+  "velmedia": 3.3,
+  "racha": 24.2,
+  "horaracha": "05:10"
+},{
+  "fecha": "2020-03-01",
+  "prec": 9.6,
+  "dir": 24,
+  "velmedia": 4.2,
+  "racha": 18.9,
+  "horaracha": "07:10"
+},{
+  "fecha": "2020-03-02",
+  "prec": 8,
+  "dir": 31,
+  "velmedia": 5.8,
+  "racha": 26.1,
+  "horaracha": "08:10"
+},{
+  "fecha": "2020-03-03",
+  "prec": 4.2,
+  "dir": 31,
+  "velmedia": 6.1,
+  "racha": 23.9,
+  "horaracha": "13:40"
+},{
+  "fecha": "2020-03-04",
+  "prec": 1.2,
+  "dir": 26,
+  "velmedia": 0.3,
+  "racha": 12.8,
+  "horaracha": "23:59"
+},{
+  "fecha": "2020-03-05",
+  "prec": 15.4,
+  "dir": 24,
+  "velmedia": 6.9,
+  "racha": 21.4,
+  "horaracha": "05:20"
+},{
+  "fecha": "2020-03-06",
+  "prec": 7.9,
+  "dir": 29,
+  "velmedia": 6.4,
+  "racha": 19.2,
+  "horaracha": "09:10"
+},{
+  "fecha": "2020-03-07",
+  "prec": 1.1,
+  "dir": 32,
+  "velmedia": 1.4,
+  "racha": 10,
+  "horaracha": "01:30"
 }]

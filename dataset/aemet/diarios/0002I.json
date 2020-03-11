@@ -216949,4 +216949,27 @@
   "velmedia": 2.5,
   "racha": 17.2,
   "horaracha": "05:50"
+},{
+  "fecha": "2020-01-20",
+  "tmed": 8.4,
+  "prec": 32.4,
+  "tmin": 6.4,
+  "horatmin": "07:10",
+  "tmax": 10.3,
+  "horatmax": "16:00",
+  "dir": 3,
+  "velmedia": 3.3,
+  "racha": 20.3,
+  "horaracha": "22:00"
+},{
+  "fecha": "2020-01-21",
+  "tmed": 8.9,
+  "tmin": 6.2,
+  "horatmin": "02:10",
+  "tmax": 11.6,
+  "horatmax": "14:00",
+  "dir": 6,
+  "velmedia": 6.4,
+  "racha": 23.3,
+  "horaracha": "13:20"
 }]
