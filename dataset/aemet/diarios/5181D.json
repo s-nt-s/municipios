@@ -91634,4 +91634,76 @@
   "horaPresMax": 12,
   "presMin": 952.4,
   "horaPresMin": 4
+},{
+  "fecha": "2020-03-11",
+  "tmed": 19.4,
+  "prec": 0,
+  "tmin": 8.4,
+  "horatmin": "07:00",
+  "tmax": 30.5,
+  "horatmax": "16:10",
+  "presMax": 951.3,
+  "horaPresMax": 0,
+  "presMin": 948.3,
+  "horaPresMin": 19
+},{
+  "fecha": "2020-03-12",
+  "tmed": 19.7,
+  "prec": 0,
+  "tmin": 11.1,
+  "horatmin": "06:00",
+  "tmax": 28.3,
+  "horatmax": "15:40",
+  "presMax": 948.9,
+  "horaPresMax": 0,
+  "presMin": 944.4,
+  "horaPresMin": 16
+},{
+  "fecha": "2020-03-13",
+  "tmed": 17.8,
+  "prec": 0,
+  "tmin": 10.2,
+  "horatmin": "06:00",
+  "tmax": 25.3,
+  "horatmax": "15:40",
+  "presMax": 945.5,
+  "horaPresMax": 0,
+  "presMin": 942.6,
+  "horaPresMin": 15
+},{
+  "fecha": "2020-03-14",
+  "tmed": 16.2,
+  "prec": 0,
+  "tmin": 9,
+  "horatmin": "06:40",
+  "tmax": 23.4,
+  "horatmax": "16:40",
+  "presMax": 946.3,
+  "horaPresMax": 10,
+  "presMin": 943.4,
+  "horaPresMin": 4
+},{
+  "fecha": "2020-03-15",
+  "tmed": 16,
+  "prec": 13.3,
+  "tmin": 9.7,
+  "horatmin": "05:30",
+  "tmax": 22.4,
+  "horatmax": "14:50",
+  "presMax": 943.5,
+  "horaPresMax": 0,
+  "presMin": 937.9,
+  "horaPresMin": 24
+},{
+  "fecha": "2020-03-16",
+  "tmed": 9.4,
+  "prec": 0.7,
+  "tmin": 4.1,
+  "horatmin": "23:59",
+  "tmax": 14.6,
+  "horatmax": "00:20",
+  "presMax": 940.2,
+  "horaPresMax": 22,
+  "presMin": 935,
+  "horaPresMin": 4
 }]

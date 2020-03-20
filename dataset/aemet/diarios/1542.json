@@ -76387,4 +76387,21 @@
   "horaPresMax": 9,
   "presMin": 853,
   "horaPresMin": 4
+},{
+  "fecha": "2020-03-13",
+  "tmed": 2.8,
+  "prec": 0,
+  "tmin": -0.2,
+  "horatmin": "21:20",
+  "tmax": 5.7,
+  "horatmax": "15:00",
+  "dir": 33,
+  "velmedia": 3.6,
+  "racha": 8.6,
+  "horaracha": "15:10",
+  "sol": 2.7,
+  "presMax": 851.9,
+  "horaPresMax": "Varias",
+  "presMin": 850,
+  "horaPresMin": 17
 }]

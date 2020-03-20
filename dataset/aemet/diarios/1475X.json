@@ -107687,4 +107687,76 @@
   "horatmin": "07:20",
   "tmax": 13.4,
   "horatmax": "Varias"
+},{
+  "fecha": "2020-03-08",
+  "tmed": 11.8,
+  "prec": 0.7,
+  "tmin": 8.2,
+  "horatmin": "23:59",
+  "tmax": 15.4,
+  "horatmax": "15:00"
+},{
+  "fecha": "2020-03-09",
+  "tmed": 10.1,
+  "prec": 0,
+  "tmin": 4.5,
+  "horatmin": "07:00",
+  "tmax": 15.7,
+  "horatmax": "15:00"
+},{
+  "fecha": "2020-03-10",
+  "tmed": 10.6,
+  "prec": 0,
+  "tmin": 7.4,
+  "horatmin": "03:00",
+  "tmax": 13.9,
+  "horatmax": "16:20"
+},{
+  "fecha": "2020-03-11",
+  "tmed": 14.1,
+  "prec": 0.1,
+  "tmin": 10.2,
+  "horatmin": "23:59",
+  "tmax": 18,
+  "horatmax": "14:10"
+},{
+  "fecha": "2020-03-12",
+  "tmed": 10.6,
+  "prec": 0,
+  "tmin": 7.4,
+  "horatmin": "23:59",
+  "tmax": 13.8,
+  "horatmax": "11:40"
+},{
+  "fecha": "2020-03-13",
+  "tmed": 10.6,
+  "prec": 0,
+  "tmin": 7.1,
+  "horatmin": "23:59",
+  "tmax": 14,
+  "horatmax": "16:00"
+},{
+  "fecha": "2020-03-14",
+  "tmed": 11,
+  "prec": 0,
+  "tmin": 4,
+  "horatmin": "07:00",
+  "tmax": 18,
+  "horatmax": "16:00"
+},{
+  "fecha": "2020-03-15",
+  "tmed": 7.6,
+  "prec": 9.5,
+  "tmin": 4.5,
+  "horatmin": "23:59",
+  "tmax": 10.7,
+  "horatmax": "10:00"
+},{
+  "fecha": "2020-03-16",
+  "tmed": 8,
+  "prec": 1.5,
+  "tmin": 3.8,
+  "horatmin": "04:00",
+  "tmax": 12.1,
+  "horatmax": "14:00"
 }]

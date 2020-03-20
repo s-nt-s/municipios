@@ -1140,30 +1140,33 @@ class Dataset():
 
         data = {}
         soup = get_bs(self.fuentes.ine.agrario.year[1999])
-        select = soup.select("select")[-1]
-        for option in select.findAll("option"):
-            if "value" in option.attrs:
-                url = option.attrs["value"]
-                prot = url.split("://")[0].lower()
-                if prot not in ("ftp", "http", "https"):
-                    url = "http://www.ine.es"+option.attrs["value"]
-                sp = get_bs(url)
-                for s in sp.select(".ocultar"):
-                    s.extract()
-                for li in sp.findAll("li"):
-                    if re.search(r"^\d+\.-\s+Resultados municipales", li.get_text().strip()):
-                        a1 = li.find(
-                            "a", text="Superficie agrícola utilizada de las explotaciones según regimen de tenencia (Ha.)")
-                        a2 = li.find(
-                            "a", text="Explotaciones, parcelas, unidades ganaderas (UG) y unidades trabajo-año (UTA)")
-                        a1 = a1.attrs["href"]
-                        a2 = a2.attrs["href"]
-                        _a1 = wstempus(a1)  # if a1 else None
-                        _a2 = wstempus(a2)  # if a2 else None
-                        js = get_js(_a1)
-                        js = get_js(_a2)
-                        cod = js[0]["MetaData"][0]["Codigo"][0:2]
-                        data[cod] = (url, _a1, _a2, a1, a2)
+        cens = soup.find("span", text="Censo Agrario 1999")
+        if cens:
+            soup = cens.find_parent("section")
+        for option in soup.select("select option[value]"):
+            url = option.attrs["value"]
+            prot = url.split("://")[0].lower()
+            if prot not in ("ftp", "http", "https"):
+                url = "http://www.ine.es"+option.attrs["value"]
+            if "/dynt3/inebase/" not in url or "/prov" not in url:
+                continue
+            sp = get_bs(url)
+            for s in sp.select(".ocultar"):
+                s.extract()
+            for li in sp.findAll("li"):
+                if re.search(r"^\d+\.-\s+Resultados municipales", li.get_text().strip()):
+                    a1 = li.find(
+                        "a", text="Superficie agrícola utilizada de las explotaciones según regimen de tenencia (Ha.)")
+                    a2 = li.find(
+                        "a", text="Explotaciones, parcelas, unidades ganaderas (UG) y unidades trabajo-año (UTA)")
+                    a1 = a1.attrs["href"]
+                    a2 = a2.attrs["href"]
+                    _a1 = wstempus(a1)  # if a1 else None
+                    _a2 = wstempus(a2)  # if a2 else None
+                    js = get_js(_a1)
+                    js = get_js(_a2)
+                    cod = js[0]["MetaData"][0]["Codigo"][0:2]
+                    data[cod] = (url, _a1, _a2, a1, a2)
         for cod, dt in sorted(data.items()):
             url, _a1, _a2, a1, a2 = dt
             self.core[cod].censo_1999 = {

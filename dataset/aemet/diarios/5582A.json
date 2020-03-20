@@ -90209,4 +90209,19 @@
   "horaPresMax": 0,
   "presMin": 951.6,
   "horaPresMin": "Varias"
+},{
+  "fecha": "2020-03-15",
+  "tmed": 14.2,
+  "tmin": 9.4,
+  "horatmin": "05:10",
+  "tmax": 18.9,
+  "horatmax": "14:50",
+  "dir": 10,
+  "velmedia": 1.7,
+  "racha": 7.8,
+  "horaracha": "15:40",
+  "presMax": 949.1,
+  "horaPresMax": 0,
+  "presMin": 944.6,
+  "horaPresMin": 19
 }]
