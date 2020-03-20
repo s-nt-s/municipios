@@ -1092,12 +1092,16 @@ class Dataset():
             r"\s*(:|-)?\s*(Datos municipales|Población por municipios y sexo|Población por sexo, municipios y edad \(?grupos quinquenales\)?|Población por sexo, municipio y grupo quinquenal de edad)\.?\s*$")
         self.core = get_provincias()
         self.core.todas = Bunch()
+
+        logging.info("== población por sexo ==")
+        logging.info(self.fuentes.ine.poblacion.sexo)
         soup = get_bs(self.fuentes.ine.poblacion.sexo)
         years = set()
         data = []
         for i in soup.select("ol.ListadoTablas li"):
             _, _id = i.attrs["id"].split("_")
             url = "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/%s?tip=AM" % _id
+            logging.info("  " + url)
             js = get_js(url)
             meta = js[0]["MetaData"][0]
             self.core[meta["Codigo"]].poblacion = url
@@ -1105,9 +1109,11 @@ class Dataset():
             self.core[meta["Codigo"]].poblacion1 = {}
             data.append((meta["Codigo"], meta["Nombre"], url))
 
+        logging.info("== población por edad ==")
         data = {}
         for y in self.years_poblacion:
             url = self.fuentes.ine.poblacion.edad_year + str(y)
+            logging.info("  "+url)
             soup = get_bs(url)
             for s in soup.select(".ocultar"):
                 s.extract()
@@ -1135,9 +1141,13 @@ class Dataset():
                     url = wstempus(a.attrs["href"])
                     self.core[c].poblacion1[y] = url
 
+        logging.info("== empresas ==")
         self.core.todas.empresas = self.fuentes.ine.empresas.csv
+        logging.info("== censo 2009 ==")
         self.core.todas.censo_2009 = self.fuentes.ine.agrario.year[2009].local
 
+        logging.info("== censo 1999 ==")
+        logging.info(self.fuentes.ine.agrario.year[1999])
         data = {}
         soup = get_bs(self.fuentes.ine.agrario.year[1999])
         cens = soup.find("span", text="Censo Agrario 1999")
@@ -1150,6 +1160,7 @@ class Dataset():
                 url = "http://www.ine.es"+option.attrs["value"]
             if "/dynt3/inebase/" not in url or "/prov" not in url:
                 continue
+            logging.info("  "+url)
             sp = get_bs(url)
             for s in sp.select(".ocultar"):
                 s.extract()
@@ -1174,10 +1185,13 @@ class Dataset():
                 "unidades": _a2
             }
 
+        logging.info("== nomenclator ==")
         self.core.todas.nomenclator_basico = self.fuentes.fomento.nomenclator.basico
         self.core.todas.nomenclator = self.fuentes.fomento.nomenclator.municipios
         self.core.todas.limites = self.fuentes.fomento.mapa
 
+        logging.info("== paro ==")
+        logging.info(self.fuentes.sepe.json)
         self.core.todas.paro_sepe = {}
         js = get_js(self.fuentes.sepe.json)
         data = {}
@@ -1187,8 +1201,11 @@ class Dataset():
                 _, year, _ = url.rsplit("_", 2)
                 year = int(year)
                 data[year] = url
+                logging.info("  "+url)
                 self.core.todas.paro_sepe[year] = url
 
+        logging.info("== renta ==")
+        logging.info(self.fuentes.renta.aeat.root)
         self.core.todas.renta = {}
         soup = get_bs(self.fuentes.renta.aeat.root)
         for n in soup.select("div.contenido li strong"):
@@ -1207,9 +1224,11 @@ class Dataset():
             aeat = self.core.todas.renta.get("aeat", {})
             aeat[year] = a
             self.core.todas.renta["aeat"] = aeat
+            logging.info("  "+a)
 
         self.core.todas.renta["euskadi"] = self.fuentes.renta.euskadi.csv
 
+        logging.info(self.fuentes.renta.navarra)
         self.core.todas.renta["navarra"] = {}
         soup = get_bs(self.fuentes.renta.navarra)
         for li in soup.select("#cuerpo li > ul > li"):
@@ -1218,13 +1237,18 @@ class Dataset():
                 y = int(y)
                 a = li.find("a", attrs={"title": "Municipios"})
                 if a:
-                    self.core.todas.renta["navarra"][y] = a.attrs["href"]
+                    navarra = a.attrs["href"]
+                    self.core.todas.renta["navarra"][y] = navarra
+                    logging.info("  "+navarra)
 
+        logging.info("== miteco ==")
+        logging.info(self.fuentes.miteco.root)
         provs = []
         soup = get_bs(self.fuentes.miteco.root)
         for a in soup.select("map area"):
             url = a.attrs.get("href", None)
             if url and url.startswith("http"):
+                logging.info("  "+url)
                 s = get_bs(url)
                 for tr in s.select("div.panel tr"):
                     tds = tr.findAll("td")
@@ -1236,6 +1260,7 @@ class Dataset():
                             cod = a.get_text().strip().split("_")[
                                 1].split(".")[0]
                             provs.append((cod.strip(), p, z))
+                            logging.info("    "+z)
         for cod, p, z in sorted(provs):
             nombre = self.core[cod].nombre
             self.core[cod].miteco = z

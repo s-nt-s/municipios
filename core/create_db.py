@@ -151,7 +151,7 @@ def create_db(salida):
     os.chdir(wks_dir)
     logging.info("cd "+wks_dir)
     dataset = Dataset()
-    #dataset.collect()
+    dataset.collect()
     dataset.unzip()
     db = DBshp(salida, parse_col=plain_parse_col, reload=True)
     db.execute("sql/base.sql")
@@ -169,7 +169,7 @@ def create_db(salida):
     dataset.populate_datamun(db)
     completeAemet(db)
     db.save_js("dataset/provinicas.json",
-               sql="select ID, nombre from provincias order by id", mb=47)
+               sql="select ID, nombre from provincias order by id", mb=47, indent=4)
     db.close(vacuum=True)
     return db
     # print(db.zip())
