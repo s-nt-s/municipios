@@ -76404,4 +76404,11 @@
   "horaPresMax": "Varias",
   "presMin": 850,
   "horaPresMin": 17
+},{
+  "fecha": "2020-04-10",
+  "velmedia": 3.3,
+  "sol": 1.2
+},{
+  "fecha": "2020-04-11",
+  "sol": 1.1
 }]

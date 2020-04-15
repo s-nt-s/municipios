@@ -134842,4 +134842,38 @@
   "horaPresMax": 24,
   "presMin": 810.5,
   "horaPresMin": 4
+},{
+  "fecha": "2020-03-28",
+  "tmed": 3.3,
+  "prec": 0,
+  "tmin": -1.2,
+  "horatmin": "00:50",
+  "tmax": 7.8,
+  "horatmax": "12:10",
+  "dir": 21,
+  "velmedia": 4.2,
+  "racha": 11.4,
+  "horaracha": "03:50",
+  "sol": 6,
+  "presMax": 821.3,
+  "horaPresMax": "Varias",
+  "presMin": 816.6,
+  "horaPresMin": 0
+},{
+  "fecha": "2020-03-29",
+  "tmed": 4.4,
+  "prec": 0,
+  "tmin": -0.8,
+  "horatmin": "23:59",
+  "tmax": 9.7,
+  "horatmax": "14:40",
+  "dir": 1,
+  "velmedia": 3.9,
+  "racha": 10,
+  "horaracha": "14:30",
+  "sol": 8,
+  "presMax": 821.3,
+  "horaPresMax": 0,
+  "presMin": 817.5,
+  "horaPresMin": 24
 }]
