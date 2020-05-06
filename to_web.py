@@ -11,8 +11,6 @@ from core.db import DBshp, plain_parse_col
 parser = argparse.ArgumentParser("Crea base de datos de municipios")
 parser.add_argument('--verbose', '-v', action='count',
                     help="Nivel de depuración", default=int(os.environ.get("DEBUG_LEVEL", 0)))
-parser.add_argument('--solojs', action='store_true',
-                    help="Solo generar los js")
 parser.add_argument('datos', nargs='?',
                     help='Nombre de la base de datos de consulta', default="dataset/municipios.db")
 args = parser.parse_args()
