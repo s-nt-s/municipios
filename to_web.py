@@ -13,8 +13,8 @@ parser.add_argument('--verbose', '-v', action='count',
                     help="Nivel de depuración", default=int(os.environ.get("DEBUG_LEVEL", 0)))
 parser.add_argument('--solojs', action='store_true',
                     help="Solo generar los js")
-parser.add_argument('salida', nargs='?',
-                    help='Nombre de la base de datos de salida', default="dataset/municipios.db")
+parser.add_argument('datos', nargs='?',
+                    help='Nombre de la base de datos de consulta', default="dataset/municipios.db")
 args = parser.parse_args()
 
 levels = [logging.WARNING, logging.INFO, logging.DEBUG]
@@ -40,7 +40,7 @@ def create_script(db, t):
                t+" order by nombre, id", indent=None, parse_result=parse_result)
 
 os.makedirs("dataset/geo", exist_ok=True)
-db = DBshp(args.salida, parse_col=plain_parse_col)
+db = DBshp(args.datos, parse_col=plain_parse_col)
 create_script(db, "provincias")
 create_script(db, "municipios")
 db.close()
