@@ -36,15 +36,9 @@ def save_js(file, *datas, indent=2, **kargv):
 
 
 class Aemet:
-    def __init__(self, key=None, log=logging.INFO):
-        if isinstance(log, int):
-            logging.basicConfig(level=log,
-                                format='%(asctime)s - %(levelname)s - %(message)s')
-            self.log = logging.getLogger(type(self).__name__)
-        else:
-            self.log = log
+    def __init__(self, key=None):
         if key is None:
-            self.log.warning(
+            logging.warning(
                 "No se ha facilitado api key, por lo tanto solo estaran disponibles los endpoints xml")
         self.key = key
         self.now = datetime.now()
@@ -56,7 +50,7 @@ class Aemet:
             s = float(s)
         except Exception as e:
             if label:
-                self.log.critical(label+" = "+str(v) +
+                logging.critical(label+" = "+str(v) +
                                   " no es un float", exc_info=True)
             return None
         if s == int(s):
@@ -105,7 +99,7 @@ class Aemet:
             if intentos < 4:
                 time.sleep(61)
                 return self._get(url, url_debug=url_debug, intentos=intentos+1)
-            self.log.critical("GET "+(url_debug or url) +
+            logging.critical("GET "+(url_debug or url) +
                               " > "+str(e), exc_info=True)
             return None
 
@@ -116,7 +110,7 @@ class Aemet:
         try:
             j = r.json()
         except Exception as e:
-            self.log.critical("GET "+url+" > "+str(r.text) +
+            logging.critical("GET "+url+" > "+str(r.text) +
                               " > "+str(e), exc_info=True)
             return None
         url_datos = j.get('datos')
@@ -125,17 +119,17 @@ class Aemet:
             if estado == 429:
                 time.sleep(61)
                 return self.get_json(url)
-            self.log.critical("GET "+url+" > "+str(j), exc_info=True)
+            logging.critical("GET "+url+" > "+str(j), exc_info=True)
             return None
         try:
             r = requests.get(url_datos)
         except Exception as e:
-            self.log.critical("GET "+url_datos+" > "+str(e), exc_info=True)
+            logging.critical("GET "+url_datos+" > "+str(e), exc_info=True)
             return None
         try:
             j = r.json()
         except Exception as e:
-            self.log.critical("GET "+url_datos+" > " +
+            logging.critical("GET "+url_datos+" > " +
                               str(r.text)+" > "+str(e), exc_info=True)
             return None
         return j
@@ -156,7 +150,7 @@ class Aemet:
             with open(name, "w") as f:
                 f.write(r.text)
         except Exception as e:
-            self.log.critical("GET "+url+" > "+str(r.text) +
+            logging.critical("GET "+url+" > "+str(r.text) +
                               " > "+str(e), exc_info=True)
             return None
         return soup
@@ -169,7 +163,7 @@ class Aemet:
         provs = re.findall(r"<ID>\s*id(.+?)\s*</ID>",
                            r.text, flags=re.IGNORECASE)
         if len(provs) == 0:
-            self.log.critical("GET "+url+" > "+str(r.text))
+            logging.critical("GET "+url+" > "+str(r.text))
         return sorted(set(provs))
 
     def get_prediccion_semanal(self, *provincias, key_total=None):
@@ -214,12 +208,12 @@ class Aemet:
                     d = {k: v for k, v in dict(d).items() if k in keys}
                     dt_mun.append(d)
                 if len(dt_mun) == 0:
-                    self.log.critical("GET "+url+" > "+str(j))
+                    logging.critical("GET "+url+" > "+str(j))
                     continue
                 dt_prov.append(self._meanDict(
                     keys, dt_mun, desviacion=desviacion))
             if len(dt_prov) == 0:
-                self.log.debug("get_prediccion_provincia : len(dt_prov)==0")
+                logging.debug("get_prediccion_provincia : len(dt_prov)==0")
                 continue
             if len(dt_prov) == 1:
                 data = dt_prov[0]
