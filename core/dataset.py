@@ -1285,5 +1285,7 @@ for name in dir(Dataset):
 
 
 if __name__ == "__main__":
-    d = Dataset(reload=["dataset/poblacion/edades.json"])
-    d.create_edades()
+    logging.basicConfig(
+        level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
+    d = Dataset()
+    d.collect()
