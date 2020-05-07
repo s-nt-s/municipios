@@ -23,6 +23,7 @@ me = os.path.realpath(__file__)
 dr = os.path.dirname(me)
 re_nb = re.compile(r"(\d+)")
 re_ft = re.compile(r"^-?\d+(,\d+)?$")
+re_prov = re.compile(r"/prov(\d\d)/")
 
 cYear = datetime.now().year
 
@@ -1174,9 +1175,13 @@ class Dataset():
                     a2 = a2.attrs["href"]
                     _a1 = wstempus(a1)  # if a1 else None
                     _a2 = wstempus(a2)  # if a2 else None
-                    js = get_js(_a1)
-                    js = get_js(_a2)
-                    cod = js[0]["MetaData"][0]["Codigo"][0:2]
+                    m = re_prov.search(_a2)
+                    if m:
+                        cod = m.group(1)
+                    else:
+                        js = get_js(_a1)
+                        js = get_js(_a2)
+                        cod = js[0]["MetaData"][0]["Codigo"][0:2]
                     data[cod] = (url, _a1, _a2, a1, a2)
         for cod, dt in sorted(data.items()):
             url, _a1, _a2, a1, a2 = dt

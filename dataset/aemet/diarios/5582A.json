@@ -90227,4 +90227,52 @@
 },{
   "fecha": "2020-03-24",
   "prec": 0.1
+},{
+  "fecha": "2020-04-19",
+  "tmed": 17.2,
+  "prec": 0,
+  "tmin": 13.9,
+  "horatmin": "Varias",
+  "tmax": 20.5,
+  "horatmax": "14:40",
+  "dir": 32,
+  "velmedia": 3.3,
+  "racha": 12.2,
+  "horaracha": "17:20",
+  "presMax": 944.1,
+  "horaPresMax": 24,
+  "presMin": 939.2,
+  "horaPresMin": 16
+},{
+  "fecha": "2020-04-20",
+  "tmed": 11.8,
+  "prec": 5.8,
+  "tmin": 7.4,
+  "horatmin": "21:10",
+  "tmax": 16.1,
+  "horatmax": "13:50",
+  "dir": 28,
+  "velmedia": 3.1,
+  "racha": 14.2,
+  "horaracha": "20:30",
+  "presMax": 945.4,
+  "horaPresMax": 9,
+  "presMin": 938.5,
+  "horaPresMin": 22
+},{
+  "fecha": "2020-04-21",
+  "tmed": 12,
+  "prec": 6.4,
+  "tmin": 7.3,
+  "horatmin": "05:20",
+  "tmax": 16.6,
+  "horatmax": "13:20",
+  "dir": 26,
+  "velmedia": 1.9,
+  "racha": 9.4,
+  "horaracha": "23:20",
+  "presMax": 945.6,
+  "horaPresMax": 24,
+  "presMin": 937.6,
+  "horaPresMin": 16
 }]

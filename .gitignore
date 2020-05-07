@@ -11,6 +11,7 @@ debug/*
 debug.py
 dataset/municipios.7z
 dataset/geo
+dataset/aemet/debug/*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

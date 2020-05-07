@@ -2362,6 +2362,7 @@
     },
     "euskadi": "http://opendata.euskadi.eus/contenidos/estadistica/udalmap_indicador_60/es_def/adjuntos/indicator.csv",
     "navarra": {
+      "2018": "https://administracionelectronica.navarra.es/GN.InstitutoEstadistica.Web/DescargaFichero.aspx?Fichero=\\web\\agregados\\3_sociedad\\31_soc_condiciones_vida\\31_soc_condivida_renta\\2018\\soc_condivida_renta18_municipios_nastat.xls",
       "2017": "https://administracionelectronica.navarra.es/GN.InstitutoEstadistica.Web/DescargaFichero.aspx?Fichero=\\web\\agregados\\3_sociedad\\31_soc_condiciones_vida\\31_soc_condivida_renta\\2017\\soc_condivida_renta17_municipios_ien.xls",
       "2016": "https://administracionelectronica.navarra.es/GN.InstitutoEstadistica.Web/DescargaFichero.aspx?Fichero=\\web\\agregados\\3_sociedad\\31_soc_condiciones_vida\\31_soc_condivida_renta\\2016\\soc_condivida_renta16_municipios_ien.xls",
       "2015": "https://administracionelectronica.navarra.es/GN.InstitutoEstadistica.Web/DescargaFichero.aspx?Fichero=\\web\\agregados\\3_sociedad\\31_soc_condiciones_vida\\31_soc_condivida_renta\\2015\\soc_condivida_renta15_municipios_ien.xls",
