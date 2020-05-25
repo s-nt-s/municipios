@@ -223,6 +223,7 @@ class Aemet:
         if key_total:
             data = self._meanDict(keys, prediccion.values())
             prediccion[key_total] = data
+        prediccion["__timestamp__"] = time.time()
         return prediccion
 
 
