@@ -89824,4 +89824,150 @@
   "velmedia": 3.3,
   "racha": 10,
   "horaracha": "13:50"
+},{
+  "fecha": "2020-05-04",
+  "prec": 0,
+  "dir": 10,
+  "velmedia": 1.9,
+  "racha": 7.5,
+  "horaracha": "09:40"
+},{
+  "fecha": "2020-05-05",
+  "prec": 0,
+  "dir": 7,
+  "velmedia": 4.2,
+  "racha": 14.7,
+  "horaracha": "15:30"
+},{
+  "fecha": "2020-05-06",
+  "dir": 10,
+  "velmedia": 1.1,
+  "racha": 7.8,
+  "horaracha": "17:50"
+},{
+  "fecha": "2020-05-07",
+  "prec": 0,
+  "dir": 9,
+  "velmedia": 2.8,
+  "racha": 9.4,
+  "horaracha": "11:50"
+},{
+  "fecha": "2020-05-08",
+  "prec": 0,
+  "dir": 99,
+  "velmedia": 1.9,
+  "racha": 10.3,
+  "horaracha": "Varias"
+},{
+  "fecha": "2020-05-09",
+  "prec": 0,
+  "dir": 22,
+  "velmedia": 2.2,
+  "racha": 6.1,
+  "horaracha": "15:20"
+},{
+  "fecha": "2020-05-10",
+  "prec": 0,
+  "dir": 22,
+  "velmedia": 3.6,
+  "racha": 6.7,
+  "horaracha": "15:30"
+},{
+  "fecha": "2020-05-11",
+  "prec": 0,
+  "dir": 16,
+  "velmedia": 3.3,
+  "racha": 6.4,
+  "horaracha": "12:10"
+},{
+  "fecha": "2020-05-12",
+  "prec": 0,
+  "dir": 8,
+  "velmedia": 3.6,
+  "racha": 8.1,
+  "horaracha": "16:20"
+},{
+  "fecha": "2020-05-13",
+  "prec": 0,
+  "dir": 20,
+  "velmedia": 3.1,
+  "racha": 6.4,
+  "horaracha": "06:00"
+},{
+  "fecha": "2020-05-14",
+  "prec": 0,
+  "dir": 9,
+  "velmedia": 2.5,
+  "racha": 7.5,
+  "horaracha": "18:20"
+},{
+  "fecha": "2020-05-15",
+  "prec": 0,
+  "dir": 19,
+  "velmedia": 3.3,
+  "racha": 7.2,
+  "horaracha": "17:00"
+},{
+  "fecha": "2020-05-16",
+  "prec": 0,
+  "dir": 7,
+  "velmedia": 4.2,
+  "racha": 12.2,
+  "horaracha": "14:40"
+},{
+  "fecha": "2020-05-17",
+  "prec": 0,
+  "dir": 7,
+  "velmedia": 2.2,
+  "racha": 10.8,
+  "horaracha": "16:20"
+},{
+  "fecha": "2020-05-18",
+  "prec": 0,
+  "dir": 24,
+  "velmedia": 2.2,
+  "racha": 6.4,
+  "horaracha": "13:50"
+},{
+  "fecha": "2020-05-19",
+  "prec": 0,
+  "dir": 19,
+  "velmedia": 2.5,
+  "racha": 6.7,
+  "horaracha": "16:20"
+},{
+  "fecha": "2020-05-20",
+  "prec": 0,
+  "dir": 99,
+  "velmedia": 1.9,
+  "racha": 6.1,
+  "horaracha": "Varias"
+},{
+  "fecha": "2020-05-21",
+  "prec": 0,
+  "dir": 99,
+  "velmedia": 2.2,
+  "racha": 5.8,
+  "horaracha": "Varias"
+},{
+  "fecha": "2020-05-22",
+  "prec": 0,
+  "dir": 24,
+  "velmedia": 2.2,
+  "racha": 5.8,
+  "horaracha": "15:40"
+},{
+  "fecha": "2020-05-23",
+  "prec": 0,
+  "dir": 6,
+  "velmedia": 3.3,
+  "racha": 11.9,
+  "horaracha": "14:00"
+},{
+  "fecha": "2020-05-24",
+  "prec": 0,
+  "dir": 6,
+  "velmedia": 3.1,
+  "racha": 11.1,
+  "horaracha": "12:00"
 }]

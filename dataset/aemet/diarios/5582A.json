@@ -90275,4 +90275,24 @@
   "horaPresMax": 24,
   "presMin": 937.6,
   "horaPresMin": 16
+},{
+  "fecha": "2020-05-21",
+  "prec": 0,
+  "velmedia": 1.9
+},{
+  "fecha": "2020-05-22",
+  "tmed": 26,
+  "prec": 0,
+  "tmin": 18.2,
+  "horatmin": "05:30",
+  "tmax": 33.8,
+  "horatmax": "14:50",
+  "dir": 12,
+  "velmedia": 1.9,
+  "racha": 7.2,
+  "horaracha": "05:20",
+  "presMax": 955.7,
+  "horaPresMax": 24,
+  "presMin": 952.7,
+  "horaPresMin": 17
 }]

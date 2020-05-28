@@ -134370,6 +134370,7 @@
 },{
   "fecha": "2020-02-18",
   "tmed": 0.2,
+  "prec": 0.9,
   "tmin": -2.9,
   "horatmin": "05:40",
   "tmax": 3.3,
@@ -134843,6 +134844,11 @@
   "presMin": 810.5,
   "horaPresMin": 4
 },{
+  "fecha": "2020-03-17",
+  "dir": 15,
+  "racha": 25.8,
+  "horaracha": "75:10"
+},{
   "fecha": "2020-03-28",
   "tmed": 3.3,
   "prec": 0,
@@ -134875,5 +134881,24 @@
   "presMax": 821.3,
   "horaPresMax": 0,
   "presMin": 817.5,
+  "horaPresMin": 24
+},{
+  "fecha": "2020-05-18",
+  "prec": 0
+},{
+  "fecha": "2020-05-19",
+  "tmed": 13.2,
+  "tmin": 8.1,
+  "horatmin": "04:00",
+  "tmax": 18.4,
+  "horatmax": "12:50",
+  "dir": 36,
+  "velmedia": 2.5,
+  "racha": 8.3,
+  "horaracha": "12:40",
+  "sol": 12.2,
+  "presMax": 827.2,
+  "horaPresMax": 0,
+  "presMin": 825.6,
   "horaPresMin": 24
 }]
