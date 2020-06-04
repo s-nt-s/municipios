@@ -1104,7 +1104,7 @@ class Dataset():
             url = "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/%s?tip=AM" % _id
             logging.info("  " + url)
             js = get_js(url)
-            meta = js[0]["MetaData"][0]
+            meta = js[0]["MetaData"][-1]
             self.core[meta["Codigo"]].poblacion = url
             self.core[meta["Codigo"]].poblacion5 = {}
             self.core[meta["Codigo"]].poblacion1 = {}

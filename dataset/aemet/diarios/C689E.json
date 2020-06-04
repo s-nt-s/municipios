@@ -89970,4 +89970,45 @@
   "velmedia": 3.1,
   "racha": 11.1,
   "horaracha": "12:00"
+},{
+  "fecha": "2020-05-25",
+  "prec": 0,
+  "dir": 6,
+  "velmedia": 3.3,
+  "racha": 9.4,
+  "horaracha": "14:00"
+},{
+  "fecha": "2020-05-26",
+  "prec": 0,
+  "dir": 10,
+  "velmedia": 2.5,
+  "racha": 6.9,
+  "horaracha": "16:00"
+},{
+  "fecha": "2020-05-27",
+  "dir": 24,
+  "velmedia": 1.9,
+  "racha": 5.8,
+  "horaracha": "10:10"
+},{
+  "fecha": "2020-05-29",
+  "prec": 0,
+  "dir": 24,
+  "velmedia": 3.6,
+  "racha": 6.4,
+  "horaracha": "13:30"
+},{
+  "fecha": "2020-05-30",
+  "prec": 0,
+  "dir": 9,
+  "velmedia": 3.9,
+  "racha": 6.9,
+  "horaracha": "12:50"
+},{
+  "fecha": "2020-05-31",
+  "prec": 0,
+  "dir": 99,
+  "velmedia": 1.4,
+  "racha": 4.4,
+  "horaracha": "Varias"
 }]

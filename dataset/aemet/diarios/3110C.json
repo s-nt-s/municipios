@@ -116611,4 +116611,37 @@
   "fecha": "2020-05-24",
   "prec": 0,
   "velmedia": 1.4
+},{
+  "fecha": "2020-05-25",
+  "prec": 28.1,
+  "dir": 15,
+  "velmedia": 2.5,
+  "racha": 11.4,
+  "horaracha": "12:50",
+  "presMax": 911.8,
+  "horaPresMax": 22,
+  "presMin": 908.6,
+  "horaPresMin": 17
+},{
+  "fecha": "2020-05-29",
+  "velmedia": 0.8
+},{
+  "fecha": "2020-05-30",
+  "tmed": 18.4,
+  "tmin": 9.4,
+  "horatmin": "05:20",
+  "tmax": 27.5,
+  "horatmax": "14:50",
+  "dir": 29,
+  "velmedia": 1.4,
+  "racha": 6.7,
+  "horaracha": "19:00",
+  "presMax": 902.7,
+  "horaPresMax": 7,
+  "presMin": 899.2,
+  "horaPresMin": 16
+},{
+  "fecha": "2020-05-31",
+  "prec": 11.9,
+  "velmedia": 0.8
 }]

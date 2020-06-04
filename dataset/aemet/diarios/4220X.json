@@ -47033,4 +47033,53 @@
   "velmedia": 1.7,
   "racha": 6.4,
   "horaracha": "09:50"
+},{
+  "fecha": "2020-05-25",
+  "prec": 9.8,
+  "dir": 25,
+  "velmedia": 2.2,
+  "racha": 12.8,
+  "horaracha": "17:50"
+},{
+  "fecha": "2020-05-26",
+  "prec": 0,
+  "dir": 20,
+  "velmedia": 2.5,
+  "racha": 2.8,
+  "horaracha": "Varias"
+},{
+  "fecha": "2020-05-27",
+  "prec": 0,
+  "dir": 20,
+  "velmedia": 2.5,
+  "racha": 7.8,
+  "horaracha": "13:30"
+},{
+  "fecha": "2020-05-28",
+  "prec": 0,
+  "dir": 20,
+  "velmedia": 2.5,
+  "racha": 7.8,
+  "horaracha": "18:30"
+},{
+  "fecha": "2020-05-29",
+  "prec": 0,
+  "dir": 20,
+  "velmedia": 2.5,
+  "racha": 7.8,
+  "horaracha": "09:10"
+},{
+  "fecha": "2020-05-30",
+  "prec": 0,
+  "dir": 20,
+  "velmedia": 2.5,
+  "racha": 7.8,
+  "horaracha": "09:50"
+},{
+  "fecha": "2020-05-31",
+  "prec": 0,
+  "dir": 20,
+  "velmedia": 2.5,
+  "racha": 2.8,
+  "horaracha": "Varias"
 }]

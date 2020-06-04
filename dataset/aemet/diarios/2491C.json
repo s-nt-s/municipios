@@ -70128,4 +70128,37 @@
   "horaPresMax": 0,
   "presMin": 813.5,
   "horaPresMin": 4
+},{
+  "fecha": "2020-05-25",
+  "tmed": 14.1,
+  "prec": 0,
+  "tmin": 10.3,
+  "horatmin": "04:50",
+  "tmax": 17.9,
+  "horatmax": "14:00",
+  "dir": 6,
+  "velmedia": 2.8,
+  "racha": 10.8,
+  "horaracha": "20:50",
+  "sol": 5.3,
+  "presMax": 813.7,
+  "horaPresMax": 0,
+  "presMin": 812.2,
+  "horaPresMin": 18
+},{
+  "fecha": "2020-05-26",
+  "tmed": 13.3,
+  "tmin": 9.3,
+  "horatmin": "04:40",
+  "tmax": 17.3,
+  "horatmax": "17:20",
+  "dir": 14,
+  "velmedia": 2.5,
+  "racha": 8.3,
+  "horaracha": "22:00",
+  "sol": 4,
+  "presMax": 813.3,
+  "horaPresMax": 11,
+  "presMin": 812.1,
+  "horaPresMin": 3
 }]
