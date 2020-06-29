@@ -58470,4 +58470,28 @@
   "velmedia": 1.1,
   "racha": 6.4,
   "horaracha": "18:10"
+},{
+  "fecha": "2020-06-01",
+  "tmed": 15.9,
+  "prec": 18.5,
+  "tmin": 8.7,
+  "horatmin": "04:50",
+  "tmax": 23.1,
+  "horatmax": "13:40",
+  "dir": 25,
+  "velmedia": 0.6,
+  "racha": 6.1,
+  "horaracha": "15:10"
+},{
+  "fecha": "2020-06-02",
+  "tmed": 17.1,
+  "prec": 0,
+  "tmin": 9.2,
+  "horatmin": "04:50",
+  "tmax": 25,
+  "horatmax": "12:40",
+  "dir": 25,
+  "velmedia": 1.1,
+  "racha": 6.4,
+  "horaracha": "16:10"
 }]
