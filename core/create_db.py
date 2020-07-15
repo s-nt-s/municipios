@@ -102,9 +102,10 @@ def completeAemet(db):
         if c not in ("BASE", "FECHA", "dir") and not c.startswith("hora"):
             cols.add(c)
             fun = "avg"
-            if c == "prec":
-                fun = "sum"
-            elif c in ("racha", "sol") or "max" in c:
+            #if c == "prec":
+            #    fun = "sum"
+            #el
+            if c in ("racha", "sol") or "max" in c:
                 fun = "max"
             elif "min" in c:
                 fun = "min"
