@@ -42,6 +42,8 @@ class Aemet:
                 "No se ha facilitado api key, por lo tanto solo estaran disponibles los endpoints xml")
         self.key = key
         self.now = datetime.now()
+        self.requests_verify = not(os.environ.get("AVOID_REQUEST_VERIFY") == "true")
+        logging.info("requests_verify = " + str(requests_verify))
 
     def _safe_int(self, s, label=None):
         if s is None or s == "":
@@ -94,7 +96,7 @@ class Aemet:
 
     def _get(self, url, url_debug=None, intentos=0):
         try:
-            return requests.get(url)
+            return requests.get(url, verify=self.requests_verify)
         except Exception as e:
             if intentos < 4:
                 time.sleep(61)
@@ -122,7 +124,7 @@ class Aemet:
             logging.critical("GET "+url+" > "+str(j), exc_info=True)
             return None
         try:
-            r = requests.get(url_datos)
+            r = requests.get(url_datos, verify=self.requests_verify)
         except Exception as e:
             logging.critical("GET "+url_datos+" > "+str(e), exc_info=True)
             return None
