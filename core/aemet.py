@@ -14,6 +14,12 @@ from bunch import Bunch
 from .common import save_js
 
 
+level = int(os.environ.get("DEBUG_LEVEL", "1"))
+levels = [logging.WARNING, logging.INFO, logging.DEBUG]
+level = levels[min(len(levels)-1, level)]
+
+logging.basicConfig(level=level, format='%(asctime)s - %(levelname)s - %(message)s')
+
 def get_txt(soup, slc):
     n = soup.select_one(slc)
     if n is None:
