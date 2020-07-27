@@ -43,7 +43,7 @@ class Aemet:
         self.key = key
         self.now = datetime.now()
         self.requests_verify = not(os.environ.get("AVOID_REQUEST_VERIFY") == "true")
-        logging.info("requests_verify = " + str(requests_verify))
+        logging.info("requests_verify = " + str(self.equests_verify))
 
     def _safe_int(self, s, label=None):
         if s is None or s == "":
