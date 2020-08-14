@@ -205,7 +205,7 @@ class Aemet:
                         vien_rach=get_txt(dia, "racha_max"),
                         temp_maxi=get_txt(dia, "temperatura maxima"),
                         temp_mini=get_txt(dia, "temperatura minima"),
-                        hume_maxi=get_txt(dia, "humedad_relativa minima"),
+                        hume_maxi=get_txt(dia, "humedad_relativa maxima"),
                         hume_mini=get_txt(dia, "humedad_relativa minima"),
                         nieve=get_txt(dia, "cota_nieve_prov"),
                         cielo=get_txt(dia, "estado_cielo"),
