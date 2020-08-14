@@ -209,7 +209,7 @@ class Aemet:
                         hume_mini=get_txt(dia, "humedad_relativa minima"),
                         nieve=get_txt(dia, "cota_nieve_prov"),
                         cielo=get_txt(dia, "estado_cielo"),
-                        stmax=get_txt(dia, "sens_termica minima"),
+                        stmax=get_txt(dia, "sens_termica maxima"),
                         stmin=get_txt(dia, "sens_termica minima"),
                         uvmax=get_txt(dia, "uv_max"),
                     )
