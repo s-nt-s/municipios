@@ -50,6 +50,7 @@ class Aemet:
         self.now = datetime.now()
         self.requests_verify = not(os.environ.get("AVOID_REQUEST_VERIFY") == "true")
         logging.info("requests_verify = " + str(self.requests_verify))
+        self.last_response = None
 
     def _safe_int(self, s, label=None):
         if s is None or s == "":
@@ -102,7 +103,8 @@ class Aemet:
 
     def _get(self, url, url_debug=None, intentos=0):
         try:
-            return requests.get(url, verify=self.requests_verify)
+            self.last_response = requests.get(url, verify=self.requests_verify)
+            return self.last_response
         except Exception as e:
             if intentos < 4:
                 time.sleep(61)
@@ -163,23 +165,39 @@ class Aemet:
             return None
         return soup
 
-    def get_municipios(self, provincia):
-        r = self._get(
-            "https://opendata.aemet.es/centrodedescargas/xml/municipios/loc%02d.xml" % int(provincia))
-        if r is None:
-            return None
-        provs = re.findall(r"<ID>\s*id(.+?)\s*</ID>",
-                           r.text, flags=re.IGNORECASE)
-        if len(provs) == 0:
-            logging.critical("GET "+url+" > "+str(r.text))
-        return sorted(set(provs))
+    def get_provincias(self, source="html"):
+        if source=="html":
+            j = self.get_xml("http://www.aemet.es/es/eltiempo/prediccion/municipios")
+            provincias = set(i.attrs.get("value") for i in j.select("#provincia_selector option"))
+        elif source == "xml":
+            j = self.get_xml("https://opendata.aemet.es/centrodedescargas/xml/provincias.xml")
+            provincias = set(i.get_text().strip()
+                             for i in j.select("provincia id"))
+        return tuple(sorted(i for i in provincias if i not in ("", None)))
+
+    def get_municipios(self, provincia, source="html"):
+        if source=="html":
+            url = "http://www.aemet.es/es/eltiempo/prediccion/municipios?w=t&p={loc:0>2d}".format(loc=int(provincia))
+            r = self.get_xml(url)
+            muns = set()
+            for i in r.select("#localidades_selector option"):
+                i = i.attrs.get("value")
+                if i is not None and "-id" in i:
+                    muns.add(i[-5:])
+        elif source == "xml":
+            url = "https://opendata.aemet.es/centrodedescargas/xml/municipios/loc%02d.xml".format(loc=int(provincia))
+            r = self._get(url)
+            if r is None:
+                return None
+            muns = re.findall(r"<ID>\s*id(.+?)\s*</ID>",
+                               r.text, flags=re.IGNORECASE)
+        if len(muns) == 0:
+            logging.critical("GET "+url+" > "+str(self.last_response.text))
+        return tuple(sorted(set(muns)))
 
     def get_prediccion_semanal(self, *provincias, key_total=None):
         if len(provincias) == 0:
-            j = self.get_xml(
-                "https://opendata.aemet.es/centrodedescargas/xml/provincias.xml")
-            provincias = sorted(set(i.get_text().strip()
-                                    for i in j.select("provincia id")))
+            provincias = self.get_provincias()
         keys = (
             "prec_medi",
             "vien_velm",
