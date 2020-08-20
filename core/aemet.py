@@ -76,9 +76,9 @@ class Aemet:
             if len(values) == 0:
                 d[k] = None
                 continue
-            if k.endswith("min"):
+            if k.endswith("min") or k.endswith("mini"):
                 d[k] = min(values)
-            elif k.endswith("max"):
+            elif k.endswith("max") or k.endswith("maxi"):
                 d[k] = max(values)
             else:
                 d[k] = mean(values)
