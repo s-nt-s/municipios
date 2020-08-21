@@ -113709,4 +113709,20 @@
   "horaPresMax": 0,
   "presMin": 905.4,
   "horaPresMin": 19
+},{
+  "fecha": "2020-06-23",
+  "tmed": 22.8,
+  "prec": 0,
+  "tmin": 12.7,
+  "horatmin": "05:00",
+  "tmax": 33,
+  "horatmax": "16:10",
+  "dir": 29,
+  "velmedia": 1.4,
+  "racha": 10.6,
+  "horaracha": "15:40",
+  "presMax": 906.1,
+  "horaPresMax": 0,
+  "presMin": 900.8,
+  "horaPresMin": 18
 }]

@@ -21,7 +21,7 @@ from
   select
     provincia,
   	FECHA,
-  	sum(prec) prec,
+  	avg(prec) prec,
   	max(presmax) presmax,
   	min(presmin) presmin,
   	max(racha) racha,
