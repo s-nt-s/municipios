@@ -6,7 +6,6 @@ import logging
 import os
 
 from core.common import save_js
-from core.aemet import Aemet
 from core.create_db import create_db
 from core.db import DBshp, plain_parse_col
 
@@ -44,7 +43,3 @@ db = DBshp(args.datos, parse_col=plain_parse_col)
 create_script(db, "provincias")
 create_script(db, "municipios")
 db.close()
-
-#a = Aemet()
-#pre = a.get_prediccion_semanal()
-#save_js("dataset/aemet/prediccion_semanal.json", pre)

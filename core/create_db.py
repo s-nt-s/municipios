@@ -93,56 +93,6 @@ def setKm(db):
     _setKm(db, j1, j2, 500, max_km=700)
 
 
-def completeAemet(db):
-    logging.info("Completando AEMET")
-    db.load_tables()
-    cols = set()
-    create_cols1 = ''
-    for c in db.tables["AEMET_DIA"]:
-        if c not in ("BASE", "FECHA", "dir") and not c.startswith("hora"):
-            cols.add(c)
-            fun = "avg"
-            #if c == "prec":
-            #    fun = "sum"
-            #el
-            if c in ("racha", "sol") or "max" in c:
-                fun = "max"
-            elif "min" in c:
-                fun = "min"
-            create_cols1 = create_cols1+'\n  	{1}({0}) {0},'.format(c, fun)
-    create_cols1 = create_cols1[:-1].strip()
-
-    create_cols2 = ''
-    for c in db.tables["AEMET_MES"]:
-        if c in ("hr", "e", "q_mar"):
-            cols.add(c)
-            fun = "avg"
-            create_cols2 = create_cols2+'\n  	{1}({0}) {0},'.format(c, fun)
-    create_cols2 = create_cols2[:-1].strip()
-    cols = sorted(cols)
-    sql = readfile("sql/aemet_templates/AEMET_DIA_PROV.sql",
-                   create_cols1, create_cols2, ",\n  ".join(cols))
-    db.execute(sql, to_file="sql/AEMET_DIA_PROV.sql")
-
-    create_cols3 = ''
-    create_cols4 = ''
-    for c in cols:
-        create_cols3 = create_cols3+'\n  	{0} REAL,'.format(c)
-        fun = "avg"
-        if c in ("sol", "prec"):
-            func = "sum"
-        elif c in ("racha",) or "max" in c:
-            fun = "max"
-        elif "min" in c:
-            fun = "min"
-        create_cols4 = create_cols4+'\n  	{1}({0}) {0},'.format(c, fun)
-    create_cols3 = create_cols3[:-1].strip()
-    create_cols4 = create_cols4[:-1].strip()
-    sql = readfile("sql/aemet_templates/AEMET_SEMANA_PROV.sql",
-                   create_cols3, ",\n  ".join(cols), create_cols4)
-    db.execute(sql, to_file="sql/AEMET_SEMANA_PROV.sql")
-
-
 def create_db(salida):
     salida = os.path.realpath(salida)
     logging.info("Salida en "+salida)
@@ -168,7 +118,6 @@ def create_db(salida):
         db.execute("sql/distancias/11-complete.sql")
         db.execute("sql/distancias/21-delete.sql")
     dataset.populate_datamun(db)
-    completeAemet(db)
     db.save_js("dataset/provinicas.json",
                sql="select ID, nombre from provincias order by id", mb=47, indent=4)
     db.close(vacuum=True)

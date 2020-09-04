@@ -24,17 +24,6 @@ SELECT CreateSpatialIndex('PROVINCIAS', 'geom');
 SELECT AddGeometryColumn('PROVINCIAS', 'point', 4326, 'POINT', 2);
 SELECT CreateSpatialIndex('PROVINCIAS', 'point');
 
-create table AEMET_BASES (
-  ID TEXT,
-  provincia TEXT,
-  nombre TEXT,
-  indsinop TEXT,
-  PRIMARY KEY (ID),
-  FOREIGN KEY(provincia) REFERENCES PROVINCIAS(ID)
-);
-SELECT AddGeometryColumn('AEMET_BASES', 'point', 4326, 'POINT', 2);
-SELECT CreateSpatialIndex('AEMET_BASES', 'point');
-
 create table CRS_KM (
   crs REAL,
   km INTEGER,

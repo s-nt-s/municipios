@@ -37,7 +37,6 @@ def readfile(file, *args):
 
 re_entero = re.compile(r"^\d+(\.0+)?$")
 re_float = re.compile(r"^\d+\.\d+$")
-aemet_key = readfile("fuentes/aemet.key") or os.environ['AEMET_KEY']
 
 
 def to_num(st, coma=False):
@@ -103,9 +102,6 @@ def zipfile(file, mb=47, delete=False, only_if_bigger=False):
 
 
 def save(file, content):
-    if file.startswith("fuentes/aemet/"):
-        content = content.decode('iso-8859-1')
-        content = str.encode(content)
     dir = os.path.dirname(file)
     os.makedirs(dir, exist_ok=True)
     with open(file, "wb") as f:
@@ -395,15 +391,7 @@ def requests_js(url, intento=0):
 
 
 def _js(url):
-    is_aemet = url.startswith("https://opendata.aemet.es/opendata/api/")
-    if is_aemet and aemet_key not in url and url.endswith("="):
-        url = url + aemet_key
     r, j = requests_js(url)
-    if is_aemet and j.get("estado") == 429:
-        time.sleep(61)
-        return _js(url)
-    if is_aemet and "datos" in j:
-        r, j = requests_js(j["datos"])
     if "status" in j:
         time.sleep(61)
         return _js(url)
@@ -447,8 +435,6 @@ def get_root_file(dom):
         return "ine"
     if dom == "datos.gob.es":
         return "datos_gob"
-    if dom == "opendata.aemet.es":
-        return "aemet"
     return "otros"
 
 
@@ -471,32 +457,17 @@ def get_js(url, reload=False):
     return r.json()
 
 
-re_clima1 = re.compile(
-    r"https://opendata.aemet.es/opendata/api/valores/climatologicos/([^/]+)/datos/fechaini/(\d+)-01-01T00:00:00UTC/fechafin/(\d+)-12-31T23:59:59UTC/estacion/([^/]+)/.*")
-re_clima2 = re.compile(
-    r"https://opendata.aemet.es/opendata/api/valores/climatologicos/([^/]+)/datos/anioini/(\d+)/aniofin/(\d+)/estacion/([^/]+)/.*")
-
-
 def url_to_file(url, ext):
     file = None
     parsed_url = urlparse(url)
     root = get_root_file(parsed_url.netloc) + "/"
 
-    m1 = re_clima1.match(url)
-    m2 = re_clima2.match(url)
-    if m1:
-        tp, ini, fin, id = m1.groups()
-        file = root + "%s/%s/%s-%s.json" % (tp, id, ini, fin)
-    elif m2:
-        tp, ini, fin, id = m2.groups()
-        file = root + "%s/%s/%s.json" % (tp, id, ini)
-    elif url.startswith("https://administracionelectronica.navarra.es/GN.InstitutoEstadistica.Web/DescargaFichero.aspx"):
+    if url.startswith("https://administracionelectronica.navarra.es/GN.InstitutoEstadistica.Web/DescargaFichero.aspx"):
         query = parse_qs(parsed_url.query)
         if query and "Fichero" in query:
             file = root+query["Fichero"][0].replace("\\", "/")
     else:
         for u in (
-            "https://opendata.aemet.es/opendata/api/",
             "https://sede.sepe.gob.es/es/",
             "http://servicios.ine.es/wstempus/js/es/",
             "http://www.ine.es/jaxiT3/files/t/es/",
