@@ -39292,4 +39292,127 @@
   "velmedia": 0.3,
   "racha": 6.7,
   "horaracha": "12:10"
+},{
+  "fecha": "2020-08-18",
+  "tmed": 21,
+  "prec": 0,
+  "tmin": 13.8,
+  "horatmin": "05:50",
+  "tmax": 28.2,
+  "horatmax": "13:20",
+  "dir": 21,
+  "velmedia": 0.6,
+  "racha": 6.1,
+  "horaracha": "12:40"
+},{
+  "fecha": "2020-08-19",
+  "tmed": 25.2,
+  "prec": 0,
+  "tmin": 14.6,
+  "horatmin": "05:00",
+  "tmax": 35.7,
+  "horatmax": "14:50",
+  "dir": 22,
+  "velmedia": 1.1,
+  "racha": 10.8,
+  "horaracha": "14:20"
+},{
+  "fecha": "2020-08-20",
+  "tmed": 25,
+  "prec": 0,
+  "tmin": 13.6,
+  "horatmin": "05:40",
+  "tmax": 36.5,
+  "horatmax": "15:50",
+  "dir": 19,
+  "velmedia": 1.4,
+  "racha": 10.8,
+  "horaracha": "11:40"
+},{
+  "fecha": "2020-08-23",
+  "tmed": 20.1,
+  "prec": 0,
+  "tmin": 15.4,
+  "horatmin": "05:00",
+  "tmax": 24.8,
+  "horatmax": "13:40",
+  "dir": 1,
+  "velmedia": 0.8,
+  "racha": 6.9,
+  "horaracha": "15:30"
+},{
+  "fecha": "2020-08-24",
+  "tmed": 19.6,
+  "prec": 0,
+  "tmin": 13.1,
+  "horatmin": "23:59",
+  "tmax": 26.2,
+  "horatmax": "14:20",
+  "dir": 7,
+  "velmedia": 0.8,
+  "racha": 5.6,
+  "horaracha": "11:10"
+},{
+  "fecha": "2020-08-25",
+  "tmed": 21.6,
+  "prec": 0,
+  "tmin": 11.6,
+  "horatmin": "Varias",
+  "tmax": 31.7,
+  "horatmax": "11:40",
+  "dir": 8,
+  "velmedia": 0.6,
+  "racha": 7.2,
+  "horaracha": "12:30"
+},{
+  "fecha": "2020-08-26",
+  "tmed": 20.6,
+  "prec": 0,
+  "tmin": 14.7,
+  "horatmin": "05:40",
+  "tmax": 26.5,
+  "horatmax": "11:50",
+  "dir": 1,
+  "velmedia": 1.1,
+  "racha": 4.7,
+  "horaracha": "15:40"
+},{
+  "fecha": "2020-08-27",
+  "tmed": 24.2,
+  "prec": 1.6,
+  "tmin": 17.6,
+  "horatmin": "00:10",
+  "tmax": 30.9,
+  "horatmax": "13:20",
+  "dir": 2,
+  "velmedia": 0.6,
+  "racha": 7.5,
+  "horaracha": "14:00"
+},{
+  "fecha": "2020-08-28",
+  "tmed": 17,
+  "prec": 6.7,
+  "tmin": 14.5,
+  "horatmin": "23:59",
+  "tmax": 19.4,
+  "horatmax": "04:20",
+  "dir": 99,
+  "velmedia": 0.6,
+  "racha": 2.8,
+  "horaracha": "Varias"
+},{
+  "fecha": "2020-08-29",
+  "prec": 55.5,
+  "dir": 32,
+  "velmedia": 0.3,
+  "racha": 8.9,
+  "horaracha": "22:00"
+},{
+  "fecha": "2020-08-30",
+  "prec": 4.1,
+  "velmedia": 1.1
+},{
+  "fecha": "2020-08-31",
+  "prec": 0,
+  "velmedia": 0.6
 }]
