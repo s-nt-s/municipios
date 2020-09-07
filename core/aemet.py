@@ -231,6 +231,14 @@ class Aemet:
                         stmin=get_txt(dia, "sens_termica minima"),
                         uvmax=get_txt(dia, "uv_max"),
                     )
+                    # pasar de km/h a m/s
+                    if d.vien_rach is not None:
+                        d.vien_rach = float(d.vien_rach) * (10/36)
+                    if d.vien_velm is not None:
+                        d.vien_velm = float(d.vien_velm) * (10/36)
+                        if d.vien_rach is None:
+                            # Extrapolar racha en base velocidad media
+                            d.vien_rach = (d.vien_velm*1.043)+9.045
                     d = {k: v for k, v in dict(d).items() if k in keys}
                     dt_mun.append(d)
                 if len(dt_mun) == 0:
