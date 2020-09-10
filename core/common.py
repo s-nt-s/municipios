@@ -101,10 +101,10 @@ def zipfile(file, mb=47, delete=False, only_if_bigger=False):
     return size(*files)
 
 
-def save(file, content):
+def save(file, content, mode="wb"):
     dir = os.path.dirname(file)
     os.makedirs(dir, exist_ok=True)
-    with open(file, "wb") as f:
+    with open(file, mode) as f:
         f.write(content)
 
 

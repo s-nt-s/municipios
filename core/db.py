@@ -482,6 +482,14 @@ class DBLite:
             self.insert(table, **r)
         self.commit()
 
+    def to_list(self, *args, **kargv):
+        rows=[]
+        for r in self.select(*args, **kargv):
+            if isinstance(r, tuple) and len(r)==1:
+                r = r[0]
+            rows.append(r)
+        return rows
+
 
 class DBshp(DBLite):
     def __init__(self, *args, srid=4326, **kargv):

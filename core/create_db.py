@@ -4,10 +4,11 @@ from pathlib import Path
 
 from scipy.interpolate import interp1d
 
-from .common import readfile, readlines, zipfile
+from .common import readfile, readlines, zipfile, save
 from .dataset import Dataset
-from .db import DBshp, plain_parse_col
+from .db import DBshp, plain_parse_col, one_factory
 from .jfile import jFile
+from datetime import date
 
 
 def insert(db, table, shps):
@@ -111,15 +112,26 @@ def create_db(salida):
     insert(db, "municipios", dataset.municipios)
     db.execute("sql/provmun.sql")
     setKm(db)
-    if False:
-        db.execute("sql/distancias/01-create.sql")
-        load_csv(db, "dst_provincias", "sql/distancias/02-insert.sql")
-        load_csv(db, "dst_municipios", "sql/distancias/03-insert.sql")
-        db.execute("sql/distancias/11-complete.sql")
-        db.execute("sql/distancias/21-delete.sql")
     dataset.populate_datamun(db)
     db.save_js("dataset/provinicas.json",
                sql="select ID, nombre from provincias order by id", mb=47, indent=4)
+    counts = "__fecha__: {:%Y-%m-%d}".format(date.today())
+    for table in db.to_list('''
+        SELECT
+            name
+        FROM
+            sqlite_master
+        WHERE
+            type='table' and
+            name = upper(name) and
+            name!='CAMBIOS' and
+            name not like '%|_%' escape '|'
+        order by
+            name
+    '''):
+        c = db.one("select count(*) from "+table)
+        counts = counts + "\n{}: {}".format(table, c)
+    save("dataset/municipios.yml", counts.rstrip(), mode="w")
     db.close(vacuum=True)
     return db
     # print(db.zip())
