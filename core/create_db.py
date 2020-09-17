@@ -1,14 +1,14 @@
 import logging
 import os
+from datetime import date
 from pathlib import Path
 
 from scipy.interpolate import interp1d
 
-from .common import readfile, readlines, zipfile, save
+from .common import save
 from .dataset import Dataset
-from .db import DBshp, plain_parse_col, one_factory
+from .db import DBshp, plain_parse_col
 from .jfile import jFile
-from datetime import date
 
 
 def insert(db, table, shps):

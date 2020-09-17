@@ -19,7 +19,6 @@ import xlrd
 import yaml
 from bs4 import BeautifulSoup
 from bunch import Bunch
-from unidecode import unidecode
 
 from .mdb_to_sqlite import mdb_to_sqlite
 
@@ -249,12 +248,14 @@ def _parse_cell(c):
         return int(c)
     return c
 
+
 def parse_cell_to_int(c):
     try:
         i = c.replace(".", "")
         return int(i)
     except:
         return _parse_cell(c)
+
 
 def read_csv(file, enconde="utf-8", delimiter=",", parse_cell=None, **kargv):
     if parse_cell is None:
@@ -374,7 +375,7 @@ def requests_js(url, intento=0):
         j = r.json()
         return r, j
     except Exception as e:
-        if intento>0:
+        if intento > 0:
             text = r.text.strip() if r and r.text else None
             status = ("[%s] " % r.status_code) if r else "[XXX] "
             m = re.search(r"<b>(description|descripci.*?n)</b>\s*<u>(.+?)\s*\.?\s*</u>",

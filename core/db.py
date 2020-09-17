@@ -8,12 +8,9 @@ import textwrap
 from datetime import date, datetime, timedelta
 from decimal import Decimal
 
-import shapefile
 import unidecode
-import yaml
 from bunch import Bunch
-from shapely.geometry import MultiPolygon, Point, Polygon, shape
-from shapely.ops import cascaded_union
+from shapely.geometry import MultiPolygon, Point, Polygon
 
 from .common import size, zipfile
 
@@ -22,15 +19,18 @@ re_sp = re.compile(r"\s+")
 re_largefloat = re.compile("(\d+\.\d+e-\d+)")
 re_bl = re.compile(r"\n\s*\n", re.IGNORECASE)
 
+
 def dict_factory(cursor, row):
     d = {}
     for idx, col in enumerate(cursor.description):
         d[col[0]] = row[idx]
     return d
 
+
 def bunch_factory(cursor, row):
     d = dict_factory(cursor, row)
     return Bunch(**d)
+
 
 def one_factory(cursor, row):
     return row[0]
@@ -306,13 +306,13 @@ class DBLite:
 
     def select(self, sql, row_factory=None, **kargv):
         sql = self._build_select(sql)
-        self.con.row_factory=row_factory
+        self.con.row_factory = row_factory
         cursor = self.con.cursor()
         cursor.execute(sql)
         for r in ResultIter(cursor):
             yield r
         cursor.close()
-        self.con.row_factory=None
+        self.con.row_factory = None
 
     def one(self, sql):
         sql = self._build_select(sql)
@@ -322,7 +322,7 @@ class DBLite:
         cursor.close()
         if not r:
             return None
-        if len(r)==1:
+        if len(r) == 1:
             return r[0]
         return r
 
@@ -483,9 +483,9 @@ class DBLite:
         self.commit()
 
     def to_list(self, *args, **kargv):
-        rows=[]
+        rows = []
         for r in self.select(*args, **kargv):
-            if isinstance(r, tuple) and len(r)==1:
+            if isinstance(r, tuple) and len(r) == 1:
                 r = r[0]
             rows.append(r)
         return rows

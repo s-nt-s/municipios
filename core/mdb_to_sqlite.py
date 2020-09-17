@@ -60,7 +60,7 @@ def mdb_to_sqlite(DATABASE, save_sql=False):
 
 
 if __name__ == "__main__":
-    if len(sys.argv)<2:
+    if len(sys.argv) < 2:
         sys.exit("Ha de pasar como parametro la ruta de un fichero")
     f = sys.argv[1]
     if not os.path.isfile(f):

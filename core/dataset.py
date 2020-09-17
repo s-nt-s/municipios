@@ -1,7 +1,7 @@
 import logging
 import os
 import re
-from datetime import date, datetime
+from datetime import datetime
 from functools import lru_cache
 
 import requests
@@ -26,6 +26,7 @@ re_ft = re.compile(r"^-?\d+(,\d+)?$")
 re_prov = re.compile(r"/prov(\d\d)/")
 
 cYear = datetime.now().year
+
 
 def insert_rel_mun(db, table, rows, kSort=None):
     logging.info("Creando "+table)
@@ -473,10 +474,13 @@ class Dataset():
     @JsonCache(file="dataset/economia/empresas.json")
     def create_empresas(self, *arg, old_data=None, **kargv):
         # , enconde='iso-8859-1'
-        empresas = get_csv(self.core.todas["empresas"], delimiter=";", parse_cell=parse_cell_to_int)#, thousands='.', decimal =',')
+        # , thousands='.', decimal =',')
+        empresas = get_csv(
+            self.core.todas["empresas"], delimiter=";", parse_cell=parse_cell_to_int)
         col_empresas = [
             r.replace(",", "") if r != "Total" else "Total empresas" for r in empresas[4] if r]
-        colYears = sorted(set([int(r) for r in empresas[5] if r]), reverse=True)
+        colYears = sorted(
+            set([int(r) for r in empresas[5] if r]), reverse=True)
         l_colYears = len(colYears)
         years = old_data or {}
         for record in empresas:

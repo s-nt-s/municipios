@@ -38,6 +38,7 @@ def create_script(db, t):
     db.save_js(file, sql="select ID, nombre, AsGeoJSON(geom, 4) geom from " +
                t+" order by nombre, id", indent=None, parse_result=parse_result)
 
+
 os.makedirs("dataset/geo", exist_ok=True)
 db = DBshp(args.datos, parse_col=plain_parse_col)
 create_script(db, "provincias")
