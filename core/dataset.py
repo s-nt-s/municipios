@@ -964,12 +964,23 @@ class Dataset():
             _, _id = i.attrs["id"].split("_")
             url = "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/%s?tip=AM" % _id
             logging.info("  " + url)
-            js = get_js(url)
-            meta = js[0]["MetaData"][-1]
-            self.core[meta["Codigo"]].poblacion = url
-            self.core[meta["Codigo"]].poblacion5 = {}
-            self.core[meta["Codigo"]].poblacion1 = {}
-            data.append((meta["Codigo"], meta["Nombre"], url))
+            nombre = i.select_one(".titulo")
+            codigo = None
+            if nombre is not None:
+                nombre = nombre.get_text().strip()
+                nombre = nombre.split(":")[0].strip()
+                cd = set(c[0] for c in TP_PROVINCIAS if c[1]==nombre)
+                if len(cd)==1:
+                    codigo = cd.pop()
+            if nombre is None or codigo is None:
+                js = get_js(url)
+                meta = js[0]["MetaData"][-1]
+                nombre = meta["Nombre"]
+                codigo = meta["Codigo"]
+            self.core[codigo].poblacion = url
+            self.core[codigo].poblacion5 = {}
+            self.core[codigo].poblacion1 = {}
+            data.append((codigo, nombre, url))
 
         logging.info("== población por edad ==")
         data = {}
