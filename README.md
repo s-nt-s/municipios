@@ -32,3 +32,7 @@ hasta el último año completo, de manera de que si estamos a mediados de
 
 Además solo se cargan datos hasta el último año en el que INE haya publicado
 las estadísticas de población.
+
+# Diagrama de las tablas principales de la base de datos SQLite
+
+![Diagrama de las tablas principales de la base de datos SQLite](dataset/municipios.png)
