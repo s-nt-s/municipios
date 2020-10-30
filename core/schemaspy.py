@@ -56,13 +56,20 @@ class SchemasPy:
             schemaspy.sso=true
         ''', overwrite=reload)
 
+        self.write(self.root+"rename.sh", '''
+            #!/bin/bash
+            grep "$1" -l -r $2 | xargs sed -i -e "s|${1}||g"
+        ''', overwrite=True)
+
         name = os.path.basename(file)
         name = name.rsplit(".", 1)[0]
+        db=os.path.realpath(file)
+        out=os.path.realpath(out)
         cmd = "java -jar {root}{schemaspy} -dp {root} -db {db} -o {out} -cat {name} -s {name} -u {name}".format(
             schemaspy=self._jar,
             root=self.root,
-            db=os.path.realpath(file),
-            out=os.path.realpath(out),
+            db=db,
+            out=out,
             name=name,
         )
         for k, v in kargv.items():
@@ -78,9 +85,16 @@ class SchemasPy:
         current_dir = os.getcwd()
         os.chdir(self.root)
         print(cmd)
-        check_call(cmd.split(), stdout=DEVNULL, stderr=STDOUT)
+        self.run(cmd)
+        self.run("bash", "rename.sh", os.path.dirname(db)+"/", out)
         os.chdir(current_dir)
+        print(out+"/index.html")
         return out
+
+    def run(self, *args):
+        if len(args)==1 and " " in args[0]:
+            args = args[0].split()
+        check_call(args, stdout=DEVNULL, stderr=STDOUT)
 
     def save_diagram(self, db, img, size="compact", **kargv):
         out = self.report(db, **kargv)
@@ -99,5 +113,10 @@ if __name__ == "__main__":
         "dataset/municipios.db",
         "dataset/municipios.png",
         size="large",
-        I=".*(spatial|geometry|CAMBIOS|CRS_KMS|AREA_INFLUENCIA).*",
+        I=".*(spatial|geometry|CAMBIOS|CRS_KMS|AREA_INFLUENCIA|idx_|SpatialIndex|sql_statements_log|ElementaryGeometries).*",
     )
+    out = "docs/informe/"
+    if os.path.isdir(out):
+        import shutil
+        shutil.rmtree(out)
+    s.report("dataset/municipios.db", out=out)
