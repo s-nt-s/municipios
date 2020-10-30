@@ -2,9 +2,6 @@ select InitSpatialMetadata(1);
 create table MUNICIPIOS (
   ID TEXT,
   nombre TEXT,
-  cercanias TEXT,
-  cerca TEXT,
-  tipo INTEGER DEFAULT 1,
   PRIMARY KEY (ID)
 );
 

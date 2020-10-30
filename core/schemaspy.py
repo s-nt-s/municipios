@@ -31,7 +31,7 @@ class SchemasPy:
             f.write(dedent(txt).strip())
         return True
 
-    def report(self, file, out=None, **kargv):
+    def report(self, file, *flags, out=None, **kargv):
         # https://github.com/schemaspy/schemaspy/issues/524#issuecomment-496010502
         if self.home is None:
             self.home = tempfile.mkdtemp()
@@ -72,6 +72,8 @@ class SchemasPy:
             out=out,
             name=name,
         )
+        for flag in flags:
+            cmd = cmd +" "+flag
         for k, v in kargv.items():
             if len(k)==1:
                 k = "-"+k
@@ -96,8 +98,8 @@ class SchemasPy:
             args = args[0].split()
         check_call(args, stdout=DEVNULL, stderr=STDOUT)
 
-    def save_diagram(self, db, img, size="compact", **kargv):
-        out = self.report(db, **kargv)
+    def save_diagram(self, db, img, *args, size="compact", **kargv):
+        out = self.report(db, *args, **kargv)
         im = Image.open(out+"/diagrams/summary/relationships.real.{}.png".format(size))
         box = im.getbbox()
         box = list(box)
@@ -112,11 +114,14 @@ if __name__ == "__main__":
     s.save_diagram(
         "dataset/municipios.db",
         "dataset/municipios.png",
-        size="large",
+        "-norows",
+        "-noviews",
+        # size="large",
         I=".*(spatial|geometry|CAMBIOS|CRS_KMS|AREA_INFLUENCIA|idx_|SpatialIndex|sql_statements_log|ElementaryGeometries).*",
     )
-    out = "docs/informe/"
-    if os.path.isdir(out):
-        import shutil
-        shutil.rmtree(out)
-    s.report("dataset/municipios.db", out=out)
+    if False:
+        out = "docs/informe/"
+        if os.path.isdir(out):
+            import shutil
+            shutil.rmtree(out)
+        s.report("dataset/municipios.db", out=out)

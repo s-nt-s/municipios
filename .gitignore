@@ -13,6 +13,7 @@ dataset/municipios.7z
 dataset/geo
 dataset/aemet/debug/*
 *.jar
+_out
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
