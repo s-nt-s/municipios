@@ -27,7 +27,7 @@ para esas fuentes, el municipio original (antes de desgajarse) para que no
 aparezca hasta que también salga en el INE.
 
 Con el mismo animo de facilitar la comparación, solo se cargan datos
-hasta el último año completo, de manera de que si estamos a mediados de
+hasta el último año completo, de manera que si estamos a mediados de
 2019, la base de datos solo tendrá datos hasta final de 2018.
 
 Además solo se cargan datos hasta el último año en el que INE haya publicado
