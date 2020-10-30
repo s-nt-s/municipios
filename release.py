@@ -51,6 +51,7 @@ md.write(dedent('''
 
     * municipios.full.7z base de datos con información Gis (usar con [SpatiaLite](https://live.osgeo.org/es/overview/spatialite_overview.html))
     * municipios.lite.7z base de datos sin información Gis
+    * municipios.mini.7z base de datos sin información Gis ni tabla AREA_INFLUENCIA
 '''))
 md.close()
 
