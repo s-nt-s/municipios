@@ -81,6 +81,7 @@ with open("_out/create.sh", "w") as f:
         #!/bin/bash
         spatialite _out/municipios.db < _out/clean_spatialite.sql
         sed 's/, "geom" MULTIPOLYGON, "point" POINT,/, lat INTEGER, lon INTEGER,/g' -i _out/create.sql
+        sed "s/INSERT INTO \\(MUNICIPIOS\\|PROVINCIAS\\) VALUES(\\([0-9][0-9]*\\),/INSERT INTO \\1 VALUES('\\2',/" -i _out/create.sql
         rm _out/municipios.db
         sqlite3 _out/municipios.db < _out/create.sql
     ''').strip())
