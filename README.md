@@ -58,3 +58,9 @@ una circunferencia de 10km a la redonda desde el centro del municipio
 `A` esta interseca con un 0.12 del área del municipio `B` y un 0.20 del área del municipio `C`,
 de manera que podemos calcular `el paro del área de influencia formado por A y 10km a la redonda`
 como `el paro de A + (0.12 * el paro de B) + (0.20 * el paro de C)`.
+
+La decisión de incluir esta tabla viene de que los cálculos para generarla
+son lentos y por lo tanto he juzgado conveniente que en las (releases)[/releases/latest]
+se proporcione un entregable con estos datos ya incluidos, pero si no te interesan
+y quieres que la ejecución sea más rápida basta con comentar la llamada `setKm(db)`
+en [`create_db.py`](core/create_db.py).
