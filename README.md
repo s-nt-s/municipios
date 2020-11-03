@@ -33,6 +33,26 @@ hasta el último año completo, de manera que si estamos a mediados de
 Además solo se cargan datos hasta el último año en el que INE haya publicado
 las estadísticas de población.
 
-# Diagrama de las tablas principales de la base de datos SQLite
+# Base de datos SQLite
+
+Esta base de datos usa [SpatiaLite](https://www.gaia-gis.it/fossil/libspatialite/index)
+para proporcionar información geográfica.
+
+## Diagrama de las tablas principales de la base de datos SQLite
 
 ![Diagrama de las tablas principales de la base de datos SQLite](dataset/municipios.png)
+
+## ¿Qué es la AREA_INFLUENCIA?
+
+En algunos desarrollos no solo vamos a querer usar los datos de un municipio
+si no también los de sus alrededores. Por ejemplo, podemos querer calcular
+el nivel de vida de un municipio en función del paro y renta, pero no solo
+teniendo en cuenta los valores de dicho municipio, si no también una porción
+de dichos valores en los municipios a 10km a la redonda.
+
+Para facilitar este caso de uso tenemos la tabla `AREA_INFLUENCIA` en la cual
+las tuplas `<A - B - 10 - 0.12>` y `<A - C - 10 - 0.20>` significan que si trazamos
+una circunferencia de 10km a la redonda desde el centro del municipio
+`A` esta interaccionará con un 0.12 del área del municipio `B` y un 0.20 del área del municipio `C`,
+de manera que el paro del `área de influencia formado por A y 10km a la redonda`
+será el paro de `A` + (0.12 * el paro de `B`) + (0.20 * el paro de `C`).
