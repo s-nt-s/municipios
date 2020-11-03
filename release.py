@@ -80,7 +80,7 @@ with open("_out/create.sh", "w") as f:
     f.write(dedent('''
         #!/bin/bash
         spatialite _out/municipios.db < _out/clean_spatialite.sql
-        sed 's/, "geom" MULTIPOLYGON, "point" POINT,/, lat INTEGER, lon INTEGER,/g' -i _out/create.sql
+        sed 's/, "geom" MULTIPOLYGON, "point" POINT,/,\\n  lat INTEGER,\\n  lon INTEGER,/g' -i _out/create.sql
         sed "s/INSERT INTO \\(MUNICIPIOS\\|PROVINCIAS\\) VALUES(\\([0-9][0-9]*\\),/INSERT INTO \\1 VALUES('\\2',/" -i _out/create.sql
         rm _out/municipios.db
         sqlite3 _out/municipios.db < _out/create.sql
@@ -95,7 +95,7 @@ s.save_diagram(
     "-norows",
     "-noviews",
     # size="large",
-    I=".*(spatial|geometry|CAMBIOS|CRS_KMS|AREA_INFLUENCIA|idx_|SpatialIndex|sql_statements_log|ElementaryGeometries).*",
+    I=".*(spatial|geometry|CAMBIOS|CRS_KM|AREA_INFLUENCIA|idx_|SpatialIndex|sql_statements_log|ElementaryGeometries).*",
 )
 db = DBshp("_out/municipios.db")
 db.execute("DROP TABLE AREA_INFLUENCIA")

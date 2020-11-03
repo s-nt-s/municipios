@@ -501,31 +501,6 @@ class Dataset():
                         years[year] = dtY
         return years
 
-    @KmCache(file="dataset/geografia/distancias.txt")
-    def create_distancias(self, *arg, old_data=None, **kargv):
-        dist = {}
-        for dShapes in (self.provincias, self.municipios):
-            items = list(sorted([(k, v[0]) for k, v in dShapes.items()]))
-            while items:
-                a, aShp = items.pop(0)
-                for b, bShp in items:
-                    km = aShp.distance(bShp)
-                    dist[(a, b)] = km
-        return dist
-
-    @lru_cache(maxsize=None)
-    def distancias(self, lcod):
-        distancias = self.create_distancias()
-        for key, km in list(distancias.items()):
-            b, a = key
-            if len(a) != lcod:
-                del distancias[key]
-                continue
-            distancias[(a, b)] = km
-            distancias[(a, a)] = 0
-            distancias[(b, b)] = 0
-        return distancias
-
     @property
     @lru_cache(maxsize=None)
     def provincias(self):
