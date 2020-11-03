@@ -69,7 +69,7 @@ with open("_out/clean_spatialite.sql", "w") as f:
     for t, in db.select('''
         SELECT name FROM sqlite_master WHERE
         type='table' and upper(name)=name and
-        name not in ('PROVINCIAS', 'MUNICIPIOS', 'CRS_KMS')
+        name not in ('PROVINCIAS', 'MUNICIPIOS', 'CRS_KM')
         union
         SELECT name FROM sqlite_master WHERE
         type='view' and upper(name)=name
