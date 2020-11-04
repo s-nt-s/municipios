@@ -7,6 +7,8 @@ from (
   	M.ID, km, ST_Buffer(M.point, crs) area
   from
   	municipios M, CRS_KM
+	where
+		km < 21
 ) A, municipios B
 where
 	A.ID!=B.ID and

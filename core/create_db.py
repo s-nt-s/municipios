@@ -40,6 +40,11 @@ def load_csv(db, table, insert):
 
 def _setKm(db, j1, j2, min_km, max_km=None, step=5):
     if j1.empty:
+        '''
+        Crea una tabla (CRS_KM) que relacciona las unidades de medida
+        CRS con KMs, a fin de poder rellenar la tabla AREA_INFLUENCIA
+        con KMs en vez de CRS.
+        '''
         logging.info("Creando " + j1.fullname)
         crs = []
         for r in range(1, (min_km*2)+4, 3):
@@ -92,6 +97,8 @@ def setKm(db):
             db.insert("AREA_INFLUENCIA", **item)
     db.closeTransaction()
     _setKm(db, j1, j2, 500, max_km=700)
+    # Una vez rellenada AREA_INFLUENCIA no hace falta CRS_KM
+    db.execute("DROP TABLE CRS_KM")
 
 
 def create_db(salida):

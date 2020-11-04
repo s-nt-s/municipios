@@ -373,7 +373,7 @@ class DBLite:
             base = os.path.basename(file)
             sql, _ = os.path.splitext(base)
         sql = self._build_select(sql)
-        cols = get_cols(sql+" limit 0")
+        cols = self.get_cols(sql+" limit 0")
         head = separator.join(cols)
         if sorted:
             sql = sql + " order by "+", ".join(head)
@@ -382,9 +382,8 @@ class DBLite:
         rows = ResultIter(cursor)
         with open(file, "w") as f:
             if head:
-                f.write(head)
+                f.write(head+"\n")
             for row in rows:
-                f.write("\n")
                 row = list(row)
                 for i, v in enumerate(row):
                     if v is None:
@@ -394,7 +393,7 @@ class DBLite:
                     row[i] = str(v)
                 line = separator.join(row)
                 line = line.rstrip(separator)
-                f.write(line)
+                f.write(line+"\n")
         cursor.close()
         if ext == ".7z" or mb:
             zipfile(file, only_if_bigger=(ext != ".7z"), delete=True, mb=mb)
