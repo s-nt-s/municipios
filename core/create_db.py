@@ -97,8 +97,6 @@ def setKm(db):
             db.insert("AREA_INFLUENCIA", **item)
     db.closeTransaction()
     _setKm(db, j1, j2, 500, max_km=700)
-    # Una vez rellenada AREA_INFLUENCIA no hace falta CRS_KM
-    db.execute("DROP TABLE CRS_KM")
 
 
 def create_db(salida):
