@@ -21,6 +21,17 @@ SELECT CreateSpatialIndex('PROVINCIAS', 'geom');
 SELECT AddGeometryColumn('PROVINCIAS', 'point', 4326, 'POINT', 2);
 SELECT CreateSpatialIndex('PROVINCIAS', 'point');
 
+create table COMUNIDADES (
+  ID TEXT,
+  nombre TEXT,
+  PRIMARY KEY (ID)
+);
+
+SELECT AddGeometryColumn('COMUNIDADES', 'geom', 4326, 'MULTIPOLYGON', 2);
+SELECT CreateSpatialIndex('COMUNIDADES', 'geom');
+SELECT AddGeometryColumn('COMUNIDADES', 'point', 4326, 'POINT', 2);
+SELECT CreateSpatialIndex('COMUNIDADES', 'point');
+
 create table CRS_KM (
   crs REAL,
   km INTEGER,

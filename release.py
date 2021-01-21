@@ -58,8 +58,11 @@ md.close()
 with open("_out/clean_spatialite.sql", "w") as f:
     f.write(dedent('''
         .output _out/create.sql
+        SELECT sql || ';' FROM sqlite_master WHERE type = 'table' AND name = 'COMUNIDADES';
         SELECT sql || ';' FROM sqlite_master WHERE type = 'table' AND name = 'PROVINCIAS';
         SELECT sql || ';' FROM sqlite_master WHERE type = 'table' AND name = 'MUNICIPIOS';
+        .mode insert COMUNIDADES
+        select ID, nombre, ST_Y(point), ST_X(point) from COMUNIDADES;
         .mode insert PROVINCIAS
         select ID, nombre, ST_Y(point), ST_X(point) from PROVINCIAS;
         .mode insert MUNICIPIOS
@@ -69,7 +72,7 @@ with open("_out/clean_spatialite.sql", "w") as f:
     for t, in db.select('''
         SELECT name FROM sqlite_master WHERE
         type='table' and upper(name)=name and
-        name not in ('PROVINCIAS', 'MUNICIPIOS', 'CRS_KM')
+        name not in ('COMUNIDADES', 'PROVINCIAS', 'MUNICIPIOS', 'CRS_KM')
         union
         SELECT name FROM sqlite_master WHERE
         type='view' and upper(name)=name
@@ -81,7 +84,7 @@ with open("_out/create.sh", "w") as f:
         #!/bin/bash
         spatialite _out/municipios.db < _out/clean_spatialite.sql
         sed 's/, "geom" MULTIPOLYGON, "point" POINT,/,\\n  lat INTEGER,\\n  lon INTEGER,/g' -i _out/create.sql
-        sed "s/INSERT INTO \\(MUNICIPIOS\\|PROVINCIAS\\) VALUES(\\([0-9][0-9]*\\),/INSERT INTO \\1 VALUES('\\2',/" -i _out/create.sql
+        sed "s/INSERT INTO \\(COMUNIDADES\\|MUNICIPIOS\\|PROVINCIAS\\) VALUES(\\([0-9][0-9]*\\),/INSERT INTO \\1 VALUES('\\2',/" -i _out/create.sql
         rm _out/municipios.db
         sqlite3 _out/municipios.db < _out/create.sql
     ''').strip())

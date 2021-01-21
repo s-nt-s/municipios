@@ -4,6 +4,7 @@ import argparse
 import json
 import logging
 import os
+from geojson_rewind import rewind
 
 from core.common import save_js
 from core.create_db import create_db
@@ -27,20 +28,25 @@ def parse_result(r):
     geojson = {'type': 'FeatureCollection', 'features': []}
     for p in r:
         p["nombre"] = p["nombre"].split("/")[-1]
-        js = json.loads(p["geom"])
-        js["properties"] = {"n": p["nombre"], "i": p["ID"]}
-        geojson['features'].append(js)
+        obj = {
+            "type": "Feature",
+            "geometry": json.loads(p["geom"]),
+            "properties": {"n": p["nombre"], "i": p["ID"]}
+        }
+        geojson['features'].append(obj)
+    geojson = rewind(geojson)
     return geojson
 
 
 def create_script(db, t):
-    file = "dataset/geo/"+t+".js"
+    file = "dataset/geo/"+t+".geojson"
     db.save_js(file, sql="select ID, nombre, AsGeoJSON(geom, 4) geom from " +
                t+" order by nombre, id", indent=None, parse_result=parse_result)
 
 
 os.makedirs("dataset/geo", exist_ok=True)
 db = DBshp(args.datos, parse_col=plain_parse_col)
+create_script(db, "comunidades")
 create_script(db, "provincias")
 create_script(db, "municipios")
 db.close()

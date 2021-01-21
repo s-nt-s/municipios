@@ -113,6 +113,7 @@ def create_db(salida):
     db = DBshp(salida, parse_col=plain_parse_col, reload=True)
     db.execute("sql/base.sql")
     db.to_table("CAMBIOS", dataset.cambios, to_file="sql/CAMBIOS.sql")
+    insert(db, "comunidades", dataset.comunidades)
     insert(db, "provincias", dataset.provincias)
     insert(db, "municipios", dataset.municipios)
     db.execute("sql/provmun.sql")

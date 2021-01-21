@@ -103,6 +103,7 @@ def getShp(path_glob, ini, end, r_key=4, r_data=5):
         else:
             poli = cascaded_union(poli)
         dShapes[key] = (poli, nombre)
+    dShapes = {k:v for k,v in sorted(dShapes.items(), key=lambda kv:kv[0])}
     return dShapes
 
 
@@ -500,6 +501,11 @@ class Dataset():
                         dtY[mun] = dt
                         years[year] = dtY
         return years
+
+    @property
+    @lru_cache(maxsize=None)
+    def comunidades(self):
+        return getShp("fuentes/fomento/shp/**/recintos*autonomicas*.shp", 2, 4)
 
     @property
     @lru_cache(maxsize=None)
