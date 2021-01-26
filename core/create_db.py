@@ -119,8 +119,10 @@ def create_db(salida):
     db.execute("sql/provmun.sql")
     setKm(db)
     dataset.populate_datamun(db)
-    db.save_js("dataset/provinicas.json",
+    db.save_js("dataset/provincias.json",
                sql="select ID, nombre from provincias order by id", mb=47, indent=4)
+    db.save_js("dataset/comunidades.json",
+              sql="select ID, nombre from comunidades order by id", mb=47, indent=4)
     counts = "__fecha__: {:%Y-%m-%d}".format(date.today())
     for table in db.to_list('''
         SELECT

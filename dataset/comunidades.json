@@ -1,0 +1,82 @@
+[
+    {
+        "ID": "01",
+        "nombre": "Andaluc\u00eda"
+    },
+    {
+        "ID": "02",
+        "nombre": "Arag\u00f3n"
+    },
+    {
+        "ID": "03",
+        "nombre": "Principado de Asturias"
+    },
+    {
+        "ID": "04",
+        "nombre": "Illes Balears"
+    },
+    {
+        "ID": "05",
+        "nombre": "Canarias"
+    },
+    {
+        "ID": "06",
+        "nombre": "Cantabria"
+    },
+    {
+        "ID": "07",
+        "nombre": "Castilla y Le\u00f3n"
+    },
+    {
+        "ID": "08",
+        "nombre": "Castilla-La Mancha"
+    },
+    {
+        "ID": "09",
+        "nombre": "Catalu\u00f1a/Catalunya"
+    },
+    {
+        "ID": "10",
+        "nombre": "Comunitat Valenciana"
+    },
+    {
+        "ID": "11",
+        "nombre": "Extremadura"
+    },
+    {
+        "ID": "12",
+        "nombre": "Galicia"
+    },
+    {
+        "ID": "13",
+        "nombre": "Comunidad de Madrid"
+    },
+    {
+        "ID": "14",
+        "nombre": "Regi\u00f3n de Murcia"
+    },
+    {
+        "ID": "15",
+        "nombre": "Comunidad Foral de Navarra"
+    },
+    {
+        "ID": "16",
+        "nombre": "Pa\u00eds Vasco/Euskadi"
+    },
+    {
+        "ID": "17",
+        "nombre": "La Rioja"
+    },
+    {
+        "ID": "18",
+        "nombre": "Ciudad Aut\u00f3noma de Ceuta"
+    },
+    {
+        "ID": "19",
+        "nombre": "Ciudad Aut\u00f3noma de Melilla"
+    },
+    {
+        "ID": "20",
+        "nombre": "Territorio no asociado a ninguna autonom\u00eda"
+    }
+]
