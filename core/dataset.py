@@ -220,6 +220,7 @@ class Dataset():
                 yr = data.get(y, {})
                 yr[mun] = v
                 data[y] = yr
+        data = {k:v for k,v in sorted(data.items())}
         return data
 
     @JsonCache(file="dataset/empleo/paro_sepe_*.json")
@@ -941,7 +942,7 @@ class Dataset():
         soup = get_bs(self.fuentes.ine.poblacion.sexo)
         years = set()
         data = []
-        for i in soup.select("ol.ListadoTablas li"):
+        for i in soup.select("li.inebase_tabla"):
             _, _id = i.attrs["id"].split("_")
             url = "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/%s?tip=AM" % _id
             logging.info("  " + url)
@@ -971,14 +972,16 @@ class Dataset():
             soup = get_bs(url)
             for s in soup.select(".ocultar"):
                 s.extract()
-            for i in soup.select("#listadoInebase > ol.ListadoTablas > li"):
+            for i in soup.select("li.inebase_capitulo"):
                 txt = i.find("a").get_text().strip()
                 if txt == "00.- Nacional":
                     continue
                 txt = re_trim.sub("", txt)
                 txt = txt.replace(".- ", " ")
                 c, n = txt.split(" ", 1)
-                a = i.find("ol").find("li").findAll("a")[-1]
+                li = i.select_one("li.inebase_tabla")
+                #a = i.find("ol").find("li").findAll("a")[-1]
+                a = li.findAll("a")[-1]
                 url = wstempus(a.attrs["href"])
 
                 dt = data.get(c, {})
@@ -989,8 +992,7 @@ class Dataset():
                 data[c] = dt
                 self.core[c].poblacion5[y] = url
 
-                a = i.find("ol").find(
-                    "a", text="Población por sexo, municipios y edad (año a año).")
+                a = i.find("a", text="Población por sexo, municipios y edad (año a año).")
                 if a:
                     url = wstempus(a.attrs["href"])
                     self.core[c].poblacion1[y] = url
@@ -1061,6 +1063,7 @@ class Dataset():
                 data[year] = url
                 logging.info("  "+url)
                 self.core.todas.paro_sepe[year] = url
+        self.core.todas.paro_sepe = {k:v for k, v in sorted(self.core.todas.paro_sepe.items())}
 
         logging.info("== renta ==")
         logging.info(self.fuentes.renta.aeat.root)
