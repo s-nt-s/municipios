@@ -323,6 +323,8 @@ def get_cod_municipio(prov, num, *args, cambiar=None, **kargs):
 
 
 def _get_cod_municipio(prov, mun):
+    if mun is None:
+        return None
     n_cod = mun["Variable"]["Codigo"]
     if n_cod in ("municipios", "municipio"):
         n = mun["Nombre"].split()[0]
@@ -394,6 +396,10 @@ def requests_js(url, intento=0):
 def _js(url):
     r, j = requests_js(url)
     if "status" in j:
+        if j["status"] == "No puede mostrarse por restricciones de volumen":
+            msg = "%s - %s" % (url, j["status"])
+            logging.critical(msg)
+            raise Exception(msg)
         time.sleep(61)
         return _js(url)
     return r
@@ -461,10 +467,10 @@ def get_js(url, reload=False):
 def url_to_file(url, ext):
     file = None
     parsed_url = urlparse(url)
+    query = parse_qs(parsed_url.query)
     root = get_root_file(parsed_url.netloc) + "/"
 
     if url.startswith("https://administracionelectronica.navarra.es/GN.InstitutoEstadistica.Web/DescargaFichero.aspx"):
-        query = parse_qs(parsed_url.query)
         if query and "Fichero" in query:
             file = root+query["Fichero"][0].replace("\\", "/")
     else:
@@ -488,6 +494,9 @@ def url_to_file(url, ext):
         file = file[:-1]
     if not file.endswith(ext):
         file = file + ext
+    if "date" in query and query["date"]:
+        name, ext = file.rsplit(".", 1)
+        file = "{}_{}.{}".format(name, query["date"][0], ext)
     return file
 
 
@@ -514,6 +523,8 @@ def sort_col(s):
 def wstempus(url):
     parsed_url = urlparse(url)
     qs = parse_qs(parsed_url.query)
+    if None in (qs.get("path"), qs.get("file")) and "t" in qs:
+        return "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/%s?tip=AM" % qs["t"][0]
     url = "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA%s%s?tip=AM" % (
         qs["path"][0], qs["file"][0])
     return url

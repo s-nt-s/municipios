@@ -3,7 +3,8 @@ ine:
   municipios: http://www.ine.es/daco/daco42/codmun/codmunmapa.htm
   poblacion:
     sexo: http://www.ine.es/dynt3/inebase/index.htm?padre=525
-    edad: http://www.ine.es/dyngs/INEbase/es/operacion.htm?c=Estadistica_C&cid=1254736177012&menu=resultados&idp=1254734710990
+    edad_root: http://www.ine.es/dyngs/INEbase/es/operacion.htm?c=Estadistica_C&cid=1254736177012&menu=resultados&idp=1254734710990
+    edad: https://www.ine.es/dynt3/inebase/index.htm?padre=6232&capsel=6233
     edad_year: http://www.ine.es/dynt3/inebase/es/index.htm?type=pcaxis&file=pcaxis&path=%2Ft20%2Fe245%2Fp05%2Fa
   empresas:
     html: http://www.ine.es/jaxiT3/Tabla.htm?t=4721

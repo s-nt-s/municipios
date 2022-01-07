@@ -165,19 +165,41 @@ class Dataset():
                 if not js:
                     continue
                 yData = data.get(year, {})
-                for d in js:
-                    if d["MetaData"][0]["Codigo"] != "ambossexos":
-                        continue
-                    mun = get_cod_municipio(prov, d["MetaData"][1])
-                    if mun is None:
-                        continue
-                    mData = yData.get(mun, {})
-                    edad = d["MetaData"][2]["Codigo"]
-                    if edad == "total":
-                        mData[-1] = int(d["Data"][0]["Valor"])
-                    elif edad.isdigit():
-                        mData[int(edad)] = int(d["Data"][0]["Valor"])
-                    yData[mun] = mData
+                if ".px?" in url:
+                    for d in js:
+                        if d["MetaData"][0]["Codigo"] != "ambossexos":
+                            continue
+                        mun = get_cod_municipio(prov, d["MetaData"][1])
+                        if mun is None:
+                            continue
+                        mData = yData.get(mun, {})
+                        edad = d["MetaData"][2]["Codigo"]
+                        if edad == "total":
+                            mData[-1] = int(d["Data"][0]["Valor"])
+                        elif edad.isdigit():
+                            mData[int(edad)] = int(d["Data"][0]["Valor"])
+                        yData[mun] = mData
+                else:
+                    for d in js:
+                        if len(d["Data"]) == 0:
+                            continue
+                        mun, edad, sexo = None, None, None
+                        for mt in d["MetaData"]:
+                            n_cod = mt["Variable"]["Codigo"]
+                            n_nom = mt["Variable"]["Nombre"]
+                            if n_cod =="MUN":
+                                mun = get_cod_municipio(prov, mt)
+                            elif n_nom == "Sexo":
+                                sexo = mt["Nombre"]
+                            elif mt["Codigo"] is not None and re.match(r"^Y\d+$", mt["Codigo"]):
+                                edad = int(mt["Codigo"][1:])
+                            elif edad is None and mt['Nombre'] == 'Todas las edades':
+                                edad = -1
+                        if mun is None or sexo != "Total":
+                            continue
+                        mData = yData.get(mun, {})
+                        mData[edad] = int(d["Data"][0]["Valor"])
+                        yData[mun] = mData
                 data[year] = yData
         for year, yData in data.items():
             for mun, mData in list(yData.items()):
@@ -442,35 +464,43 @@ class Dataset():
             return years
         for cod, pob in self.getCore("poblacion"):
             for i in get_js(pob):
-                mun, sex, _, _ = i["MetaData"]
+                mun, sex = None, None
+                for mt in i["MetaData"]:
+                    n_cod = mt["Variable"]["Codigo"]
+                    if n_cod in ("municipios", "municipio", "NUM") or mt["Variable"]["Nombre"] == "Municipios":
+                        mun = mt
+                    elif mt["Nombre"] in ("Total", "ambossexos total", "Mujeres", "Hombres"):
+                        sex = mt
                 mun = get_cod_municipio(None, mun)
-                if mun is not None:
-                    key = None
-                    sex = sex["Nombre"]
-                    if sex in ("Total", "ambossexos total"):
-                        key = "total"
-                    elif sex == "Mujeres":
-                        key = "mujeres"
-                    elif sex == "Hombres":
-                        key = "hombres"
-                    if not key:
+                if mun is None:
+                    continue
+                key = None
+                sex = sex["Nombre"]
+                if sex in ("Total", "ambossexos total"):
+                    key = "total"
+                elif sex == "Mujeres":
+                    key = "mujeres"
+                elif sex == "Hombres":
+                    key = "hombres"
+                if key is None:
+                    continue
+                for d in i["Data"]:
+                    if not bool(d):
                         continue
-                    for d in i["Data"]:
-                        year = d["Anyo"]
-                        valor = d["Valor"]
+                    year = d["Anyo"]
+                    valor = d["Valor"]
 
-                        year = int(year)
-                        if year >= cYear or year < min_year:
-                            continue
+                    year = int(year)
+                    if year >= cYear or year < min_year:
+                        continue
 
-                        yDt = years.get(year, {})
-                        mDt = yDt.get(mun, {})
+                    yDt = years.get(year, {})
+                    mDt = yDt.get(mun, {})
 
-                        if mDt.get(key) is None:
-                            mDt[key] = int(
-                                valor) if valor is not None else None
-                            yDt[mun] = mDt
-                            years[year] = yDt
+                    if mDt.get(key) is None:
+                        mDt[key] = int(valor) if valor is not None else None
+                        yDt[mun] = mDt
+                        years[year] = yDt
         return years
 
     @JsonCache(file="dataset/economia/empresas.json")
@@ -997,6 +1027,47 @@ class Dataset():
                     url = wstempus(a.attrs["href"])
                     self.core[c].poblacion1[y] = url
 
+        url = self.fuentes.ine.poblacion.edad
+        logging.info("  "+url)
+        soup = get_bs(url)
+        for s in soup.select(".ocultar"):
+            s.extract()
+        prov_urls = []
+        for i in soup.select("li.inebase_capitulo"):
+            a = i.find("a")
+            txt = a.get_text().strip()
+            if txt == "00.- Nacional":
+                continue
+            txt = re_trim.sub("", txt)
+            txt = txt.replace(".- ", " ")
+            c, n = txt.split(" ", 1)
+            prov_urls.append((c, normalizarProvincia(n), a.attrs["href"]))
+        for c, n, url in prov_urls:
+            logging.info("     "+url)
+            soup = get_bs(url)
+            for s in soup.select(".ocultar"):
+                s.extract()
+            a = soup.find("a", href=url)
+            i = a.find_parent("li")
+
+            url1, url5 = None, None
+            a = i.find("a", text="Población por sexo, municipios y edad (grupos quinquenales)")
+            if a:
+                url5 = wstempus(a.attrs["href"])
+            a = i.find("a", text="Población por sexo, municipios y edad (año a año)")
+            if a:
+                url1 = wstempus(a.attrs["href"])
+
+            for y in self.years_poblacion:
+                if y < 2003:
+                    continue
+                query = "&date="+str(y)+"0101"
+                if url5 and y not in self.core[c].poblacion5:
+                    self.core[c].poblacion5[y] = url5 + query
+
+                if url1 and y not in self.core[c].poblacion1:
+                    self.core[c].poblacion1[y] = url1 + query
+
         logging.info("== empresas ==")
         self.core.todas.empresas = self.fuentes.ine.empresas.csv
         logging.info("== censo 2009 ==")
@@ -1142,6 +1213,6 @@ for name in dir(Dataset):
 
 if __name__ == "__main__":
     logging.basicConfig(
-        level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
+        level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
     d = Dataset()
-    d.collect()
+    d.create_edades()
