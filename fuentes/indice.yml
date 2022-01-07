@@ -29,7 +29,8 @@ sepe:
 # json: https://datos.gob.es/apidata/catalog/dataset/e00142804-paro-registrado-por-municipios.json
 renta:
   aeat:
-    root: https://www.agenciatributaria.es/AEAT.internet/Inicio/La_Agencia_Tributaria/Memorias_y_estadisticas_tributarias/Estadisticas/Estadisticas_por_impuesto/IRPF_y_Patrimonio/Estadistica_de_los_declarantes_del_IRPF_por_municipios/Publicaciones/Publicaciones.shtml
+    #root: https://www.agenciatributaria.es/AEAT.internet/Inicio/La_Agencia_Tributaria/Memorias_y_estadisticas_tributarias/Estadisticas/Estadisticas_por_impuesto/IRPF_y_Patrimonio/Estadistica_de_los_declarantes_del_IRPF_por_municipios/Publicaciones/Publicaciones.shtml
+    root: https://sede.agenciatributaria.gob.es/Sede/datosabiertos/catalogo/hacienda/Estadistica_de_los_declarantes_del_IRPF_por_municipios.shtml
     doc: https://www.agenciatributaria.es/AEAT/Contenidos_Comunes/La_Agencia_Tributaria/Estadisticas/Publicaciones/sites/irpfmunicipios/2015/docf352123d7e2e50ca8466f34549845dc5b1b75518c.html#8
   euskadi:
     root: http://opendata.euskadi.eus/catalogo/-/indicadores-municipales-de-sostenibilidad-renta-personal-total-x20ac/

@@ -1,3 +1,4 @@
+.idea/
 fuentes/*
 !fuentes/indice.yml
 !fuentes/cambios_municipios.yml

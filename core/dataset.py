@@ -1069,11 +1069,11 @@ class Dataset():
         logging.info(self.fuentes.renta.aeat.root)
         self.core.todas.renta = {}
         soup = get_bs(self.fuentes.renta.aeat.root)
-        for n in soup.select("div.contenido li strong"):
-            year = n.get_text().split()[-1]
+        for n in soup.findAll("a", text=re.compile(r"^\s*Estadística\s*del\s*año\s*\d\d\d\d\s*$", flags=re.IGNORECASE)):
+            year = n.get_text().strip().split()[-1]
             year = int(year)
             li = n.find_parent("li")
-            a = li.find("a").attrs["href"]
+            a = n.attrs["href"]
             sp = get_bs(a)
             a = sp.find(
                 "a", text="Detalle de los municipios con más de 1.000 habitantes")
