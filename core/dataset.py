@@ -1006,9 +1006,11 @@ class Dataset():
         logging.info(self.fuentes.ine.agrario.year[1999])
         data = {}
         soup = get_bs(self.fuentes.ine.agrario.year[1999])
-        cens = soup.find("span", text="Censo Agrario 1999")
+        cens = soup.find("a", text="Censo Agrario 1999")
+        if cens and (cens.attrs.get("href") or "").startswith("#"):
+            cens = soup.select_one(cens.attrs["href"])
         if cens:
-            soup = cens.find_parent("section")
+            soup = cens
         for option in soup.select("select option[value]"):
             url = option.attrs["value"]
             prot = url.split("://")[0].lower()
