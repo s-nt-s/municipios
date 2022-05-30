@@ -309,8 +309,8 @@
     "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00007006.px?tip=AM"
   },
   "censo_1999": {
-    "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov07/l0/10007.px?tip=AM",
-    "unidades": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov07/l0/10002.px?tip=AM"
+    "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/52760?tip=AM",
+    "unidades": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/52755?tip=AM"
   },
   "miteco": "https://www.miteco.gob.es:443/es/biodiversidad/servicios/banco-datos-naturaleza/MFE50_07_tcm30-200091.zip"
 },
@@ -2351,7 +2351,8 @@
     "2018": "https://sede.sepe.gob.es/es/portaltrabaja/resources/sede/datos_abiertos/datos/Paro_por_municipios_2018_csv.csv",
     "2019": "https://sede.sepe.gob.es/es/portaltrabaja/resources/sede/datos_abiertos/datos/Paro_por_municipios_2019_csv.csv",
     "2020": "https://sede.sepe.gob.es/es/portaltrabaja/resources/sede/datos_abiertos/datos/Paro_por_municipios_2020_csv.csv",
-    "2021": "https://sede.sepe.gob.es/es/portaltrabaja/resources/sede/datos_abiertos/datos/Paro_por_municipios_2021_csv.csv"
+    "2021": "https://sede.sepe.gob.es/es/portaltrabaja/resources/sede/datos_abiertos/datos/Paro_por_municipios_2021_csv.csv",
+    "2022": "https://sede.sepe.gob.es/es/portaltrabaja/resources/sede/datos_abiertos/datos/Paro_por_municipios_2022_csv.csv"
   },
   "renta": {
     "aeat": {

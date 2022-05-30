@@ -344,7 +344,7 @@ class Dataset():
                             if valor is not None:
                                 dt = years.get(year, {})
                                 yr = dt.get(mun, {})
-                                yr["SAU"] = int(valor)
+                                yr["SAU"] = valor
                                 dt[mun] = yr
                                 years[year] = dt
                     for i in get_js(censo["unidades"]):
@@ -365,7 +365,7 @@ class Dataset():
                             if valor is not None:
                                 dt = years.get(year, {})
                                 yr = dt.get(mun, {})
-                                yr[key] = int(valor)
+                                yr[key] = valor
                                 dt[mun] = yr
                                 years[year] = dt
         year = 2009
@@ -1011,19 +1011,31 @@ class Dataset():
             cens = soup.select_one(cens.attrs["href"])
         if cens:
             soup = cens
+        select_options=[]
         for option in soup.select("select option[value]"):
             url = option.attrs["value"]
             prot = url.split("://")[0].lower()
             if prot not in ("ftp", "http", "https"):
                 url = "http://www.ine.es"+option.attrs["value"]
+                option.attrs["value"] = url
             if "/dynt3/inebase/" not in url or "/prov" not in url:
                 continue
+            select = option.find_parent("select")
+            if select not in select_options:
+                select_options.append(select)
+        for option in [option for select in select_options for option in select.select("option[value]")]:
+            url = option.attrs["value"]
             logging.info("  "+url)
             sp = get_bs(url)
             for s in sp.select(".ocultar"):
                 s.extract()
             for li in sp.findAll("li"):
                 if re.search(r"^\d+\.-\s+Resultados municipales", li.get_text().strip()):
+                    a0 = li.select(":scope > a")
+                    if len(a0) == 1 and a0[0].get_text().strip() == li.get_text().strip():
+                        idCal = (a0[0].attrs.get("id") or "").split("_", 1)[-1]
+                        if idCal.isdigit():
+                            li = get_bs("https://www.ine.es/dynt3/inebase/ajax/es/listaCapitulos.htm?padre="+idCal+"&idp=.", parser="html.parser")
                     a1 = li.find(
                         "a", text="Superficie agrícola utilizada de las explotaciones según regimen de tenencia (Ha.)")
                     a2 = li.find(

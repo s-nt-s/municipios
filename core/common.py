@@ -514,9 +514,9 @@ def sort_col(s):
 def wstempus(url):
     parsed_url = urlparse(url)
     qs = parse_qs(parsed_url.query)
-    url = "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA%s%s?tip=AM" % (
-        qs["path"][0], qs["file"][0])
-    return url
+    if "path" not in qs and "file" not in qs and "tpx" in qs:
+        return "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/{}?tip=AM".format(qs["tpx"][0])
+    return "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA{}{}?tip=AM".format(qs["path"][0], qs["file"][0])
 
 
 def sexa_to_dec(i):
