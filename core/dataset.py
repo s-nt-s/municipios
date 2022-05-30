@@ -344,7 +344,7 @@ class Dataset():
                             if valor is not None:
                                 dt = years.get(year, {})
                                 yr = dt.get(mun, {})
-                                yr["SAU"] = int(valor)
+                                yr["SAU"] = valor
                                 dt[mun] = yr
                                 years[year] = dt
                     for i in get_js(censo["unidades"]):
@@ -365,7 +365,7 @@ class Dataset():
                             if valor is not None:
                                 dt = years.get(year, {})
                                 yr = dt.get(mun, {})
-                                yr[key] = int(valor)
+                                yr[key] = valor
                                 dt[mun] = yr
                                 years[year] = dt
         year = 2009
@@ -387,6 +387,52 @@ class Dataset():
                         yr["UTA"] = datos[11]
                         dt[cod] = yr
                         years[year] = dt
+        
+        year = 2020
+        if year not in years:
+            censo = self.core.todas["censo_%s" % year]
+            for i in get_js(censo["superficie"]):
+                if len(i["MetaData"])!=3:
+                    continue
+                mun, total, dato = i["MetaData"]
+                if mun['Variable']['Codigo'] != "MUN":
+                    continue
+                if total['Variable']['Nombre'] != "Total":
+                    continue
+                mun = mun["Codigo"]
+                val = i["Data"][0]["Valor"]
+                if val is None:
+                    continue
+                key = None
+                if dato["Nombre"] == "Superficie (ha.)":
+                    key = "SAU"
+                elif dato["Nombre"] == "Nº explotaciones":
+                    key="explotaciones"
+                if key is not None:
+                    dt = years.get(year, {})
+                    yr = dt.get(mun, {})
+                    yr[key] = val
+                    dt[mun] = yr
+                    years[year] = dt
+
+            for i in get_js(censo["unidades"]):
+                if len(i["MetaData"])!=3:
+                    continue
+                mun, total, dato = i["MetaData"]
+                if mun['Variable']['Codigo'] != "MUN":
+                    continue
+                mun = mun["Codigo"]
+                val = i["Data"][0]["Valor"]
+                if val is None:
+                    continue
+                if dato['Nombre'] != "UGT":
+                    key = "unidadesganaderas"
+                    dt = years.get(year, {})
+                    yr = dt.get(mun, {})
+                    yr[key] = yr.get(key, 0) + val
+                    dt[mun] = yr
+                    years[year] = dt
+                    
         return years
 
     @JsonCache(file="dataset/poblacion/edad_*.json")
@@ -1011,19 +1057,31 @@ class Dataset():
             cens = soup.select_one(cens.attrs["href"])
         if cens:
             soup = cens
+        select_options=[]
         for option in soup.select("select option[value]"):
             url = option.attrs["value"]
             prot = url.split("://")[0].lower()
             if prot not in ("ftp", "http", "https"):
                 url = "http://www.ine.es"+option.attrs["value"]
+                option.attrs["value"] = url
             if "/dynt3/inebase/" not in url or "/prov" not in url:
                 continue
+            select = option.find_parent("select")
+            if select not in select_options:
+                select_options.append(select)
+        for option in [option for select in select_options for option in select.select("option[value]")]:
+            url = option.attrs["value"]
             logging.info("  "+url)
             sp = get_bs(url)
             for s in sp.select(".ocultar"):
                 s.extract()
             for li in sp.findAll("li"):
                 if re.search(r"^\d+\.-\s+Resultados municipales", li.get_text().strip()):
+                    a0 = li.select(":scope > a")
+                    if len(a0) == 1 and a0[0].get_text().strip() == li.get_text().strip():
+                        idCal = (a0[0].attrs.get("id") or "").split("_", 1)[-1]
+                        if idCal.isdigit():
+                            li = get_bs("https://www.ine.es/dynt3/inebase/ajax/es/listaCapitulos.htm?padre="+idCal+"&idp=.", parser="html.parser")
                     a1 = li.find(
                         "a", text="Superficie agrícola utilizada de las explotaciones según regimen de tenencia (Ha.)")
                     a2 = li.find(
@@ -1047,6 +1105,27 @@ class Dataset():
                 "unidades": _a2
             }
 
+        logging.info("== censo 2020 ==")
+        logging.info(self.fuentes.ine.agrario.year[2020]["root"])
+        data = {}
+        supSAU = self.fuentes.ine.agrario.year[2020]["sau"]
+        logging.info("  "+supSAU)
+        soup = get_bs(supSAU)
+        supSAU = soup.find("a", text=re.compile(r"\s*Explotaciones por tipo de cultivo\.\s*"))
+        supSAU = supSAU.attrs["href"]
+        supSAU = wstempus(supSAU)
+        uniGan = self.fuentes.ine.agrario.year[2020]["ganaderia"]
+        logging.info("  "+uniGan)
+        soup = get_bs(uniGan)
+        uniGan = soup.find("a", text=re.compile(r"\s*Explotaciones ganaderas por tipo de ganado\.\s*"))
+        uniGan = uniGan.attrs["href"]
+        uniGan = wstempus(uniGan)
+        self.core["todas"]["censo_2020"] = {
+            "superficie": supSAU,
+            "unidades": uniGan
+        }
+
+        
         logging.info("== nomenclator ==")
         self.core.todas.nomenclator_basico = self.fuentes.fomento.nomenclator.basico
         self.core.todas.nomenclator = self.fuentes.fomento.nomenclator.municipios

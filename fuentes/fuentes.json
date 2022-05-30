@@ -309,8 +309,8 @@
     "2019": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t20/e245/p05/a2019/l0/00007006.px?tip=AM"
   },
   "censo_1999": {
-    "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov07/l0/10007.px?tip=AM",
-    "unidades": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov07/l0/10002.px?tip=AM"
+    "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/52760?tip=AM",
+    "unidades": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/52755?tip=AM"
   },
   "miteco": "https://www.miteco.gob.es:443/es/biodiversidad/servicios/banco-datos-naturaleza/MFE50_07_tcm30-200091.zip"
 },
@@ -2332,6 +2332,10 @@
 "todas": {
   "empresas": "http://www.ine.es/jaxiT3/files/t/es/csv_sc/4721.csv?nocab=1",
   "censo_2009": "fuentes/ine/censo_agrario_2009.html",
+  "censo_2020": {
+    "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/52071?tip=AM",
+    "unidades": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/52076?tip=AM"
+  },
   "nomenclator_basico": "http://centrodedescargas.cnig.es/CentroDescargas/descargaDir?codSerie=NGBES&secDescDirCata=9000001",
   "nomenclator": "http://centrodedescargas.cnig.es/CentroDescargas/descargaDir?codSerie=NGMEN&secDescDirCata=9000004",
   "limites": "http://centrodedescargas.cnig.es/CentroDescargas/descargaDir?codSerie=NGMEN&secDescDirCata=9000029",
