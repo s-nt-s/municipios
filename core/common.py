@@ -523,12 +523,12 @@ def sort_col(s):
 def wstempus(url):
     parsed_url = urlparse(url)
     qs = parse_qs(parsed_url.query)
-    if None in (qs.get("path"), qs.get("file")) and "t" in qs:
-        return "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/%s?tip=AM" % qs["t"][0]
-    url = "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA%s%s?tip=AM" % (
-        qs["path"][0], qs["file"][0])
-    return url
-
+    if "path" not in qs and "file" not in qs:
+        if "tpx" in qs:
+            return "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/{}?tip=AM".format(qs["tpx"][0])
+        if "t" in qs:
+            return "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/{}?tip=AM".format(qs["t"][0])
+    return "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA{}{}?tip=AM".format(qs["path"][0], qs["file"][0])
 
 def sexa_to_dec(i):
     g = i[0:2]

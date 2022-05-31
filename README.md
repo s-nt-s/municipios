@@ -26,11 +26,11 @@ municipios en alguna fuente antes que en el propio INE, se reconstruye,
 para esas fuentes, el municipio original (antes de desgajarse) para que no
 aparezca hasta que también salga en el INE.
 
-Con el mismo animo de facilitar la comparación, solo se cargan datos
+Con el mismo ánimo de facilitar la comparación, solo se cargan datos
 hasta el último año completo, de manera que si estamos a mediados de
 2019, la base de datos solo tendrá datos hasta final de 2018.
 
-Además solo se cargan datos hasta el último año en el que INE haya publicado
+Además, solo se cargan datos hasta el último año en el que INE haya publicado
 las estadísticas de población.
 
 # Base de datos SQLite
@@ -45,9 +45,9 @@ para proporcionar información geográfica.
 ## ¿Qué es la tabla AREA_INFLUENCIA?
 
 En algunos desarrollos no solo vamos a querer usar los datos de un municipio
-si no también los de sus alrededores. Por ejemplo, podemos querer calcular
-el nivel de vida de un municipio en función del paro y la renta, pero no solo
-teniendo en cuenta los valores del municipio en cuestión, si no también del
+sino también los de sus alrededores. Por ejemplo, podemos querer calcular
+el nivel de vida de un municipio en función del paro y la renta, pero no únicamente
+teniendo en cuenta los valores del municipio en cuestión, sino también del
 paro y la renta en 10km a la redonda, siendo esta una zona geográfica circular
 que interseca con otros municipios sin tener por ello que contenerlos por
 completo.
@@ -60,7 +60,7 @@ de manera que podemos calcular `el paro del área de influencia formado por A y 
 como `el paro de A + (0.12 * el paro de B) + (0.20 * el paro de C)`.
 
 La decisión de incluir esta tabla viene de que los cálculos para generarla
-son lentos y por lo tanto he juzgado conveniente que en las [releases](https://github.com/s-nt-s/municipios/releases/latest)
+son lentos y, por lo tanto, he juzgado conveniente que en las [releases](https://github.com/s-nt-s/municipios/releases/latest)
 se proporcione un entregable con estos datos ya incluidos, pero si no te interesan
 y quieres que la ejecución sea más rápida basta con comentar la llamada `setKm(db)`
 en [`create_db.py`](core/create_db.py).

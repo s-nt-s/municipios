@@ -393,8 +393,8 @@
     "2021": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/33715?tip=AM&date=20210101"
   },
   "censo_1999": {
-    "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov07/l0/10007.px?tip=AM",
-    "unidades": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov07/l0/10002.px?tip=AM"
+    "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/52760?tip=AM",
+    "unidades": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/52755?tip=AM"
   },
   "miteco": "https://www.miteco.gob.es:443/es/biodiversidad/servicios/banco-datos-naturaleza/MFE50_07_tcm30-200091.zip"
 },
@@ -2975,7 +2975,8 @@
     "2018": "https://sede.sepe.gob.es/es/portaltrabaja/resources/sede/datos_abiertos/datos/Paro_por_municipios_2018_csv.csv",
     "2019": "https://sede.sepe.gob.es/es/portaltrabaja/resources/sede/datos_abiertos/datos/Paro_por_municipios_2019_csv.csv",
     "2020": "https://sede.sepe.gob.es/es/portaltrabaja/resources/sede/datos_abiertos/datos/Paro_por_municipios_2020_csv.csv",
-    "2021": "https://sede.sepe.gob.es/es/portaltrabaja/resources/sede/datos_abiertos/datos/Paro_por_municipios_2021_csv.csv"
+    "2021": "https://sede.sepe.gob.es/es/portaltrabaja/resources/sede/datos_abiertos/datos/Paro_por_municipios_2021_csv.csv",
+    "2022": "https://sede.sepe.gob.es/es/portaltrabaja/resources/sede/datos_abiertos/datos/Paro_por_municipios_2022_csv.csv"
   },
   "renta": {
     "aeat": {
@@ -2989,6 +2990,7 @@
     },
     "euskadi": "http://opendata.euskadi.eus/contenidos/estadistica/udalmap_indicador_60/es_def/adjuntos/indicator.csv",
     "navarra": {
+      "2020": "https://administracionelectronica.navarra.es/GN.InstitutoEstadistica.Web/DescargaFichero.aspx?Fichero=\\web\\agregados\\3_sociedad\\31_soc_condiciones_vida\\31_soc_condivida_renta\\2020\\soc_condivida_renta20_municipios_nastat.xls",
       "2019": "https://administracionelectronica.navarra.es/GN.InstitutoEstadistica.Web/DescargaFichero.aspx?Fichero=\\web\\agregados\\3_sociedad\\31_soc_condiciones_vida\\31_soc_condivida_renta\\2019\\soc_condivida_renta19_municipios_nastat.xls",
       "2018": "https://administracionelectronica.navarra.es/GN.InstitutoEstadistica.Web/DescargaFichero.aspx?Fichero=\\web\\agregados\\3_sociedad\\31_soc_condiciones_vida\\31_soc_condivida_renta\\2018\\soc_condivida_renta18_municipios_nastat.xls",
       "2017": "https://administracionelectronica.navarra.es/GN.InstitutoEstadistica.Web/DescargaFichero.aspx?Fichero=\\web\\agregados\\3_sociedad\\31_soc_condiciones_vida\\31_soc_condivida_renta\\2017\\soc_condivida_renta17_municipios_ien.xls",
