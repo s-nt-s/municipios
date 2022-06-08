@@ -411,8 +411,8 @@ re_json3 = re.compile(r"}\s*,\s*{")
 re_json4 = re.compile(r"^  ", re.MULTILINE)
 
 
-def obj_to_js(data):
-    txt = json.dumps(data, indent=2)
+def obj_to_js(data, sort_keys=False):
+    txt = json.dumps(data, indent=2, sort_keys=sort_keys)
     txt = re_json1.sub("[{", txt)
     txt = re_json2.sub("}]", txt)
     txt = re_json3.sub("},{", txt)
@@ -420,13 +420,13 @@ def obj_to_js(data):
     return txt
 
 
-def save_js(file, data):
+def save_js(file, data, sort_keys=False):
     if "*" in file:
         for year, dt in data.items():
             f = file.replace("*", str(year))
-            save_js(f, dt)
+            save_js(f, dt, sort_keys=sort_keys)
     else:
-        txt = obj_to_js(data)
+        txt = obj_to_js(data, sort_keys=sort_keys)
         with open(file, "w") as f:
             f.write(txt)
 
@@ -478,6 +478,7 @@ def url_to_file(url, ext):
             "https://sede.sepe.gob.es/es/",
             "http://servicios.ine.es/wstempus/js/es/",
             "http://www.ine.es/jaxiT3/files/t/es/",
+            "https://www.ine.es/jaxiT3/files/t/es/",
             "https://datos.gob.es/",
             "http://opendata.euskadi.eus/contenidos/"
         ):
@@ -492,7 +493,7 @@ def url_to_file(url, ext):
     file = "fuentes/" + file
     if file.endswith("/"):
         file = file[:-1]
-    if not file.endswith(ext):
+    if not (file.endswith(ext) or (ext=='.xls' and file.endswith('.xlsx'))):
         file = file + ext
     if "date" in query and query["date"]:
         name, ext = file.rsplit(".", 1)

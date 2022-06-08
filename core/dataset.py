@@ -1,17 +1,9 @@
-import logging
-import os
-import re
+from datetime import datetime
 from datetime import datetime
 from functools import lru_cache
 
-import requests
 import shapefile
-import urllib3
-import xlrd
-import yaml
-from bs4 import BeautifulSoup
-from bunch import Bunch
-from shapely.geometry import MultiPolygon, Point, Polygon, shape
+from shapely.geometry import MultiPolygon, Polygon, shape
 from shapely.ops import cascaded_union
 
 from .common import *
@@ -22,6 +14,7 @@ from .provincias import *
 me = os.path.realpath(__file__)
 dr = os.path.dirname(me)
 re_nb = re.compile(r"(\d+)")
+re_sp = re.compile(r"\s+")
 re_ft = re.compile(r"^-?\d+(,\d+)?$")
 re_prov = re.compile(r"/prov(\d\d)/")
 
@@ -127,8 +120,7 @@ class Dataset():
 
     def unzip(self):
         unzip("fuentes/fomento/shp", self.core.todas["limites"])
-        unzip("fuentes/fomento/mdb",
-              self.core.todas["nomenclator"])  # , self.core.todas["nomenclator_basico"])
+        unzip("fuentes/fomento/mdb", self.core.todas["nomenclator"])  # , self.core.todas["nomenclator_basico"])
         for pro, dt in self.core.items():
             # Los datos del mapa forestal aún no se usan
             if False and "miteco" in dt:
@@ -149,7 +141,7 @@ class Dataset():
                     dt[nuevo] = dNuevo
         return data
 
-    @JsonCache(file="dataset/poblacion/edades.json", intKey=True)
+    @JsonCache(file="dataset/poblacion/edades.json", intKey=True, sort_keys=True)
     def create_edades(self, *arg, old_data=None, **kargv):
         min_year = max(old_data.keys())+1 if old_data else -1
         data = {}
@@ -165,42 +157,83 @@ class Dataset():
                 if not js:
                     continue
                 yData = data.get(year, {})
-                if ".px?" in url:
-                    for d in js:
-                        if d["MetaData"][0]["Codigo"] != "ambossexos":
-                            continue
-                        mun = get_cod_municipio(prov, d["MetaData"][1])
-                        if mun is None:
-                            continue
-                        mData = yData.get(mun, {})
-                        edad = d["MetaData"][2]["Codigo"]
-                        if edad == "total":
-                            mData[-1] = int(d["Data"][0]["Valor"])
-                        elif edad.isdigit():
-                            mData[int(edad)] = int(d["Data"][0]["Valor"])
-                        yData[mun] = mData
-                else:
-                    for d in js:
-                        if len(d["Data"]) == 0:
-                            continue
-                        mun, edad, sexo = None, None, None
-                        for mt in d["MetaData"]:
-                            n_cod = mt["Variable"]["Codigo"]
-                            n_nom = mt["Variable"]["Nombre"]
-                            if n_cod =="MUN":
-                                mun = get_cod_municipio(prov, mt)
-                            elif n_nom == "Sexo":
-                                sexo = mt["Nombre"]
-                            elif mt["Codigo"] is not None and re.match(r"^Y\d+$", mt["Codigo"]):
-                                edad = int(mt["Codigo"][1:])
-                            elif edad is None and mt['Nombre'] == 'Todas las edades':
-                                edad = -1
-                        if mun is None or sexo != "Total":
-                            continue
-                        mData = yData.get(mun, {})
-                        mData[edad] = int(d["Data"][0]["Valor"])
-                        yData[mun] = mData
+                for d in js:
+                    if d["MetaData"][0]["Codigo"] != "ambossexos":
+                        continue
+                    mun = get_cod_municipio(prov, d["MetaData"][1])
+                    if mun is None:
+                        continue
+                    mData = yData.get(mun, {})
+                    edad = d["MetaData"][2]["Codigo"]
+                    if edad == "total":
+                        mData[-1] = int(d["Data"][0]["Valor"])
+                    elif edad.isdigit():
+                        mData[int(edad)] = int(d["Data"][0]["Valor"])
+                    yData[mun] = mData
                 data[year] = yData
+        s2003 = get_xls(self.core.todas.serie_2003.poblacion1)
+        sheet = s2003.sheet_by_index(0)
+        mun = None
+        cols = {}
+        inTotal = False
+        def clean_cell(c):
+            if isinstance(c, str):
+                c = re_sp.sub(" ", c).strip().lower()
+                if len(c) == 0:
+                    return None
+                if c.isdigit():
+                    return int(c)
+            if isinstance(c, float) and int(c) == c:
+                return int(c)
+            return c
+        for r in range(sheet.nrows):
+            row = [clean_cell(sheet.cell_value(r, c)) for c in range(sheet.ncols)]
+            if len(cols) == 0 and row[1] == 'todas las edades':
+                for x, v in enumerate(row):
+                    edad = None
+                    if v is None:
+                        continue
+                    if v == 'todas las edades':
+                        edad = -1
+                    else:
+                        v = v.split()[0]
+                        if v.isdigit():
+                            edad = int(v)
+                    if edad is not None:
+                        cols[edad] = x
+
+            c1 = row[0]
+            if c1 == 'total':
+                inTotal = True
+                mun = None
+                continue
+            if c1 in ('hombres', 'mujeres'):
+                inTotal = False
+                continue
+            if inTotal is False:
+                continue
+            if not isinstance(c1, str):
+                continue
+            ws = c1.split()
+            w1 = ws[0]
+            wZ = ws[-1]
+            if w1.isdigit() and len(w1) == 5:
+                mun = w1
+                continue
+            if mun is None:
+                continue
+            if not(wZ.isdigit() and len(wZ) == 4):
+                continue
+            year = int(wZ)
+            yData = data.get(year, {})
+            for edad, index in cols.items():
+                val = row[index]
+                if isinstance(val, int):
+                    mData = yData.get(mun, {})
+                    mData[edad] = val
+                    yData[mun] = mData
+            data[year] = yData
+
         for year, yData in data.items():
             for mun, mData in list(yData.items()):
                 arr = []
@@ -411,7 +444,7 @@ class Dataset():
                         years[year] = dt
         return years
 
-    @JsonCache(file="dataset/poblacion/edad_*.json")
+    @JsonCache(file="dataset/poblacion/edad_*.json", sort_keys=True)
     def create_edad(self, *arg, old_data=None, **kargv):
         min_year = max(old_data.keys())+1 if old_data else -1
         flag = False
@@ -432,10 +465,12 @@ class Dataset():
                     c_sex = sex["Codigo"].strip()
                     c_edad = edad["Codigo"].strip()
 
-                    if c_sex == "varones":
-                        c_sex = "hombres"
-                    elif c_sex == "ambossexos":
+                    if c_sex in ("ambossexos", "1"):
                         c_sex = ""
+                    elif c_sex in ("varones", "2"):
+                        c_sex = "hombres"
+                    elif c_sex in ("mujeres", "3"):
+                        c_sex = "mujeres"
 
                     if c_edad == "59":
                         c_edad = "0509"
@@ -454,6 +489,74 @@ class Dataset():
 
                     data[mun] = dt
                 years[year] = data
+
+        s2003 = get_xls(self.core.todas.serie_2003.poblacion5)
+        sheet = s2003.sheet_by_index(0)
+        c_sex, c_edad, valor, year, mun = None, None, None, None, None
+        cols = {}
+        re_age = re.compile(r"De (\d+) a (\d+) años", re.IGNORECASE)
+        def clean_cell(c):
+            if isinstance(c, str):
+                c = re_sp.sub(" ", c).strip().lower()
+                if len(c) == 0:
+                    return None
+                if c.isdigit():
+                    return int(c)
+            if isinstance(c, float) and int(c) == c:
+                return int(c)
+            return c
+        for r in range(sheet.nrows):
+            row = [clean_cell(sheet.cell_value(r, c)) for c in range(sheet.ncols)]
+            if len(cols) == 0 and row[1] == 'todas las edades':
+                for x, v in enumerate(row):
+                    edad = None
+                    if v is None:
+                        continue
+                    if v == 'todas las edades':
+                        edad = "total"
+                    else:
+                        m = re_age.match(v)
+                        if m:
+                            edad = "a".join(map(lambda x:"%02d" % int(x), m.groups()))
+                            if edad == "00a04":
+                                edad = "04ymenos"
+                        elif v.endswith(" y más años"):
+                            edad = v.split()[0]+"ymas"
+                    if edad is not None:
+                        cols[edad] = x
+
+            c1 = row[0]
+            if c1 == 'total':
+                c_sex = ""
+                continue
+            if c1 in ('hombres', 'mujeres'):
+                c_sex = c1
+                continue
+            if c_sex is None:
+                continue
+            if not isinstance(c1, str):
+                continue
+            ws = c1.split()
+            w1 = ws[0]
+            wZ = ws[-1]
+            if w1.isdigit() and len(w1) == 5:
+                mun = w1
+                continue
+            if mun is None:
+                continue
+            if not(wZ.isdigit() and len(wZ) == 4):
+                continue
+            year = int(wZ)
+
+            yData = years.get(year, {})
+            for edad, index in cols.items():
+                val = row[index]
+                if isinstance(val, int):
+                    mData = yData.get(mun, {})
+                    key = (c_sex+" "+edad).strip()
+                    mData[key] = val
+                    yData[mun] = mData
+            years[year] = yData
         return years
 
     @JsonCache(file="dataset/poblacion/sexo.json", intKey=True)
@@ -971,7 +1074,6 @@ class Dataset():
         logging.info(self.fuentes.ine.poblacion.sexo)
         soup = get_bs(self.fuentes.ine.poblacion.sexo)
         years = set()
-        data = []
         for i in soup.select("li.inebase_tabla"):
             _, _id = i.attrs["id"].split("_")
             url = "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/%s?tip=AM" % _id
@@ -992,12 +1094,13 @@ class Dataset():
             self.core[codigo].poblacion = url
             self.core[codigo].poblacion5 = {}
             self.core[codigo].poblacion1 = {}
-            data.append((codigo, nombre, url))
 
         logging.info("== población por edad ==")
         data = {}
-        for y in self.years_poblacion:
-            url = self.fuentes.ine.poblacion.edad_year + str(y)
+        for y in range(1996, 2002+1):
+            if y == 1997:
+                continue
+            url = self.fuentes.ine.poblacion.edad.year + str(y)
             logging.info("  "+url)
             soup = get_bs(url)
             for s in soup.select(".ocultar"):
@@ -1027,7 +1130,14 @@ class Dataset():
                     url = wstempus(a.attrs["href"])
                     self.core[c].poblacion1[y] = url
 
-        url = self.fuentes.ine.poblacion.edad
+        self.core.todas.serie_2003 = Bunch(
+            poblacion1=self.fuentes.ine.poblacion.edad.serie_2003.poblacion1,
+            poblacion5=self.fuentes.ine.poblacion.edad.serie_2003.poblacion5
+        )
+        logging.info("  "+self.core.todas.serie_2003.poblacion1)
+        logging.info("  "+self.core.todas.serie_2003.poblacion5)
+        '''
+        url = self.fuentes.ine.poblacion.edad.serie_2003
         logging.info("  "+url)
         soup = get_bs(url)
         for s in soup.select(".ocultar"):
@@ -1067,6 +1177,7 @@ class Dataset():
 
                 if url1 and y not in self.core[c].poblacion1:
                     self.core[c].poblacion1[y] = url1 + query
+        '''
 
         logging.info("== empresas ==")
         self.core.todas.empresas = self.fuentes.ine.empresas.csv
@@ -1096,6 +1207,10 @@ class Dataset():
                 select_options.append(select)
         for option in [option for select in select_options for option in select.select("option[value]")]:
             url = option.attrs["value"]
+            parsed_url = urlparse(url)
+            query = parse_qs(parsed_url.query)
+            if query and query.get('padre') and query.get('capsel') is None:
+                url = url + "&capsel=8624"
             logging.info("  "+url)
             sp = get_bs(url)
             for s in sp.select(".ocultar"):
@@ -1229,4 +1344,4 @@ if __name__ == "__main__":
     logging.basicConfig(
         level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
     d = Dataset()
-    d.create_edades()
+    d.create_edad()

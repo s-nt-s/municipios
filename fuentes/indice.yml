@@ -2,10 +2,18 @@ ine:
   provincias: http://www.ine.es/daco/daco42/codmun/cod_provincia_estandar.htm
   municipios: http://www.ine.es/daco/daco42/codmun/codmunmapa.htm
   poblacion:
+    root: http://www.ine.es/dyngs/INEbase/es/categoria.htm?c=Estadistica_P&cid=1254734710990
     sexo: http://www.ine.es/dynt3/inebase/index.htm?padre=525
-    edad_root: http://www.ine.es/dyngs/INEbase/es/operacion.htm?c=Estadistica_C&cid=1254736177012&menu=resultados&idp=1254734710990
-    edad: https://www.ine.es/dynt3/inebase/index.htm?padre=6232&capsel=6233
-    edad_year: http://www.ine.es/dynt3/inebase/es/index.htm?type=pcaxis&file=pcaxis&path=%2Ft20%2Fe245%2Fp05%2Fa
+    edad:
+      root: http://www.ine.es/dyngs/INEbase/es/operacion.htm?c=Estadistica_C&cid=1254736177012&menu=resultados&idp=1254734710990#!tabs-1254736195461
+      # Serie 1996-2002 (menos 1997)
+      year: http://www.ine.es/dynt3/inebase/es/index.htm?type=pcaxis&file=pcaxis&path=%2Ft20%2Fe245%2Fp05%2F%2Fa
+      # Serie 2003-2021
+      #serie_2003: http://www.ine.es/dynt3/inebase/index.htm?padre=6232&capsel=6233
+      serie_2003:
+        root: http://www.ine.es/dynt3/inebase/index.htm?padre=6232&capsel=6233
+        poblacion1: https://www.ine.es/jaxiT3/files/t/es/xlsx/33575.xlsx?nocab=1
+        poblacion5: https://www.ine.es/jaxiT3/files/t/es/xlsx/33570.xlsx?nocab=1
   empresas:
     html: http://www.ine.es/jaxiT3/Tabla.htm?t=4721
     json: http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/4721?tip=AM

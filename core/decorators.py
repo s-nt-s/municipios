@@ -57,9 +57,10 @@ class Cache:
 
 
 class JsonCache(Cache):
-    def __init__(self, *args, intKey=True, **kargv):
+    def __init__(self, *args, intKey=True, sort_keys=False, **kargv):
         Cache.__init__(self, *args, **kargv)
         self.intKey = intKey
+        self.sort_keys = sort_keys
 
     def read(self, *args, **kargs):
         fl = self.file_path(*args, *kargs)
@@ -67,7 +68,7 @@ class JsonCache(Cache):
 
     def save(self, data, *args, **kargs):
         fl = self.file_path(*args, *kargs)
-        save_js(fl, data)
+        save_js(fl, data, sort_keys=self.sort_keys)
 
 
 class ParamJsonCache(JsonCache):
