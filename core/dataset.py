@@ -315,6 +315,8 @@ class Dataset():
                 dt = dMun.get(mes, {})
 
                 for i, v in enumerate(row[firt_data:]):
+                    if isinstance(v, str) and v.startswith("<") and v[1:].isdigit():
+                        v=int(v[1:])-1
                     dt[head[i]] = v
 
                 dMun[mes] = dt
@@ -737,7 +739,7 @@ class Dataset():
     def paro(self):
         self.create_sepe()
         paro = read_js("dataset/empleo/paro_sepe_*.json")
-        for year, dt in paro.items():
+        for year, dt in paro.items():                    
             for nuevo, viejos in self.mun_remplaza.items():
                 dNuevo = dt.get(nuevo, {})
                 dt[nuevo] = dNuevo
