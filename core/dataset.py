@@ -336,29 +336,36 @@ class Dataset():
             data = {}
             for tr in soup.select("table tr"):
                 tds = tr.findAll(["th", "td"])
+                tdx = [td.get_text().strip() for td in tds]
                 if len(tds) == 8:
-                    mun = tds[0].get_text().strip()
-                    rent = tds[-2].get_text().strip()
-                    decla = tds[2].get_text().strip()
-                    rent = rent.replace(".", "")
-                    decla = decla.replace(".", "")
-                    cod = None
-                    if not rent.isdigit():
-                        continue
-                    if "-" in mun:
-                        pre, mun = mun.rsplit("-", 1)
-                        if mun.isdigit():
-                            if len(mun) == 5:
-                                cod = mun
-                            elif pre == "Agrupación municipios pequeños":
-                                cod = "p"+mun
-                    if cod is None:
-                        cod = prov_to_cod(mun)
-                    if cod is not None:
-                        data[cod] = {
-                            "media": int(rent),
-                            "declaraciones": int(decla)
-                        }
+                    mun = tdx[0]
+                    decla = tdx[2]
+                    rent = tdx[-2]
+                elif len(tds) == 10:
+                    mun = tdx[0]
+                    decla = tdx[2]
+                    rent = tdx[-4]
+                else:
+                    continue
+                rent = rent.replace(".", "")
+                decla = decla.replace(".", "")
+                cod = None
+                if not rent.isdigit():
+                    continue
+                if "-" in mun:
+                    pre, mun = mun.rsplit("-", 1)
+                    if mun.isdigit():
+                        if len(mun) == 5:
+                            cod = mun
+                        elif pre == "Agrupación municipios pequeños":
+                            cod = "p"+mun
+                if cod is None:
+                    cod = prov_to_cod(mun)
+                if cod is not None:
+                    data[cod] = {
+                        "media": int(rent),
+                        "declaraciones": int(decla)
+                    }
             yrRenta[year] = data
         return yrRenta
 
@@ -739,7 +746,7 @@ class Dataset():
     def paro(self):
         self.create_sepe()
         paro = read_js("dataset/empleo/paro_sepe_*.json")
-        for year, dt in paro.items():                    
+        for year, dt in paro.items():
             for nuevo, viejos in self.mun_remplaza.items():
                 dNuevo = dt.get(nuevo, {})
                 dt[nuevo] = dNuevo
