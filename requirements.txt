@@ -5,7 +5,7 @@ pylzma==0.5.0
 pyshp==2.1.2
 PyYAML==5.4
 requests>=2.20.0
-scipy==1.4.1
+scipy==1.10.0
 Shapely==1.6.4.post2
 Unidecode==1.1.1
 urllib3==1.26.5
