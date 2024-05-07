@@ -1264,14 +1264,15 @@ class Dataset():
         self.core.todas.paro_sepe = {}
         js = get_js(self.fuentes.sepe.json)
         data = {}
-        for i in js["result"]["items"][0]["distribution"]:
-            url = i["accessURL"]
-            if url.endswith(".csv"):
-                _, year, _ = url.rsplit("_", 2)
-                year = int(year)
-                data[year] = url
-                logging.info("  "+url)
-                self.core.todas.paro_sepe[year] = url
+        for i in js["@graph"]:
+            url = i.get("dcat:accessURL")
+            if url is None or not url.endswith(".csv"):
+                continue
+            _, year, _ = url.rsplit("_", 2)
+            year = int(year)
+            data[year] = url
+            logging.info("  "+url)
+            self.core.todas.paro_sepe[year] = url
         self.core.todas.paro_sepe = {k:v for k, v in sorted(self.core.todas.paro_sepe.items())}
 
         logging.info("== renta ==")

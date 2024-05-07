@@ -34,7 +34,7 @@ fomento:
   mapa: http://centrodedescargas.cnig.es/CentroDescargas/descargaDir?codSerie=NGMEN&secDescDirCata=9000029
 sepe:
   html: https://datos.gob.es/es/catalogo/ea0021425-paro-registrado-por-municipios
-  json: https://datos.gob.es/apidata/catalog/dataset/ea0021425-paro-registrado-por-municipios.json
+  json: https://datos.gob.es/es/catalogo/ea0021425-paro-registrado-por-municipios.jsonld
 # html: https://datos.gob.es/es/catalogo/e00142804-paro-registrado-por-municipios
 # json: https://datos.gob.es/apidata/catalog/dataset/e00142804-paro-registrado-por-municipios.json
 renta:
