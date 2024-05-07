@@ -1083,7 +1083,7 @@ class Dataset():
         logging.info(self.fuentes.ine.poblacion.sexo)
         soup = get_bs(self.fuentes.ine.poblacion.sexo)
         years = set()
-        for i in soup.select("li.inebase_tabla"):
+        for i in soup.select("li[role='none']"):
             _, _id = i.attrs["id"].split("_")
             url = "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/%s?tip=AM" % _id
             logging.info("  " + url)
@@ -1114,14 +1114,14 @@ class Dataset():
             soup = get_bs(url)
             for s in soup.select(".ocultar"):
                 s.extract()
-            for i in soup.select("li.inebase_capitulo"):
+            for i in soup.select("li[role='treeitem']"):
                 txt = i.find("a").get_text().strip()
                 if txt == "00.- Nacional":
                     continue
                 txt = re_trim.sub("", txt)
                 txt = txt.replace(".- ", " ")
                 c, n = txt.split(" ", 1)
-                li = i.select_one("li.inebase_tabla")
+                li = i.select_one("li[role='none']")
                 #a = i.find("ol").find("li").findAll("a")[-1]
                 a = li.findAll("a")[-1]
                 url = wstempus(a.attrs["href"])
@@ -1321,7 +1321,7 @@ class Dataset():
             if url and url.startswith("http"):
                 logging.info("  "+url)
                 s = get_bs(url)
-                for tr in s.select("div.panel tr"):
+                for tr in s.select("div.cmp-container tr"):
                     tds = tr.findAll("td")
                     if len(tds) == 2:
                         a = tds[1].find("a")

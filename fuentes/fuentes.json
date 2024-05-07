@@ -15,7 +15,7 @@
     "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov01/l0/10007.px?tip=AM",
     "unidades": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov01/l0/10002.px?tip=AM"
   },
-  "miteco": "https://www.miteco.gob.es:443/es/biodiversidad/servicios/banco-datos-naturaleza/MFE50_01_tcm30-200095.zip"
+  "miteco": "https://www.miteco.gob.es/content/dam/miteco/es/biodiversidad/servicios/banco-datos-naturaleza/MFE50_01_tcm30-200095.zip"
 },
 "02": {
   "nombre": "Albacete",
@@ -33,7 +33,7 @@
     "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov02/l0/10007.px?tip=AM",
     "unidades": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov02/l0/10002.px?tip=AM"
   },
-  "miteco": "https://www.miteco.gob.es:443/es/biodiversidad/servicios/banco-datos-naturaleza/MFE50_02_tcm30-200097.zip"
+  "miteco": "https://www.miteco.gob.es/content/dam/miteco/es/biodiversidad/servicios/banco-datos-naturaleza/MFE50_02_tcm30-200097.zip"
 },
 "03": {
   "nombre": "Alicante/Alacant",
@@ -51,7 +51,7 @@
     "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov03/l0/10007.px?tip=AM",
     "unidades": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov03/l0/10002.px?tip=AM"
   },
-  "miteco": "https://www.miteco.gob.es:443/es/biodiversidad/servicios/banco-datos-naturaleza/MFE50_03_tcm30-200069.zip"
+  "miteco": "https://www.miteco.gob.es/content/dam/miteco/es/biodiversidad/servicios/banco-datos-naturaleza/MFE50_03_tcm30-200069.zip"
 },
 "04": {
   "nombre": "Almer\u00eda",
@@ -69,7 +69,7 @@
     "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov04/l0/10007.px?tip=AM",
     "unidades": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov04/l0/10002.px?tip=AM"
   },
-  "miteco": "https://www.miteco.gob.es:443/es/biodiversidad/servicios/banco-datos-naturaleza/MFE50_04_tcm30-200073.zip"
+  "miteco": "https://www.miteco.gob.es/content/dam/miteco/es/biodiversidad/servicios/banco-datos-naturaleza/MFE50_04_tcm30-200073.zip"
 },
 "05": {
   "nombre": "\u00c1vila",
@@ -87,7 +87,7 @@
     "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov05/l0/10007.px?tip=AM",
     "unidades": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov05/l0/10002.px?tip=AM"
   },
-  "miteco": "https://www.miteco.gob.es:443/es/biodiversidad/servicios/banco-datos-naturaleza/MFE50_05_tcm30-200064.zip"
+  "miteco": "https://www.miteco.gob.es/content/dam/miteco/es/biodiversidad/servicios/banco-datos-naturaleza/MFE50_05_tcm30-200064.zip"
 },
 "06": {
   "nombre": "Badajoz",
@@ -105,7 +105,7 @@
     "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov06/l0/10007.px?tip=AM",
     "unidades": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov06/l0/10002.px?tip=AM"
   },
-  "miteco": "https://www.miteco.gob.es:443/es/biodiversidad/servicios/banco-datos-naturaleza/MFE50_06_tcm30-200070.zip"
+  "miteco": "https://www.miteco.gob.es/content/dam/miteco/es/biodiversidad/servicios/banco-datos-naturaleza/MFE50_06_tcm30-200070.zip"
 },
 "07": {
   "nombre": "Balears, Illes",
@@ -123,7 +123,7 @@
     "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/52760?tip=AM",
     "unidades": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/52755?tip=AM"
   },
-  "miteco": "https://www.miteco.gob.es:443/es/biodiversidad/servicios/banco-datos-naturaleza/MFE50_07_tcm30-200091.zip"
+  "miteco": "https://www.miteco.gob.es/content/dam/miteco/es/biodiversidad/servicios/banco-datos-naturaleza/MFE50_07_tcm30-200091.zip"
 },
 "08": {
   "nombre": "Barcelona",
@@ -141,7 +141,7 @@
     "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov08/l0/10007.px?tip=AM",
     "unidades": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov08/l0/10002.px?tip=AM"
   },
-  "miteco": "https://www.miteco.gob.es:443/es/biodiversidad/servicios/banco-datos-naturaleza/MFE50_08_tcm30-200111.zip"
+  "miteco": "https://www.miteco.gob.es/content/dam/miteco/es/biodiversidad/servicios/banco-datos-naturaleza/MFE50_08_tcm30-200111.zip"
 },
 "09": {
   "nombre": "Burgos",
@@ -159,7 +159,7 @@
     "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov09/l0/10007.px?tip=AM",
     "unidades": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov09/l0/10002.px?tip=AM"
   },
-  "miteco": "https://www.miteco.gob.es:443/es/biodiversidad/servicios/banco-datos-naturaleza/MFE50_09_tcm30-200105.zip"
+  "miteco": "https://www.miteco.gob.es/content/dam/miteco/es/biodiversidad/servicios/banco-datos-naturaleza/MFE50_09_tcm30-200105.zip"
 },
 "10": {
   "nombre": "C\u00e1ceres",
@@ -177,7 +177,7 @@
     "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov10/l0/10007.px?tip=AM",
     "unidades": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov10/l0/10002.px?tip=AM"
   },
-  "miteco": "https://www.miteco.gob.es:443/es/biodiversidad/servicios/banco-datos-naturaleza/MFE50_10_tcm30-200099.zip"
+  "miteco": "https://www.miteco.gob.es/content/dam/miteco/es/biodiversidad/servicios/banco-datos-naturaleza/MFE50_10_tcm30-200099.zip"
 },
 "11": {
   "nombre": "C\u00e1diz",
@@ -195,7 +195,7 @@
     "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov11/l0/10007.px?tip=AM",
     "unidades": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov11/l0/10002.px?tip=AM"
   },
-  "miteco": "https://www.miteco.gob.es:443/es/biodiversidad/servicios/banco-datos-naturaleza/MFE50_11_tcm30-200096.zip"
+  "miteco": "https://www.miteco.gob.es/content/dam/miteco/es/biodiversidad/servicios/banco-datos-naturaleza/MFE50_11_tcm30-200096.zip"
 },
 "12": {
   "nombre": "Castell\u00f3n/Castell\u00f3",
@@ -213,7 +213,7 @@
     "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov12/l0/10007.px?tip=AM",
     "unidades": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov12/l0/10002.px?tip=AM"
   },
-  "miteco": "https://www.miteco.gob.es:443/es/biodiversidad/servicios/banco-datos-naturaleza/MFE50_12_tcm30-200098.zip"
+  "miteco": "https://www.miteco.gob.es/content/dam/miteco/es/biodiversidad/servicios/banco-datos-naturaleza/MFE50_12_tcm30-200098.zip"
 },
 "13": {
   "nombre": "Ciudad Real",
@@ -231,7 +231,7 @@
     "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov13/l0/10007.px?tip=AM",
     "unidades": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov13/l0/10002.px?tip=AM"
   },
-  "miteco": "https://www.miteco.gob.es:443/es/biodiversidad/servicios/banco-datos-naturaleza/MFE50_13_tcm30-200068.zip"
+  "miteco": "https://www.miteco.gob.es/content/dam/miteco/es/biodiversidad/servicios/banco-datos-naturaleza/MFE50_13_tcm30-200068.zip"
 },
 "14": {
   "nombre": "C\u00f3rdoba",
@@ -249,7 +249,7 @@
     "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov14/l0/10007.px?tip=AM",
     "unidades": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov14/l0/10002.px?tip=AM"
   },
-  "miteco": "https://www.miteco.gob.es:443/es/biodiversidad/servicios/banco-datos-naturaleza/MFE50_14_tcm30-200074.zip"
+  "miteco": "https://www.miteco.gob.es/content/dam/miteco/es/biodiversidad/servicios/banco-datos-naturaleza/MFE50_14_tcm30-200074.zip"
 },
 "15": {
   "nombre": "Coru\u00f1a, A",
@@ -267,7 +267,7 @@
     "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov15/l0/10007.px?tip=AM",
     "unidades": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov15/l0/10002.px?tip=AM"
   },
-  "miteco": "https://www.miteco.gob.es:443/es/biodiversidad/servicios/banco-datos-naturaleza/MFE50_15_tcm30-200063.zip"
+  "miteco": "https://www.miteco.gob.es/content/dam/miteco/es/biodiversidad/servicios/banco-datos-naturaleza/MFE50_15_tcm30-200063.zip"
 },
 "16": {
   "nombre": "Cuenca",
@@ -285,7 +285,7 @@
     "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov16/l0/10007.px?tip=AM",
     "unidades": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov16/l0/10002.px?tip=AM"
   },
-  "miteco": "https://www.miteco.gob.es:443/es/biodiversidad/servicios/banco-datos-naturaleza/MFE50_16_tcm30-200071.zip"
+  "miteco": "https://www.miteco.gob.es/content/dam/miteco/es/biodiversidad/servicios/banco-datos-naturaleza/MFE50_16_tcm30-200071.zip"
 },
 "17": {
   "nombre": "Girona",
@@ -303,7 +303,7 @@
     "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov17/l0/10007.px?tip=AM",
     "unidades": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov17/l0/10002.px?tip=AM"
   },
-  "miteco": "https://www.miteco.gob.es:443/es/biodiversidad/servicios/banco-datos-naturaleza/MFE50_17_tcm30-200090.zip"
+  "miteco": "https://www.miteco.gob.es/content/dam/miteco/es/biodiversidad/servicios/banco-datos-naturaleza/MFE50_17_tcm30-200090.zip"
 },
 "18": {
   "nombre": "Granada",
@@ -321,7 +321,7 @@
     "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov18/l0/10007.px?tip=AM",
     "unidades": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov18/l0/10002.px?tip=AM"
   },
-  "miteco": "https://www.miteco.gob.es:443/es/biodiversidad/servicios/banco-datos-naturaleza/MFE50_18_tcm30-200110.zip"
+  "miteco": "https://www.miteco.gob.es/content/dam/miteco/es/biodiversidad/servicios/banco-datos-naturaleza/MFE50_18_tcm30-200110.zip"
 },
 "19": {
   "nombre": "Guadalajara",
@@ -339,7 +339,7 @@
     "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov19/l0/10007.px?tip=AM",
     "unidades": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov19/l0/10002.px?tip=AM"
   },
-  "miteco": "https://www.miteco.gob.es:443/es/biodiversidad/servicios/banco-datos-naturaleza/MFE50_19_tcm30-200104.zip"
+  "miteco": "https://www.miteco.gob.es/content/dam/miteco/es/biodiversidad/servicios/banco-datos-naturaleza/MFE50_19_tcm30-200104.zip"
 },
 "20": {
   "nombre": "Gipuzkoa",
@@ -357,7 +357,7 @@
     "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov20/l0/10007.px?tip=AM",
     "unidades": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov20/l0/10002.px?tip=AM"
   },
-  "miteco": "https://www.miteco.gob.es:443/es/biodiversidad/servicios/banco-datos-naturaleza/MFE50_20_tcm30-200109.zip"
+  "miteco": "https://www.miteco.gob.es/content/dam/miteco/es/biodiversidad/servicios/banco-datos-naturaleza/MFE50_20_tcm30-200109.zip"
 },
 "21": {
   "nombre": "Huelva",
@@ -375,7 +375,7 @@
     "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov21/l0/10007.px?tip=AM",
     "unidades": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov21/l0/10002.px?tip=AM"
   },
-  "miteco": "https://www.miteco.gob.es:443/es/biodiversidad/servicios/banco-datos-naturaleza/MFE50_21_tcm30-200102.zip"
+  "miteco": "https://www.miteco.gob.es/content/dam/miteco/es/biodiversidad/servicios/banco-datos-naturaleza/MFE50_21_tcm30-200102.zip"
 },
 "22": {
   "nombre": "Huesca",
@@ -393,7 +393,7 @@
     "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov22/l0/10007.px?tip=AM",
     "unidades": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov22/l0/10002.px?tip=AM"
   },
-  "miteco": "https://www.miteco.gob.es:443/es/biodiversidad/servicios/banco-datos-naturaleza/MFE50_22_tcm30-200106.zip"
+  "miteco": "https://www.miteco.gob.es/content/dam/miteco/es/biodiversidad/servicios/banco-datos-naturaleza/MFE50_22_tcm30-200106.zip"
 },
 "23": {
   "nombre": "Ja\u00e9n",
@@ -411,7 +411,7 @@
     "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov23/l0/10007.px?tip=AM",
     "unidades": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov23/l0/10002.px?tip=AM"
   },
-  "miteco": "https://www.miteco.gob.es:443/es/biodiversidad/servicios/banco-datos-naturaleza/MFE50_23_tcm30-200082.zip"
+  "miteco": "https://www.miteco.gob.es/content/dam/miteco/es/biodiversidad/servicios/banco-datos-naturaleza/MFE50_23_tcm30-200082.zip"
 },
 "24": {
   "nombre": "Le\u00f3n",
@@ -429,7 +429,7 @@
     "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov24/l0/10007.px?tip=AM",
     "unidades": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov24/l0/10002.px?tip=AM"
   },
-  "miteco": "https://www.miteco.gob.es:443/es/biodiversidad/servicios/banco-datos-naturaleza/MFE50_24_tcm30-200086.zip"
+  "miteco": "https://www.miteco.gob.es/content/dam/miteco/es/biodiversidad/servicios/banco-datos-naturaleza/MFE50_24_tcm30-200086.zip"
 },
 "25": {
   "nombre": "Lleida",
@@ -447,7 +447,7 @@
     "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov25/l0/10007.px?tip=AM",
     "unidades": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov25/l0/10002.px?tip=AM"
   },
-  "miteco": "https://www.miteco.gob.es:443/es/biodiversidad/servicios/banco-datos-naturaleza/MFE50_25_tcm30-200080.zip"
+  "miteco": "https://www.miteco.gob.es/content/dam/miteco/es/biodiversidad/servicios/banco-datos-naturaleza/MFE50_25_tcm30-200080.zip"
 },
 "26": {
   "nombre": "Rioja, La",
@@ -465,7 +465,7 @@
     "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov26/l0/10007.px?tip=AM",
     "unidades": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov26/l0/10002.px?tip=AM"
   },
-  "miteco": "https://www.miteco.gob.es:443/es/biodiversidad/servicios/banco-datos-naturaleza/MFE50_26_tcm30-200085.zip"
+  "miteco": "https://www.miteco.gob.es/content/dam/miteco/es/biodiversidad/servicios/banco-datos-naturaleza/MFE50_26_tcm30-200085.zip"
 },
 "27": {
   "nombre": "Lugo",
@@ -483,7 +483,7 @@
     "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov27/l0/10007.px?tip=AM",
     "unidades": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov27/l0/10002.px?tip=AM"
   },
-  "miteco": "https://www.miteco.gob.es:443/es/biodiversidad/servicios/banco-datos-naturaleza/MFE50_27_tcm30-200101.zip"
+  "miteco": "https://www.miteco.gob.es/content/dam/miteco/es/biodiversidad/servicios/banco-datos-naturaleza/MFE50_27_tcm30-200101.zip"
 },
 "28": {
   "nombre": "Madrid",
@@ -501,7 +501,7 @@
     "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov28/l0/10007.px?tip=AM",
     "unidades": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov28/l0/10002.px?tip=AM"
   },
-  "miteco": "https://www.miteco.gob.es:443/es/biodiversidad/servicios/banco-datos-naturaleza/MFE50_28_tcm30-200078.zip"
+  "miteco": "https://www.miteco.gob.es/content/dam/miteco/es/biodiversidad/servicios/banco-datos-naturaleza/MFE50_28_tcm30-200078.zip"
 },
 "29": {
   "nombre": "M\u00e1laga",
@@ -519,7 +519,7 @@
     "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov29/l0/10007.px?tip=AM",
     "unidades": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov29/l0/10002.px?tip=AM"
   },
-  "miteco": "https://www.miteco.gob.es:443/es/biodiversidad/servicios/banco-datos-naturaleza/MFE50_29_tcm30-200067.zip"
+  "miteco": "https://www.miteco.gob.es/content/dam/miteco/es/biodiversidad/servicios/banco-datos-naturaleza/MFE50_29_tcm30-200067.zip"
 },
 "30": {
   "nombre": "Murcia",
@@ -537,7 +537,7 @@
     "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov30/l0/10007.px?tip=AM",
     "unidades": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov30/l0/10002.px?tip=AM"
   },
-  "miteco": "https://www.miteco.gob.es:443/es/biodiversidad/servicios/banco-datos-naturaleza/MFE50_30_tcm30-200108.zip"
+  "miteco": "https://www.miteco.gob.es/content/dam/miteco/es/biodiversidad/servicios/banco-datos-naturaleza/MFE50_30_tcm30-200108.zip"
 },
 "31": {
   "nombre": "Navarra",
@@ -555,7 +555,7 @@
     "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov31/l0/10007.px?tip=AM",
     "unidades": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov31/l0/10002.px?tip=AM"
   },
-  "miteco": "https://www.miteco.gob.es:443/es/biodiversidad/servicios/banco-datos-naturaleza/MFE50_31_tcm30-200103.zip"
+  "miteco": "https://www.miteco.gob.es/content/dam/miteco/es/biodiversidad/servicios/banco-datos-naturaleza/MFE50_31_tcm30-200103.zip"
 },
 "32": {
   "nombre": "Ourense",
@@ -573,7 +573,7 @@
     "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov32/l0/10007.px?tip=AM",
     "unidades": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov32/l0/10002.px?tip=AM"
   },
-  "miteco": "https://www.miteco.gob.es:443/es/biodiversidad/servicios/banco-datos-naturaleza/MFE50_32_tcm30-200107.zip"
+  "miteco": "https://www.miteco.gob.es/content/dam/miteco/es/biodiversidad/servicios/banco-datos-naturaleza/MFE50_32_tcm30-200107.zip"
 },
 "33": {
   "nombre": "Asturias",
@@ -591,7 +591,7 @@
     "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov33/l0/10007.px?tip=AM",
     "unidades": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov33/l0/10002.px?tip=AM"
   },
-  "miteco": "https://www.miteco.gob.es:443/es/biodiversidad/servicios/banco-datos-naturaleza/MFE50_33_tcm30-200081.zip"
+  "miteco": "https://www.miteco.gob.es/content/dam/miteco/es/biodiversidad/servicios/banco-datos-naturaleza/MFE50_33_tcm30-200081.zip"
 },
 "34": {
   "nombre": "Palencia",
@@ -609,7 +609,7 @@
     "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov34/l0/10007.px?tip=AM",
     "unidades": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov34/l0/10002.px?tip=AM"
   },
-  "miteco": "https://www.miteco.gob.es:443/es/biodiversidad/servicios/banco-datos-naturaleza/MFE50_34_tcm30-200087.zip"
+  "miteco": "https://www.miteco.gob.es/content/dam/miteco/es/biodiversidad/servicios/banco-datos-naturaleza/MFE50_34_tcm30-200087.zip"
 },
 "35": {
   "nombre": "Palmas, Las",
@@ -627,7 +627,7 @@
     "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov35/l0/10007.px?tip=AM",
     "unidades": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov35/l0/10002.px?tip=AM"
   },
-  "miteco": "https://www.miteco.gob.es:443/es/biodiversidad/servicios/banco-datos-naturaleza/MFE50_35_tcm30-200079.zip"
+  "miteco": "https://www.miteco.gob.es/content/dam/miteco/es/biodiversidad/servicios/banco-datos-naturaleza/MFE50_35_tcm30-200079.zip"
 },
 "36": {
   "nombre": "Pontevedra",
@@ -645,7 +645,7 @@
     "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov36/l0/10007.px?tip=AM",
     "unidades": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov36/l0/10002.px?tip=AM"
   },
-  "miteco": "https://www.miteco.gob.es:443/es/biodiversidad/servicios/banco-datos-naturaleza/MFE50_36_tcm30-200084.zip"
+  "miteco": "https://www.miteco.gob.es/content/dam/miteco/es/biodiversidad/servicios/banco-datos-naturaleza/MFE50_36_tcm30-200084.zip"
 },
 "37": {
   "nombre": "Salamanca",
@@ -663,7 +663,7 @@
     "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov37/l0/10007.px?tip=AM",
     "unidades": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov37/l0/10002.px?tip=AM"
   },
-  "miteco": "https://www.miteco.gob.es:443/es/biodiversidad/servicios/banco-datos-naturaleza/MFE50_37_tcm30-200100.zip"
+  "miteco": "https://www.miteco.gob.es/content/dam/miteco/es/biodiversidad/servicios/banco-datos-naturaleza/MFE50_37_tcm30-200100.zip"
 },
 "38": {
   "nombre": "Santa Cruz de Tenerife",
@@ -681,7 +681,7 @@
     "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov38/l0/10007.px?tip=AM",
     "unidades": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov38/l0/10002.px?tip=AM"
   },
-  "miteco": "https://www.miteco.gob.es:443/es/biodiversidad/servicios/banco-datos-naturaleza/MFE50_38_tcm30-200077.zip"
+  "miteco": "https://www.miteco.gob.es/content/dam/miteco/es/biodiversidad/servicios/banco-datos-naturaleza/MFE50_38_tcm30-200077.zip"
 },
 "39": {
   "nombre": "Cantabria",
@@ -699,7 +699,7 @@
     "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov39/l0/10007.px?tip=AM",
     "unidades": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov39/l0/10002.px?tip=AM"
   },
-  "miteco": "https://www.miteco.gob.es:443/es/biodiversidad/servicios/banco-datos-naturaleza/MFE50_39_tcm30-200066.zip"
+  "miteco": "https://www.miteco.gob.es/content/dam/miteco/es/biodiversidad/servicios/banco-datos-naturaleza/MFE50_39_tcm30-200066.zip"
 },
 "40": {
   "nombre": "Segovia",
@@ -717,7 +717,7 @@
     "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov40/l0/10007.px?tip=AM",
     "unidades": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov40/l0/10002.px?tip=AM"
   },
-  "miteco": "https://www.miteco.gob.es:443/es/biodiversidad/servicios/banco-datos-naturaleza/MFE50_40_tcm30-200076.zip"
+  "miteco": "https://www.miteco.gob.es/content/dam/miteco/es/biodiversidad/servicios/banco-datos-naturaleza/MFE50_40_tcm30-200076.zip"
 },
 "41": {
   "nombre": "Sevilla",
@@ -735,7 +735,7 @@
     "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov41/l0/10007.px?tip=AM",
     "unidades": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov41/l0/10002.px?tip=AM"
   },
-  "miteco": "https://www.miteco.gob.es:443/es/biodiversidad/servicios/banco-datos-naturaleza/MFE50_41_tcm30-200065.zip"
+  "miteco": "https://www.miteco.gob.es/content/dam/miteco/es/biodiversidad/servicios/banco-datos-naturaleza/MFE50_41_tcm30-200065.zip"
 },
 "42": {
   "nombre": "Soria",
@@ -753,7 +753,7 @@
     "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov42/l0/10007.px?tip=AM",
     "unidades": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov42/l0/10002.px?tip=AM"
   },
-  "miteco": "https://www.miteco.gob.es:443/es/biodiversidad/servicios/banco-datos-naturaleza/MFE50_42_tcm30-200072.zip"
+  "miteco": "https://www.miteco.gob.es/content/dam/miteco/es/biodiversidad/servicios/banco-datos-naturaleza/MFE50_42_tcm30-200072.zip"
 },
 "43": {
   "nombre": "Tarragona",
@@ -771,7 +771,7 @@
     "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov43/l0/10007.px?tip=AM",
     "unidades": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov43/l0/10002.px?tip=AM"
   },
-  "miteco": "https://www.miteco.gob.es:443/es/biodiversidad/servicios/banco-datos-naturaleza/MFE50_43_tcm30-200092.zip"
+  "miteco": "https://www.miteco.gob.es/content/dam/miteco/es/biodiversidad/servicios/banco-datos-naturaleza/MFE50_43_tcm30-200092.zip"
 },
 "44": {
   "nombre": "Teruel",
@@ -789,7 +789,7 @@
     "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov44/l0/10007.px?tip=AM",
     "unidades": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov44/l0/10002.px?tip=AM"
   },
-  "miteco": "https://www.miteco.gob.es:443/es/biodiversidad/servicios/banco-datos-naturaleza/MFE50_44_tcm30-200094.zip"
+  "miteco": "https://www.miteco.gob.es/content/dam/miteco/es/biodiversidad/servicios/banco-datos-naturaleza/MFE50_44_tcm30-200094.zip"
 },
 "45": {
   "nombre": "Toledo",
@@ -807,7 +807,7 @@
     "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov45/l0/10007.px?tip=AM",
     "unidades": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov45/l0/10002.px?tip=AM"
   },
-  "miteco": "https://www.miteco.gob.es:443/es/biodiversidad/servicios/banco-datos-naturaleza/MFE50_45_tcm30-200089.zip"
+  "miteco": "https://www.miteco.gob.es/content/dam/miteco/es/biodiversidad/servicios/banco-datos-naturaleza/MFE50_45_tcm30-200089.zip"
 },
 "46": {
   "nombre": "Valencia/Val\u00e8ncia",
@@ -825,7 +825,7 @@
     "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov46/l0/10007.px?tip=AM",
     "unidades": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov46/l0/10002.px?tip=AM"
   },
-  "miteco": "https://www.miteco.gob.es:443/es/biodiversidad/servicios/banco-datos-naturaleza/MFE50_46_tcm30-200093.zip"
+  "miteco": "https://www.miteco.gob.es/content/dam/miteco/es/biodiversidad/servicios/banco-datos-naturaleza/MFE50_46_tcm30-200093.zip"
 },
 "47": {
   "nombre": "Valladolid",
@@ -843,7 +843,7 @@
     "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov47/l0/10007.px?tip=AM",
     "unidades": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov47/l0/10002.px?tip=AM"
   },
-  "miteco": "https://www.miteco.gob.es:443/es/biodiversidad/servicios/banco-datos-naturaleza/MFE50_47_tcm30-200112.zip"
+  "miteco": "https://www.miteco.gob.es/content/dam/miteco/es/biodiversidad/servicios/banco-datos-naturaleza/MFE50_47_tcm30-200112.zip"
 },
 "48": {
   "nombre": "Bizkaia",
@@ -861,7 +861,7 @@
     "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov48/l0/10007.px?tip=AM",
     "unidades": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov48/l0/10002.px?tip=AM"
   },
-  "miteco": "https://www.miteco.gob.es:443/es/biodiversidad/servicios/banco-datos-naturaleza/MFE50_48_tcm30-200088.zip"
+  "miteco": "https://www.miteco.gob.es/content/dam/miteco/es/biodiversidad/servicios/banco-datos-naturaleza/MFE50_48_tcm30-200088.zip"
 },
 "49": {
   "nombre": "Zamora",
@@ -879,7 +879,7 @@
     "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov49/l0/10007.px?tip=AM",
     "unidades": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov49/l0/10002.px?tip=AM"
   },
-  "miteco": "https://www.miteco.gob.es:443/es/biodiversidad/servicios/banco-datos-naturaleza/MFE50_49_tcm30-200083.zip"
+  "miteco": "https://www.miteco.gob.es/content/dam/miteco/es/biodiversidad/servicios/banco-datos-naturaleza/MFE50_49_tcm30-200083.zip"
 },
 "50": {
   "nombre": "Zaragoza",
@@ -897,7 +897,7 @@
     "superficie": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov50/l0/10007.px?tip=AM",
     "unidades": "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/t01/p042/prov50/l0/10002.px?tip=AM"
   },
-  "miteco": "https://www.miteco.gob.es:443/es/biodiversidad/servicios/banco-datos-naturaleza/MFE50_50_tcm30-200075.zip"
+  "miteco": "https://www.miteco.gob.es/content/dam/miteco/es/biodiversidad/servicios/banco-datos-naturaleza/MFE50_50_tcm30-200075.zip"
 },
 "51": {
   "nombre": "Ceuta",
