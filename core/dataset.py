@@ -1083,7 +1083,7 @@ class Dataset():
         logging.info(self.fuentes.ine.poblacion.sexo)
         soup = get_bs(self.fuentes.ine.poblacion.sexo)
         years = set()
-        for i in soup.select("li[role='none']"):
+        for i in soup.select("li[role='none']:not(.empty)"):
             _, _id = i.attrs["id"].split("_")
             url = "http://servicios.ine.es/wstempus/js/es/DATOS_TABLA/%s?tip=AM" % _id
             logging.info("  " + url)
