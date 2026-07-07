@@ -9,7 +9,7 @@ from datetime import date, datetime, timedelta
 from decimal import Decimal
 
 import unidecode
-from bunch import Bunch
+from munch import Munch as Bunch
 from shapely.geometry import MultiPolygon, Point, Polygon
 
 from .common import size, zipfile

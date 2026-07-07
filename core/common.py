@@ -18,7 +18,7 @@ import urllib3
 import xlrd
 import yaml
 from bs4 import BeautifulSoup
-from bunch import Bunch
+from munch import Munch as Bunch
 
 from .mdb_to_sqlite import mdb_to_sqlite
 

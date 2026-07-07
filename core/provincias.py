@@ -1,4 +1,4 @@
-from bunch import Bunch
+from munch import Munch as Bunch
 
 TP_PROVINCIAS=(
     ("01", "Araba/Álava"),
