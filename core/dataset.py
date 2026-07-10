@@ -21,6 +21,14 @@ re_prov = re.compile(r"/prov(\d\d)/")
 cYear = datetime.now().year
 
 
+def mk_re(*args: str):
+    rgx: list[str] = []
+    for a in args:
+        r = "\s+".join(map(re.escape, a.strip().split()))
+        rgx.append(r)
+    return r"(" + r"|".join(rgx) + r")"
+
+
 def insert_rel_mun(db, table, rows, kSort=None):
     logging.info("Creando "+table)
     table = table.upper()
@@ -1289,13 +1297,28 @@ class Dataset():
                 "a", text="Detalle de los municipios con más de 1.000 habitantes")
             a = a.attrs["href"]
             sp = get_bs(a)
-            a = sp.find(
-                "a", text="Posicionamiento de los municipios mayores de 1.000 habitantes por Renta bruta media")
-            a = a.attrs["href"]
+            href_path: list[str] = []
+            while True:
+                a = sp.find(
+                    "a", text=re.compile(mk_re(
+                        r"Posicionamiento de los municipios mayores de 1.000 habitantes por Renta bruta media",
+                        r"Posicionamiento municipios con más de 1.000 hab. Renta Bruta Media",
+                    ), flags=re.I))
+                if a is None:
+                    break
+                hrf = a.attrs["href"]
+                if hrf in href_path:
+                    break
+                href_path.append(hrf)
+                logging.info(hrf)
+                sp = get_bs(hrf)
+            if len(href_path) == 0:
+                raise ValueError(f"Link no encontrado")
+            href = href_path[-1]
             aeat = self.core.todas.renta.get("aeat", {})
-            aeat[year] = a
+            aeat[year] = href
             self.core.todas.renta["aeat"] = aeat
-            logging.info("  "+a)
+            logging.info("  "+href)
 
         self.core.todas.renta["euskadi"] = self.fuentes.renta.euskadi.csv
 
